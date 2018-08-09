@@ -1,0 +1,33 @@
+{% extends 'loginbase.html' %}
+{% block content %}
+
+<link href="../static/css/basestyles.css" rel="stylesheet">
+<div class="topnav">
+	<div style="width:460px;height:400px;padding:20px;background-color:#6aa84fff;position:absolute;top:50%;right:50%;margin-right:-250px;margin-top:-90px;">
+    <form class="signin-form" action="{{url_for('login')}}" method="POST">
+			{{ form.csrf_token}}
+			{% if form.csrf_token.errors %}
+					<h1><strong> Invalid CSRF token! <strong></h1>
+			{% endif %}
+
+  		<div style="positon:absolute;padding:60px;" class="container">
+				<div style="display: inline-block; mid-width: 13em" >
+				{{ form.staffID.label (style="font-size: 1.5em") }}
+				{{ form.staffID(class="form-control") }}
+				</div>
+				<br>
+				<div style="display: inline-block; mid-width: 13em" >
+    		{{ form.password.label (style="font-size: 1.5em") }}
+				{{ form.password(class="form-control") }}
+				</div>
+				<br>
+				<br>
+				<center> {{ form.loginButton (class='btn btn-secondary btn-lg') }}
+				</center>
+      </div>
+    </form>
+
+
+    <h1 style="position:absolute;top:0px;left:180px;">Sign In</h1>
+    </div>
+{% endblock content %}
