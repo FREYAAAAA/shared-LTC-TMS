@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>LTCTMS Login</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,500" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/5.4.0/firebase.js"></script>
+<link rel="stylesheet" href="loginstyle.css">
+</head>
+
+<body>
+<!--<img  style="position:absolute;Right:25px;top:45px;font-size:12px;color:blue"  src="photo.png" alt='CNO/Director' >-->
+
+<div class="content">
+  <div style="width:460px;height:400px;padding:20px;
+   background-color:#6aa84fff;position:absolute;top:50%;right:50%;margin-right:-250px;margin-top:-90px;">
+
+     <div style="positon:absolute;padding:60px;" class="container">
+
+       <label for="Email"><b>Email</b></label>
+       <input id="txtEmail" type="text" placeholder="Enter Email">
+
+       <label for="Password"><b>Password</b></label>
+       <input id="txtPassword" type="password" placeholder="Enter Password"  >
+
+       <button  id="btnLogin" style="margin-left:100px;" class= "btn btn-action">Login</button>
+       <button id="btnLogout" class="btn btn-action hide">Logout</button>
+       <button id="btnSignUp" class="btn btn-secondary">Signup</button>
+     </div>
+
+   <h1 style="position:absolute;top:0px;left:180px;">Sign In</h1>
+ </div>
+ <div class="topnav"></div>
+</div>
+
+<div class="language">
+<select>
+   <option value="English">English</option>
+   <option value="Chinese">Chinese</option>
+</select>
+</div>
+
+<script type="text/javascript" src="LoginJS.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Schedule</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://www.gstatic.com/firebasejs/5.4.0/firebase.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+<style>
+* {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.hide{
+  display:none;
+}
+
+/* Style the top navigation bar */
+.topnav {
+    overflow: hidden;
+    background-color: #6aa84fff;
+    padding:10px;
+}
+
+.dropbtn {
+    background-color: #008000;
+    color: white;
+    padding: 16px 40px;
+    font-size: 16px;
+    border:none;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+
+}
+
+.dropdown-content {
+    display: none;
+    position: fixed;
+    background-color: #b6d7a8ff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border:none;
+    border-radius:30px;
+
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+
+}
+
+.dropdown-content a:hover {
+	background-color: #f1f1f1;
+    border-radius:30px;
+
+}
+
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
+/* Style the content */
+content {
+    background-color: #ddd;
+    padding: 10px;
+    height:8 00px; /* Should be removed. Only for demonstration */
+}
+
+table{
+    overflow:scroll;
+}
+
+table th{
+    position: relative;
+    top:120px;
+    left:170px;
+    text-align: left;
+    background-color: #3a6070;
+    color: #FFF;
+    padding: 6px 120px;
+}
+
+table td{
+    position: relative;
+    top:120px;
+    left:170px;
+    padding: 4px 8px;
+    text-align: center;
+}
+
+</style>
+
+</head>
+
+<body bgcolor= "#ddd">
+<img  style="position:absolute;Right:35px;top:45px;font-size:12px;color:blue"  alt='CNO/Director' >
+
+<div class="topnav">
+<div class="dropdown">
+  <button class="dropbtn">Schedule</button>
+  <div class="dropdown-content">
+    <a href="test.html">Schedule</a>
+    <a href="#">Memo</a>
+    <a href="#">Task Editor</a>
+    <a href="#">Library</a>
+    <a href="#">E-portfolio</a>
+  </div>
+</div>
+</div>
+
+<div class="content">
+
+</div>
+<div style="position:absolute;Right:30px;top:15px;">
+<select>
+    <option value="English">English</option>
+    <option value="Chinese">Chinese</option>
+</select>
+</div>
+
+<div style="position:absolute;Right:370px;top:250px;">
+<table>
+    <tr>
+        <th> Working Schedule </th>
+        <td style="background-color: #3a6070"> <button type="button"><img src="image\add.png" height="15px" width="15px"/></button> </td>
+        <td style="background-color: #3a6070"> <button type="button"><img src="image\down-arrow.png" height="15px" width="15px"/></button> </td>
+    </tr>
+    <tr>
+        <td style="border: 1.5px solid #000"> April Working Schedule.pdf </td>
+        <td> <button type="button"><img src="image\trash-can.png" height="15px" width="15px"/></button> </td>
+    </tr>
+    <tr>
+        <td style="border: 1.5px solid #000"> May Working Schedule.pdf </td>
+        <td> <button type="button"><img src="image\trash-can.png" height="15px" width="15px"/></button> </td>
+    </tr>
+</table>
+</div>
+
+<div style="position:absolute;Right:380px;top:50px;">
+<table >
+    <tr>
+         <th colspan="2"> Event </th>
+         <td style="background-color: #3a6070"> <button type="button"><img src="image\add.png" height="15px" width="15px"/></button> </td>
+         <td style="background-color: #3a6070"> <button type="button"><img src="image\down-arrow.png" height="15px" width="15px"/></button> </td>
+    </tr>
+    <tr>
+        <td style="border: 1.5px solid #000"> <li> 4/12 </li> </td>
+        <td style="border: 1.5px solid #000"> Event-2 </td>
+        <td> <button type="button"><img src="image\pencil.png" height="15px" width="15px"/></button> </td>
+        <td> <button type="button"><img src="image\trash-can.png" height="15px" width="15px"/></button> </td>
+
+
+    </tr>
+    <tr>
+        <td style="border: 1.5px solid #000"> <li> 4/13 </li> </td>
+        <td style="border: 1.5px solid #000"> Event-3 </td>
+        <td> <button type="button"><img src="image\pencil.png" height="15px" width="15px"/></button> </td>
+        <td> <button type="button"><img src="image\trash-can.png" height="15px" width="15px"/></button> </td>
+    </tr>
+    <tr>
+        <td style="border: 1.5px solid #000">
+            <input type="text" name="EventDate" value="">
+        </td>
+        <td style="border: 1.5px solid #000">
+            <input type="text" name="EventName" value="">
+        </td>
+        <td> <button type="button">Enter</button> </td>
+    </tr>
+</table>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div style="position:absolute;Right:400px;top:400px;">
+<table>
+    <tr>
+        <th> Working Hour </th>
+        <td style="background-color: #3a6070"> <button type="button"><img src="image\add.png" height="15px" width="15px"/></button> </td>
+        <td style="background-color: #3a6070"> <button type="button"><img src="image\down-arrow.png" height="15px" width="15px"/></button> </td>
+
+
+    </tr>
+    <tr>
+        <td style="border: 1.5px solid #000"> April Working Hour.pdf </td>
+        <td> <button type="button"><img src="image\trash-can.png" height="15px" width="15px"/></button> </td>
+    </tr>
+    <tr>
+        <td style="border: 1.5px solid #000"> May Working Hour.pdf </td>
+        <td> <button type="button"><img src="image\trash-can.png" height="15px" width="15px"/></button> </td>
+    </tr>
+</table>
+</div>
+
+
+
+<div style="position:absolute;Right:1100px;top:50px;">
+<table >
+  <thread>
+    <tr>
+        <th>Announcement</th>
+        <td style="background-color: #3a6070"> <button id ="btnAdd" class="btn btn-action" type="button"><img src="image\add.png" height="15px" width="15px"/></button> </td>
+        <td style="background-color: #3a6070"> <button id ="btnDrop" type="button"><img src="image\down-arrow.png" height="15px" width="15px"/></button> </td>
+    </tr>
+  </thread>
+  <tbody id="table">
+
+  </tbody>
+  <tr>
+    <td>
+      <textarea id="Announcement" type=text rows="4" cols="30"></textarea></td>
+        <td><button id="btnSubmitA" >Enter</button></td>
+
+    </tr>
+</table>
+
+
+<script>
+// Initialize Firebase
+var config = {
+  apiKey: "AIzaSyCZSYudtrbWzpAg8_i6RDVi6n-LoNwmGnU",
+  authDomain: "ltctms-18e9b.firebaseapp.com",
+  databaseURL: "https://ltctms-18e9b.firebaseio.com",
+  projectId: "ltctms-18e9b",
+  storageBucket: "ltctms-18e9b.appspot.com",
+  messagingSenderId: "553898554827"
+};
+firebase.initializeApp(config);
+
+
+//Create new Announcement button
+/*var btnAdd = document.getElementById('btnAdd');
+btnAdd.addEventListener('click', e =>{
+  btnAdd.classList.remove('hide');
+  console.log("123");
+  if(document.getElementById("btnSubmitA").click == true) {
+   btnAdd.classList.add('hide');
+  }else{
+  }
+});*/
+
+//Read firebase Announcements
+var fbA = firebase.database().ref('Announcements');
+fbA.on("child_added", snap =>{
+  var Textarea = snap.child("Announcement").val();
+  $("#table").append("<tr><td>" + Textarea + '</td><td> <button type="button" onclick="editA()"><img src="image/pencil.png" height="15px" width="15px"/></button></td><td><button id="delete" onclick="deleteA()" type="button"><img src="image/trash-can.png" height="15px" width="15px"/></button> </td></tr>');
+});
+
+//Sending data to firebase db
+var btnSubmitA = document.getElementById('btnSubmitA');
+btnSubmitA.addEventListener('click', e => {
+  var data = $('#Announcement').val();
+  var keyA = fbA.push().key;
+  var AData = {
+    a_id : keyA,
+    Announcement: data
+  }
+  var updates = {};
+  updates['Announcements/'+ keyA] = AData;
+  firebase.database().ref().update(updates);
+  alert('Successfully Entered');
+ window.location.reload();
+});
+
+//Deleting Announcements
+function deleteA(){
+  var fbB= firebase.database().ref('Announcements');
+  fbB.once('child_added', snap =>{
+    var Ukey = snap.child('a_id').val();
+    console.log(Ukey);
+    fbB.child(Ukey).remove()
+      .then(function(){
+        alert('Deleted Successfully');
+        window.location.reload();
+      })
+      .catch(function(error){
+        console.log('error'+ error.message)
+      });
+
+  });
+
+}
+
+function editA(){
+  var fbB = firebase.database().ref('Announcements');
+  fbB.once('child_added', snap =>{
+    var Ukey = snap.child('a_id').val();
+    
+
+  });
+
+}
+
+
+
+
+</script>
+
+
+
+</body>
+
+</html>

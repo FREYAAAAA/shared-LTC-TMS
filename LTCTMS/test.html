@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8">
+      <title>Firebase Web Test</title>
+      <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+      <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    </head>
+<body>
+    <h1 id="bigOne"> </h1>
+
+  <table >
+    <thread>
+    <tr>
+      <td>Key</td>
+      <td>Name</td>
+      <td>ID</td>
+    </tr>
+    </tread>
+    <tbody id='table'>
+
+    </tbody>
+  </table>
+<form>
+<div>
+<input id='TA' type='text'  placeholder='Name' name='event'> </input>
+<input id='TA1' type='text'  placeholder='ID' name='event'> </input>
+<button id=btnSubmitE onclick="TableTest()">Submit</button>
+</div>
+</form>
+
+<script src="https://www.gstatic.com/firebasejs/5.4.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCZSYudtrbWzpAg8_i6RDVi6n-LoNwmGnU",
+    authDomain: "ltctms-18e9b.firebaseapp.com",
+    databaseURL: "https://ltctms-18e9b.firebaseio.com",
+    projectId: "ltctms-18e9b",
+    storageBucket: "ltctms-18e9b.appspot.com",
+    messagingSenderId: "553898554827"
+  };
+  firebase.initializeApp(config);
+
+  //  var bigOne = document.getElementById('bigOne');
+  //  var dbRef = firebase.database().ref().child('User');
+  //  dbRef.on('value', snap=>bigOne.innerText = snap.val());
+
+    //Reading data from DB to a table (take note on child_added, changed, removed)
+    var test = firebase.database().ref('Browser').child('Member');
+    var table = document.getElementById("table");
+   test.on("child_added", snap =>{
+      var name = snap.child("Name").val();
+      var id = snap.child("ID").val();
+      var key = snap.child("Key").val();
+
+      $("#table").append("<tr><td>"+key+"</td><td>"+ name +"</td><td>" + id + "</td><td><button class='btndel' id='btndel'>Delete</button></td></tr>")
+  });
+  /*  var rowno=1;
+    test.once('value', function(snapshot){
+      snapshot.forEach(function(childSnapshot){
+        var childKey = childSnapshot.key;
+        var childData = childSnapshot.val();
+
+        var tablerow = table.insertRow(rowno);
+        var name = row.insertCell(0);
+        var id = row.insert(1);
+        var delbutton = row.insertCell(2).outerHTML="<tr id='row"+rowno+"'><td><button id='btndelete'>Del</button></td></tr>";
+
+        name.appendChild(document.createTextNode(childData.name));
+        id.appendChild(document.createTextNode(childData.id));
+        rowno = rowno + 1;
+      });
+    });*/
+
+
+//pushing function -> store data to firebase's database
+
+  /*var btnSubmitE = document.getElementById('btnSubmitE');
+  btnSubmitE.addEventListener('click', e => {
+    var fb = firebase.database().ref("Browser").child('Member');
+    var data = $('#TA').val();
+    var dataI = $('#TA1').val();
+
+    fb.push({
+      "Name": data,
+      "ID" : dataI,
+    });
+  });*/
+  var btnSubmitE = document.getElementById('btnSubmitE');
+  btnSubmitE.addEventListener('click', e => {
+    var fb = firebase.database().ref("Browser").child('Member');
+    var data = document.getElementById('TA').value;
+    var dataI = document.getElementById('TA1').value;
+    var key = fb.push().key;
+
+    var testing={
+      Key : key,
+      Name : data,
+      ID : dataI
+    }
+
+    var updates = {};
+    updates['Browser/Member/'+key] =testing;
+    firebase.database().ref().update(updates);
+    alert('the user was created successfully'+ key);
+
+    window.location.reload();
+  });
+/*  function created(){
+    test.on('child_added', snapshot => this.Member.push({...snapshot.val(), Key:snapshot.key}));
+    test.on('child_removed',snapshot =>{
+      const deleteUser = this.Member.find(Member => Member.key === snapshot.key);
+      const index = this.Member.indexOf(delete_row);
+      this.Member.splice(index,3);
+    });
+
+  }*/
+
+//TODO:Delete function
+/*  var btnDelete = document.getElementById('btndel');
+  btnDelete.addEventListener('click', e =>{
+    var UniqueKey = $row.data('Key');
+    test.child(UniqueKey).remove();
+
+    alert('removed');
+    window.location.reload();
+  });*/
+
+/*var del=firebase.database().ref("Browser").child('Member');
+$("#table").on('click', '.btndel', function(e){
+  var $row = $(this).closest('tr');
+  var rowId = $row.data('Key');
+  del.child(rowId).remove();
+
+});*/
+
+/*function delete_row(Member){
+  test.child(Member.key).remove();
+}*/
+
+</script>
+
+
+
+</body>
