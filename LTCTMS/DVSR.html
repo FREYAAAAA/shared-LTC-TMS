@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title> DVSR </title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,500" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js">
+import $ from "jquery";
+</script>
+
+<link rel="stylesheet" href="DVSR.css">
+</head>
+<body bgcolor= "#ddd">
+
+<img  style="position:absolute;Right:25px;top:45px;font-size:12px;color:blue"  src="photo.png" alt='CNO/Director' >
+
+<div class="topnav">
+<div class="dropdown">
+  <button class="dropbtn">DVSR</button>
+  <div class="dropdown-content">
+    <a href="#">Schedule</a>
+    <a href="#">Memo</a>
+    <a href="#">DVSR</a>
+    <a href="#">Task Editor</a>
+    <a href="#">Library</a>
+    <a href="#">E-portfolio</a>
+  </div>
+</div>
+</div>
+
+<div class="content">
+</div>
+<!--select language-->
+<div style="position:absolute;Right:30px;top:15px;">
+<select>
+	<option value="English">English</option>
+    <option value="Chinese">Chinese</option>
+</select>
+</div>
+<!--spilt_layout-->
+<div class="spilt_layout">
+</div>
+
+<table style="width: 500px; border-collapse: collapse; position:relative; top:-870px; left:400px; height:500px; display:block; overflow:scroll">
+    <tr>
+        <th colspan="2"> Daily Status Record </th>
+    </tr>
+    <tr>
+        <td> Abnormal Faeces Types</td>
+        <td> Tarry Stools</td>
+    </tr>
+
+</table>
+
+<table style="width: 400px; border-collapse: collapse; position:relative; top:-1370px; left:1000px; height:150px; display:block; overflow:scroll">
+    <tr>
+        <th colspan="2"> Vital Status Record </th>
+    </tr>
+    <tr>
+        <td> Heart Beat Rate</td>
+        <td> 89</td>
+    </tr>
+    <tr>
+        <td> Temperature</td>
+        <td> 36.5</td>
+    </tr>
+</table>
+
+
+<table style="width: 400px; border-collapse: collapse; position:relative; top:-1270px; left:1000px; height:150px; display:block; overflow:scroll">
+    <tr>
+        <th colspan="2"> A.I. Status </th>
+    </tr>
+    <tr>
+        <td> Activity Distance</td>
+        <td> 15</td>
+    </tr>
+    <tr>
+        <td> Bathroom</td>
+        <td> 30 </td>
+    </tr>
+    <tr>
+        <td> Heart Rate</td>
+        <Td> 89 </Td>
+    </tr>
+</table>
+
+<div style="position:relative;top:-500px; left:700px; height:00px;">
+
+</div>
+<div style="position:absolute;top:360px;left:100px">
+<select>
+	<option value="101">101</option>
+    <option value="102">102</option>
+    <option value="103">103</option>
+    <option value="104">104</option>
+    <option value="105">105</option>
+    <option value="106">106</option>
+    <option value="107">107</option>
+    <option value="108">108</option>
+
+</select>
+</div>
+
+
+<div style="position:absolute;top:400px;left:100px">
+<select>
+<option id="fbCNA"</option>
+<select>
+</div>
+<script>
+var fbCNA= firebase.database().ref('CNA').val();
+var  fbCNA = $("#fbCNA").val();
+console.log()
+</script>
+
+
+<div class="today">
+    <h5 style="position:absolute;top:-900px;left:80px;font-weight:normal;">Gama</h5>
+    <h1 style="position:absolute;top:-850px;left:80px;">31</h1>
+    <h5 style="position:absolute;top:-740px;left:60px;font-weight:normal;">Thursday</h5>
+    <p style="position:absolute;top:-730px;left:180px;font-size:20px;">January</p>
+</div>
+<!--view date button-->
+<div style="position:relative; top:-1430px;left:65px">
+<form action="/action_page.php">
+  <input type="date" name="bday">
+  <br><br>
+  <input type="submit">
+</form>
+</div>
+</body>
+
+</html>

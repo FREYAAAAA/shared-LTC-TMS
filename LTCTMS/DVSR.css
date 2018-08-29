@@ -1,0 +1,127 @@
+<style>
+* {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style the top navigation bar */
+.topnav {
+    overflow: hidden;
+    background-color: #6aa84f;
+    padding:10px;
+}
+
+.dropbtn {
+    background-color: #008000;
+    color: white;
+    padding: 16px 40px;
+    font-size: 16px;
+    border:none;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: fixed;
+    background-color: #b6d7a8;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border:none;
+    border-radius:30px;
+
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+
+}
+
+.dropdown-content a:hover {
+	background-color: #f1f1f1;
+    border-radius:30px;
+
+}
+
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
+/* Style the content */
+.content {
+    background-color: #ddd;
+    padding: 10px;
+    height: 500px; /* Should be removed. Only for demonstration */
+}
+/*worklog_table*/
+
+table, th, td
+{
+
+    padding: 10px;
+    border: 1px solid black;
+    width:600px;
+
+}
+/*worklog title*/
+.month_title{
+    background-color: #6aa84f;
+    border-style:double;
+    width:600px;
+    height:70px;
+    position:relative;
+    top:-1350px;
+    left:600px;
+}
+
+/*spilt_layout*/
+.spilt_layout{
+    background-color: #fff;
+
+    width:8px;
+    height:500px;
+    position:relative;
+    top:-500px;
+    left:270px;
+}
+/*Today*/
+.today{
+    font-size:48px;
+    position:absolute;
+    top:950px;
+}
+/*view date*/
+.viewDate_button{
+    position:absolute;
+    top:570px;
+    left: 50px;
+    width:200px;
+    height:40px;
+    border:none;
+    border-radius:10px;
+    background:#3e8e41;
+}
+.viewDate_button:hover{
+    background:#6aa84f;
+}
+
+</style>
