@@ -111,9 +111,13 @@ import $ from "jquery";
 <select>
 </div>
 <script>
-var fbCNA= firebase.database().ref('CNA').val();
-var  fbCNA = $("#fbCNA").val();
-console.log()
+var fbCNA = firebase.database().ref("CNA").orderByKey();
+fbCNA.once("11001")
+  .then(function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+     var key = childSnapshot.key;
+     var childData = childSnapshot.val();              // childData will be the actual contents of the child
+    document.getElementById("#fbCNA").innerHTML = fbCNA;
 </script>
 
 

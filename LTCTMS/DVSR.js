@@ -9,17 +9,3 @@
      messagingSenderId: "323469467975"
    };
    firebase.initializeApp(config);
-
-     var CNA = $('#CNA').val();
-     var keyA = fbA.push().key;
-     var AData = {
-       a_id : keyA,
-       Announcement: data
-     }
-     var updates = {};
-     updates['Announcements/'+ keyA] = AData;
-     firebase.database().ref().update(updates);
-
-     alert('Successfully Entered');
-     window.location.reload();
-   });
