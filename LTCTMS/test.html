@@ -12,7 +12,7 @@
   <table >
     <thread>
     <tr>
-      <td>Key</td>
+    <!--  <td>Key</td> -->
       <td>Name</td>
       <td>ID</td>
     </tr>
@@ -52,9 +52,9 @@
    test.on("child_added", snap =>{
       var name = snap.child("Name").val();
       var id = snap.child("ID").val();
-      var key = snap.child("Key").val();
+    //  var key = snap.child("Key").val();
 
-      $("#table").append("<tr><td>"+key+"</td><td>"+ name +"</td><td>" + id + "</td><td><button class='btndel' id='btndel'>Delete</button></td></tr>")
+      $("#table").append("<tr><td>"+ name +"</td><td>" + id + "</td><td><button class='btndel' id='btndel'>Delete</button></td></tr>")
   });
   /*  var rowno=1;
     test.once('value', function(snapshot){
@@ -92,18 +92,22 @@
     var fb = firebase.database().ref("Browser").child('Member');
     var data = document.getElementById('TA').value;
     var dataI = document.getElementById('TA1').value;
-    var key = fb.push().key;
+    //var key = fb.push().key;
 
-    var testing={
+  /*  var testing={
       Key : key,
       Name : data,
       ID : dataI
-    }
+    }*/
 
-    var updates = {};
-    updates['Browser/Member/'+key] =testing;
-    firebase.database().ref().update(updates);
-    alert('the user was created successfully'+ key);
+  //  var updates = {};
+  //  updates['Browser/Member/'+key] =testing;
+  //  firebase.database().ref().update(updates);
+    fb.child("123123").set({
+      Name : data,
+      ID : dataI
+    });
+    alert('the user was created successfully');
 
     window.location.reload();
   });

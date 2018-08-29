@@ -1,14 +1,14 @@
 (function(){
   // Initialize Firebase
-  var config = {
-      apiKey: "AIzaSyCZSYudtrbWzpAg8_i6RDVi6n-LoNwmGnU",
-      authDomain: "ltctms-18e9b.firebaseapp.com",
-      databaseURL: "https://ltctms-18e9b.firebaseio.com",
-      projectId: "ltctms-18e9b",
-      storageBucket: "ltctms-18e9b.appspot.com",
-      messagingSenderId: "553898554827"
-    };
-    firebase.initializeApp(config);
+   var config = {
+     apiKey: "AIzaSyCnuAZzFvkT-FSRxB5Vk67JM6FU9wZLYMQ",
+     authDomain: "share-b7589.firebaseapp.com",
+     databaseURL: "https://share-b7589.firebaseio.com",
+     projectId: "share-b7589",
+     storageBucket: "share-b7589.appspot.com",
+     messagingSenderId: "323469467975"
+   };
+   firebase.initializeApp(config);
 
   //Get element from html
   const txtEmail = document.getElementById('txtEmail');
@@ -46,7 +46,7 @@
   firebase.auth().onAuthStateChanged(firebaseUser => {
     if (firebaseUser){
       console.log(firebaseUser);
-      window.location.href = "scheduletest.html";
+    //  window.location.href = "scheduletest.html";
       btnLogout.classList.remove('hide');
     }else {
       console.log('not logged in');
