@@ -21,6 +21,9 @@
 
     </tbody>
   </table>
+
+
+
 <form>
 <div>
 <input id='TA' type='text'  placeholder='Name' name='event'> </input>
@@ -28,6 +31,12 @@
 <button id=btnSubmitE onclick="TableTest()">Submit</button>
 </div>
 </form>
+
+
+<br><br><br>
+<progress value="0" max="100" id="uploader">0%</progress>
+<br>
+<input type="file" value ="upload" id="fileButton"/>
 
 <script src="https://www.gstatic.com/firebasejs/5.4.0/firebase.js"></script>
 <script>
@@ -142,6 +151,48 @@ $("#table").on('click', '.btndel', function(e){
 /*function delete_row(Member){
   test.child(Member.key).remove();
 }*/
+
+var uploader = document.getElementById('uploader');
+var fileButton = document.getElementById('fileButton');
+
+fileButton.addEventListener('change',function(e){
+
+  var file=e.target.files[0];
+
+  var storageRef=firebase.storage().ref('Test/'+file.name);
+
+  var task = storageRef.put(file);
+
+  task.on('state_changed',
+
+    function progress(snapshot){
+      var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      uploader.value = percentage;
+    },
+
+    function error(err){
+      console.log("failed");
+    },
+
+    function complete(){
+      console.log('Successful');
+      var postKey = firebase.database().ref('Posts/').push().key;
+      var downloadURL = task.snapshot.downloadURL;
+      var updates = {} ;
+      var postData={
+        url : downloadURL,
+        id : postData
+      };
+      updates['/Posts/'+postKey] = postData;
+      firebase.database().ref().update(updates);
+
+
+
+    }
+  );
+})
+
+
 
 </script>
 

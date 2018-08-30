@@ -6,168 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
 <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-<style>
-* {
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-}
-.hide{
-  display:none;
-}
-
-/* Style the top navigation bar */
-.topnav {
-    overflow: hidden;
-    background-color: #6aa84fff;
-    padding:10px;
-}
-
-.dropbtn {
-    background-color: #008000;
-    color: white;
-    padding: 16px 40px;
-    font-size: 16px;
-    border:none;
-    border-radius: 25px;
-    cursor: pointer;
-}
-
-.dropdown {
-    position: relative;
-    display: inline-block;
-
-}
-
-.dropdown-content {
-    display: none;
-    position: fixed;
-    background-color: #b6d7a8ff;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    border:none;
-    border-radius:30px;
-
-}
-
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-
-}
-
-.dropdown-content a:hover {
-	background-color: #f1f1f1;
-    border-radius:30px;
-
-}
-
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-.dropdown:hover .dropbtn {
-    background-color: #3e8e41;
-}
-
-/* Style the content */
-content {
-    background-color: #ddd;
-    padding: 10px;
-    height:8 00px; /* Should be removed. Only for demonstration */
-}
-
-table{
-    overflow:scroll;
-}
-
-table th{
-    position: relative;
-    top:120px;
-    left:170px;
-    text-align: left;
-    background-color: #3a6070;
-    color: #FFF;
-    padding: 6px 120px;
-}
-
-table td{
-    position: relative;
-    top:120px;
-    left:170px;
-    padding: 4px 8px;
-    text-align: center;
-}
-#abc {
-  width:100%;
-  height:100%;
-  opacity:.95;
-  top:0;
-  left:0;
-  display:none;
-  position:fixed;
-  background-color:#313131;
-  overflow:auto
-}
-
-div#popupContact {
-  position:absolute;
-  left:50%;
-  top:17%;
-  margin-left:-202px;
-  font-family:'Raleway',sans-serif
-}
-
-#editForm {
-  max-width:300px;
-  min-width:250px;
-  padding:10px 50px;
-  border:2px solid gray;
-  border-radius:10px;
-  font-family:raleway;
-  background-color:#fff
-}
-
-}
-h2 {
-  background-color:#FEFFED;
-  padding:20px 35px;
-  margin:-10px -50px;
-  text-align:center;
-  border-radius:10px 10px 0 0
-}
-hr {
-  margin:10px -50px;
-  border:0;
-  border-top:1px solid #ccc
-}
-
-textarea {
-  background-repeat:no-repeat;
-  background-position:5px 7px;
-  width:82%;
-  height:95px;
-  padding:10px;
-  resize:none;
-  margin-top:30px;
-  border:1px solid #ccc;
-  padding-left:40px;
-  font-size:16px;
-  font-family:raleway;
-  margin-bottom:30px
-}
-
-
-
-</style>
+<link rel="stylesheet" href="SCHEDULE.css">
 
 </head>
 
@@ -216,36 +55,22 @@ textarea {
 </table>
 </div>
 
-<div style="position:absolute;Right:380px;top:50px;">
-<table >
+<div style="position:absolute;Right:250px;top:50px;">
+<table id='eventTable'>
     <tr>
-         <th colspan="2"> Event </th>
-         <td style="background-color: #3a6070"> <button type="button"><img src="image\add.png" height="15px" width="15px"/></button> </td>
-         <td style="background-color: #3a6070"> <button type="button"><img src="image\down-arrow.png" height="15px" width="15px"/></button> </td>
-    </tr>
-    <tr>
-        <td style="border: 1.5px solid #000"> <li> 4/12 </li> </td>
-        <td style="border: 1.5px solid #000"> Event-2 </td>
-        <td> <button type="button"><img src="image\pencil.png" height="15px" width="15px"/></button> </td>
-        <td> <button type="button"><img src="image\trash-can.png" height="15px" width="15px"/></button> </td>
+      <td>ID</td>
+      <td>Date of Event</td>
+      <th> Event </th>
 
+      <td style="background-color: #3a6070"> <button type="button" onclick="AddNewEvent()"><img src="image\add.png" height="15px" width="15px"/></button> </td>
+      <td style="background-color: #3a6070"> <button type="button"><img src="image\down-arrow.png" height="15px" width="15px"/></button> </td>
+    </tr>
+<!--    <tr>
+      <td></td>
 
-    </tr>
-    <tr>
-        <td style="border: 1.5px solid #000"> <li> 4/13 </li> </td>
-        <td style="border: 1.5px solid #000"> Event-3 </td>
-        <td> <button type="button"><img src="image\pencil.png" height="15px" width="15px"/></button> </td>
-        <td> <button type="button"><img src="image\trash-can.png" height="15px" width="15px"/></button> </td>
-    </tr>
-    <tr>
-        <td style="border: 1.5px solid #000">
-            <input type="text" name="EventDate" value="">
-        </td>
-        <td style="border: 1.5px solid #000">
-            <input type="text" name="EventName" value="">
-        </td>
-        <td> <button type="button">Enter</button> </td>
-    </tr>
+      <td><input id="EventTime" type="text" name="EventDate"></td>
+      <td><input id="EventActivity"type="text" name="EventName" ></td><td> <button type="button" onclick="createNewEvent()">Enter</button> </td>
+    </tr>-->
 </table>
 </div>
 <br>
@@ -280,27 +105,43 @@ textarea {
 
 
 
-<div style="position:absolute;Right:1100px;top:50px;">
-<table >
+<div style="position:absolute;Right:950px;top:50px;">
+<table id="table">
   <thread>
     <tr>
+        <td>ID</td>
         <th>Announcement</th>
-        <td style="background-color: #3a6070"> <button id ="btnAdd" class="btn btn-action" type="button"><img src="image\add.png" height="15px" width="15px"/></button> </td>
+        <td style="background-color: #3a6070"> <button id ="btnAdd" class="btn btn-action" type="button" onclick="AddNewA()"><img src="image\add.png" height="15px" width="15px"/></button> </td>
         <td style="background-color: #3a6070"> <button id ="btnDrop" type="button"><img src="image\down-arrow.png" height="15px" width="15px"/></button> </td>
+
     </tr>
   </thread>
-  <tbody id="table">
+  <tbody>
 
 
   </tbody>
-  <tr>
+<!--  <tr>
+    <td></td>
     <td>
       <textarea id="Announcement" type=text rows="4" cols="30"></textarea></td>
         <td><button id="btnSubmitA" >Enter</button></td>
-
-    </tr>
+    </tr>-->
 </table>
-<div id=abc>
+
+<div id="newABlock">
+<div id="PopupEditBox">
+  <div id="editForm">
+    <h2>New Announcement</h2>
+    <hr>
+    Announcement:
+    <textarea id="Announcement" type=text rows="4" cols="30" placeholder="Text Here..."></textarea>
+    <button id="btnSubmitE" onclick="createNewAnnouncement()">Sumbit</button>
+    <button id="Ecancel" onclick="editCancel()">Cancel</button>
+  </div>
+</div>
+</div>
+
+<div id="editABlock">
 <div id="PopupEditBox">
   <div id="editForm">
     <h2>Editing Announcement</h2>
@@ -315,201 +156,251 @@ textarea {
 </div>
 </div>
 
+<div id="editEBlock">
+<div id="PopupEditBox">
+  <div id="editForm">
+    <h2>Edit Event</h2>
+    <hr>
+    EID:
+    <input id="Ekey"></input>
+    Date of Event:
+    <input id="DoE" type=text></input>
+    Event:
+    <input id="Event" type= text></input>
+    <button id="btnSubmitE" onclick="editEsave()">Save</button>
+    <button id="Ecancel" onclick="editCancel()">Cancel</button>
+  </div>
+</div>
+</div>
+
+<div id="newEBlock">
+<div id="PopupEditBox">
+  <div id="editForm">
+    <h2>Edit Event</h2>
+    <hr>
+    Date of Event:
+    <input id="EventTime" type=text></input>
+    Event:
+    <input id="EventActivity" type= text></input>
+    <button id="btnSubmitE" onclick="createNewEvent()">Sumbit</button>
+    <button id="Ecancel" onclick="editCancel()">Cancel</button>
+  </div>
+</div>
+</div>
 
 <script>
 // Initialize Firebase
-var config = {
-  apiKey: "AIzaSyCnuAZzFvkT-FSRxB5Vk67JM6FU9wZLYMQ",
-  authDomain: "share-b7589.firebaseapp.com",
-  databaseURL: "https://share-b7589.firebaseio.com",
-  projectId: "share-b7589",
-  storageBucket: "share-b7589.appspot.com",
-  messagingSenderId: "323469467975"
-};
-firebase.initializeApp(config);
+  var config = {
+    apiKey: "AIzaSyCnuAZzFvkT-FSRxB5Vk67JM6FU9wZLYMQ",
+    authDomain: "share-b7589.firebaseapp.com",
+    databaseURL: "https://share-b7589.firebaseio.com",
+    projectId: "share-b7589",
+    storageBucket: "share-b7589.appspot.com",
+    messagingSenderId: "323469467975"
+  };
+  firebase.initializeApp(config);
 
-var btnLogout = document.getElementById('btnLogout')
-btnLogout.addEventListener('click', e => {
-  firebase.auth().signOut();
-});
-
-//Create new Announcement button
-/*var btnAdd = document.getElementById('btnAdd');
-btnAdd.addEventListener('click', e =>{
-  btnAdd.classList.remove('hide');
-  console.log("123");
-  if(document.getElementById("btnSubmitA").click == true) {
-   btnAdd.classList.add('hide');
-  }else{
-  }
-});*/
-
-//Read firebase Announcements
-var aArray = [];
-var fbA = firebase.database().ref('Announcements');
-fbA.on("child_added", snap =>{
-  var Textarea = snap.child("Announcement").val();
-  var aid = snap.child("a_id").val();
-  $("#table").append("<tr><td>" + Textarea + '</td><td> <button type="button" onclick="editA()"><img src="image/pencil.png" height="15px" width="15px"/></button></td><td><button id="delete" onclick="deleteA()" type="button"><img src="image/trash-can.png" height="15px" width="15px"/></button> </td></tr>');
-});
-
-/*var Atable = document.getElementById('table')
-var rowIndex = 1;
-//Sending data to firebase db
-fbA.once('value',function(snapshot){
-  snapshot.forEach(function(childSnapshot){
-    var childKey = childSnapshot.key;
-    var childData = childSnapshot.val();
-    var button = doucment.createElement("button");
-    var button = document.createElement("button");
-    button.innerHTML="Edit";
-    button.innserHTML="Delete";
-
-    var row = Atable.insertRow(rowIndex);
-    var cellAnnouncement= row.inserCell(0);
-    var cellButton= row.inserCell(1);
-    cellAnnouncement.appendChild(document.createTextNode(childData.Announcement));
-    cellButton.appendChild(button);
-    cellButton.appendChild(button2);
-
-    button.onclick = edit;
-    button2.onclick = delete_row;
-    rowIndex = rowIndex + 1;
+  var btnLogout = document.getElementById('btnLogout')
+  btnLogout.addEventListener('click', e => {
+    firebase.auth().signOut();
   });
-});
-
-function delete_row(){
-           var ref= firebase.database().ref().child('Announcements/'+ a_id)
-
-           alert('The user is deleted successfully!');
-
-           window.location.reload();
-
-          }
-
-    function edit() {
-
-     }
-
-
-        function update_user(){
-
-
-
-           var updates = {};
-           updates['/users/' + user_id] = data;
-           firebase.database().ref().update(updates);
-
-           alert('The user is updated successfully!');
-
-           reload_page();
-        }*/
-
-
-var btnSubmitA = document.getElementById('btnSubmitA');
-btnSubmitA.addEventListener('click', e => {
-  var data = $('#Announcement').val();
-  var keyA = fbA.push().key;
-  var AData = {
-    a_id : keyA,
-    Announcement: data
+  //Create new Announcement button
+  function AddNewA(){
+      document.getElementById('newABlock').style.display ='block';
   }
-  var updates = {};
-  updates['Announcements/'+ keyA] = AData;
-  firebase.database().ref().update(updates);
-/*  var x = 0, y= 0;
-  console.log(x,y);
-  var aList = [];
-  aList[x][y] = keyA;
-  y=y+1;
-  aList[x][y] = data;
-  x=x+1;
-  y=y-1;
-  console.log(x,y);*/
-  alert('Successfully Entered');
-  window.location.reload();
-});
 
+  //Read firebase Announcements
+  var fbA = firebase.database().ref('Announcements');
+  /*fbA.on("child_added", snap =>{
+    var Textarea = snap.child("Announcement").val();
+    var aid = snap.child("a_id").val();
 
+    $("#table").append("<tr><td>" + aid + "</td><td>" + Textarea + '</td><td> <button type="button" onclick="editA()"><img src="image/pencil.png" height="15px" width="15px"/></button></td><td><button id="delete" onclick="deleteA()" type="button"><img src="image/trash-can.png" height="15px" width="15px"/></button> </td></tr>');
 
-//Deleting Announcements
-function deleteA(){
-  var fbB= firebase.database().ref('Announcements');
+  });*/
+  var Atable = document.getElementById('table')
+  var rowIndex = 1;
+  //Sending data to firebase db
+  fbA.once('value',function(snapshot){
+    snapshot.forEach(function(childSnapshot){
+      var childKey = childSnapshot.key;
+      var childData = childSnapshot.val();
+      var button = document.createElement("button");
+      var button2 = document.createElement("button");
+      button.innerHTML="Edit";
+      button2.innerHTML="Delete";
 
-  fbB.once('child_added', snap =>{
-    var Ukey = snap.child('a_id').val();
-    console.log(Ukey);
-    fbB.child(Ukey).remove()
-      .then(function(){
-        alert('Deleted Successfully');
-        window.location.reload();
-      })
-      .catch(function(error){
-        console.log('error'+ error.message)
-      });
+      var row = Atable.insertRow(rowIndex);
+      var cellId = row.insertCell(0)
+      var cellAnnouncement= row.insertCell(1);
+      var cellButton= row.insertCell(2)
+      var cellButton2= row.insertCell(3);
+      cellId.appendChild(document.createTextNode(childKey));
+      cellAnnouncement.appendChild(document.createTextNode(childData.Announcement));
+      cellButton.appendChild(button);
+      cellButton2.appendChild(button2);
 
+      button.onclick = editA;
+      button2.onclick = deleteA;
+      rowIndex = rowIndex + 1;
+
+    });
   });
 
-}
+  //createNew Announcement Data
+  function createNewAnnouncement(){
+    var data = $('#Announcement').val();
+    var keyA = fbA.push().key;
+    var AData = {
+      a_id : keyA,
+      Announcement: data
+    }
+    var updates = {};
+    updates['Announcements/'+ keyA] = AData;
+    firebase.database().ref().update(updates);
+    alert('Successfully Entered');
+    window.location.reload();
+  }
 
-function editA(){
-  document.getElementById('abc').style.display ='block';
-  var fbB= firebase.database().ref('Announcements');
-  fbB.once('child_added', function(snapshot){
-    var Ukey = snapshot.child('a_id').val();
-    var EAdata = snapshot.child('Announcement').val();
+  //Deleting Announcements
+  function deleteA(){
+    var fbB= firebase.database().ref('Announcements');
+    var Ukey = $(this).closest('tr').children('td:first').text();
     console.log(Ukey);
-    console.log(EAdata);
+    fbB.child(Ukey).remove();
+    alert("successfully deleted!");
+    window.location.reload();
 
+  }
+
+  //Editing Announcement
+  function editA(){
+    document.getElementById('editABlock').style.display ='block';
+    var Ukey = $(this).closest('tr').children('td:first').text();
+    var fbB= firebase.database().ref('Announcements/'+Ukey);
+    fbB.on('value', function(snapshot){
+      var EAdata = snapshot.child('Announcement').val();
+      console.log(EAdata);
+      document.getElementById('Amsg').value = EAdata;
+    });
+    console.log(Ukey);
     document.getElementById('announcement_id').value = Ukey;
-    document.getElementById('Amsg').value = EAdata;
-  });
-}
+  }
 
   function editSave(){
-    var fbB= firebase.database().ref('Announcements');
     var editedData = $("#Amsg").val();
     var akey = $("#announcement_id").val();
-    //console.log(editedData);
     var wholeA ={
       Announcement: editedData,
       a_id: akey
-    }
+  }
     var updates={};
     updates['Announcements/'+ akey] = wholeA;
     window.location.reload();
     return firebase.database().ref().update(updates);
 
- }
+  }
 
- function editCancel(){
+   function editCancel(){
     window.location.reload();
   }
 
+  //Event
+  var fbE = firebase.database().ref('Events');
 
-/*function KeyKeeper(key, adata){
-  var j = 0;
-  var aTable = [key,z] ;
+  function AddNewEvent(){
+      document.getElementById('newEBlock').style.display ='block';
+  }
 
+  var eventable = document.getElementById('eventTable');
+  var rowIndexE = 1;
+  fbE.once('value',function(snapshot){
+    snapshot.forEach(function(childSnapshot){
+      var childKey = childSnapshot.key;
+      var childData = childSnapshot.val();
+      var button = document.createElement("button");
+      var button2 = document.createElement("button");
+      button.innerHTML="Edit";
+      button2.innerHTML="Delete";
 
+      var row = eventable.insertRow(rowIndexE);
+      var cellId = row.insertCell(0)
+      var celleventDate = row.insertCell(1);
+      var celleventActivity = row.insertCell(2);
+      var cellButton= row.insertCell(3);
+      var cellButton2= row.insertCell(4);
+      cellId.appendChild(document.createTextNode(childKey));
+      celleventDate.appendChild(document.createTextNode(childData.EventDate));
+      celleventActivity.appendChild(document.createTextNode(childData.Event));
+      cellButton.appendChild(button);
+      cellButton2.appendChild(button2);
 
-  for (var i = 0; i< aTable.length; i++;){
-      aTable[i][j]=key;
-      j++;
-      aTable[i][j]=adata;
+      button.onclick = editE;
+      button2.onclick = deleteE;
+      rowIndexE = rowIndexE + 1;
 
+    });
+  });
+
+  function createNewEvent(){
+    var eventTime=$('#EventTime').val();
+    var eventActivity = $('#EventActivity').val();
+    var keyA = fbE.push().key;
+    var AData = {
+      e_id : keyA,
+      EventDate : eventTime,
+      Event :eventActivity
+    }
+    var updates = {};
+    updates['Events/'+ keyA] = AData;
+    firebase.database().ref().update(updates);
+    alert('Successfully Entered');
+    window.location.reload();
+  }
+
+  function editE(){
+    document.getElementById('editEBlock').style.display ='block';
+    var Ukey = $(this).closest('tr').children('td:first').text();
+    var fbE= firebase.database().ref('Events/'+Ukey);
+    fbE.on('value', function(snapshot){
+      var Doe = snapshot.child('EventDate').val();
+      var Edata = snapshot.child('Event').val();
+      console.log(Edata);
+      console.log(Doe);
+      document.getElementById('DoE').value = Doe;
+      document.getElementById('Event').value = Edata;
+    });
+    console.log(Ukey);
+    document.getElementById('Ekey').value = Ukey;
 
   }
-}*/
 
+  function deleteE(){
+    var fbB= firebase.database().ref('Events');
+    var Ukey = $(this).closest('tr').children('td:first').text();
+    console.log(Ukey);
+    fbB.child(Ukey).remove();
+    alert("successfully deleted!");
+    window.location.reload();
 
+  }
 
+  function editEsave(){
+    var editedDOE = $("#DoE").val();
+    var editedEText = $("#Event").val();
+    var akey = $("#Ekey").val();
+    var wholeE ={
+      e_id : akey,
+      EventDate : editedDOE,
+      Event : editedEText
+  }
+    var updates={};
+    updates['Events/'+ akey] = wholeE;
+    window.location.reload();
+    return firebase.database().ref().update(updates);
 
-
-
-
+  }
 </script>
-
 
 
 </body>

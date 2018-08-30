@@ -46,7 +46,7 @@
   firebase.auth().onAuthStateChanged(firebaseUser => {
     if (firebaseUser){
       console.log(firebaseUser);
-    //  window.location.href = "scheduletest.html";
+      window.location.href = "scheduletest.html";
       btnLogout.classList.remove('hide');
     }else {
       console.log('not logged in');
