@@ -112,11 +112,48 @@
 
 </div>
 <script>
-var fbCNA = firebase.database().ref("CNA/11001/im11001");
-fbCNA.once("value", snap =>{
- var id= snap.child("im11001").key;
- document.getElementById("CNA_ID").innerHTML = id;
+   var config = {
+     apiKey: "AIzaSyCnuAZzFvkT-FSRxB5Vk67JM6FU9wZLYMQ",
+     authDomain: "share-b7589.firebaseapp.com",
+     databaseURL: "https://share-b7589.firebaseio.com",
+     projectId: "share-b7589",
+     storageBucket: "share-b7589.appspot.com",
+     messagingSenderId: "323469467975"
+   };
+   firebase.initializeApp(config);
+
+</script>
+<script>
+var fbCNA = firebase.database().ref("CNA");
+fbCNA.on("value" snap =>{
+ var id= snap.child("CNA").key;)
+ //var id= snap.child("im11001").key;
+var keys = object.keys("fbCNA");
 });
+
+
+document.getElementById("CNA_ID").innerHTML = keys;
+
+/*databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+    public void onDataChange(DataSnapshot dataSnapshot) {
+        if (dataSnapshot.exists()) {
+            int i = 0;
+            for(DataSnapshot d : dataSnapshot.getChildren()) {
+                name[i] = d.getKey();
+                i++;
+            }
+        }
+    }//onDataChange
+
+    @Override
+    public void onCancelled(DatabaseError error) {
+
+    }//onCancelled
+});*/
+
+/*fbCNA.once("value", snap =>{
+ var id= snap.child("im11001").key;
+});*/
 </script>
 
 <script>
