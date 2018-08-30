@@ -7,7 +7,8 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,500" rel="stylesheet">
 <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js">
-import $ from "jquery";
+<script type="text/javascript" src="DVSR.js"> </script>
+
 </script>
 
 <link rel="stylesheet" href="DVSR.css">
@@ -104,20 +105,29 @@ import $ from "jquery";
 </select>
 </div>
 
-
 <div style="position:absolute;top:400px;left:100px">
 <select>
-<option id="fbCNA"</option>
-<select>
+<option id="CNA_ID" </option>
+</select>
+
 </div>
 <script>
-var fbCNA = firebase.database().ref("CNA").orderByKey();
-fbCNA.once("11001")
-  .then(function(snapshot) {
+var fbCNA = firebase.database().ref("CNA/11001/im11001");
+fbCNA.once("value", snap =>{
+ var id= snap.child("im11001").key;
+ document.getElementById("CNA_ID").innerHTML = id;
+});
+</script>
+
+<script>
+/*var fbCNA = firebase.database().ref("CNA");
+fbCNA.on("child_added", snap =>{
+  var CNA_ID = snap.child("11001").val();
+    }  .then(function(snapshot) {
     snapshot.forEach(function(childSnapshot) {
      var key = childSnapshot.key;
      var childData = childSnapshot.val();              // childData will be the actual contents of the child
-    document.getElementById("#fbCNA").innerHTML = fbCNA;
+    document.getElementById("#fbCNA").innerHTML = fbCNA;*/
 </script>
 
 
