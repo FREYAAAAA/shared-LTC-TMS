@@ -106,7 +106,8 @@
 </div>
 
 <div style="position:absolute;top:400px;left:100px">
-<select>
+
+<select name="selectCNA">
 <option id="CNA_ID" </option>
 </select>
 
@@ -125,14 +126,48 @@
 </script>
 <script>
 var fbCNA = firebase.database().ref("CNA");
-fbCNA.on("value" snap =>{
- var id= snap.child("CNA").key;)
+
+fbCNA.once("value")
+    .then(function(snapshot){
+        var array = [];
+        var index = 0;
+        snapshot.forEach(function(childSnapshot){
+
+          var childKey = childSnapshot.key;
+           array.push(childKey); // add the childkey into array, push is add
+         // var childData = childSnapshot.val();
+          console.log(array[index]);
+          document.getElementById("CNA_ID").innerHTML=array[index];
+          var x = document.getElementById("selectCNA");
+          var opt = document.createElement("option");
+          opt.value = CNA_ID;
+          x.add(opt);
+	     // document.write("<select name='selectCNA'>");
+          //document.write("<option>" + CNA_ID + "</option>");
+         //document.getElementById("CNA_ID").innerHTML = keys;
+        index=index+1;
+    });
+    });
+
+    //var key = snapshot.key;
+    //var childKey = snapshot.child("CNA").key;
+    //console.log(childKey);
+//var keys = object.keys(id);
+
+//snap =>{
+ //var id= snap.child("CNA").key;)
  //var id= snap.child("im11001").key;
-var keys = object.keys("fbCNA");
-});
+//});
+/*function gotkeys(im11001){
+    var kCNA = im11001.val();
+    var keys = object.keys(jt11001);
+    console.log(keys);
+}*/
 
 
-document.getElementById("CNA_ID").innerHTML = keys;
+
+
+//document.getElementById("CNA_ID").innerHTML = keys;
 
 /*databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
     public void onDataChange(DataSnapshot dataSnapshot) {
