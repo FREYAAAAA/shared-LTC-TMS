@@ -37,6 +37,8 @@
 <progress value="0" max="100" id="uploader">0%</progress>
 <br>
 <input type="file" value ="upload" id="fileButton"/>
+<button id = submitfileButton>Submit</button>
+<button id='download'> Downlaod</button>
 
 <script src="https://www.gstatic.com/firebasejs/5.4.0/firebase.js"></script>
 <script>
@@ -154,16 +156,34 @@ $("#table").on('click', '.btndel', function(e){
 
 var uploader = document.getElementById('uploader');
 var fileButton = document.getElementById('fileButton');
+var submitfileButton = document.getElementById('submitfileButton')
+var downloadButton = document.getElementById('download');
 
-fileButton.addEventListener('change',function(e){
+var fileRef = firebase.storage().ref('Test/gamer-wallpaper5.jpg');
 
-  var file=e.target.files[0];
+downloadButton.addEventListener('click', function(){
+  fileRef.getDownloadURL().then(function(url){
+    console.log("Success");
+    console.log(url);
+  });
+});
+
+
+fileButton.addEventListener('change', handleuploadfile);
+submitfileButton.addEventListener('click', handleuploadfileSubmit);
+
+let file;
+
+function handleuploadfile(e) {
+   file=e.target.files[0];
+}
+
+function handleuploadfileSubmit(e) {
 
   var storageRef=firebase.storage().ref('Test/'+file.name);
+  var uploadtask = storageRef.put(file);
 
-  var task = storageRef.put(file);
-
-  task.on('state_changed',
+  uploadtask.on('state_changed',
 
     function progress(snapshot){
       var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
@@ -176,21 +196,29 @@ fileButton.addEventListener('change',function(e){
 
     function complete(){
       console.log('Successful');
-      var postKey = firebase.database().ref('Posts/').push().key;
-      var downloadURL = task.snapshot.downloadURL;
-      var updates = {} ;
-      var postData={
-        url : downloadURL,
-        id : postData
-      };
-      updates['/Posts/'+postKey] = postData;
-      firebase.database().ref().update(updates);
+       var postKey = firebase.database().ref('Posts/').push().key;
+       storageRef.getDownloadURL().then(function(url){
+         console.log("Success");
+         console.log(url);
+         var updates = {};
+         var postData={
+         url : url,
+         id : postKey
+       };
+       updates['Posts/' + postKey] = postData;
+       firebase.database().ref().update(updates);
 
+       });
 
 
     }
   );
-})
+}
+
+
+
+
+
 
 
 
