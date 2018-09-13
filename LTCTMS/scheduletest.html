@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
 <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-<link rel="stylesheet" href="Schedule.css">
+<link rel="stylesheet" href="SCHEDULE.css">
 
 </head>
 
@@ -37,10 +37,10 @@
 <button id='btnLogout'>Logout</button>
 </div>
 
-<div style="position:absolute;Right:370px;top:250px;">
+<div style="position:absolute;Right:500px;top:250px;width:30%">
 <table id='WStable'>
     <tr>
-        <td> ID </td>
+        <th> ID </th>
         <th> Working Schedule </th>
         <td style="background-color: #3a6070"> <button type="button" onclick="AddNewWS()"><img src="image\add.png" height="15px" width="15px"/></button> </td>
         <td style="background-color: #3a6070"> <button type="button"><img src="image\down-arrow.png" height="15px" width="15px"/></button> </td>
@@ -48,15 +48,15 @@
 </table>
 </div>
 
-<div style="position:absolute;Right:250px;top:50px;">
+<div style="position:absolute;Right:500px;top:50px;width:30%">
 <table id='eventTable'>
     <tr>
-      <td>ID</td>
-      <td>Date of Event</td>
-      <th> Event </th>
+      <th>ID</th>
+      <th style="padding:4px 40px;">Event Date</th>
+      <th>Event </th>
 
-      <td style="background-color: #3a6070"> <button type="button" onclick="AddNewEvent()"><img src="image\add.png" height="15px" width="15px"/></button> </td>
-      <td style="background-color: #3a6070"> <button type="button"><img src="image\down-arrow.png" height="15px" width="15px"/></button> </td>
+      <td style="background-color: #3a6070; width:10%;"> <button type="button" onclick="AddNewEvent()"><img src="image\add.png" height="15px" width="15px"/></button> </td>
+      <td style="background-color: #3a6070; width:10%;"> <button type="button"><img src="image\down-arrow.png" height="15px" width="15px"/></button> </td>
     </tr>
 <!--    <tr>
       <td></td>
@@ -76,10 +76,10 @@
 <br>
 <br>
 
-<div style="position:absolute;Right:400px;top:400px;">
+<div style="position:absolute;Right:500px;top:450px;width:30%">
 <table id=tableWH>
     <tr>
-      <td>ID</td>
+      <th>ID</th>
         <th> Working Hour </th>
         <td style="background-color: #3a6070"> <button type="button"><img src="image\add.png" onclick="AddNewWH()" height="15px" width="15px"/></button> </td>
         <td style="background-color: #3a6070"> <button type="button"><img src="image\down-arrow.png" height="15px" width="15px"/></button> </td>
@@ -88,13 +88,11 @@
 </table>
 </div>
 
-
-
-<div style="position:absolute;Right:950px;top:50px;">
+<div style="position:absolute;Right:1200px;top:50px;width:30%">
 <table id="table">
   <thread>
     <tr>
-        <td>ID</td>
+        <th>ID</th>
         <th>Announcement</th>
         <td style="background-color: #3a6070"> <button id ="btnAdd" class="btn btn-action" type="button" onclick="AddNewA()"><img src="image\add.png" height="15px" width="15px"/></button> </td>
         <td style="background-color: #3a6070"> <button id ="btnDrop" type="button"><img src="image\down-arrow.png" height="15px" width="15px"/></button> </td>
@@ -167,7 +165,7 @@
     <input id="EventTime" type=text></input>
     Event:
     <input id="EventActivity" type= text></input>
-    <button id="btnSubmitE" onclick="createNewEvent()">Sumbit</button>
+    <button id="btnSubmitE" onclick="createNewEvent()">Submit</button>
     <button id="Ecancel" onclick="editCancel()">Cancel</button>
   </div>
 </div>
@@ -182,7 +180,7 @@
     Upload File:
     <input type="file" id="fileButton" />
     <progress value="0" max="100" id="uploader">0%</progress>
-    <button id="btnSubmitWS" >Sumbit</button>
+    <button id="btnSubmitWS" >Submit</button>
     <button id="Ecancel" onclick="editCancel()">Cancel</button>
   </div>
 </div>
@@ -197,7 +195,7 @@
     Upload File:
     <input type="file" id="fileButton2" />
     <progress value="0" max="100" id="uploader2">0%</progress>
-    <button id="btnSubmitWH" >Sumbit</button>
+    <button id="btnSubmitWH" >Submit</button>
     <button id="Ecancel" onclick="editCancel()">Cancel</button>
   </div>
 </div>

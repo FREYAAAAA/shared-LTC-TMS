@@ -88,14 +88,14 @@ table th{
     text-align: left;
     background-color: #3a6070;
     color: #FFF;
-    padding: 6px 120px;
+    padding: 6px 100px;
 }
 
 table td{
     position: relative;
     top:120px;
     left:170px;
-    padding: 4px 8px;
+    padding: 4px 2px;
     text-align: center;
 }
 
