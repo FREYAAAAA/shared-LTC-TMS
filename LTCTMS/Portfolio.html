@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>E-portfolio</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="PortfolioStyle.css">
+</head>
+<body bgcolor= "#ddd">
+
+<img  style="position:absolute;Right:25px;top:45px;font-size:12px;color:blue"  src="photo.png" alt='CNO/Director' >
+
+<div class="topnav">
+<div class="dropdown">
+  <button class="dropbtn">E-portfolio</button>
+  <div class="dropdown-content">
+    <a href="#">Schedule</a>
+    <a href="#">Memo</a>
+    <a href="#">Status Record</a>
+    <a href="#">Task Editor</a>
+    <a href="#">Library</a>
+    <a href="#">E-portfolio</a>
+    <a href="helpandsupport.html">Help and Support</a>
+  </div>
+</div>
+</div>
+<br><br>
+<input type="text" name="search" placeholder="Search" style="position:absolute;top:15%;right:85%">
+<br><br>
+<div style="position:relative; top:20px;left:90px">
+<form action="/action_page.php">
+    Position:<br><br>
+    <input type="radio" name="position" value="staff" checked> Staff<br>
+    <input type="radio" name="position" value="patient"> Patient<br>
+</form>
+<br><br>
+    Room No. <br><br>
+<select>
+	<option value="101">101</option>
+    <option value="102">102</option>
+    <option value="103">103</option>
+    <option value="104">104</option>
+    <option value="105">105</option>
+    <option value="106">106</option>
+    <option value="107">107</option>
+    <option value="108">108</option>
+</select>
+<br><br>
+    Nationality <br><br>
+   <select>
+	<option value="Taiwan">Taiwan</option>
+    <option value="Thailand">Thailand</option>
+    <option value="Indonesia">Indonesia</option>
+    <option value="Vietnam">Vietnam</option>
+    <option value="Korea">Korea</option>
+    <option value="Japan">Japan</option>
+    <option value="Singapore">Singapore</option>
+    <option value="Malaysia">Malaysia</option>
+</select>
+<br><br>
+    Age <br><br>
+   <select>
+	<option value="60-65">60-65</option>
+    <option value="65-70">65-70</option>
+    <option value="70-75">70-75</option>
+    <option value="75-80">75-80</option>
+    <option value="80-85">80-85</option>
+    <option value="85+">85+</option>
+</select>
+<br><br>
+    Gender <br><br>
+   <select>
+	<option value="male">Male</option>
+    <option value="female">Female</option>
+    <option value="others">Others</option>
+</select>
+</div>
+
+
+
+<div class="content">
+</div>
+<!--select language-->
+<div style="position:absolute;Right:30px;top:15px;">
+<select>
+	<option value="English">English</option>
+    <option value="Chinese">Chinese</option>
+</select>
+</div>
+<!--spilt_layout-->
+<div class="spilt_layout">
+</div>
+
+<table style="text-align: center">
+    <tr style="background-color: #6aa84f;">
+        <th> I.D. </th>
+        <th> Room No. </th>
+        <th> Name </th>
+        <th> CNA I.D.</th>
+        <td style="background-color: #6aa84f"> <button type="button" onclick = "addNewPortfolio()" ><img src="image\add.png" height="15px" width="15px"/></button> </td>
+    </tr>
+    <tr>
+        <td> #001 </td>
+        <td> 101 </td>
+        <td> Gama </td>
+        <td> #312 </td>
+    </tr>
+    <tr>
+        <td> #002 </td>
+        <td> 102 </td>
+        <td> Brian </td>
+        <td> #291 </td>
+    </tr>
+    <tr>
+        <td> #003 </td>
+        <td> 103 </td>
+        <td> Su Chen </td>
+        <td> 361 </td>
+    </tr>
+        <tr>
+        <td> #003 </td>
+        <td> 103 </td>
+        <td> Su Chen </td>
+        <td> 361 </td>
+    </tr>
+        <tr>
+        <td> #003 </td>
+        <td> 103 </td>
+        <td> Su Chen </td>
+        <td> 361 </td>
+    </tr>
+        <tr>
+        <td> #003 </td>
+        <td> 103 </td>
+        <td> Su Chen </td>
+        <td> 361 </td>
+    </tr>
+        <tr>
+        <td> #003 </td>
+        <td> 103 </td>
+        <td> Su Chen </td>
+        <td> 361 </td>
+    </tr>    <tr>
+        <td> #003 </td>
+        <td> 103 </td>
+        <td> Su Chen </td>
+        <td> 361 </td>
+    </tr>    <tr>
+        <td> #003 </td>
+        <td> 103 </td>
+        <td> Su Chen </td>
+        <td> 361 </td>
+    </tr>    <tr>
+        <td> #003 </td>
+        <td> 103 </td>
+        <td> Su Chen </td>
+        <td> 361 </td>
+    </tr>
+</table>
+
+<div id="newPortfolioSeletion">
+<div id="PopupEditBox">
+  <div id="editForm">
+    <h2>Select Role</h2>
+    <button id="btnStaff" onclick="staffPortfolio()">STAFF</button>
+    <button id="btnPatient" onclick="patientPortfolio()">PATIENT</button>
+  </div>
+</div>
+</div>
+
+<div id="newStaffPortfolio">
+<div id="PopupEditBox">
+  <div id="editForm">
+    <h2>Staff Portfolio</h2>
+    Picture + License:
+    <input type="file" id="btnPicture" />
+    <br>
+    Staff ID:
+    <input type="text" id="StaffID" placeholder="Staff ID" /><br>
+    Name:
+    <input type="text" id="staffName" placeholder="Name" /><br>
+    National ID:
+    <input type="text" id="staffNID" placeholder="National ID" /><br>
+    Nationality:
+    <input type="text" id="staffNationality" placeholder="Nationality" /><br>
+    Gender:
+    <input type="text" id="staffGender" placeholder="M/F" /><br>
+    Date of Birth:
+    <input type="text" id="staffDOB" placeholder="yyyy/mm/dd" /><br>
+    Email address:
+    <input type="text" id="staffEmail" placeholder="Email" /><br>
+    Contact No. :
+    <input type="text" id="staffContact" placeholder="0123-456-780" /><br>
+    Emergency Contact No. :
+    <input type="text" id="staffEContact" placeholder="0123-456-780" /><br>
+    Address:
+    <input type="text" id="staffAddress" placeholder="Address" /><br>
+    CV:
+    <input type="textarea" id="staffCV" placeholder="CV..." /><br>
+    Upload:<progress value="0" max="100" id="Uploader">0%</progress>
+
+
+  </div>
+</div>
+</div>
+
+<script type = 'text/javascript' src = 'C:\inetpub\wwwroot\LTCTMS\Config.js'></script>
+<script type= 'text/javascript' src = 'C:\inetpub\wwwroot\LTCTMS\PortfolioJS.js'></script>
+
+</body>
+
+</html>
