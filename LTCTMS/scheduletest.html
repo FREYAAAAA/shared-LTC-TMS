@@ -120,7 +120,7 @@
     <hr>
     Announcement:
     <textarea id="Announcement" type=text rows="4" cols="30" placeholder="Text Here..."></textarea>
-    <button id="btnSubmitE" onclick="createNewAnnouncement()">Sumbit</button>
+    <button id="btnSubmitE" onclick="createNewAnnouncement()">Submit</button>
     <button id="Ecancel" onclick="editCancel()">Cancel</button>
   </div>
 </div>
@@ -133,6 +133,7 @@
     <hr>
     Announcement ID:
     <input type=text id="announcement_id"> </input>
+    <br><br>
     Announcement:
     <textarea id="Amsg"></textarea>
     <button id="Esave" onclick="editSave()">Save</button>
@@ -148,10 +149,13 @@
     <hr>
     EID:
     <input id="Ekey"></input>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     Date of Event:
     <input id="DoE" type=text></input>
+    <br><br>
     Event:
-    <input id="Event" type= text></input>
+    <input style="width:500px;" id="Event" type= text></input>
+    <br><br>
     <button id="btnSubmitE" onclick="editEsave()">Save</button>
     <button id="Ecancel" onclick="editCancel()">Cancel</button>
   </div>
@@ -161,12 +165,14 @@
 <div id="newEBlock">
 <div id="PopupEditBox">
   <div id="editForm">
-    <h2>Edit Event</h2>
+    <h2>New Event</h2>
     <hr>
     Date of Event:
     <input id="EventTime" type=text></input>
+    <br><br>
     Event:
-    <input id="EventActivity" type= text></input>
+    <input style="width:500px;" id="EventActivity" type= text></input>
+    <br><br>
     <button id="btnSubmitE" onclick="createNewEvent()">Submit</button>
     <button id="Ecancel" onclick="editCancel()">Cancel</button>
   </div>
@@ -179,9 +185,11 @@
     <hr>
     File title:
     <input id="fileTitle" type=text></input>
+    <br><br>
     Upload File:
     <input type="file" id="fileButton" />
     <progress value="0" max="100" id="uploader">0%</progress>
+    <br><br>
     <button id="btnSubmitWS" >Submit</button>
     <button id="Ecancel" onclick="editCancel()">Cancel</button>
   </div>
@@ -194,9 +202,11 @@
     <hr>
     File title:
     <input id="fileTitle2" type=text></input>
+    <br><br>
     Upload File:
     <input type="file" id="fileButton2" />
     <progress value="0" max="100" id="uploader2">0%</progress>
+    <br><br>
     <button id="btnSubmitWH" >Submit</button>
     <button id="Ecancel" onclick="editCancel()">Cancel</button>
   </div>
