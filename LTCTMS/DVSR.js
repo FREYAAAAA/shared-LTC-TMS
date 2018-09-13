@@ -1,7 +1,8 @@
 
 //get the patient's id and put in the seleted boxs
-var fbCNA = firebase.database().ref("PAT");
-fbCNA.once("value")
+var fbPAT = firebase.database().ref("PAT");
+var selected_id = 66000;
+fbPAT.once("value")
     .then(function(snapshot){
         var array = [];
         var index = 0;
@@ -17,6 +18,25 @@ fbCNA.once("value")
 
     });
     });
+
+    function display_rec(){
+        var fbPAT = firebase.database().ref("PAT/"+selected_id+"/"+nowadays);
+        fbPAT.once("value")
+            .then(function(snapshot){
+                var array = [];
+                var index = 0;
+                snapshot.forEach(function(childSnapshot){
+                    var childKey = childSnapshot.key;
+                    array.push(childKey);
+                    console.log(array[index]);
+                    index = index +1;
+                })
+            })
+
+        console.log("it's match");
+    }
+
+// displaying the current date
     var today = new Date();
     var dd = today.getDate();
     var mm_index = today.getMonth(); //January is 0!
@@ -24,13 +44,19 @@ fbCNA.once("value")
     var weekday =  ["Sunday","Monday", "Tuesday", "Wednesday", "Thuresday", "Friday", "Saturday"];
     var month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
      var wk_index = today.getDay();
-    if (dd<10){
-        dd = "0"+dd;
+     if (dd<10){
+         dd = "0"+dd;
+     }
+
+     //defaut date is today's  patinet's vital record
+     var mm = mm_index+1; // to make the month correct; For example: January is 0 , so add 1;
+     // in order to have same format with "bday". orignal is 2018-9-13
+     if(mm_index<10){
+         var mm = "0"+mm;
+     }
+    var nowadays = year +"-"+ mm+"-"+ dd; // 2018-09-13
+
+    function search_date(){
+        var serch_date = document.getElementById("bday").value;
+        console.log(serch_date);
     }
-    console.log(weekday[wk_index]);
-    console.log(today);
-    console.log("current_date");
-    document.getElementById("current_date").innerHTML = dd;
-    document.getElementById("current_month").innerHTML = month[mm_index];
-    document.getElementById("current_week").innerHTML = weekday[wk_index];
-    document.getElementById("current_year").innerHTML = year;

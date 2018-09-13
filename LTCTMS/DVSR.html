@@ -47,7 +47,7 @@
 
 <table style="width: 500px; border-collapse: collapse; position:relative; top:-870px; left:400px; height:500px; display:block; overflow:scroll">
     <tr>
-        <th colspan="2"> Daily Status Record </th>
+        <th  colspan="2"> Daily Status Record </th>
     </tr>
     <tr>
         <td> Abnormal Faeces Types</td>
@@ -55,6 +55,7 @@
     </tr>
 
 </table>
+
 
 <table style="width: 400px; border-collapse: collapse; position:relative; top:-1370px; left:1000px; height:150px; display:block; overflow:scroll">
     <tr>
@@ -97,32 +98,41 @@
 	<option value="101">101</option>
     <option value="102">102</option>
     <option value="103">103</option>
-    <option value="104">104</option>
-    <option value="105">105</option>
-    <option value="106">106</option>
-    <option value="107">107</option>
-    <option value="108">108</option>
-
 </select>
 </div>
-<!-->selecting box is on the left side and the value inside is patient's ID <-->
+<!--selecting box is on the left side and the value inside is patient's ID -->
 <div style="position:absolute;top:400px;left:100px">
+
 <select id="selectPAT"></select>
+<button onclick = "display_rec ()"> Display </button>
+
 </div>
-<p id ="current_date"></p>
-<h1 id="current_date" style="position:absolute;top:50px;left:80px;font-weight:bold;font-size:100px;"></h1>
+
+<h1 id='current_date' style="position:absolute;top:50px;left:80px;font-weight:bold;font-size:100px;"></h1>
 <h1 id="current_month" style="position:absolute;top:180px;left:200px;font-weight:normal;font-size:20px;"></h1>
 <h1 id="current_year" style="position:absolute;top:100px;left:40px;font-weight:normal;font-size:20px;"></h1>
 <h1 id="current_week" style="position:absolute;top:200px;left:70px;font-weight:normal;font-size:40px;font-style: oblique;"></h1>
-
+<script>
+document.getElementById('current_date').innerHTML = dd;
+document.getElementById("current_month").innerHTML = month[mm_index];
+document.getElementById("current_week").innerHTML = weekday[wk_index];
+document.getElementById("current_year").innerHTML = year;
+</script>
 <!--view date button-->
+
 <div style="position:relative; top:-1430px;left:65px">
-<form action="/action_page.php">
-  <input type="date" name="bday">
-  <br><br>
-  <input type="submit">
-</form>
+
+  <input type="date" id="bday">
+  <script>
+  console.log(nowadays);
+  document.getElementById("bday").value = nowadays;
+  </script>
+<br><br>
+  <button onclick="search_date ()" >search</button>
 </div>
+
+
+
 </body>
 
 </html>
