@@ -45,66 +45,36 @@
 <div class="spilt_layout">
 </div>
 
-<table style="width: 500px; border-collapse: collapse; position:relative; top:-870px; left:400px; height:500px; display:block; overflow:scroll">
+<table id = "DSR_table" style="width: 500px; border-collapse: collapse; position:relative; top:-870px; left:400px; height:500px; display:block; overflow:scroll">
     <tr>
         <th  colspan="2"> Daily Status Record </th>
     </tr>
-    <tr>
-        <td> Abnormal Faeces Types</td>
-        <td> Tarry Stools</td>
-    </tr>
-
 </table>
 
-
-<table style="width: 400px; border-collapse: collapse; position:relative; top:-1370px; left:1000px; height:150px; display:block; overflow:scroll">
-    <tr>
-        <th colspan="2"> Vital Status Record </th>
-    </tr>
-    <tr>
-        <td> Heart Beat Rate</td>
-        <td> 89</td>
-    </tr>
-    <tr>
-        <td> Temperature</td>
-        <td> 36.5</td>
-    </tr>
-</table>
-
-
-<table style="width: 400px; border-collapse: collapse; position:relative; top:-1270px; left:1000px; height:150px; display:block; overflow:scroll">
+<table id = "AI_table" style="width: 400px; border-collapse: collapse; position:relative; top:-1570px; left:400px; height:150px; display:block; overflow:scroll">
     <tr>
         <th colspan="2"> A.I. Status </th>
     </tr>
+</table>
+
+<table id = "VSR_table" style="width: 400px; border-collapse: collapse; position:relative; top:-1370px; left:1000px; height:150px; display:block; overflow:scroll">
     <tr>
-        <td> Activity Distance</td>
-        <td> 15</td>
+        <th colspan="2"> Vital Status Record </th>
     </tr>
+</table>
+<table id = "SC_table" style="width: 400px; border-collapse: collapse; position:relative; top:-1370px; left:800px; height:150px; display:block; overflow:scroll">
     <tr>
-        <td> Bathroom</td>
-        <td> 30 </td>
-    </tr>
-    <tr>
-        <td> Heart Rate</td>
-        <Td> 89 </Td>
+        <th colspan="2"> Special Care</th>
     </tr>
 </table>
 
-<div style="position:relative;top:-500px; left:700px; height:00px;">
-
-</div>
-<div style="position:absolute;top:360px;left:100px">
-<select>
-	<option value="101">101</option>
-    <option value="102">102</option>
-    <option value="103">103</option>
-</select>
-</div>
 <!--selecting box is on the left side and the value inside is patient's ID -->
-<div style="position:absolute;top:400px;left:100px">
+<div style="position:absolute;top:350px;left:100px">
 
-<select id="selectPAT"></select>
-<button onclick = "display_rec ()"> Display </button>
+<select id="selectPAT" onclick = "clearBox()"  onchange = "selectPatient()" ></select>
+<br><br><br>
+<select id="selectCNA"></select>
+<input type = "button" value="Display"  onclick = "return display_button (this);"/>
 
 </div>
 
@@ -120,15 +90,13 @@ document.getElementById("current_year").innerHTML = year;
 </script>
 <!--view date button-->
 
-<div style="position:relative; top:-1430px;left:65px">
-
+<div style="position:relative; top:-1500px;left:65px">
   <input type="date" id="bday">
   <script>
   console.log(nowadays);
   document.getElementById("bday").value = nowadays;
   </script>
 <br><br>
-  <button onclick="search_date ()" >search</button>
 </div>
 
 
