@@ -15,7 +15,7 @@ fbPAT.once("value")
          opt.text= array[index];
           x.add(opt);
           index=index+1;
-      });
+       });
     });
 
     function clearBox()
