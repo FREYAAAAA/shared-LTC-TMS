@@ -71,6 +71,7 @@ body {
 }
 
 /* Style the content */
+
 content {
     background-color: #ddd;
     padding: 10px;
@@ -89,6 +90,7 @@ table th{
     background-color: #3a6070;
     color: #FFF;
     padding: 6px 100px;
+    text-align: center;
 }
 
 table td{
@@ -103,8 +105,9 @@ table td{
   width:100%;
   height:100%;
   opacity:.95;
+  right:0;
   top:0;
-  left:0;
+  padding:40px, 60px;
   display:none;
   position:fixed;
   background-color:#313131;
@@ -115,13 +118,13 @@ table td{
   width:100%;
   height:100%;
   opacity:.95;
+  right:0;
   top:0;
-  left:0;
+  padding:40px, 60px;
   display:none;
   position:fixed;
   background-color:#313131;
   overflow:auto
-  left: 50%;
 }
 
 #editEBlock{
