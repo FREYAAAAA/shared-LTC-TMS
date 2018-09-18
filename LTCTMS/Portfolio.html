@@ -4,7 +4,7 @@
 <title>E-portfolio</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
 <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 <link rel="stylesheet" href="PortfolioStyle.css">
 </head>
@@ -27,13 +27,13 @@
 </div>
 </div>
 <br><br>
-<input type="text" name="search" placeholder="Search" style="position:absolute;top:15%;right:85%">
+<input type="text" name="search" placeholder="Search" id="searchInput"  style="position:absolute;top:15%;right:85%">
 <br><br>
 <div style="position:relative; top:20px;left:90px">
 <form action="/action_page.php">
     Position:<br><br>
-    <input type="radio" name="position" value="staff" checked> Staff<br>
-    <input type="radio" name="position" value="patient"> Patient<br>
+    <input type="radio" name="position" value="staff" onclick="filterStaffP()"> Staff<br>
+    <input type="radio" name="position" value="patient" onclick="filterPatientP()"> Patient<br>
 </form>
 <br><br>
     Room No. <br><br>
@@ -93,71 +93,22 @@
 <div class="spilt_layout">
 </div>
 
-<table style="text-align: center">
+<table style="text-align: center" >
     <tr style="background-color: #6aa84f;">
         <th> I.D. </th>
-        <th> Room No. </th>
         <th> Name </th>
-        <th> CNA I.D.</th>
-        <td style="background-color: #6aa84f"> <button type="button" onclick = "addNewPortfolio()" ><img src="image\add.png" height="15px" width="15px"/></button> </td>
+        <th> National ID </th>
+        <th> Nationality </th>
+        <th> Gender</th>
+        <th> Contact number</th>
+        <th> Email</th>
+        <th> Role</th>
+        <th style="background-color: #6aa84f"> <button type="button" onclick = "addNewPortfolio()" ><img src="image\add.png" height="15px" width="15px"/></button> </th>
     </tr>
-    <tr>
-        <td> #001 </td>
-        <td> 101 </td>
-        <td> Gama </td>
-        <td> #312 </td>
-    </tr>
-    <tr>
-        <td> #002 </td>
-        <td> 102 </td>
-        <td> Brian </td>
-        <td> #291 </td>
-    </tr>
-    <tr>
-        <td> #003 </td>
-        <td> 103 </td>
-        <td> Su Chen </td>
-        <td> 361 </td>
-    </tr>
-        <tr>
-        <td> #003 </td>
-        <td> 103 </td>
-        <td> Su Chen </td>
-        <td> 361 </td>
-    </tr>
-        <tr>
-        <td> #003 </td>
-        <td> 103 </td>
-        <td> Su Chen </td>
-        <td> 361 </td>
-    </tr>
-        <tr>
-        <td> #003 </td>
-        <td> 103 </td>
-        <td> Su Chen </td>
-        <td> 361 </td>
-    </tr>
-        <tr>
-        <td> #003 </td>
-        <td> 103 </td>
-        <td> Su Chen </td>
-        <td> 361 </td>
-    </tr>    <tr>
-        <td> #003 </td>
-        <td> 103 </td>
-        <td> Su Chen </td>
-        <td> 361 </td>
-    </tr>    <tr>
-        <td> #003 </td>
-        <td> 103 </td>
-        <td> Su Chen </td>
-        <td> 361 </td>
-    </tr>    <tr>
-        <td> #003 </td>
-        <td> 103 </td>
-        <td> Su Chen </td>
-        <td> 361 </td>
-    </tr>
+    <tbody id = "briefPortfolio">
+       <tr>
+      </tr>
+     </tbody>
 </table>
 
 <div id="newPortfolioSeletion">
@@ -175,10 +126,14 @@
   <div id="editForm">
     <h2>Staff Portfolio</h2>
     Picture + License:
-    <input type="file" id="btnPicture" />
+    <input  id="btnPicture" type="file" multiple />
     <br>
     Staff ID:
     <input type="text" id="StaffID" placeholder="Staff ID" /><br>
+    Password:
+    <input type="text" id="staffPassword" placeholder="give a password" /><br>
+    Position:
+    <input type="text" id="staffPosition" placeholder="Position" /><br>
     Name:
     <input type="text" id="staffName" placeholder="Name" /><br>
     National ID:
@@ -201,10 +156,278 @@
     <input type="textarea" id="staffCV" placeholder="CV..." /><br>
     Upload:<progress value="0" max="100" id="Uploader">0%</progress>
 
+    <button id ="btnSubmitP"> Submit</button>
+    <button id ="btnPCancel" onclick="Cancel()">Cancel</button>
+
 
   </div>
 </div>
 </div>
+
+
+<div id="newPatientPortfolio">
+<div id="PopupEditBox">
+  <div id="editForm">
+    <h2>Patient Portfolio</h2>
+    Picture :
+    <input  id="btnPicture2" type="file" />
+    <br>
+    Patient ID:
+    <input type="text" id="PatientID" placeholder="Patient ID" /><br>
+    Password:
+    <input type="text" id="patientPassword" placeholder="give a password" /><br>
+    Name:
+    <input type="text" id="patientName" placeholder="Name" /><br>
+    National ID:
+    <input type="text" id="patientNID" placeholder="National ID" /><br>
+    Nationality:
+    <input type="text" id="patientNationality" placeholder="Nationality" /><br>
+    Gender:
+    <input type="text" id="patientGender" placeholder="M/F" /><br>
+    Date of Birth:
+    <input type="text" id="patientDOB" placeholder="yyyy/mm/dd" /><br>
+    Room number:
+    <input type="text" id="patientRoomNo" placeholder="101.." /><br>
+    CNA Name:
+    <input type="text" id="CNAName" placeholder="CNA Name" /><br>
+    CNA ID:
+    <input type="text" id="CNAID" placeholder="CNA ID" /><br>
+    Email address:
+    <input type="text" id="patientEmail" placeholder="Email" /><br>
+    Contact No. :
+    <input type="text" id="patientContact" placeholder="0123-456-780" /><br>
+    Emergency Contact No. :
+    <input type="text" id="patientEContact" placeholder="0123-456-780" /><br>
+    Address:
+    <input type="text" id="patientAddress" placeholder="Address" /><br>
+    Appointment Record:
+    <input type="textarea" id="AppointmentRecord" placeholder="Appointment Record..." /><br>
+    Medical Record:
+    <input type="textarea" id="MedicalRecord" placeholder="Medical Record..." /><br>
+    Brief Description:
+    <input type="textarea" id="BriefDescription" placeholder="Brief Description..." /><br>
+
+    Upload:<progress value="0" max="100" id="Uploader2">0%</progress>
+
+    <button id ="btnSubmitP2"> Submit</button>
+    <button id ="btnPCancel" onclick="Cancel()">Cancel</button>
+
+
+  </div>
+</div>
+</div>
+
+<div id="viewPatientPortfolio">
+<div id="PopupEditBox">
+  <div id="editForm">
+    <h2>Patient Portfolio</h2>
+
+    <button id="btnEditP" onclick="editPP()">Edit</button>
+    <button id="btnDeleteP" onclick = "deletePP()">Delete</button>
+
+    <table id="viewPatientPortfolioTable">
+      <tr>
+       <td rowspan="2"> <img height="125" width="125"/></td>
+       <td colspan="2" id ="PID">  </td>
+     </tr>
+     <tr>
+       <td colspan="2" id ="Name"> Name</td>
+     </tr>
+     <tr>
+       <td id="NID"> National ID </td>
+       <td id="Nationality"> Nationality</td>
+       <td id="Gender"> Gender</td>
+     </tr>
+     <tr>
+      <td id="Room"> Room No.</td>
+      <td id="CNAnameV"> CNA_Name</td>
+      <td id="CNAIDV"> CNA_ID</td>
+    </tr>
+    <tr>
+       <td colspan="2" id= "Email"> Email Address</td>
+       <td id="DOB"> Date of Birth</td>
+     </tr>
+     <tr>
+       <td id="Contactno"> Contact No. </td>
+       <td colspan="2" id="EContactnoV"> </td>
+   </tr>
+   <tr>
+       <td colspan="3" id= "AddressV"></td>
+   </tr>
+   <tr>
+       <td colspan="3" id = "ARV"> </td>
+   </tr>
+   <tr>
+       <td colspan="3" id= "MRV"> </td>
+   </tr>
+   <tr>
+       <td colspan="3"id= "BDV"> </td>
+   </tr>
+ </table>
+
+ <button type="button" onclick="Cancel()" >Back</button>
+
+
+  </div>
+</div>
+</div>
+
+<div id="viewStaffPortfolio">
+<div id="PopupEditBox">
+  <div id="editForm">
+    <h2>Staff Portfolio</h2>
+
+    <button id="btnEditSP" onclick="editSP()">Edit</button>
+    <button id="btnDeleteSP" onclick = "deleteSP()">Delete</button>
+
+    <table id="viewStaffPortfolioTable">
+      <tr>
+       <td rowspan="2"> <img height="125" width="125"/></td>
+       <td> Staff ID </td>
+       <td colspan="2" id = "SID"> </td>
+   </tr>
+   <tr>
+       <td> Name</td>
+       <td colspan="2" id = "sName"> </td>
+   </tr>
+   <tr>
+       <td> Date of Birth</td>
+       <td id = "sDOB"> </td>
+       <td> Position </td>
+       <td id = "sPosition"> </td>
+   </tr>
+
+   <tr>
+       <td> National ID </td>
+       <td id = "sNID"> </td>
+       <td> Nationality</td>
+       <td id = "sNationality"> </td>
+   </tr>
+   <tr>
+       <td> Email Address</td>
+       <td id ="sEmail"> </td>
+       <td> Gender</td>
+       <td id ="sGender">  </td>
+   </tr>
+   <tr>
+       <td> Contact No. </td>
+       <td id ="sContact"> </td>
+       <td> Emergency Contact No.</td>
+       <td id="sEContact"> </td>
+   </tr>
+    <tr>
+       <td> Address</td>
+       <td colspan="3" id = "sAddress"></td>
+   </tr>
+   <tr>
+       <td colspan="4" id = "sCV"> </td>
+   </tr>
+   <tr>
+       <td colspan="4" id ="sLicense"></td>
+   </tr>
+
+ </table>
+ <button type="button" onclick="Cancel()" >Back</button>
+
+
+  </div>
+</div>
+</div>
+
+<div id="editPatientPortfolio">
+<div id="PopupEditBox">
+  <div id="editForm">
+    <h2>Patient Portfolio</h2>
+    <br>
+    Patient Picture URL:
+    <p type="text" id="PictureP"></p><br>
+    Patient ID:
+    <input type="text" id="PatientID2" placeholder="Patient ID" /><br>
+    Password:
+    <input type="text" id="patientPassword2" placeholder="give a password" /><br>
+    Name:
+    <input type="text" id="patientName2" placeholder="Name" /><br>
+    National ID:
+    <input type="text" id="patientNID2" placeholder="National ID" /><br>
+    Nationality:
+    <input type="text" id="patientNationality2" placeholder="Nationality" /><br>
+    Gender:
+    <input type="text" id="patientGender2" placeholder="M/F" /><br>
+    Date of Birth:
+    <input type="text" id="patientDOB2" placeholder="yyyy/mm/dd" /><br>
+    Room number:
+    <input type="text" id="patientRoomNo2" placeholder="101.." /><br>
+    CNA Name:
+    <input type="text" id="CNAName2" placeholder="CNA Name" /><br>
+    CNA ID:
+    <input type="text" id="CNAID2" placeholder="CNA ID" /><br>
+    Email address:
+    <input type="text" id="patientEmail2" placeholder="Email" /><br>
+    Contact No. :
+    <input type="text" id="patientContact2" placeholder="0123-456-780" /><br>
+    Emergency Contact No. :
+    <input type="text" id="patientEContact2" placeholder="0123-456-780" /><br>
+    Address:
+    <input type="text" id="patientAddress2" placeholder="Address" /><br>
+    Appointment Record:
+    <input type="textarea" id="AppointmentRecord2" placeholder="Appointment Record..." /><br>
+    Medical Record:
+    <input type="textarea" id="MedicalRecord2" placeholder="Medical Record..." /><br>
+    Brief Description:
+    <input type="textarea" id="BriefDescription2" placeholder="Brief Description..." /><br>
+
+    <button id ="btnSubmitPP" onclick="submitPP()"> Submit</button>
+    <button id ="btnPCancel" onclick="Cancel()">Cancel</button>
+
+
+  </div>
+</div>
+</div>
+
+
+<div id="editStaffPortfolio">
+<div id="PopupEditBox">
+  <div id="editForm">
+    <h2>Staff Portfolio</h2>
+    Staff Picture URL:
+    <p type="text" id="PictureS"></p><br>
+    <br>
+    Staff ID:
+    <input type="text" id="StaffID2" placeholder="Staff ID" /><br>
+    Password:
+    <input type="text" id="staffPassword2" placeholder="give a password" /><br>
+    Position:
+    <input type="text" id="staffPosition2" placeholder="Position" /><br>
+    Name:
+    <input type="text" id="staffName2" placeholder="Name" /><br>
+    National ID:
+    <input type="text" id="staffNID2" placeholder="National ID" /><br>
+    Nationality:
+    <input type="text" id="staffNationality2" placeholder="Nationality" /><br>
+    Gender:
+    <input type="text" id="staffGender2" placeholder="M/F" /><br>
+    Date of Birth:
+    <input type="text" id="staffDOB2" placeholder="yyyy/mm/dd" /><br>
+    Email address:
+    <input type="text" id="staffEmail2" placeholder="Email" /><br>
+    Contact No. :
+    <input type="text" id="staffContact2" placeholder="0123-456-780" /><br>
+    Emergency Contact No. :
+    <input type="text" id="staffEContact2" placeholder="0123-456-780" /><br>
+    Address:
+    <input type="text" id="staffAddress2" placeholder="Address" /><br>
+    CV:
+    <input type="textarea" id="staffCV2" placeholder="CV..." /><br>
+
+
+    <button id ="btnSubmitSP" onclick="submitSP()"> Submit</button>
+    <button id ="btnPCancel" onclick="Cancel()">Cancel</button>
+
+
+  </div>
+</div>
+</div>
+
 
 <script type = 'text/javascript' src = 'C:\inetpub\wwwroot\LTCTMS\Config.js'></script>
 <script type= 'text/javascript' src = 'C:\inetpub\wwwroot\LTCTMS\PortfolioJS.js'></script>
