@@ -68,9 +68,7 @@ body {
 
 /* Style the content */
 .content {
-    background-color: #ddd;
     padding: 10px;
-    height: 500px; /* Should be removed. Only for demonstration */
 }
 /*worklog_table*/
 
@@ -81,6 +79,15 @@ table, th, td
     border: 1px solid black;
     width:600px;
 
+}
+table th {
+  background-color: #3a6070;
+  color: #FFF;
+  padding: 6px 100px;
+  text-align: center;
+}
+table td {
+  text-align: center;
 }
 /*worklog title*/
 .month_title{
@@ -95,12 +102,12 @@ table, th, td
 
 /*spilt_layout*/
 .spilt_layout{
-    background-color: #fff;
+    background-color: #000;
 
     width:8px;
-    height:500px;
+    height:700px;
     position:relative;
-    top:-500px;
+    top:-20px;
     left:270px;
 }
 /*Today*/
