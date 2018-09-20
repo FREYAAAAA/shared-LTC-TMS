@@ -177,7 +177,7 @@ uploadtask.on('state_changed',
        patientRoomNo : patientRoomNo,
        CNAName : CNAName,
        CNAID : CNAID,
-       Adress : patientAddress,
+       Address : patientAddress,
        Position : 'Patient'
      };
      updates['Patient/'+PatientID +'/Portfolio'] = postData;
@@ -259,7 +259,7 @@ function viewP(){
       var roomno = snapshot.child('patientRoomNo').val();
 
       //TODO:image input and resize
-      //document.querySelector('img').src = photo;
+      document.getElementById('img1').src = photo;
       document.getElementById('PID').innerHTML= id;
       document.getElementById('Name').innerHTML= Name;
       document.getElementById('NID').innerHTML= NationalID;
@@ -298,7 +298,8 @@ function viewP(){
       var CV = snapshot.child('CV').val();
       var position = snapshot.child('Position').val();
 
-      //TODO:pictureimg display
+      //TODO:pictureing display
+      document.getElementById('imgS').src = photo;
       document.getElementById('SID').innerHTML= id;
       document.getElementById('sName').innerHTML= Name;
       document.getElementById('sNID').innerHTML= NationalID;
@@ -339,8 +340,14 @@ function editPP(){
     var Contact = snapshot.child('Contact').val();
     var EContact = snapshot.child('EContact').val();
     var AddressV = snapshot.child('Address').val();
-    var CV = snapshot.child('CV').val();
     var pass = snapshot.child('Password').val();
+    var roomno = snapshot.child('patientRoomNo').val();
+    var CNAname = snapshot.child('CNAName').val();
+    var AR = snapshot.child('AppointmentRecord').val();
+    var MR = snapshot.child('MedicalRecord').val();
+    var BD = snapshot.child('BriefDescription').val();
+
+
     console.log(photo);
     //TODO: picture can't be edit?
     document.getElementById('PictureP').innerHTML = photo;
@@ -541,8 +548,8 @@ function filterStaffP(){
 function filterPatientP(){
   var table = document.getElementById("briefPortfolio");
   var tr = table.getElementsByTagName("tr");
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[7];//row i cell number 7
+  for (var i = 0; i < tr.length; i++) {
+    var td = tr[i].getElementsByTagName("td")[7];//row i cell number 7
     //alert(td.innerText);
     if(td){
     if (td.innerText == 'Patient') {
@@ -554,7 +561,7 @@ function filterPatientP(){
   }
 }
 
-//keyword search
+//Keyword search
 $(document).ready(function(){
   $("#searchInput").on("keyup", function() {
     var value = $(this).val().toLowerCase();
@@ -562,4 +569,73 @@ $(document).ready(function(){
       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
     });
   });
-})
+});
+
+//Filter with Nationality
+function filterNationality(){
+  var table = document.getElementById("briefPortfolio");
+  var filterN = document.getElementById("filterNationality").value;
+  var tr = table.getElementsByTagName("tr");
+  for (var i = 0; i < tr.length; i++) {
+    var td = tr[i].getElementsByTagName("td")[3];//row i cell number 3
+    if(td){
+       if (td.innerText == filterN) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+//Filter with Gender
+function filterGender(){
+  var table = document.getElementById("briefPortfolio");
+  var filterG = document.getElementById("filterGender").value;
+  var tr = table.getElementsByTagName("tr");
+  for (var i = 0; i < tr.length; i++) {
+    var td = tr[i].getElementsByTagName("td")[4];//row i cell number 4
+    if(td){
+      console.log(td.innerText);
+    if (td.innerText == filterG) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+//TODO:Filter with Room number
+function filterRoomNo() {
+    var table = document.getElementById("briefPortfolio");
+    var selectedroom = document.getElementById('filterRoomNo').value;
+    var fbPR = firebase.database().ref('Portfolio');
+    var tr = table.getElementsByTagName("tr");
+
+    fbPR.once('value',function(snapshot){
+      snapshot.forEach(function(childSnapshot){
+        var id = childSnapshot.key;
+        var childData = childSnapshot.val();
+        var room = childData.patientRoomNo;
+        console.log(childData.patientRoomNo);
+        if (room == selectedroom){
+          for (var i = 0; i < tr.length; i++) {
+            var td = tr[i].getElementsByTagName("td")[0];//row i cell number 0
+            if(td){
+            if (td.innerText == id) {
+                tr[i].style.display = "";
+                console.log(id);
+              } else {
+                tr[i].style.display = "none";
+              }
+            }
+          }
+        }
+
+
+
+
+      });
+    });
+}

@@ -37,8 +37,9 @@
 </form>
 <br><br>
     Room No. <br><br>
-<select>
-	<option value="101">101</option>
+<select id = "filterRoomNo" onchange = "filterRoomNo()">
+    <option>Select</option>
+	  <option value="101">101</option>
     <option value="102">102</option>
     <option value="103">103</option>
     <option value="104">104</option>
@@ -47,10 +48,12 @@
     <option value="107">107</option>
     <option value="108">108</option>
 </select>
+
 <br><br>
     Nationality <br><br>
-   <select>
-	<option value="Taiwan">Taiwan</option>
+   <select id="filterNationality" onchange = "filterNationality()">
+    <option>Select</option>
+	  <option value="Taiwan">Taiwan</option>
     <option value="Thailand">Thailand</option>
     <option value="Indonesia">Indonesia</option>
     <option value="Vietnam">Vietnam</option>
@@ -60,22 +63,16 @@
     <option value="Malaysia">Malaysia</option>
 </select>
 <br><br>
-    Age <br><br>
-   <select>
-	<option value="60-65">60-65</option>
-    <option value="65-70">65-70</option>
-    <option value="70-75">70-75</option>
-    <option value="75-80">75-80</option>
-    <option value="80-85">80-85</option>
-    <option value="85+">85+</option>
-</select>
-<br><br>
+
     Gender <br><br>
-   <select>
-	<option value="male">Male</option>
-    <option value="female">Female</option>
-    <option value="others">Others</option>
+   <select id="filterGender" onchange = "filterGender()">
+    <option>Select</option>
+	  <option value="M">Male</option>
+    <option value="F">Female</option>
+    <option value="Others">Others</option>
 </select>
+
+<button onclick= 'Cancel()'> Refresh</button>
 </div>
 
 
@@ -117,6 +114,7 @@
     <h2>Select Role</h2>
     <button id="btnStaff" onclick="staffPortfolio()">STAFF</button>
     <button id="btnPatient" onclick="patientPortfolio()">PATIENT</button>
+    <button onclick="Cancel()">Back</button>
   </div>
 </div>
 </div>
@@ -227,7 +225,7 @@
 
     <table id="viewPatientPortfolioTable">
       <tr>
-       <td rowspan="2"> <img height="125" width="125"/></td>
+       <td rowspan="2"> <img id='img1' height="200" width="200"/></td>
        <td colspan="2" id ="PID">  </td>
      </tr>
      <tr>
@@ -282,7 +280,7 @@
 
     <table id="viewStaffPortfolioTable">
       <tr>
-       <td rowspan="2"> <img height="125" width="125"/></td>
+       <td rowspan="2"> <img id='imgS' height="200" width="150"/></td>
        <td> Staff ID </td>
        <td colspan="2" id = "SID"> </td>
    </tr>
