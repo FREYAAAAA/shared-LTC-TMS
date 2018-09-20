@@ -72,13 +72,13 @@ body {
     padding: 10px;
     height: 500px; /* Should be removed. Only for demonstration */
 }
-/*worklog_table*/
+
 table{
 width:600px;
 border-collapse: collapse;
 position:relative;
-top:-1450px;
-left:600px;
+top:-1550px;
+left:300px;
 height:400px;
 display:block;
 overflow:scroll;
@@ -88,8 +88,23 @@ table, th, td
 
     padding: 10px;
     border: 1px solid black;
-    width:600px;
+    width:1000px;
 
+}
+#viewPatientPortfolioTable{
+  width:600px;
+  padding: 10px;
+  top: 0px;
+  left: 0px;
+  border: 1px solid black;
+}
+
+#viewStaffPortfolioTable{
+  width:600px;
+  padding: 10px;
+  top: 0px;
+  left: 0px;
+  border: 1px solid black;
 }
 /*worklog title*/
 .month_title{
@@ -133,6 +148,30 @@ table, th, td
     background:#6aa84f;
 }
 
+#editPatientPortfolio{
+  width:100%;
+  height:100%;
+  opacity:.95;
+  top:0;
+  left:0;
+  display:none;
+  position:fixed;
+  background-color:#313131;
+  overflow:auto
+}
+
+#newPatientPortfolio{
+  width:100%;
+  height:100%;
+  opacity:.95;
+  top:0;
+  left:0;
+  display:none;
+  position:fixed;
+  background-color:#313131;
+  overflow:auto
+}
+
 #newStaffPortfolio{
   width:100%;
   height:100%;
@@ -157,6 +196,42 @@ table, th, td
   overflow:auto
 }
 
+#viewPatientPortfolio{
+  width:100%;
+  height:100%;
+  opacity:.95;
+  top:0;
+  left:0;
+  display:none;
+  position:fixed;
+  background-color:#313131;
+  overflow:auto;
+}
+
+#viewStaffPortfolio{
+  width:100%;
+  height:100%;
+  opacity:.95;
+  top:0;
+  left:0;
+  display:none;
+  position:fixed;
+  background-color:#313131;
+  overflow:auto;
+}
+
+#editStaffPortfolio{
+  width:100%;
+  height:100%;
+  opacity:.95;
+  top:0;
+  left:0;
+  display:none;
+  position:fixed;
+  background-color:#313131;
+  overflow:auto
+}
+
 div#popupContact {
   position:absolute;
   left:50%;
@@ -166,7 +241,7 @@ div#popupContact {
 }
 
 #editForm {
-  max-width:300px;
+  max-width:600px;
   min-width:250px;
   padding:10px 50px;
   border:2px solid gray;

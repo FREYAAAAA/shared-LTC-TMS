@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Memo</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,500" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Config.js"></script>
+<script type="text/javascript" src="/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/memo.js"></script>
+<style>
+* {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style the top navigation bar */
+.topnav {
+    overflow: hidden;
+    background-color: #6aa84f;
+    padding:10px;
+}
+
+.dropbtn {
+    background-color: #008000;
+    color: white;
+    padding: 16px 40px;
+    font-size: 16px;
+    border:none;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: fixed;
+    background-color: #b6d7a8;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border:none;
+    border-radius:30px;
+
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+
+}
+
+.dropdown-content a:hover {
+	background-color: #f1f1f1;
+    border-radius:30px;
+
+}
+
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
+/* Style the content */
+.content {
+    background-color: #ddd;
+    padding: 10px;
+    height: 500px; /* Should be removed. Only for demonstration */
+}
+/*worklog_table*/
+table{
+width:600px;
+border-collapse: collapse;
+position:relative;
+top:-870px;
+left:600px;
+height:400px;
+display:block;
+overflow:scroll;
+}
+table, th, td
+{
+
+    padding: 10px;
+    border: 1px solid black;
+    width:600px;
+
+}
+/*worklog title*/
+.month_title{
+    background-color: #6aa84f;
+    border-style:double;
+    width:600px;
+    height:70px;
+    position:relative;
+    top:-1350px;
+    left:600px;
+}
+
+/*spilt_layout*/
+.spilt_layout{
+    background-color: #fff;
+
+    width:8px;
+    height:500px;
+    position:relative;
+    top:-555px;
+    left:270px;
+}
+/*Today*/
+.today{
+    font-size:48px;
+    position:relative;
+    top:-550px;
+    right:10px;
+}
+/*view date*/
+.viewDate_button{
+    position:relative;
+    top:-1680px;
+    right:-20px;
+    width:200px;
+    height:40px;
+    border:none;
+    border-radius:10px;
+    background:#3e8e41;
+}
+.viewDate_button:hover{
+    background:#6aa84f;
+}
+
+#user {
+    position:absolute;
+    Right:25px;
+    top:45px;
+    font-size:12px;
+    color:blue;
+}
+#languageoption {
+    position:absolute;
+    Right:30px;
+    top:15px;
+}
+#boxhead {
+    text-align:center;
+}
+#monthhead {
+    font-size:40px;
+}
+#addmemo {
+    top:-1350px;
+    left:00px ;
+}
+#leftdate {
+    position:relative;
+    top:-1000px;
+    right:-80px;
+}
+#leftday {
+    position:relative;
+    top:-1050px;
+    right:-30px;
+    font-weight:normal;
+}
+#leftmonth {
+    position:relative;
+    top:-1280px;
+    left:200px;
+    font-size:20px;
+}
+#insertdate {
+    position:relative;
+    left:40px;
+    top:-1150px;
+}
+.form-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+</style>
+</head>
+<body bgcolor= "#ddd">
+
+<!--<img id="user" src="photo.png" alt='CNO/Director' >-->
+
+<div class="topnav">
+<div class="dropdown">
+  <button class="dropbtn">Memo</button>
+  <div class="dropdown-content">
+    <a href="public\schedulepage.html">Schedule</a>
+    <a href="memopage.html">Memo</a>
+    <a href="statusrecordpage.html">Status Record</a>
+    <a href="taskeditorpage.html">Task Editor</a>
+    <a href="library.html">Library</a>
+    <a href="portfolio.html">E-portfolio</a>
+    <a href="helpandsupport.html">Help and Support</a>
+  </div>
+</div>
+</div>
+<br><br><br>
+<div class="content">
+</div>
+<!--select language-->
+<div id="languageoption">
+<select>
+	<option value="English">English</option>
+    <option value="Chinese">Chinese</option>
+</select>
+</div>
+<!--spilt_layout-->
+<div class="spilt_layout">
+</div>
+
+<table id = memo_table>
+<tr>
+    <td>Date</td>
+    <td>Time</td>
+    <td>Content</td>
+
+</tr>
+</table>
+<div class="form-popup" id="form">
+    <h1>New Memo</h1>
+    <textarea id ="memo_text" rows="4" cols="50"></textarea>
+    <button onclick ="submit()" type="button" class="btn" >Submit</button>
+    <button type="button" class="btn cancel" onclick="close_form()">Close</button>
+</div>
+<div class="month_title" id="boxhead">
+    <h1 id='fullName_Month' ></h1>
+    <button  type="button" onclick = "popup_form()">Add</button>
+</div>
+
+<div id = "date" style = "fonts-size:40px;"></div>
+
+<!--view date button-->
+<div id="insertdate" >
+  Insert Date:<br><br>
+  <input type="date" name="bday">
+  <input type="submit">
+</div>
+
+
+<h1 id='current_date' style="position:absolute;top:50px;left:80px;font-weight:bold;font-size:100px;"></h1>
+<h1 id="current_month" style="position:absolute;top:180px;left:200px;font-weight:normal;font-size:20px;"></h1>
+<h1 id="current_year" style="position:absolute;top:100px;left:40px;font-weight:normal;font-size:20px;"></h1>
+<h1 id="current_week" style="position:absolute;top:200px;left:70px;font-weight:normal;font-size:40px;font-style: oblique;"></h1>
+<script>
+document.getElementById('current_date').innerHTML = dd;
+document.getElementById("current_month").innerHTML = month[mm_index];
+document.getElementById("current_week").innerHTML = weekday[wk_index];
+document.getElementById("current_year").innerHTML = year;
+document.getElementById("fullName_Month").innerHTML = Month[mm_index];
+</script>
+</body>
+
+</html>
