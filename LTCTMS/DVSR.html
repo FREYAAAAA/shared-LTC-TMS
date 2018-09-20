@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title> DVSR </title>
+<title> Status Record </title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,500" rel="stylesheet">
@@ -14,17 +14,17 @@
 
 <link rel="stylesheet" href="DVSR.css">
 </head>
-<body id="background" background="image\bg.jpg"//>
+<body background="image\bg.jpg"//>
 <!--copyright=<a href="https://www.freepik.com/free-photos-vectors/people">People image created by Freepik</a>-->
 <img  style="position:absolute;Right:25px;top:45px;font-size:12px;color:blue"  src="photo.png" alt='CNO/Director' >
 
 <div class="topnav">
 <div class="dropdown">
-  <button class="dropbtn">DVSR</button>
+  <button class="dropbtn">Status Record</button>
   <div class="dropdown-content">
     <a href="#">Schedule</a>
     <a href="#">Memo</a>
-    <a href="#">DVSR</a>
+    <a href="#">Status Record</a>
     <a href="#">Task Editor</a>
     <a href="#">Library</a>
     <a href="#">E-portfolio</a>
@@ -45,31 +45,31 @@
 <div class="spilt_layout">
 </div>
 
-<table id = "DSR_table" style="width: 500px; border-collapse: collapse; position:relative; top:-680px; left:400px; height:550px; display:block; overflow:scroll;background-color:#DCDCDC;">
+<table id = "DSR_table" style="width: 500px; border-collapse: collapse; position:absolute; top:130px; left:400px; height:550px; display:block; overflow:scroll;background-color:#DCDCDC;">
     <tr>
         <th  colspan="2"> Daily Status Record </th>
     </tr>
 </table>
 
-<table id = "AI_table" style="width: 400px; border-collapse: collapse; position:relative; top:-1050px; left:1000px; height:150px; display:block; overflow:scroll;background-color:#DCDCDC;">
+<table id = "AI_table" style="width: 400px; border-collapse: collapse; position:absolute; top:130px; left:1000px; height:150px; display:block; overflow:scroll;background-color:#DCDCDC;">
     <tr>
         <th colspan="2"> A.I. Status </th>
     </tr>
 </table>
 
-<table id = "VSR_table" style="width: 400px; border-collapse: collapse; position:relative; top:-1430px; left:1000px; height:150px; display:block; overflow:scroll;background-color:#DCDCDC;">
+<table id = "VSR_table" style="width: 400px; border-collapse: collapse; position:absolute; top:330px; left:1000px; height:150px; display:block; overflow:scroll;background-color:#DCDCDC;">
     <tr>
         <th colspan="2"> Vital Status Record </th>
     </tr>
 </table>
-<table id = "SC_table" style="width: 400px; border-collapse: collapse; position:relative; top:-1190px; left:1000px; height:150px; display:block; overflow:scroll;background-color:#DCDCDC;">
+<table id = "SC_table" style="width: 400px; border-collapse: collapse; position:absolute; top:530px; left:1000px; height:150px; display:block; overflow:scroll;background-color:#DCDCDC;">
     <tr>
         <th colspan="2"> Special Care</th>
     </tr>
 </table>
 
 <!--selecting box is on the left side and the value inside is patient's ID -->
-<div style="position:absolute;top:400px;left:90px">
+<div style="position:absolute;top:390px;left:90px">
 
 <select id="selectPAT" onclick = "clearBox()"  onchange = "selectPatient()" ></select>
 <br><br><br>
@@ -90,7 +90,7 @@ document.getElementById("current_year").innerHTML = year;
 </script>
 <!--view date button-->
 
-<div style="position:relative; top:-1550px;left:65px">
+<div style="position:absolute; top:330px;left:65px">
   <input type="date" id="bday">
   <script>
   console.log(nowadays);
