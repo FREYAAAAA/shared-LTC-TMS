@@ -1,4 +1,3 @@
-
 var config = {
   apiKey: "AIzaSyCnuAZzFvkT-FSRxB5Vk67JM6FU9wZLYMQ",
   authDomain: "share-b7589.firebaseapp.com",

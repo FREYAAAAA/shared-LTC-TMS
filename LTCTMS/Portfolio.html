@@ -8,39 +8,26 @@
 <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 <link rel="stylesheet" href="PortfolioStyle.css">
 </head>
-<body background="image\bg.jpg">
+<body bgcolor= "#ddd">
+
+<img  style="position:absolute;Right:25px;top:45px;font-size:12px;color:blue"  src="photo.png" alt='CNO/Director' >
 
 <div class="topnav">
-  <h2 style="color:#F5F5DC;"><center>Welcome To Schedule! </center></h2>
-  <div style="position:absolute;right:1430px;top:10px;">
-    <img src="image\logo.jpg"
+<div class="dropdown">
+  <button class="dropbtn">E-portfolio</button>
+  <div class="dropdown-content">
+    <a href="#">Schedule</a>
+    <a href="#">Memo</a>
+    <a href="#">Status Record</a>
+    <a href="#">Task Editor</a>
+    <a href="#">Library</a>
+    <a href="#">E-portfolio</a>
+    <a href="helpandsupport.html">Help and Support</a>
   </div>
-  <div style="position:absolute;Right:-1410px;top:2px;">
-  <select>
-      <option value="English">English</option>
-      <option value="Chinese">Chinese</option>
-  </select>
-  <button id='btnLogout'>Logout</button>
-  </div>
-</div>
-
-<div style="position: absolute; top:45px; right:0px;">
-    <table id="toptable" style=" background-color: #BE8260; border-style: hidden; width:1250px;height:10px;">
-	     <tr>
-    	    <td id="toptd" width="13%"><center><button class="block" style="background-color:#FFFAFA"><a style="color:#8B4513; font-weight: 600;" href="scheduletest.html">Schedule</a></button></center></td>
-          <td id="toptd" width="13%"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="scheduletest.html">Memo</a></button></center></td>
-          <td id="toptd" width="13%"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="DVSR.html">Status Record</a></button></center></td>
-          <td id="toptd" width="13%"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="scheduletest.html">Library</a></button></center></td>
-    	    <td id="toptd" width="13%"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="scheduletest.html">Task Editor</a></button></center></td>
-          <td id="toptd" width="13%"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="scheduletest.html">E-Portfolio</a></button></center></td>
-          <td id="toptd" width="13%" style="border-style:hidden;"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="scheduletest.html">Help and Support</a></button></center></td>
-        </tr>
-    </table>
-</div>
-<div class="content">
 </div>
 </div>
-<input type="text" name="search" placeholder="Search" id="searchInput"  style="position:absolute;top:150px;right:85%">
+<br><br>
+<input type="text" name="search" placeholder="Search" id="searchInput"  style="position:absolute;top:15%;right:85%">
 <br><br>
 <div style="position:relative; top:20px;left:90px">
 <form action="/action_page.php">
@@ -90,8 +77,21 @@
 
 
 
-<table style="text-align: center;top:200px;" >
-    <tr style="background-color: #fff;">
+<div class="content">
+</div>
+<!--select language-->
+<div style="position:absolute;Right:30px;top:15px;">
+<select>
+	<option value="English">English</option>
+    <option value="Chinese">Chinese</option>
+</select>
+</div>
+<!--spilt_layout-->
+<div class="spilt_layout">
+</div>
+
+<table style="text-align: center" >
+    <tr style="background-color: #6aa84f;">
         <th> I.D. </th>
         <th> Name </th>
         <th> National ID </th>
@@ -100,7 +100,7 @@
         <th> Contact number</th>
         <th> Email</th>
         <th> Role</th>
-        <th style="background-color: #fff"> <button type="button" onclick = "addNewPortfolio()" ><img src="image\add.png" height="15px" width="15px"/></button> </th>
+        <th style="background-color: #6aa84f"> <button type="button" onclick = "addNewPortfolio()" ><img src="image\add.png" height="15px" width="15px"/></button> </th>
     </tr>
     <tbody id = "briefPortfolio">
        <tr>

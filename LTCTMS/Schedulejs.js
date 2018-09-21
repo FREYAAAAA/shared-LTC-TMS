@@ -10,13 +10,6 @@ function AddNewA(){
 
 //Read firebase Announcements
 var fbA = firebase.database().ref('Announcements');
-/*fbA.on("child_added", snap =>{
-  var Textarea = snap.child("Announcement").val();
-  var aid = snap.child("a_id").val();
-
-  $("#table").append("<tr><td>" + aid + "</td><td>" + Textarea + '</td><td> <button type="button" onclick="editA()"><img src="image/pencil.png" height="15px" width="15px"/></button></td><td><button id="delete" onclick="deleteA()" type="button"><img src="image/trash-can.png" height="15px" width="15px"/></button> </td></tr>');
-
-});*/
 var Atable = document.getElementById('table')
 var rowIndex = 1;
 
@@ -26,7 +19,7 @@ fbA.once('value',function(snapshot){
     var childData = childSnapshot.val();
     var button = document.createElement("button");
     var button2 = document.createElement("button");
-    button.innerHTML="Edit";
+    button.innerHTML="Detail";
     button2.innerHTML="Delete";
 
     var row = Atable.insertRow(rowIndex);
@@ -35,7 +28,7 @@ fbA.once('value',function(snapshot){
     var cellButton= row.insertCell(2)
     var cellButton2= row.insertCell(3);
     cellId.appendChild(document.createTextNode(childKey));
-    cellAnnouncement.appendChild(document.createTextNode(childData.Announcement));
+    cellAnnouncement.appendChild(document.createTextNode(childData.ATitleIOS));
     cellButton.appendChild(button);
     cellButton2.appendChild(button2);
 
@@ -49,10 +42,16 @@ fbA.once('value',function(snapshot){
 //createNew Announcement Data
 function createNewAnnouncement(){
   var data = $('#Announcement').val();
+  var title1= $('#Atitle').val();
+  var title2= 'xtsx'+title1+'xtex';
+  var data2 = 'xasx' + data + 'xaex';
   var keyA = fbA.push().key;
   var AData = {
     a_id : keyA,
-    Announcement: data
+    ATitleAndroid: title2 ,
+    ATitleIOS:title1 ,
+    AnnouncementAndroid: data2,
+    AnnouncementIOS: data
   }
   var updates = {};
   updates['Announcements/'+ keyA] = AData;
@@ -72,27 +71,34 @@ function deleteA(){
 
 }
 
-//Editing Announcement
+//View/Editing Announcement
 function editA(){
   document.getElementById('editABlock').style.display ='block';
   var Ukey = $(this).closest('tr').children('td:first').text();
   var fbB= firebase.database().ref('Announcements/'+Ukey);
   fbB.on('value', function(snapshot){
-    var EAdata = snapshot.child('Announcement').val();
-    console.log(EAdata);
+    var EAdata = snapshot.child('AnnouncementIOS').val();
+    var EAdata2 = snapshot.child('ATitleIOS').val();
     document.getElementById('Amsg').value = EAdata;
+    document.getElementById('AEtitle2').value = EAdata2;
   });
   console.log(Ukey);
-  document.getElementById('announcement_id').value = Ukey;
+  document.getElementById('announcement_id').innerHTML = Ukey;
 }
 
 function editSave(){
   var editedData = $("#Amsg").val();
-  var akey = $("#announcement_id").val();
+  var editedData2 = 'xasx' + editedData + 'xaex';
+  var akey = document.getElementById('announcement_id').innerText;
+  var title1= $('#AEtitle2').val();
+  var title2= 'xtsx'+title1+'xtex';
   var wholeA ={
-    Announcement: editedData,
+    ATitleIOS: title1,
+    ATitleAndroid: title2 ,
+    AnnouncementAndroid: editedData2,
+    AnnouncementIOS: editedData,
     a_id: akey
-}
+};
   var updates={};
   updates['Announcements/'+ akey] = wholeA;
   window.location.reload();
@@ -100,105 +106,135 @@ function editSave(){
 
 }
 
+function btnpopUp(){
+  document.getElementById('Esave').style.display = "block";
+
+}
+
  function editCancel(){
   window.location.reload();
 }
 
-//Event
-var fbE = firebase.database().ref('Events');
 
-function AddNewEvent(){
-    document.getElementById('newEBlock').style.display ='block';
+
+
+
+//Center Schedule
+function AddNewCS(){
+document.getElementById('newCSBlock').style.display ='block';
 }
 
-var eventable = document.getElementById('eventTable');
-var rowIndexE = 1;
-fbE.once('value',function(snapshot){
-  snapshot.forEach(function(childSnapshot){
-    var childKey = childSnapshot.key;
-    var childData = childSnapshot.val();
-    var button = document.createElement("button");
-    var button2 = document.createElement("button");
-    button.innerHTML="Edit";
-    button2.innerHTML="Delete";
+//Create new Working Schedule - Upload folder into firebase
+var uploader3 = document.getElementById('uploader3');
+var fileButton3 = document.getElementById('fileButton3');
+var submitfileButton3 = document.getElementById('btnSubmitCS')
 
-    var row = eventable.insertRow(rowIndexE);
-    var cellId = row.insertCell(0)
-    var celleventDate = row.insertCell(1);
-    var celleventActivity = row.insertCell(2);
-    var cellButton= row.insertCell(3);
-    var cellButton2= row.insertCell(4);
-    cellId.appendChild(document.createTextNode(childKey));
-    celleventDate.appendChild(document.createTextNode(childData.EventDate));
-    celleventActivity.appendChild(document.createTextNode(childData.Event));
-    cellButton.appendChild(button);
-    cellButton2.appendChild(button2);
+fileButton3.addEventListener('change', handleuploadfile3);
+submitfileButton3.addEventListener('click', handleuploadfileSubmit3);
 
-    button.onclick = editE;
-    button2.onclick = deleteE;
-    rowIndexE = rowIndexE + 1;
+let file3;
 
-  });
+function handleuploadfile3(e) {
+ file3=e.target.files[0];
+}
+
+function handleuploadfileSubmit3(e) {
+
+var storageRef=firebase.storage().ref('CenterSchedule/'+file3.name);
+var uploadtask3 = storageRef.put(file3);
+
+uploadtask3.on('state_changed',
+
+  function progress(snapshot){
+    var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+    uploader.value = percentage;
+  },
+
+  function error(err){
+    console.log("failed");
+  },
+
+  function complete(){
+    console.log('Successful');
+     var postKey = firebase.database().ref('CenterSchedule/').push().key;
+     var title = document.getElementById('fileTitle3').value;
+     var title2 = 'xtsx' + title + 'xtex';
+     storageRef.getDownloadURL().then(function(url){
+       console.log("Success");
+       console.log(url);
+       var updates = {};
+       var postData={
+       url : url,
+       id : postKey,
+       titleAndroid : title2,
+       titleIOS: title
+     };
+     updates['CenterSchedule/' + postKey] = postData;
+     firebase.database().ref().update(updates);
+     window.location.reload();
+
+     });
+  }
+);
+}
+
+//Display CS table
+var rowIndexCS = 1;
+var fbCS = firebase.database().ref('CenterSchedule')
+var WStable = document.getElementById('CStable');
+
+fbCS.once('value',function(snapshot){
+snapshot.forEach(function(childSnapshot){
+  var childKey = childSnapshot.key;
+  var childData = childSnapshot.val();
+  var button = document.createElement("button");
+  var button2 = document.createElement("button");
+  button.innerHTML="Download";
+  button2.innerHTML="Delete";
+
+
+  var row = CStable.insertRow(rowIndexCS);
+  var cellId = row.insertCell(0)
+  var cellCSTitle = row.insertCell(1);
+  var cellButton = row.insertCell(2);
+  var cellButton2 = row.insertCell(3);
+  cellId.appendChild(document.createTextNode(childKey));
+  cellCSTitle.appendChild(document.createTextNode(childData.titleIOS));
+  cellButton.appendChild(button);
+  cellButton2.appendChild(button2);
+
+  button.onclick = downloadCS;
+  button2.onclick = deleteCS;
+  rowIndexCS = rowIndexCS + 1;
+
+});
 });
 
-function createNewEvent(){
-  var eventTime=$('#EventTime').val();
-  var eventActivity = $('#EventActivity').val();
-  var keyA = fbE.push().key;
-  var AData = {
-    e_id : keyA,
-    EventDate : eventTime,
-    Event :eventActivity
-  }
-  var updates = {};
-  updates['Events/'+ keyA] = AData;
-  firebase.database().ref().update(updates);
-  alert('Successfully Entered');
-  window.location.reload();
+//CS deletion
+function deleteCS(){
+var fbCS= firebase.database().ref('CenterSchedule');
+var Ukey = $(this).closest('tr').children('td:first').text();
+console.log(Ukey);
+fbCS.child(Ukey).remove();
+alert("successfully deleted!");
+window.location.reload();
 }
 
-function editE(){
-  document.getElementById('editEBlock').style.display ='block';
-  var Ukey = $(this).closest('tr').children('td:first').text();
-  var fbE= firebase.database().ref('Events/'+Ukey);
-  fbE.on('value', function(snapshot){
-    var Doe = snapshot.child('EventDate').val();
-    var Edata = snapshot.child('Event').val();
-    console.log(Edata);
-    console.log(Doe);
-    document.getElementById('DoE').value = Doe;
-    document.getElementById('Event').value = Edata;
-  });
-  console.log(Ukey);
-  document.getElementById('Ekey').value = Ukey;
-
+//CS download
+function downloadCS(){
+var fbCS= firebase.database().ref('CenterSchedule');
+var Ukey = $(this).closest('tr').children('td:first').text();
+var url = fbCS.child(Ukey).child('url');
+let downloadURL;
+url.once("value").then(function(snapshot){
+   downloadURL = snapshot.val();
+  // console.log(downloadURL);
+   window.location = downloadURL;
+});
 }
 
-function deleteE(){
-  var fbB= firebase.database().ref('Events');
-  var Ukey = $(this).closest('tr').children('td:first').text();
-  console.log(Ukey);
-  fbB.child(Ukey).remove();
-  alert("successfully deleted!");
-  window.location.reload();
 
-}
 
-function editEsave(){
-  var editedDOE = $("#DoE").val();
-  var editedEText = $("#Event").val();
-  var akey = $("#Ekey").val();
-  var wholeE ={
-    e_id : akey,
-    EventDate : editedDOE,
-    Event : editedEText
-}
-  var updates={};
-  updates['Events/'+ akey] = wholeE;
-  window.location.reload();
-  return firebase.database().ref().update(updates);
-
-}
 
 //Working Schedule table
 function AddNewWS(){
@@ -221,7 +257,7 @@ function handleuploadfile(e) {
 
 function handleuploadfileSubmit(e) {
 
-var storageRef=firebase.storage().ref('Test/'+file.name);
+var storageRef=firebase.storage().ref('WorkingSchedule/'+file.name);
 var uploadtask = storageRef.put(file);
 
 uploadtask.on('state_changed',
@@ -239,6 +275,7 @@ uploadtask.on('state_changed',
     console.log('Successful');
      var postKey = firebase.database().ref('WorkingSchedule/').push().key;
      var title = document.getElementById('fileTitle').value;
+     var title2 = "xtsx"+ title +"xtex";
      storageRef.getDownloadURL().then(function(url){
        console.log("Success");
        console.log(url);
@@ -246,11 +283,12 @@ uploadtask.on('state_changed',
        var postData={
        url : url,
        id : postKey,
-       title : title
+       titleAndroid : title2,
+       titleIOS : title
      };
      updates['WorkingSchedule/' + postKey] = postData;
      firebase.database().ref().update(updates);
-     window.location.reload();
+     //window.location.reload();
 
      });
   }
@@ -278,7 +316,7 @@ snapshot.forEach(function(childSnapshot){
   var cellButton = row.insertCell(2);
   var cellButton2 = row.insertCell(3);
   cellId.appendChild(document.createTextNode(childKey));
-  cellWSTitle.appendChild(document.createTextNode(childData.title));
+  cellWSTitle.appendChild(document.createTextNode(childData.titleIOS));
   cellButton.appendChild(button);
   cellButton2.appendChild(button2);
 
@@ -332,7 +370,7 @@ function handleuploadfile2(e) {
 
 function handleuploadfileSubmit2(e) {
 
-var storageRef=firebase.storage().ref('Test/'+file2.name);
+var storageRef=firebase.storage().ref('WorkingHourRecord/'+file2.name);
 var uploadtask = storageRef.put(file2);
 
 uploadtask.on('state_changed',
@@ -350,6 +388,7 @@ uploadtask.on('state_changed',
     console.log('Successful');
      var postKey = firebase.database().ref('WorkingHourRecord/').push().key;
      var title = document.getElementById('fileTitle2').value;
+     var title2 = 'xtsx'+title+'xtex';
      storageRef.getDownloadURL().then(function(url){
        console.log("Success");
        console.log(url);
@@ -357,7 +396,8 @@ uploadtask.on('state_changed',
        var postData={
        url : url,
        id : postKey,
-       title : title
+       titleAndroid : title2,
+       titleIOS : title
      };
      updates['WorkingHourRecord/' + postKey] = postData;
      firebase.database().ref().update(updates);
@@ -368,7 +408,7 @@ uploadtask.on('state_changed',
 );
 }
 
-//Display all WH
+//Display all Working Hour
 var rowIndexWH = 1;
 var fbWH = firebase.database().ref('WorkingHourRecord')
 var tableWH = document.getElementById('tableWH');
@@ -389,7 +429,7 @@ snapshot.forEach(function(childSnapshot){
   var cellButton = row.insertCell(2);
   var cellButton2 = row.insertCell(3);
   cellId.appendChild(document.createTextNode(childKey));
-  cellWHTitle.appendChild(document.createTextNode(childData.title));
+  cellWHTitle.appendChild(document.createTextNode(childData.titleIOS));
   cellButton.appendChild(button);
   cellButton2.appendChild(button2);
 
