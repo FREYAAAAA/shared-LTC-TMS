@@ -102,6 +102,8 @@ content {
 #toptd {
   padding:0px 0px;
   border-style:hidden;
+  border-right: 3px solid black;
+  border-top: 2px solid black;
 }
 #toptable {
   padding: 0px 0px;
