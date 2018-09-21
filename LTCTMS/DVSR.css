@@ -92,8 +92,6 @@ body {
 #toptd {
   padding:0px 0px;
   border-style:hidden;
-  border-right: 3px solid black;
-  border-top: 2px solid black;
 }
 #toptable {
   padding: 0px 0px;
@@ -133,10 +131,9 @@ table td {
 
 /*spilt_layout*/
 .spilt_layout{
-    background-color: #000;
-
+    background-color: ##fff;
     width:8px;
-    height:660px;
+    height:650px;
     position:absolute;
     top:100px;
     left:270px;
