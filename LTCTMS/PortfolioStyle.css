@@ -128,6 +128,7 @@ table td{
   top: 0px;
   left: 0px;
   border: 1px solid black;
+  text-align: center;
 }
 
 #viewStaffPortfolioTable{
@@ -152,7 +153,7 @@ table td{
 .spilt_layout{
     background-color: #fff;
     width:8px;
-    height:640px;
+    height:655px;
     position:absolute;
     top:100px;
     left:270px;
@@ -219,8 +220,8 @@ table td{
   width:100%;
   height:100%;
   opacity:.95;
-  top:0;
-  left:0;
+  top:0px;
+  left:0px;
   display:none;
   position:fixed;
   background-color:#313131;
@@ -272,13 +273,16 @@ div#popupContact {
 }
 
 #editForm {
-  max-width:600px;
+  max-width:800px;
   min-width:250px;
   padding:10px 50px;
-  border:2px solid gray;
+  border:2px solid black;
   border-radius:10px;
   font-family:raleway;
-  background-color:#fff
+  background-color:#fff;
+  position:absolute;
+  left:600px;
+  top:300px;
 }
 
 }
