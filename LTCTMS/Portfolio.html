@@ -8,34 +8,47 @@
 <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 <link rel="stylesheet" href="PortfolioStyle.css">
 </head>
-<body bgcolor= "#ddd">
-
-<img  style="position:absolute;Right:25px;top:45px;font-size:12px;color:blue"  src="photo.png" alt='CNO/Director' >
+<body background="image\bg.jpg">
 
 <div class="topnav">
-<div class="dropdown">
-  <button class="dropbtn">E-portfolio</button>
-  <div class="dropdown-content">
-    <a href="#">Schedule</a>
-    <a href="#">Memo</a>
-    <a href="#">Status Record</a>
-    <a href="#">Task Editor</a>
-    <a href="#">Library</a>
-    <a href="#">E-portfolio</a>
-    <a href="helpandsupport.html">Help and Support</a>
+  <h2 style="color:#F5F5DC;"><center>Welcome To E-Portfolio! </center></h2>
+  <div style="position:absolute;right:1415px;top:10px;">
+    <img src="image\logo.jpg"
+  </div>
+  <div style="position:absolute;Right:-1400px;top:2px;">
+  <select>
+      <option value="English">English</option>
+      <option value="Chinese">Chinese</option>
+  </select>
+  <button id='btnLogout'>Logout</button>
   </div>
 </div>
+
+<div style="position: absolute; top:45px; right:0px;">
+    <table id="toptable" style=" background-color: #BE8260; border-style: hidden; width:1250px;height:10px;">
+	     <tr>
+    	    <td id="toptd" width="13%"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="scheduletest.html">Schedule</a></button></center></td>
+          <td id="toptd" width="13%"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="scheduletest.html">Memo</a></button></center></td>
+          <td id="toptd" width="13%"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="DVSR.html">Status Record</a></button></center></td>
+          <td id="toptd" width="13%"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="scheduletest.html">Library</a></button></center></td>
+    	    <td id="toptd" width="13%"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="scheduletest.html">Task Editor</a></button></center></td>
+          <td id="toptd" width="13%"><center><button class="block" style="background-color:#FFFAFA"><a style="color:#8B4513; font-weight: 600;" href="Portfolio.html">E-Portfolio</a></button></center></td>
+          <td id="toptd" width="13%"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="scheduletest.html">Help and Support</a></button></center></td>
+        </tr>
+    </table>
 </div>
-<br><br>
-<input type="text" name="search" placeholder="Search" id="searchInput"  style="position:absolute;top:15%;right:85%">
-<br><br>
-<div style="position:relative; top:20px;left:90px">
+
+<div class="content">
+</div>
+
+<input type="text" name="search" placeholder="Search" id="searchInput"  style="position:absolute;top:150px;left:50px">
+<div style="position:absolute; top:200px;left:90px">
 <form action="/action_page.php">
     Position:<br><br>
     <input type="radio" name="position" value="staff" onclick="filterStaffP()"> Staff<br>
     <input type="radio" name="position" value="patient" onclick="filterPatientP()"> Patient<br>
 </form>
-<br><br>
+<br>
     Room No. <br><br>
 <select id = "filterRoomNo" onchange = "filterRoomNo()">
     <option>Select</option>
@@ -48,7 +61,6 @@
     <option value="107">107</option>
     <option value="108">108</option>
 </select>
-
 <br><br>
     Nationality <br><br>
    <select id="filterNationality" onchange = "filterNationality()">
@@ -71,27 +83,15 @@
     <option value="F">Female</option>
     <option value="Others">Others</option>
 </select>
-
+<br><br><br>
 <button onclick= 'Cancel()'> Refresh</button>
-</div>
-
-
-
-<div class="content">
-</div>
-<!--select language-->
-<div style="position:absolute;Right:30px;top:15px;">
-<select>
-	<option value="English">English</option>
-    <option value="Chinese">Chinese</option>
-</select>
 </div>
 <!--spilt_layout-->
 <div class="spilt_layout">
 </div>
-
-<table style="text-align: center" >
-    <tr style="background-color: #6aa84f;">
+<div style="position:absolute;top:150px;left:350px;width:1150px; height:400px;overflow-x: scroll;overflow-y: scroll;border: 1px solid black;background-color:#D3D3D3;">
+<table>
+    <tr>
         <th> I.D. </th>
         <th> Name </th>
         <th> National ID </th>
@@ -100,14 +100,14 @@
         <th> Contact number</th>
         <th> Email</th>
         <th> Role</th>
-        <th style="background-color: #6aa84f"> <button type="button" onclick = "addNewPortfolio()" ><img src="image\add.png" height="15px" width="15px"/></button> </th>
+        <th style="background-color: #3a6070"> <button type="button" onclick = "addNewPortfolio()" ><img src="image\add.png" height="15px" width="15px"/></button> </th>
     </tr>
     <tbody id = "briefPortfolio">
        <tr>
       </tr>
      </tbody>
 </table>
-
+</div>
 <div id="newPortfolioSeletion">
 <div id="PopupEditBox">
   <div id="editForm">
