@@ -8,12 +8,22 @@
     var Month = ["January", "February", "March", "Apri", "May", "June", "July", "Augest", "September", "Octobor", "November", "December"];
      var wk_index = today.getDay();
      var d = dd;
+     var mm = mm_index+1; // to make the month correct; For example: January is 0 , so add 1;
+     // in order to have same format with "bday". orignal is 2018-9-13
+     if(mm_index<10){
+         var mm = "0"+mm;
+     }
+     var nowadays = year +"-"+ mm+"-"+ dd; // 2018-09-13
      if (dd<10){
          dd = "0"+dd;
      }
-     var mm_number = mm_index+1;
-     var date = dd;
-     var year_m = year+"-"+mm_number;
+
+
+     var date = mm_index+1;
+     console.log(date);
+
+     var year_m = year+"-"+date;
+     console.log(year_m);
      var a = new Date();
      var hour = a.getHours();
      var minute = a.getMinutes();
@@ -28,33 +38,79 @@
          minute = "0"+minute;
      }
     var time = hour+":"+minute+":"+second;
-    console.log(time);
+     console.log(time);
+
 
 function popup_form(){
     document.getElementById("memo_text").value = "";
+    document.getElementById("selected_date").value = year+"-"+mm+"-"+dd;
     document.getElementById("form").style.display = "block";
 }
 function close_form(){
     document.getElementById("form").style.display = "none";
 }
-function sleep (time) {
-  return new Promise((resolve) => setTimeout(resolve, time));
-}
 
-
-display();
 function submit(){
     var text = $("#memo_text").val();
-    console.log(text);
-    firebase.database().ref("MEMO/"+year_m+"/"+date+"/"+time).set(text);
+    var ymd = $("#selected_date").val()
+    var a = ymd.split("-");
+    if(a[1]<10){
+        a[1] = a[1].replace('0', '');
+    }
+
+    year_m = a[0]+"-"+a[1];
+    dd = a[2];
+    firebase.database().ref("MEMO/"+year_m+"/"+dd+"-"+time).set(text);
     close_form();
     location.reload();
-    //return firebase.database().ref().update();
 }
 
-function display(){
-console.log(date);
-var fbMemo = firebase.database().ref("MEMO/"+year_m+"/"+date);
+default_display();
+function default_display(){
+    var fbMemo = firebase.database().ref("MEMO/"+year_m);
+    fbMemo.once("value")
+    .then(function(snapshot){
+        var array = [];
+        var array_val = [];
+        var index = 0;
+        snapshot.forEach(function(childSnapshot){
+            var childKey = childSnapshot.key;
+            var childData = childSnapshot.val();
+            //childData = childData.replace(/(?:\r\n|\r|\n)/g, '<br>');
+            array.push(childKey);
+            var arr = childKey.split("-");
+            if(arr[0]==dd){
+                var ul = document.getElementById("today_memo");
+                  var li = document.createElement("li");
+                  li.appendChild(document.createTextNode(childData));
+                  ul.appendChild(li);
+            }
+            var row = memo_table.insertRow(1);
+            var celldate = row.insertCell(0);
+            var celleventDate = row.insertCell(1);
+            celldate.appendChild(document.createTextNode(arr[0]));
+            celleventDate.appendChild(document.createTextNode(childData));
+        })
+    })
+}
+
+
+
+function lastMonth(){
+    document.getElementById("memo_table").innerHTML = "";
+    var title = memo_table.insertRow(0);
+    title.insertCell(0).innerHTML = "Date";
+    title.insertCell(1).innerHTML = "Content";
+    var a = year_m.split("-");
+    a[1] = a[1]-1;
+    if(a[1]== 0){
+        a[1] = 12;
+    }
+    console.log(a[1]);
+    year_m = a[0]+"-"+a[1];
+    console.log(year_m);
+    document.getElementById("fullName_Month").innerHTML = Month[a[1]-1];
+    var fbMemo = firebase.database().ref("MEMO/"+year_m);
     fbMemo.once("value")
     .then(function(snapshot){
         var array = [];
@@ -64,15 +120,44 @@ var fbMemo = firebase.database().ref("MEMO/"+year_m+"/"+date);
             var childKey = childSnapshot.key;
             var childData = childSnapshot.val();
             array.push(childKey);
-            console.log(childData);
-            console.log(array[index]);
+            var arr = childKey.split("-");
             var row = memo_table.insertRow(1);
             var celldate = row.insertCell(0);
-            var celltime = row.insertCell(1);
-            var celleventDate = row.insertCell(2);
-            celldate.appendChild(document.createTextNode(date));
-            celltime.appendChild(document.createTextNode(childKey));
+            var celleventDate = row.insertCell(1);
+            celldate.appendChild(document.createTextNode(arr[0]));
             celleventDate.appendChild(document.createTextNode(childData));
+        })
     })
-})
+}
+function nextMonth(){
+    document.getElementById("memo_table").innerHTML = "";//clear previous table's data before next data come inside.
+    var title = memo_table.insertRow(0);
+    title.insertCell(0).innerHTML = "Date";
+    title.insertCell(1).innerHTML = "Content";
+    var a = year_m.split("-");
+    a[1] =  parseInt(a[1]) +1;
+    if(a[1]==13){
+    a[1] = 1;
+    }
+    year_m = a[0]+"-"+a[1];
+    console.log(a[1]);
+    document.getElementById("fullName_Month").innerHTML = Month[a[1]-1];
+    var fbMemo = firebase.database().ref("MEMO/"+year_m);
+    fbMemo.once("value")
+    .then(function(snapshot){
+        var array = [];
+        var array_val = [];
+        var index = 0;
+        snapshot.forEach(function(childSnapshot){
+            var childKey = childSnapshot.key;
+            var childData = childSnapshot.val();
+            array.push(childKey);
+            var arr = childKey.split("-");
+            var row = memo_table.insertRow(1);
+            var celldate = row.insertCell(0);
+            var celleventDate = row.insertCell(1);
+            celldate.appendChild(document.createTextNode(arr[0]));
+            celleventDate.appendChild(document.createTextNode(childData));
+        })
+    })
 }

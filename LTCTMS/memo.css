@@ -1,0 +1,263 @@
+* {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  word-break: break-all;
+}
+
+/* Style the top navigation bar */
+.topnav {
+    overflow: hidden;
+    background-color: #6aa84f;
+    padding:10px;
+}
+
+.dropbtn {
+    background-color: #008000;
+    color: white;
+    padding: 16px 40px;
+    font-size: 16px;
+    border:none;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: fixed;
+    background-color: #b6d7a8;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border:none;
+    border-radius:30px;
+
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+
+}
+
+.dropdown-content a:hover {
+	background-color: #f1f1f1;
+    border-radius:30px;
+
+}
+
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
+/* Style the content */
+.content {
+    background-color: #ddd;
+    padding: 10px;
+    height: 500px; /* Should be removed. Only for demonstration */
+}
+/*worklog_table*/
+table{
+width:600px;
+border-collapse: collapse;
+position:relative;
+top:-870px;
+left:600px;
+height:400px;
+display:block;
+overflow:scroll;
+}
+table, th, td
+{
+
+    padding: 10px;
+    border: 1px solid black;
+    width:600px;
+
+}
+/*worklog title*/
+.month_title{
+    background-color: #6aa84f;
+    border-style:double;
+    width:600px;
+    height:70px;
+    position:relative;
+    top:-1350px;
+    left:600px;
+}
+
+/*spilt_layout*/
+.spilt_layout{
+    background-color: #fff;
+
+    width:8px;
+    height:500px;
+    position:relative;
+    top:-555px;
+    left:270px;
+}
+/*Today*/
+.today{
+    font-size:48px;
+    position:relative;
+    top:-550px;
+    right:10px;
+}
+/*view date*/
+.viewDate_button{
+    position:relative;
+    top:-1680px;
+    right:-20px;
+    width:200px;
+    height:40px;
+    border:none;
+    border-radius:10px;
+    background:#3e8e41;
+}
+.viewDate_button:hover{
+    background:#6aa84f;
+}
+
+#user {
+    position:absolute;
+    Right:25px;
+    top:45px;
+    font-size:12px;
+    color:blue;
+}
+#languageoption {
+    position:absolute;
+    Right:30px;
+    top:15px;
+}
+#boxhead {
+    text-align:center;
+}
+#monthhead {
+    font-size:40px;
+}
+#addmemo {
+    top:-1350px;
+    left:00px ;
+}
+#leftdate {
+    position:relative;
+    top:-1000px;
+    right:-80px;
+}
+#leftday {
+    position:relative;
+    top:-1050px;
+    right:-30px;
+    font-weight:normal;
+}
+#leftmonth {
+    position:relative;
+    top:-1280px;
+    left:200px;
+    font-size:20px;
+}
+#insertdate {
+    position:relative;
+    left:40px;
+    top:-1150px;
+}
+.form-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
+
+/* Set a style for the submit/login button */
+.form-popup .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-popup .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-popup .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+.current_Date{
+    position:absolute;
+    top:30px;
+    left:80px;
+    font-weight:bold;
+    font-size:100px;
+}
+.current_Month{
+    position:absolute;
+    top:50px;
+    left:80px;
+    font-weight:bold;
+    font-size:50px;
+}
+.current_Year{
+    position:absolute;
+    top:90px;
+    left:80px;
+    font-weight:bold;
+    font-size:100px;
+}
+.current_Week{
+    position:absolute;
+    top:50px;
+    left:80px;
+    font-weight: lighter;
+    font-size:30px;
+}
+.add_button{
+    position:absolute;
+    top:180px;
+    left:1250px;
+    height:200px;
+    weight:100px;
+}
+
+.today_memo{
+    position:absolute;
+    top:400px;
+    left:10px;
+    width : 200px;
+    height:150px;
+    overflow-y : visible;
+    white-space: pre-wrap;
+
+}
+#memo_table{
+    white-space: pre-wrap;
+}
