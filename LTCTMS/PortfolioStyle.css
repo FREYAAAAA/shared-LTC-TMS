@@ -12,7 +12,7 @@ body {
 /* Style the top navigation bar */
 .topnav {
     overflow: hidden;
-    background-color: #A7907F;
+    background-color: #6aa84f;
     padding:0px;
     height:100px;
 }
@@ -137,6 +137,7 @@ table td{
   top: 0px;
   left: 0px;
   border: 1px solid black;
+  text-align: center;
 }
 /*worklog title*/
 .month_title{

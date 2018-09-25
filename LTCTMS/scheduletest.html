@@ -13,7 +13,7 @@
 <body background="image\bg.jpg">
 
 <div class="topnav">
-  <h2 style="color:#F5F5DC;"><center>Welcome To Schedule! </center></h2>
+  <h2 style="color:#F5F5DC;"><center>Schedule</center></h2>
   <div style="position:absolute;right:1415px;top:10px;">
     <img src="image\logo.jpg"
   </div>
@@ -27,15 +27,15 @@
 </div>
 
 <div style="position: absolute; top:45px; right:0px;">
-    <table id="toptable" style=" background-color: #BE8260; border-style: hidden; width:1250px;height:10px;">
+    <table id="toptable" style=" background-color: #b6d7a8;">
 	     <tr>
-    	    <td id="toptd" width="13%"><center><button class="block" style="background-color:#FFFAFA"><a style="color:#8B4513; font-weight: 600;" href="scheduletest.html">Schedule</a></button></center></td>
-          <td id="toptd" width="13%"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="scheduletest.html">Memo</a></button></center></td>
-          <td id="toptd" width="13%"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="DVSR.html">Status Record</a></button></center></td>
-          <td id="toptd" width="13%"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="scheduletest.html">Library</a></button></center></td>
-    	    <td id="toptd" width="13%"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="scheduletest.html">Task Editor</a></button></center></td>
-          <td id="toptd" width="13%"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="Portfolio.html">E-Portfolio</a></button></center></td>
-          <td id="toptd" width="13%"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="scheduletest.html">Help and Support</a></button></center></td>
+    	    <td id="toptd"><center><button class="block" style="background-color:#FFFAFA"><a style="color:#8B4513; font-weight: 600;" href="scheduletest.html">Schedule</a></button></center></td>
+          <td id="toptd"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="scheduletest.html">Memo</a></button></center></td>
+          <td id="toptd"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="DVSR.html">Status Record</a></button></center></td>
+          <td id="toptd"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="scheduletest.html">Library</a></button></center></td>
+    	    <td id="toptd"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="scheduletest.html">Task Editor</a></button></center></td>
+          <td id="toptd"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="Portfolio.html">E-Portfolio</a></button></center></td>
+          <td id="toptd"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="scheduletest.html">Help and Support</a></button></center></td>
         </tr>
     </table>
 </div>
@@ -57,12 +57,12 @@
 </div>
 
 <div style="position:absolute;Right:30px;top:110px;width:730px;height:200px;overflow-x: hidden;overflow-y: scroll;border: 1px solid black;background-color:#D3D3D3;">
-<table id='CStable'>
+<table id='eventTable'>
   <tr>
       <th> ID </th>
       <th> Center Schedule </th>
       <td style="background-color: #3a6070"></td>
-      <td style="background-color: #3a6070"> <button type="button" onclick="AddNewCS()"><img src="image\add.png" height="15px" width="15px"/></button> </td>
+      <td style="background-color: #3a6070"> <button type="button" onclick="AddNewWS()"><img src="image\add.png" height="15px" width="15px"/></button> </td>
 </table>
 </div>
 <!--    <tr>
@@ -83,7 +83,7 @@
 <br>
 <br>
 
-<div style="position:absolute;Right:30px;top:550px;width:730px; height: 200px; overflow-x: hidden;overflow-y: scroll;border: 1px solid black;background-color:#D3D3D3;">
+<div style="position:absolute;Right:30px;top:550px;width:730px; height: 200px; overflow-x: hidden;overflow-y: scroll; border: 1px solid black;background-color:#D3D3D3;">
 <table id=tableWH>
     <tr>
       <th>ID</th>
@@ -95,13 +95,13 @@
 </table>
 </div>
 
-<div style="position:absolute;Right:790px;top:110px;width:720px; height: 640px; overflow-x: hidden;overflow-y: scroll;border: 1px solid black;background-color:#D3D3DC;">
+<div style="position:absolute;Right:790px;top:110px;width:720px; height: 640px;overflow-x: hidden;overflow-y: scroll; border: 1px solid black;background-color:#D3D3DC;">
 <table id="table" >
   <thread>
     <tr>
         <th>ID </th>
         <th> Announcement Title </th>
-        <td style="background-color: #3a6070; width:20%;"></td>
+        <td style="background-color: #3a6070"></td>
         <td style="background-color: #3a6070"> <button id ="btnAdd" class="btn btn-action" type="button" onclick="AddNewA()"><img src="image\add.png" height="15px" width="15px"/></button> </td>
     </tr>
   </thread>
@@ -124,8 +124,6 @@
   <div id="editForm">
     <h2>New Announcement</h2>
     <hr>
-    Announcement Title:
-    <input id="Atitle" type="text" placeholder="title.." /><br>
     Announcement:
     <textarea id="Announcement" type=text rows="4" cols="30" placeholder="Text Here..."></textarea>
     <button id="btnSubmitE" onclick="createNewAnnouncement()">Submit</button>
@@ -140,32 +138,48 @@
     <h2>Editing Announcement</h2>
     <hr>
     Announcement ID:
-    <p type=text id="announcement_id"> </p><br>
-    Announcement Title:
-    <input id="AEtitle2" type="text" placeholder="title.." onkeydown="btnpopUp()"/><br>
-    <br>
+    <input type=text id="announcement_id"> </input>
+    <br><br>
     Announcement:
-    <textarea id="Amsg" onkeydown= "btnpopUp()"></textarea>
+    <textarea id="Amsg"></textarea>
     <button id="Esave" onclick="editSave()">Save</button>
-    <button id="Ecancel" onclick="editCancel()">Back</button>
+    <button id="Ecancel" onclick="editCancel()">Cancel</button>
   </div>
 </div>
 </div>
 
+<div id="editEBlock">
+<div id="PopupEditBox">
+  <div id="editForm">
+    <h2>Edit Event</h2>
+    <hr>
+    EID:
+    <input id="Ekey"></input>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Date of Event:
+    <input id="DoE" type=text></input>
+    <br><br>
+    Event:
+    <input style="width:500px;" id="Event" type= text></input>
+    <br><br>
+    <button id="btnSubmitE" onclick="editEsave()">Save</button>
+    <button id="Ecancel" onclick="editCancel()">Cancel</button>
+  </div>
+</div>
+</div>
 
-<div id="newCSBlock">
+<div id="newEBlock">
 <div id="PopupEditBox">
   <div id="editForm">
     <h2>New Event</h2>
     <hr>
-    File title/description:
-    <input id="fileTitle3" type=text></input>
+    Date of Event:
+    <input id="EventTime" type=text></input>
     <br><br>
-    Upload File:
-    <input type="file" id="fileButton3" />
-    <progress value="0" max="100" id="uploader3">0%</progress>
+    Event:
+    <input style="width:500px;" id="EventActivity" type= text></input>
     <br><br>
-    <button id="btnSubmitCS" >Submit</button>
+    <button id="btnSubmitE" onclick="createNewEvent()">Submit</button>
     <button id="Ecancel" onclick="editCancel()">Cancel</button>
   </div>
 </div>
@@ -206,8 +220,8 @@
 </div>
 
 
-<script type = 'text/javascript' src = 'C:\inetpub\wwwroot\LTCTMS\Config.js'></script>
-<script type = 'text/javascript' src = 'C:\inetpub\wwwroot\LTCTMS\Schedulejs.js'></script>
+<script type = 'text/javascript' src = 'C:\Users\kong\Documents\GitHub\shared-LTC-TMS\LTCTMS\Config.js'></script>
+<script type = 'text/javascript' src = 'C:\Users\kong\Documents\GitHub\shared-LTC-TMS\LTCTMS\Schedulejs.js'></script>
 </body>
 
 </html>
