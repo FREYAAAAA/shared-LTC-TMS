@@ -44,13 +44,27 @@
 <input type="text" name="search" placeholder="Search" id="searchInput"  style="position:absolute;top:150px;left:50px">
 <div style="position:absolute; top:200px;left:90px">
 <form action="/action_page.php">
-  <div style="font-weight:600;font-size:15px;color:#000">
-    Position:<br><br>
+  <div style="background-color: rgba(255, 255, 255,0.40);">
+  <div style="font-weight:600;font-size:15px;color:#000;opacity:.95;">
+    Position:
+  </div>
+  </div>
+    <br><br>
+  <div style="background-color: rgb(255, 255, 255,0.15);">
+  <div style="font-weight:600;font-size:15px;color:#000;opacity:.95;">
     <input type="radio" name="position" value="staff" onclick="filterStaffP()"> Staff<br>
     <input type="radio" name="position" value="patient" onclick="filterPatientP()"> Patient<br>
+  </div>
+  </div>
 </form>
+
 <br>
-    Room No. <br><br>
+<div style="background-color: rgba(255, 255, 255,0.40);">
+  <div style="font-weight:600;font-size:15px;color:#000;opacity:.95;">
+    Room No.
+  </div>
+ </div>
+    <br><br>
 <select id = "filterRoomNo" onchange = "filterRoomNo()">
     <option>Select</option>
 	  <option value="101">101</option>
@@ -63,7 +77,12 @@
     <option value="108">108</option>
 </select>
 <br><br>
-    Nationality <br><br>
+<div style="background-color: rgba(255, 255, 255,0.40);">
+<div style="font-weight:600;font-size:15px;color:#000;opacity:.95;">
+    Nationality
+</div>
+</div>
+ <br><br>
    <select id="filterNationality" onchange = "filterNationality()">
     <option>Select</option>
 	  <option value="Taiwan">Taiwan</option>
@@ -76,15 +95,18 @@
     <option value="Malaysia">Malaysia</option>
 </select>
 <br><br>
-
-    Gender <br><br>
+<div style="background-color: rgba(255, 255, 255,0.40);">
+<div style="font-weight:600;font-size:15px;color:#000;opacity:.95;">
+    Gender
+</div>
+</div>
+<br><br>
    <select id="filterGender" onchange = "filterGender()">
     <option>Select</option>
 	  <option value="M">Male</option>
     <option value="F">Female</option>
     <option value="Others">Others</option>
 </select>
-</div>
 <br><br><br>
 <button onclick= 'Cancel()'> Refresh</button>
 </div>

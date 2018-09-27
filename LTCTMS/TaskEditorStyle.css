@@ -76,10 +76,10 @@ body {
 table{
 width:600px;
 border-collapse: collapse;
-position:relative;
-top:-1100px;
+position:absolute;
+top:100px;
 left:600px;
-height:500px;
+height:720px;
 display:block;
 background-color: #6aa84f;
 }
@@ -108,8 +108,8 @@ table, th, td
 
     width:8px;
     height:500px;
-    position:relative;
-    top:-698px;
+    position:fixed;
+    top:70px;
     left:300px;
 }
 /*Today*/
@@ -134,10 +134,11 @@ table, th, td
     background:#6aa84f;
 }
 #Mainsteptable{
+  position:absolute;
   width:600px;
   padding: 10px;
-  top: 0px;
-  left: 0px;
+  top: 100px;
+  left: 100px;
   border: 1px solid black;
 }
 
@@ -206,6 +207,29 @@ textarea {
   font-size:16px;
   font-family:raleway;
   margin-bottom:30px
+}
+
+
+#hidebox{
+  width:1230px;
+  height:680px;
+  opacity:.95;
+  top:70px;
+  left:305px;
+  position:absolute;
+  background-color:#313131;
+  overflow:auto;
+}
+
+
+#showbox{
+  width:600px;
+  padding: 10px;
+  top: 0px;
+  left: -300px;
+  border: 1px solid black;
+  text-align: center;
+  position:absolute;
 }
 
 </style>

@@ -6,8 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
 <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-<script type = 'text/javascript' src="C:\inetpub\wwwroot\LTCTMS\vanillatree.js"></script>
-<script type = 'text/javascript' src="C:\inetpub\wwwroot\LTCTMS\vanillatree.min.js"></script>
+<script type = 'text/javascript' src="C:\Users\kong\Documents\GitHub\shared-LTC-TMS\LTCTMS\vanillatree.js"></script>
+<script type = 'text/javascript' src="C:\Users\kong\Documents\GitHub\shared-LTC-TMS\LTCTMS\vanillatree.min.js"></script>
 <link rel="stylesheet" href="TaskEditorStyle.css">
 <link href="vanillatree.css" rel="stylesheet">
 
@@ -30,8 +30,10 @@
 </div>
 </div>
 <br>
+<div style="position:fixed;">
 <button id="createNewTask">New Task</button>
 <button id="createNewMainstep" onclick="Mainstep()">New MainStep</button>
+</div>
 <div id="treemenu2" class="treeview">
 
 </div>
@@ -51,6 +53,9 @@
 <div class="spilt_layout">
 </div>
 
+
+<div id="hidebox">
+<div id="showbox">
 <table>
     <tr>
 
@@ -79,9 +84,42 @@
         <button onclick="TaskSubmit()">Save </button>
         </td>
     </tr>
-
 </table>
+
+<table style="width:600px;top:100px;left:1300px;height:720px;">
+    <tr>
+
+        <th colspan="2">Task Name:<textarea id="Ttitle" row ="2" cols="70"></textarea> </th>
+    </tr>
+    <tr>
+        <td> Category:
+        <input name="category" id = "selectCat" list="CatOption">
+        <datalist id="CatOption">
+
+        </datalist>
+        </td>
+        <td>
+        Video URL:
+        <input id="videoURL" type="text" /><br><br>
+        </td>
+      </tr>
+    <tr>
+        <td colspan="2"> Outline:
+        <textarea id="Outline" rows="7" cols="80"></textarea>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2"> Note:
+        <textarea id="Note" rows="7" cols="80"></textarea>
+        <button onclick="TaskSubmit()">Save </button>
+        </td>
+    </tr>
+</table>
+
 </div>
+</div>
+
+
 <div id ="MainStepsPage">
   <div id="PopupEditBox">
     <div id="editForm">
