@@ -33,6 +33,9 @@ fbPAT.once("value")
             arr[1] = arr[1].replace('0', '');
             console.log(arr[1]);
         }
+        if(arr[2]<10){
+            arr[2] = arr[2].replace('0','');
+        }
         recreated_search = arr[0]+"-"+arr[1]+"-"+arr[2];
         var selected_id = document.getElementById("selectPAT").value;// get the patient's ID
         var fbPAT_CNA= firebase.database().ref("Activities/"+selected_id+"/"+recreated_search);
