@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>TaskEditor</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+<script type = 'text/javascript' src="C:\inetpub\wwwroot\LTCTMS\vanillatree.js"></script>
+<script type = 'text/javascript' src="C:\inetpub\wwwroot\LTCTMS\vanillatree.min.js"></script>
+<link rel="stylesheet" href="TaskEditorStyle.css">
+<link href="vanillatree.css" rel="stylesheet">
+
+</head>
+<body bgcolor= "#ddd">
+<img  style="position:absolute;Right:25px;top:45px;font-size:12px;color:blue"  src="photo.png" alt='CNO/Director' >
+
+<div class="topnav">
+<div class="dropdown">
+  <button class="dropbtn">Task Editor</button>
+  <div class="dropdown-content">
+    <a href="#">Schedule</a>
+    <a href="#">Memo</a>
+    <a href="#">Status Record</a>
+    <a href="#">Task Editor</a>
+    <a href="#">Library</a>
+    <a href="#">E-portfolio</a>
+    <a href="helpandsupport.html">Help and Support</a>
+  </div>
+</div>
+</div>
+<br>
+<button id="createNewTask">New Task</button>
+<button id="createNewMainstep" onclick="Mainstep()">New MainStep</button>
+<div id="treemenu2" class="treeview">
+
+</div>
+
+<div class="content">
+</div>
+<!--select language-->
+<div style="position:absolute;Right:30px;top:15px;">
+<select>
+	<option value="English">English</option>
+    <option value="Chinese">Chinese</option>
+</select>
+</div>
+<!--spilt_layout-->
+
+<div>
+<div class="spilt_layout">
+</div>
+
+<table>
+    <tr>
+
+        <th colspan="2">Task Name:<textarea id="Ttitle" row ="2" cols="70"></textarea> </th>
+    </tr>
+    <tr>
+        <td> Category:
+        <input name="category" id = "selectCat" list="CatOption">
+        <datalist id="CatOption">
+
+        </datalist>
+        </td>
+        <td>
+        Video URL:
+        <input id="videoURL" type="text" /><br><br>
+        </td>
+      </tr>
+    <tr>
+        <td colspan="2"> Outline:
+        <textarea id="Outline" rows="7" cols="80"></textarea>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2"> Note:
+        <textarea id="Note" rows="7" cols="80"></textarea>
+        <button onclick="TaskSubmit()">Save </button>
+        </td>
+    </tr>
+
+</table>
+</div>
+<div id ="MainStepsPage">
+  <div id="PopupEditBox">
+    <div id="editForm">
+      <table id="Mainsteptable">
+        <tr>
+          <th colspan="2">Maintstep Name:<textarea id="Mtitle" row ="2"></textarea> </th>
+        </tr>
+        <tr>
+          <td> Mainstep Number:
+            <select id="MstepNo">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+            </select>
+          </td>
+          <td>
+            Video URL:
+            <input id="videoURL1" type="text" /><br>
+          <!--  <input id="uploader" type="file" /> -->
+          </td>
+      </tr>
+      <tr>
+        <td colspan="2"> Mainstep Description:
+        <textarea id="MDescription" rows="7" cols="80"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2"> Note:
+        <textarea id="MNote" rows="7" cols="80"></textarea>
+        <button onclick="#">Save </button>
+        </td>
+      </tr>
+
+</table>
+</div>
+</div>
+</div>
+
+
+
+
+
+<script type = 'text/javascript' src = 'C:\inetpub\wwwroot\LTCTMS\Config.js'></script>
+<script type= 'text/javascript' src = 'C:\inetpub\wwwroot\LTCTMS\TaskEditorJS.js'></script>
+
+
+</body>
+
+</html>

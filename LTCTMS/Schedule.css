@@ -15,7 +15,7 @@ body {
 /* Style the top navigation bar */
 .topnav {
     overflow: hidden;
-    background-color: #A7907F;
+    background-color: #6aa84f;
     padding:0px;
     height:100px;
 }
@@ -72,7 +72,7 @@ body {
 }
 
 .dropdown:hover .dropbtn {
-    background-color: #3e8e41;
+    background-color: #b6d7a8;
 }
 
 /* Style the content */
@@ -87,7 +87,7 @@ content {
 .block {
     display: block;
     border: none;
-    background-color: #BE82;
+    background-color: #b6d7a8;
     color: white;
     cursor: pointer;
     text-align: center;
@@ -96,14 +96,12 @@ content {
     height:50px;
 }
 .block:hover {
-    background-color: #ddd;
+    background-color: #b6d7a8;
     color: black;
 }
 #toptd {
   padding:0px 0px;
   border-style:hidden;
-  border-right: 3px solid black;
-  border-top: 2px solid black;
 }
 #toptable {
   padding: 0px 0px;

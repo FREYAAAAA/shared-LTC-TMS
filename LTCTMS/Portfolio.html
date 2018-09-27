@@ -8,34 +8,48 @@
 <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 <link rel="stylesheet" href="PortfolioStyle.css">
 </head>
-<body bgcolor= "#ddd">
-
-<img  style="position:absolute;Right:25px;top:45px;font-size:12px;color:blue"  src="photo.png" alt='CNO/Director' >
+<body background="image\bg.jpg">
 
 <div class="topnav">
-<div class="dropdown">
-  <button class="dropbtn">E-portfolio</button>
-  <div class="dropdown-content">
-    <a href="#">Schedule</a>
-    <a href="#">Memo</a>
-    <a href="#">Status Record</a>
-    <a href="#">Task Editor</a>
-    <a href="#">Library</a>
-    <a href="#">E-portfolio</a>
-    <a href="helpandsupport.html">Help and Support</a>
+  <h2 style="color:#F5F5DC;"><center>E-Portfolio</center></h2>
+  <div style="position:absolute;right:1415px;top:10px;">
+    <img src="image\logo.jpg"
+  </div>
+  <div style="position:absolute;Right:-1400px;top:2px;">
+  <select>
+      <option value="English">English</option>
+      <option value="Chinese">Chinese</option>
+  </select>
+  <button id='btnLogout'>Logout</button>
   </div>
 </div>
+
+<div style="position: absolute; top:45px; right:0px;">
+    <table id="toptable" style=" background-color: #b6d7a8; border-style: hidden; width:1250px;height:10px;">
+	     <tr>
+    	    <td id="toptd" width="13%"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="scheduletest.html">Schedule</a></button></center></td>
+          <td id="toptd" width="13%"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="scheduletest.html">Memo</a></button></center></td>
+          <td id="toptd" width="13%"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="DVSR.html">Status Record</a></button></center></td>
+          <td id="toptd" width="13%"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="scheduletest.html">Library</a></button></center></td>
+    	    <td id="toptd" width="13%"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="scheduletest.html">Task Editor</a></button></center></td>
+          <td id="toptd" width="13%"><center><button class="block" style="background-color:#FFFAFA"><a style="color:#8B4513; font-weight: 600;" href="Portfolio.html">E-Portfolio</a></button></center></td>
+          <td id="toptd" width="13%"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="scheduletest.html">Help and Support</a></button></center></td>
+        </tr>
+    </table>
 </div>
-<br><br>
-<input type="text" name="search" placeholder="Search" id="searchInput"  style="position:absolute;top:15%;right:85%">
-<br><br>
-<div style="position:relative; top:20px;left:90px">
+
+<div class="content">
+</div>
+
+<input type="text" name="search" placeholder="Search" id="searchInput"  style="position:absolute;top:150px;left:50px">
+<div style="position:absolute; top:200px;left:90px">
 <form action="/action_page.php">
+  <div style="font-weight:600;font-size:15px;color:#000">
     Position:<br><br>
     <input type="radio" name="position" value="staff" onclick="filterStaffP()"> Staff<br>
     <input type="radio" name="position" value="patient" onclick="filterPatientP()"> Patient<br>
 </form>
-<br><br>
+<br>
     Room No. <br><br>
 <select id = "filterRoomNo" onchange = "filterRoomNo()">
     <option>Select</option>
@@ -48,7 +62,6 @@
     <option value="107">107</option>
     <option value="108">108</option>
 </select>
-
 <br><br>
     Nationality <br><br>
    <select id="filterNationality" onchange = "filterNationality()">
@@ -71,93 +84,85 @@
     <option value="F">Female</option>
     <option value="Others">Others</option>
 </select>
-
+</div>
+<br><br><br>
 <button onclick= 'Cancel()'> Refresh</button>
-</div>
-
-
-
-<div class="content">
-</div>
-<!--select language-->
-<div style="position:absolute;Right:30px;top:15px;">
-<select>
-	<option value="English">English</option>
-    <option value="Chinese">Chinese</option>
-</select>
 </div>
 <!--spilt_layout-->
 <div class="spilt_layout">
 </div>
-
-<table style="text-align: center" >
-    <tr style="background-color: #6aa84f;">
-        <th> I.D. </th>
-        <th> Name </th>
-        <th> National ID </th>
-        <th> Nationality </th>
-        <th> Gender</th>
-        <th> Contact number</th>
-        <th> Email</th>
-        <th> Role</th>
-        <th style="background-color: #6aa84f"> <button type="button" onclick = "addNewPortfolio()" ><img src="image\add.png" height="15px" width="15px"/></button> </th>
+<div style="position:absolute;top:150px;left:350px;width:1150px; height:400px;overflow-x: scroll;overflow-y: scroll;border: 1px solid black;background-color:#D3D3D3;">
+<table>
+    <tr>
+        <th width=12%> I.D. </th>
+        <th width=16%> Name </th>
+        <th width=14%> National ID </th>
+        <th width=10%> Nationality </th>
+        <th width=3%> Gender</th>
+        <th width=11%> Contact number</th>
+        <th width=18%> Email</th>
+        <th width=8%> Role</th>
+        <th width=8% style="background-color: #3a6070"> <button type="button" onclick = "addNewPortfolio()" ><img src="image\add.png" height="15px" width="15px"/></button> </th>
     </tr>
     <tbody id = "briefPortfolio">
        <tr>
       </tr>
      </tbody>
 </table>
-
+</div>
 <div id="newPortfolioSeletion">
 <div id="PopupEditBox">
-  <div id="editForm">
-    <h2>Select Role</h2>
-    <button id="btnStaff" onclick="staffPortfolio()">STAFF</button>
-    <button id="btnPatient" onclick="patientPortfolio()">PATIENT</button>
-    <button onclick="Cancel()">Back</button>
+  <div id="editForm" style="top:200px;">
+    <center><h2>Select Role</h2><br></center>
+    <center><button style="width:100px;height:30px;"id="btnStaff" onclick="staffPortfolio()">STAFF</button>
+    &nbsp&nbsp&nbsp&nbsp
+    <button style="width:100px;height:30px;"id="btnPatient" onclick="patientPortfolio()">PATIENT</button>
+    </center><br><br>
+    <center><button style="right:600px;"onclick="Cancel()">Back</button></center>
   </div>
 </div>
 </div>
 
 <div id="newStaffPortfolio">
 <div id="PopupEditBox">
-  <div id="editForm">
-    <h2>Staff Portfolio</h2>
-    Picture + License:
-    <input  id="btnPicture" type="file" multiple />
-    <br>
-    Staff ID:
-    <input type="text" id="StaffID" placeholder="Staff ID" /><br>
-    Password:
-    <input type="text" id="staffPassword" placeholder="give a password" /><br>
-    Position:
-    <input type="text" id="staffPosition" placeholder="Position" /><br>
-    Name:
-    <input type="text" id="staffName" placeholder="Name" /><br>
-    National ID:
-    <input type="text" id="staffNID" placeholder="National ID" /><br>
-    Nationality:
-    <input type="text" id="staffNationality" placeholder="Nationality" /><br>
-    Gender:
-    <input type="text" id="staffGender" placeholder="M/F" /><br>
-    Date of Birth:
-    <input type="text" id="staffDOB" placeholder="yyyy/mm/dd" /><br>
-    Email address:
-    <input type="text" id="staffEmail" placeholder="Email" /><br>
-    Contact No. :
-    <input type="text" id="staffContact" placeholder="0123-456-780" /><br>
-    Emergency Contact No. :
-    <input type="text" id="staffEContact" placeholder="0123-456-780" /><br>
-    Address:
-    <input type="text" id="staffAddress" placeholder="Address" /><br>
-    CV:
-    <input type="textarea" id="staffCV" placeholder="CV..." /><br>
-    Upload:<progress value="0" max="100" id="Uploader">0%</progress>
-
-    <button id ="btnSubmitP"> Submit</button>
-    <button id ="btnPCancel" onclick="Cancel()">Cancel</button>
-
-
+  <div id="editForm" style="top:100px;left:400px;width:650px;height:450px;">
+    <center><h2>Staff Portfolio</h2></center>
+    <table style="text-align: center;">
+   <tr>
+       <td rowspan="3"> Insert Photo and License: <br><br><input  id="btnPicture" type="file" multiple /> </td>
+       <td> Staff ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="StaffID" placeholder="Staff ID" /></td>
+   </tr>
+   <tr>
+       <td>Name: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffName" placeholder="Name" /></td>
+   </tr>
+   <tr>
+       <td> Password: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffPassword" placeholder="give a password" /></td>
+   </tr>
+   <tr>
+       <td> Position: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffPosition" placeholder="Position" /></td>
+       <td> Date of Birth: &nbsp&nbsp&nbsp&nbsp<input type="text" id="staffDOB" placeholder="yyyy/mm/dd" /></td>
+   </tr>
+   <tr>
+       <td> National ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffNID" placeholder="National ID" /></td>
+       <td> Nationality: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffNationality" placeholder="Nationality" /></td>
+   </tr>
+   <tr>
+       <td> Email Address: &nbsp&nbsp&nbsp&nbsp<input type="text" id="staffEmail" placeholder="Email" /></td>
+       <td> Gender: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffGender" placeholder="M/F" /></td>
+   </tr>
+   <tr>
+       <td> Contact No: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffContact" placeholder="0123-456-780" /></td>
+       <td> Emergency Contact No: <input type="text" id="staffEContact" placeholder="0123-456-780" /></td>
+   </tr>
+    <tr>
+       <td colspan="2"> Address: &nbsp&nbsp&nbsp&nbsp<input type="text" id="staffAddress" placeholder="Address" size="75"/></td>
+   </tr>
+   <tr>
+       <td colspan="2">CV: &nbsp&nbsp&nbsp&nbsp<input type="textarea" id="staffCV" placeholder="CV..." size="75"/></td>
+   </tr>
+</table><br>
+    <center><button id ="btnSubmitP"> Submit</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <button id ="btnPCancel" onclick="Cancel()">Cancel</button></center>
   </div>
 </div>
 </div>
@@ -165,263 +170,291 @@
 
 <div id="newPatientPortfolio">
 <div id="PopupEditBox">
-  <div id="editForm">
-    <h2>Patient Portfolio</h2>
-    Picture :
-    <input  id="btnPicture2" type="file" />
-    <br>
-    Patient ID:
-    <input type="text" id="PatientID" placeholder="Patient ID" /><br>
-    Password:
-    <input type="text" id="patientPassword" placeholder="give a password" /><br>
-    Name:
-    <input type="text" id="patientName" placeholder="Name" /><br>
-    National ID:
-    <input type="text" id="patientNID" placeholder="National ID" /><br>
-    Nationality:
-    <input type="text" id="patientNationality" placeholder="Nationality" /><br>
-    Gender:
-    <input type="text" id="patientGender" placeholder="M/F" /><br>
-    Date of Birth:
-    <input type="text" id="patientDOB" placeholder="yyyy/mm/dd" /><br>
-    Room number:
-    <input type="text" id="patientRoomNo" placeholder="101.." /><br>
-    CNA Name:
-    <input type="text" id="CNAName" placeholder="CNA Name" /><br>
-    CNA ID:
-    <input type="text" id="CNAID" placeholder="CNA ID" /><br>
-    Email address:
-    <input type="text" id="patientEmail" placeholder="Email" /><br>
-    Contact No. :
-    <input type="text" id="patientContact" placeholder="0123-456-780" /><br>
-    Emergency Contact No. :
-    <input type="text" id="patientEContact" placeholder="0123-456-780" /><br>
-    Address:
-    <input type="text" id="patientAddress" placeholder="Address" /><br>
-    Appointment Record:
-    <input type="textarea" id="AppointmentRecord" placeholder="Appointment Record..." /><br>
-    Medical Record:
-    <input type="textarea" id="MedicalRecord" placeholder="Medical Record..." /><br>
-    Brief Description:
-    <input type="textarea" id="BriefDescription" placeholder="Brief Description..." /><br>
-
+  <div id="editForm" style="top:80px;left:400px;width:700px;height:550px;">
+    <center><h2>Patient Portfolio</h2></center>
+    <table style="text-align: center;">
+   <tr>
+       <td rowspan="3"> Insert Photo <br><br><input  id="btnPicture2" type="file" /> </td>
+       <td> Patient ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="PatientID" placeholder="Patient ID" /></td>
+   </tr>
+   <tr>
+       <td>Name: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientName" placeholder="Name" /></td>
+   </tr>
+   <tr>
+       <td> Password: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientPassword" placeholder="give a password" /></td>
+   </tr>
+   <tr>
+       <td> Room number: &nbsp&nbsp&nbsp&nbsp<input type="text" id="patientRoomNo" placeholder="101.." /></td>
+       <td> Date of Birth: &nbsp&nbsp&nbsp&nbsp<input type="text" id="patientDOB" placeholder="yyyy/mm/dd" /></td>
+   </tr>
+   <tr>
+       <td> National ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientNID" placeholder="National ID" /></td>
+       <td> Nationality: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientNationality" placeholder="Nationality" /></td>
+   </tr>
+   <tr>
+       <td> CNA Name: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="CNAName" placeholder="CNA Name" /></td>
+       <td> CNA ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="CNAID" placeholder="CNA ID" /></td>
+   </tr>
+   <tr>
+       <td> Email Address: &nbsp&nbsp&nbsp&nbsp<input type="text" id="patientEmail" placeholder="Email" /></td>
+       <td> Gender: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientGender" placeholder="M/F" /></td>
+   </tr>
+   <tr>
+       <td> Contact No: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientContact" placeholder="0123-456-780" /></td>
+       <td> Emergency Contact No: <input type="text" id="patientEContact" placeholder="0123-456-780" /></td>
+   </tr>
+    <tr>
+       <td colspan="2"> Address: &nbsp&nbsp&nbsp&nbsp<input type="text" id="patientAddress" placeholder="Address" size="75"/></td>
+   </tr>
+   <tr>
+       <td colspan="2">Appointment Record:<input type="textarea" id="AppointmentRecord" placeholder="Appointment Record..." size="75"/></td>
+   </tr>
+   <tr>
+       <td colspan="2">Medical Record:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="textarea" id="MedicalRecord" placeholder="Medical Record..." size="75"/></td>
+   </tr>
+   <tr>
+       <td colspan="2">Brief Description:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="textarea" id="BriefDescription" placeholder="Brief Description..." size="75"/></td>
+   </tr>
+</table>
     Upload:<progress value="0" max="100" id="Uploader2">0%</progress>
-
-    <button id ="btnSubmitP2"> Submit</button>
-    <button id ="btnPCancel" onclick="Cancel()">Cancel</button>
-
-
+    <center><button id ="btnSubmitP2"> Submit</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <button id ="btnPCancel" onclick="Cancel()">Cancel</button></center>
   </div>
 </div>
 </div>
 
 <div id="viewPatientPortfolio">
 <div id="PopupEditBox">
-  <div id="editForm">
-    <h2>Patient Portfolio</h2>
-
-    <button id="btnEditP" onclick="editPP()">Edit</button>
-    <button id="btnDeleteP" onclick = "deletePP()">Delete</button>
-
+  <div id="editForm" style="top:70px;left:400px;width:600px;height:630px;">
+    <center><h2>Patient Portfolio</h2></center>
+    <div style="position:absolute; right:50px;"><button id="btnEditPP" onclick="editPP()">Edit</button>
+    <button id="btnDeleteSP" onclick = "deleteSP()">Delete</button>
+    </div>
+    <br><br>
     <table id="viewPatientPortfolioTable">
-      <tr>
-       <td rowspan="2"> <img id='img1' height="200" width="200"/></td>
-       <td colspan="2" id ="PID">  </td>
-     </tr>
-     <tr>
-       <td colspan="2" id ="Name"> Name</td>
-     </tr>
-     <tr>
-       <td id="NID"> National ID </td>
-       <td id="Nationality"> Nationality</td>
-       <td id="Gender"> Gender</td>
-     </tr>
-     <tr>
-      <td id="Room"> Room No.</td>
-      <td id="CNAnameV"> CNA_Name</td>
-      <td id="CNAIDV"> CNA_ID</td>
-    </tr>
-    <tr>
-       <td colspan="2" id= "Email"> Email Address</td>
-       <td id="DOB"> Date of Birth</td>
-     </tr>
-     <tr>
-       <td id="Contactno"> Contact No. </td>
-       <td colspan="2" id="EContactnoV"> </td>
+   <tr>
+       <td rowspan="3" colspan="2" width="50%"><img id='img1' height="150" width="150"/></td>
+       <td width="25%"> Patient ID </td>
+       <td width="25%" id ="PID"></td>
    </tr>
    <tr>
+      <td> Name </td>
+       <td id ="Name">Name:</td>
+   </tr>
+   <tr>
+     <td> Password </td>
+       <td id ="Password">Password</td>
+   </tr>
+   <tr>
+       <td width="25%"> Room No </td>
+       <td width="25%" id="Room"> Room No.</td>
+       <td width="25%"> Date of Birth </td>
+       <td width="25%" id="DOB"> Date of Birth</td>
+   </tr>
+   <tr>
+     <td> National ID </td>
+       <td id="NID"> National ID </td>
+      <td> Nationality </td>
+       <td id="Nationality"> Nationality</td>
+   </tr>
+   <tr>
+     <td> CNA Name </td>
+       <td id="CNAnameV"> CNA_Name</td>
+      <td> CNA ID </td>
+       <td id="CNAIDV"> CNA_ID</td>
+   </tr>
+   <tr>
+     <td> Email Address </td>
+       <td id= "Email"> Email Address</td>
+      <td> Gender </td>
+       <td id="Gender"> Gender</td>
+   </tr>
+   <tr>
+     <td> Contact No </td>
+       <td id="Contactno"> Contact No. </td>
+      <td> Emergency Contact No </td>
+       <td id="EContactnoV"> </td>
+   </tr>
+    <tr>
+      <td> Address </td>
        <td colspan="3" id= "AddressV"></td>
    </tr>
    <tr>
+     <td> Appointment Record </td>
        <td colspan="3" id = "ARV"> </td>
    </tr>
    <tr>
+     <td> Medical Record </td>
        <td colspan="3" id= "MRV"> </td>
    </tr>
    <tr>
+     <td> Brief Description </td>
        <td colspan="3"id= "BDV"> </td>
    </tr>
- </table>
-
- <button type="button" onclick="Cancel()" >Back</button>
-
-
+</table><br>
+<button type="button" onclick="Cancel()" >Back</button>
   </div>
 </div>
 </div>
 
 <div id="viewStaffPortfolio">
 <div id="PopupEditBox">
-  <div id="editForm">
-    <h2>Staff Portfolio</h2>
-
-    <button id="btnEditSP" onclick="editSP()">Edit</button>
+  <div id="editForm" style="top:70px;left:400px;width:600px;height:570px;">
+    <center><h2>Staff Portfolio</h2></center>
+    <div style="position:absolute; right:50px;"><button id="btnEditSP" onclick="editSP()">Edit</button>
     <button id="btnDeleteSP" onclick = "deleteSP()">Delete</button>
-
+    </div>
+    <br><br>
     <table id="viewStaffPortfolioTable">
-      <tr>
-       <td rowspan="2"> <img id='imgS' height="200" width="150"/></td>
-       <td> Staff ID </td>
-       <td colspan="2" id = "SID"> </td>
-   </tr>
-   <tr>
-       <td> Name</td>
-       <td colspan="2" id = "sName"> </td>
-   </tr>
-   <tr>
-       <td> Date of Birth</td>
-       <td id = "sDOB"> </td>
-       <td> Position </td>
-       <td id = "sPosition"> </td>
-   </tr>
-
-   <tr>
-       <td> National ID </td>
-       <td id = "sNID"> </td>
-       <td> Nationality</td>
-       <td id = "sNationality"> </td>
-   </tr>
-   <tr>
-       <td> Email Address</td>
-       <td id ="sEmail"> </td>
-       <td> Gender</td>
-       <td id ="sGender">  </td>
-   </tr>
-   <tr>
-       <td> Contact No. </td>
-       <td id ="sContact"> </td>
-       <td> Emergency Contact No.</td>
-       <td id="sEContact"> </td>
-   </tr>
+    <tr>
+      <td rowspan="3" colspan="2" width="50%"><img id='imgS' height="150" width="150"/></td>
+       <td width="25%"> Staff ID </td>
+       <td width="25%" id ="SID"></td>
+    </tr>
+    <tr>
+      <td> Name </td>
+       <td id ="sName">Name:</td>
+    </tr>
+    <tr>
+     <td> Password </td>
+       <td id ="Password">Password</td>
+    </tr>
+    <tr>
+       <td width="25%"> Date of Birth </td>
+       <td width="25%" id="sDOB"> Date of Birth</td>
+       <td width="25%"> Position </td>
+       <td width="25%" id = "sPosition"> </td>
+    </tr>
+    <tr>
+        <td> National ID </td>
+        <td id = "sNID"> </td>
+        <td> Nationality</td>
+        <td id = "sNationality"> </td>
+    </tr>
+    <tr>
+        <td> Email Address</td>
+        <td id ="sEmail"> </td>
+        <td> Gender</td>
+        <td id ="sGender">  </td>
+    </tr>
+    <tr>
+        <td> Contact No. </td>
+        <td id ="sContact"> </td>
+        <td> Emergency Contact No.</td>
+        <td id="sEContact"> </td>
+    </tr>
     <tr>
        <td> Address</td>
        <td colspan="3" id = "sAddress"></td>
    </tr>
    <tr>
-       <td colspan="4" id = "sCV"> </td>
+       <td> CV </td>
+       <td colspan="3" id = "sCV"> </td>
    </tr>
    <tr>
-       <td colspan="4" id ="sLicense"></td>
+       <td> License </td>
+       <td colspan="3" id ="sLicense"></td>
    </tr>
-
- </table>
+    </table><br>
  <button type="button" onclick="Cancel()" >Back</button>
-
-
-  </div>
+</div>
 </div>
 </div>
 
 <div id="editPatientPortfolio">
 <div id="PopupEditBox">
-  <div id="editForm">
-    <h2>Patient Portfolio</h2>
-    <br>
-    Patient Picture URL:
-    <p type="text" id="PictureP"></p><br>
-    Patient ID:
-    <input type="text" id="PatientID2" placeholder="Patient ID" /><br>
-    Password:
-    <input type="text" id="patientPassword2" placeholder="give a password" /><br>
-    Name:
-    <input type="text" id="patientName2" placeholder="Name" /><br>
-    National ID:
-    <input type="text" id="patientNID2" placeholder="National ID" /><br>
-    Nationality:
-    <input type="text" id="patientNationality2" placeholder="Nationality" /><br>
-    Gender:
-    <input type="text" id="patientGender2" placeholder="M/F" /><br>
-    Date of Birth:
-    <input type="text" id="patientDOB2" placeholder="yyyy/mm/dd" /><br>
-    Room number:
-    <input type="text" id="patientRoomNo2" placeholder="101.." /><br>
-    CNA Name:
-    <input type="text" id="CNAName2" placeholder="CNA Name" /><br>
-    CNA ID:
-    <input type="text" id="CNAID2" placeholder="CNA ID" /><br>
-    Email address:
-    <input type="text" id="patientEmail2" placeholder="Email" /><br>
-    Contact No. :
-    <input type="text" id="patientContact2" placeholder="0123-456-780" /><br>
-    Emergency Contact No. :
-    <input type="text" id="patientEContact2" placeholder="0123-456-780" /><br>
-    Address:
-    <input type="text" id="patientAddress2" placeholder="Address" /><br>
-    Appointment Record:
-    <input type="textarea" id="AppointmentRecord2" placeholder="Appointment Record..." /><br>
-    Medical Record:
-    <input type="textarea" id="MedicalRecord2" placeholder="Medical Record..." /><br>
-    Brief Description:
-    <input type="textarea" id="BriefDescription2" placeholder="Brief Description..." /><br>
-
-    <button id ="btnSubmitPP" onclick="submitPP()"> Submit</button>
-    <button id ="btnPCancel" onclick="Cancel()">Cancel</button>
-
-
-  </div>
+  <div id="editForm" style="top:80px;left:400px;width:700px;height:600px;">
+    <center><h2>Patient Portfolio</h2></center>
+    <table style="text-align: center;">
+    <tr>
+      <td width="50%"> Patient Picture URL:<p type="text" id="PictureP"></p></td>
+      <td width="50%"> Patient ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="PatientID2" placeholder="Patient ID" /></td>
+    </tr>
+    <tr>
+       <td>Name: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientName2" placeholder="Name" /></td>
+       <td> Password: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    <input type="text" id="patientPassword2" placeholder="give a password" /></td>
+    </tr>
+    <tr>
+       <td> Room number: &nbsp&nbsp&nbsp&nbsp<input type="text" id="patientRoomNo2" placeholder="101.." /></td>
+       <td> Date of Birth: &nbsp&nbsp&nbsp&nbsp<input type="text" id="patientDOB2" placeholder="yyyy/mm/dd" /></td>
+    </tr>
+    <tr>
+       <td> National ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientNID2" placeholder="National ID" /></td>
+       <td> Nationality: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientNationality2" placeholder="Nationality" /></td>
+    </tr>
+    <tr>
+       <td> CNA Name: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="CNAName2" placeholder="CNA Name" /></td>
+       <td> CNA ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="CNAID2" placeholder="CNA ID" /></td>
+    </tr>
+    <tr>
+       <td> Email Address: &nbsp&nbsp&nbsp&nbsp<input type="text" id="patientEmail2" placeholder="Email" /></td>
+       <td> Gender: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientGender2" placeholder="M/F" /></td>
+    </tr>
+    <tr>
+       <td> Contact No: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientContact2" placeholder="0123-456-780" /></td>
+       <td> Emergency Contact No: <input type="text" id="patientEContact2" placeholder="0123-456-780" /></td>
+    </tr>
+    <tr>
+       <td colspan="2"> Address: &nbsp&nbsp&nbsp&nbsp<input type="text" id="patientAddress2" placeholder="Address" size="75"/></td>
+    </tr>
+    <tr>
+       <td colspan="2">Appointment Record:<input type="textarea" id="AppointmentRecord2" placeholder="Appointment Record..." size="75"/></td>
+    </tr>
+    <tr>
+       <td colspan="2">Medical Record:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="textarea" id="Medi</td>calRecord2" placeholder="Medical Record..." size="75"/></td>
+    </tr>
+    <tr>
+       <td colspan="2">Brief Description:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="textarea" id="BriefDescription2" placeholder="Brief Description..." size="75"/></td>
+    </tr>
+    </table>
+    <center><button id ="btnSubmitPP" onclick="SubmitPP()"> Submit</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <button id ="btnPCancel" onclick="Cancel()">Cancel</button></center>
+</div>
 </div>
 </div>
 
 
 <div id="editStaffPortfolio">
 <div id="PopupEditBox">
-  <div id="editForm">
-    <h2>Staff Portfolio</h2>
-    Staff Picture URL:
-    <p type="text" id="PictureS"></p><br>
-    <br>
-    Staff ID:
-    <input type="text" id="StaffID2" placeholder="Staff ID" /><br>
-    Password:
-    <input type="text" id="staffPassword2" placeholder="give a password" /><br>
-    Position:
-    <input type="text" id="staffPosition2" placeholder="Position" /><br>
-    Name:
-    <input type="text" id="staffName2" placeholder="Name" /><br>
-    National ID:
-    <input type="text" id="staffNID2" placeholder="National ID" /><br>
-    Nationality:
-    <input type="text" id="staffNationality2" placeholder="Nationality" /><br>
-    Gender:
-    <input type="text" id="staffGender2" placeholder="M/F" /><br>
-    Date of Birth:
-    <input type="text" id="staffDOB2" placeholder="yyyy/mm/dd" /><br>
-    Email address:
-    <input type="text" id="staffEmail2" placeholder="Email" /><br>
-    Contact No. :
-    <input type="text" id="staffContact2" placeholder="0123-456-780" /><br>
-    Emergency Contact No. :
-    <input type="text" id="staffEContact2" placeholder="0123-456-780" /><br>
-    Address:
-    <input type="text" id="staffAddress2" placeholder="Address" /><br>
-    CV:
-    <input type="textarea" id="staffCV2" placeholder="CV..." /><br>
-
-
-    <button id ="btnSubmitSP" onclick="submitSP()"> Submit</button>
-    <button id ="btnPCancel" onclick="Cancel()">Cancel</button>
-
-
+  <div id="editForm" style="top:90px;left:400px;width:690px;height:550px;">
+    <center><h2>Staff Portfolio</h2></center>
+    <table style="text-align: center;">
+   <tr>
+        <td width="30%"> Staff Picture URL:<p type="text" id="PictureS"></p></td>
+        <td width="50%"> Staff ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="StaffID2" placeholder="Staff ID" /></td>
+   </tr>
+   <tr>
+       <td>Name: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffName2" placeholder="Name" /></td>
+       <td> Password: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffPassword2" placeholder="give a password" /></td>
+   </tr>
+   <tr>
+       <td> Position: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffPosition2" placeholder="Position" /></td>
+       <td> Date of Birth: &nbsp&nbsp&nbsp&nbsp<input type="text" id="staffDOB2" placeholder="yyyy/mm/dd" /></td>
+   </tr>
+   <tr>
+       <td> National ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffNID2" placeholder="National ID" /></td>
+       <td> Nationality: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffNationality2" placeholder="Nationality" /></td>
+   </tr>
+   <tr>
+       <td> Email Address: &nbsp&nbsp&nbsp&nbsp<input type="text" id="staffEmail2" placeholder="Email" /></td>
+       <td> Gender: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffGender2" placeholder="M/F" /></td>
+   </tr>
+   <tr>
+       <td> Contact No: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffContact2" placeholder="0123-456-780" /></td>
+       <td> Emergency Contact No: <input type="text" id="staffEContact2" placeholder="0123-456-780" /></td>
+   </tr>
+    <tr>
+       <td colspan="2"> Address: &nbsp&nbsp&nbsp&nbsp<input type="text" id="staffAddress2" placeholder="Address" size="75"/></td>
+   </tr>
+   <tr>
+       <td colspan="2">CV: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="textarea" id="staffCV2" placeholder="CV..." size="75"/></td>
+   </tr>
+   <tr>
+       <td colspan="2">License: &nbsp&nbsp&nbsp&nbsp<input type="textarea" id="stafflicense2" placeholder="License" size="75"/></td>
+   </tr>
+</table><br>
+    <center><button id ="btnSubmitSP" onclick="submitSP()"> Submit</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <button id ="btnPCancel" onclick="Cancel()">Cancel</button></center>
   </div>
 </div>
 </div>
