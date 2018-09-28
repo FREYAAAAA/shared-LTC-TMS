@@ -258,4 +258,6 @@ td {
   padding: 10px 10px;
   border: 1px solid black;
   text-align:center;
+  width:400px;
+  word-wrap: break-word;
 }

@@ -5,7 +5,7 @@
     var year = today.getFullYear();
     var weekday =  ["Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     var month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    var Month = ["January", "February", "March", "Apri", "May", "June", "July", "Augest", "September", "Octobor", "November", "December"];
+    var Month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
      var wk_index = today.getDay();
      var d = dd;
 
