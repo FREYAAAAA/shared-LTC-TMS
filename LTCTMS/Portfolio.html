@@ -41,7 +41,7 @@
 <div class="content">
 </div>
 
-<input type="text" name="search" placeholder="Search" id="searchInput"  style="position:absolute;top:150px;left:50px">
+  <input type="text" name="search" placeholder="Search" id="searchInput"  style="position:absolute;top:150px;left:50px">
 <div style="position:absolute; top:200px;left:90px">
 <form action="/action_page.php">
   <div style="background-color: rgba(255, 255, 255,0.40);">
@@ -52,8 +52,9 @@
     <br><br>
   <div style="background-color: rgb(255, 255, 255,0.15);">
   <div style="font-weight:600;font-size:15px;color:#000;opacity:.95;">
-    <input type="radio" name="position" value="staff" onclick="filterStaffP()"> Staff<br>
-    <input type="radio" name="position" value="patient" onclick="filterPatientP()"> Patient<br>
+    <input type="radio" name="?" value="?" onclick="?"> All <br>
+    <input type="radio" name="position" value="staff" onclick="filterStaffP()"> Staff <br>
+    <input type="radio" name="position" value="patient" onclick="filterPatientP()"> Patient <br>
   </div>
   </div>
 </form>
@@ -66,7 +67,7 @@
  </div>
     <br><br>
 <select id = "filterRoomNo" onchange = "filterRoomNo()">
-    <option>Select</option>
+    <option value="?"> All </option>
 	  <option value="101">101</option>
     <option value="102">102</option>
     <option value="103">103</option>
@@ -84,7 +85,7 @@
 </div>
  <br><br>
    <select id="filterNationality" onchange = "filterNationality()">
-    <option>Select</option>
+    <option value="?">All</option>
 	  <option value="Taiwan">Taiwan</option>
     <option value="Thailand">Thailand</option>
     <option value="Indonesia">Indonesia</option>
@@ -102,7 +103,7 @@
 </div>
 <br><br>
    <select id="filterGender" onchange = "filterGender()">
-    <option>Select</option>
+    <option value="?"> All </option>
 	  <option value="M">Male</option>
     <option value="F">Female</option>
     <option value="Others">Others</option>
@@ -147,40 +148,45 @@
 
 <div id="newStaffPortfolio">
 <div id="PopupEditBox">
-  <div id="editForm" style="top:100px;left:400px;width:650px;height:450px;">
+  <div id="editForm" style="top:100px;left:350px;width:800px;height:480px;">
     <center><h2>Staff Portfolio</h2></center>
     <table style="text-align: center;">
    <tr>
-       <td rowspan="3"> Insert Photo and License: <br><br><input  id="btnPicture" type="file" multiple /> </td>
-       <td> Staff ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="StaffID" placeholder="Staff ID" /></td>
+       <td rowspan="2"> Insert Photo, CV and License: <br><br><input  id="btnPicture" type="file" multiple required/> </td>
+       <td> Staff ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="StaffID" placeholder="Staff ID" required/></td>
    </tr>
    <tr>
-       <td>Name: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffName" placeholder="Name" /></td>
+       <td>Name: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffName" placeholder="Name" required/></td>
    </tr>
    <tr>
-       <td> Password: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffPassword" placeholder="give a password" /></td>
+       <td> Initial Date: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="?" placeholder="Enter Date" required/></td>
+       <td> Password: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffPassword" placeholder="give a password" required/></td>
    </tr>
    <tr>
-       <td> Position: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffPosition" placeholder="Position" /></td>
-       <td> Date of Birth: &nbsp&nbsp&nbsp&nbsp<input type="text" id="staffDOB" placeholder="yyyy/mm/dd" /></td>
+       <td> Position: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffPosition" placeholder="Position" required/></td>
+       <td> Date of Birth: &nbsp&nbsp&nbsp&nbsp<input type="text" id="staffDOB" placeholder="yyyy/mm/dd" required/></td>
    </tr>
    <tr>
-       <td> National ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffNID" placeholder="National ID" /></td>
-       <td> Nationality: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffNationality" placeholder="Nationality" /></td>
+       <td> National ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffNID" placeholder="National ID" required/></td>
+       <td> Nationality: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffNationality" placeholder="Nationality" required/></td>
    </tr>
    <tr>
-       <td> Email Address: &nbsp&nbsp&nbsp&nbsp<input type="text" id="staffEmail" placeholder="Email" /></td>
-       <td> Gender: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffGender" placeholder="M/F" /></td>
+       <td> Email Address: &nbsp&nbsp&nbsp&nbsp<input type="text" id="staffEmail" placeholder="Email" required/></td>
+       <td> Gender: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffGender" placeholder="M/F" required/></td>
    </tr>
    <tr>
-       <td> Contact No: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffContact" placeholder="0123-456-780" /></td>
-       <td> Emergency Contact No: <input type="text" id="staffEContact" placeholder="0123-456-780" /></td>
+       <td> Contact No: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffContact" placeholder="0123-456-780" required/></td>
+       <td> Emergency Contact No: <input type="text" id="staffEContact" placeholder="0123-456-780" required/></td>
+   </tr>
+   <tr>
+       <td> Emergency Contact Name: <input type="text" id="?" placeholder="Name" required/></td>
+       <td> Emergency Contact Relationship: <input type="text" id="?" placeholder="Relationship" required/></td>
    </tr>
     <tr>
-       <td colspan="2"> Address: &nbsp&nbsp&nbsp&nbsp<input type="text" id="staffAddress" placeholder="Address" size="75"/></td>
+       <td colspan="2"> Address: &nbsp&nbsp&nbsp&nbsp<input type="text" id="staffAddress" placeholder="Address" size="80" required/></td>
    </tr>
    <tr>
-       <td colspan="2">CV: &nbsp&nbsp&nbsp&nbsp<input type="textarea" id="staffCV" placeholder="CV..." size="75"/></td>
+       <td colspan="2">Brief Description:<input type="textarea" id="?" placeholder="Please enter here" size="85"/></td>
    </tr>
 </table><br>
     <center><button id ="btnSubmitP"> Submit</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -192,50 +198,54 @@
 
 <div id="newPatientPortfolio">
 <div id="PopupEditBox">
-  <div id="editForm" style="top:80px;left:400px;width:700px;height:550px;">
+  <div id="editForm" style="top:80px;left:350px;width:800px;height:580px;">
     <center><h2>Patient Portfolio</h2></center>
     <table style="text-align: center;">
    <tr>
-       <td rowspan="3"> Insert Photo <br><br><input  id="btnPicture2" type="file" /> </td>
-       <td> Patient ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="PatientID" placeholder="Patient ID" /></td>
+       <td rowspan="2"> Insert Photo <br><br><input  id="btnPicture2" type="file" required/> </td>
+       <td> Patient ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="PatientID" placeholder="Patient ID" required/></td>
    </tr>
    <tr>
-       <td>Name: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientName" placeholder="Name" /></td>
+       <td>Name: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientName" placeholder="Name" required/></td>
    </tr>
    <tr>
-       <td> Password: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientPassword" placeholder="give a password" /></td>
+       <td> Room number: &nbsp&nbsp&nbsp&nbsp<input type="text" id="patientRoomNo" placeholder="101.." required/></td>
+       <td> Password: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientPassword" placeholder="give a password" required/></td>
    </tr>
    <tr>
-       <td> Room number: &nbsp&nbsp&nbsp&nbsp<input type="text" id="patientRoomNo" placeholder="101.." /></td>
-       <td> Date of Birth: &nbsp&nbsp&nbsp&nbsp<input type="text" id="patientDOB" placeholder="yyyy/mm/dd" /></td>
+       <td> National ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientNID" placeholder="National ID" required/></td>
+       <td> Nationality: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientNationality" placeholder="Nationality" required/></td>
    </tr>
    <tr>
-       <td> National ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientNID" placeholder="National ID" /></td>
-       <td> Nationality: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientNationality" placeholder="Nationality" /></td>
+       <td> Date of Birth:  &nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientDOB" placeholder="yyyy/mm/dd" required/></td>
+       <td> Gender: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientGender" placeholder="M/F" required/></td>
    </tr>
    <tr>
-       <td> CNA Name: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="CNAName" placeholder="CNA Name" /></td>
-       <td> CNA ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="CNAID" placeholder="CNA ID" /></td>
+       <td> Admission Date: &nbsp&nbsp<input type="text" id="?" placeholder="Enter Date" required/></td>
+       <td> Email Address: &nbsp&nbsp<input type="text" id="patientEmail" placeholder="Email" required/></td>
    </tr>
    <tr>
-       <td> Email Address: &nbsp&nbsp&nbsp&nbsp<input type="text" id="patientEmail" placeholder="Email" /></td>
-       <td> Gender: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientGender" placeholder="M/F" /></td>
+       <td> Contact No: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientContact" placeholder="0123-456-780" required/></td>
+       <td> Emergency Contact No: <input type="text" id="patientEContact" placeholder="0123-456-780" required/></td>
    </tr>
    <tr>
-       <td> Contact No: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientContact" placeholder="0123-456-780" /></td>
-       <td> Emergency Contact No: <input type="text" id="patientEContact" placeholder="0123-456-780" /></td>
+       <td> Emergency Contact Name: &nbsp<input type="text" id="?" placeholder="Enter Name" required/></td>
+       <td> Emergency Contact Relationship: <input type="text" id="?" placeholder="Enter Relationship" required/></td>
    </tr>
     <tr>
-       <td colspan="2"> Address: &nbsp&nbsp&nbsp&nbsp<input type="text" id="patientAddress" placeholder="Address" size="75"/></td>
+       <td colspan="2"> Address: &nbsp&nbsp&nbsp&nbsp<input type="text" id="patientAddress" placeholder="Address" size="80" required/></td>
    </tr>
    <tr>
-       <td colspan="2">Appointment Record:<input type="textarea" id="AppointmentRecord" placeholder="Appointment Record..." size="75"/></td>
+      <td colspan="2"> Admission Reason: &nbsp&nbsp<input type="text" id="?" placeholder="Enter Here" size="85" required/></td>
+  </tr>
+   <tr>
+       <td colspan="2">Appointment Record:<input type="textarea" id="AppointmentRecord" placeholder="Appointment Record..." size="85"/></td>
    </tr>
    <tr>
-       <td colspan="2">Medical Record:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="textarea" id="MedicalRecord" placeholder="Medical Record..." size="75"/></td>
+       <td colspan="2">Medical Record:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="textarea" id="MedicalRecord" placeholder="Medical Record..." size="85"/></td>
    </tr>
    <tr>
-       <td colspan="2">Brief Description:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="textarea" id="BriefDescription" placeholder="Brief Description..." size="75"/></td>
+       <td colspan="2">Brief Description:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="textarea" id="BriefDescription" placeholder="Brief Description..." size="85"/></td>
    </tr>
 </table>
     Upload:<progress value="0" max="100" id="Uploader2">0%</progress>
@@ -247,15 +257,15 @@
 
 <div id="viewPatientPortfolio">
 <div id="PopupEditBox">
-  <div id="editForm" style="top:70px;left:400px;width:600px;height:630px;">
+  <div id="editForm" style="top:30px;left:400px;width:800px;height:690px;">
     <center><h2>Patient Portfolio</h2></center>
     <div style="position:absolute; right:50px;"><button id="btnEditPP" onclick="editPP()">Edit</button>
     <button id="btnDeleteSP" onclick = "deleteSP()">Delete</button>
     </div>
     <br><br>
-    <table id="viewPatientPortfolioTable">
+    <table id="viewPatientPortfolioTable" style="width:800px;">
    <tr>
-       <td rowspan="3" colspan="2" width="50%"><img id='img1' height="150" width="150"/></td>
+       <td rowspan="2" colspan="2" width="50%"><img id='img1' height="150" width="150"/></td>
        <td width="25%"> Patient ID </td>
        <td width="25%" id ="PID"></td>
    </tr>
@@ -264,43 +274,49 @@
        <td id ="Name">Name:</td>
    </tr>
    <tr>
-     <td> Password </td>
-       <td id ="Password">Password</td>
+     <td width="25%"> Room No </td>
+     <td width="25%" id="Room"> Room No.</td>
+     <td width="25%"> Password </td>
+     <td width="25%" id ="Password">Password</td>
    </tr>
    <tr>
-       <td width="25%"> Room No </td>
-       <td width="25%" id="Room"> Room No.</td>
-       <td width="25%"> Date of Birth </td>
-       <td width="25%" id="DOB"> Date of Birth</td>
-   </tr>
-   <tr>
-     <td> National ID </td>
-       <td id="NID"> National ID </td>
+      <td> National ID </td>
+      <td id="NID"> National ID </td>
       <td> Nationality </td>
-       <td id="Nationality"> Nationality</td>
+      <td id="Nationality"> Nationality</td>
    </tr>
    <tr>
-     <td> CNA Name </td>
-       <td id="CNAnameV"> CNA_Name</td>
-      <td> CNA ID </td>
-       <td id="CNAIDV"> CNA_ID</td>
-   </tr>
-   <tr>
-     <td> Email Address </td>
-       <td id= "Email"> Email Address</td>
-      <td> Gender </td>
+       <td> Date of Birth </td>
+       <td id="DOB"> Date of Birth</td>
+       <td> Gender </td>
        <td id="Gender"> Gender</td>
    </tr>
    <tr>
-     <td> Contact No </td>
-       <td id="Contactno"> Contact No. </td>
+      <td> Admission Date </td>
+      <td id="?"> Admission Date</td>
+      <td> Email Address </td>
+      <td id= "Email"> Email Address</td>
+   </tr>
+   <tr>
+      <td> Contact No </td>
+      <td id="Contactno"> Contact No. </td>
       <td> Emergency Contact No </td>
-       <td id="EContactnoV"> </td>
+      <td id="EContactnoV"> Emergency Contact No</td>
+   </tr>
+   <tr>
+      <td> Emergency Contact Name </td>
+      <td id="?"> Emergency Contact Name </td>
+      <td> Emergency Contact Relationship </td>
+      <td id="?"> Emergency Contact Relationship</td>
    </tr>
     <tr>
       <td> Address </td>
        <td colspan="3" id= "AddressV"></td>
    </tr>
+   <tr>
+     <td> Admission Reason </td>
+      <td colspan="3" id= "?"></td>
+  </tr>
    <tr>
      <td> Appointment Record </td>
        <td colspan="3" id = "ARV"> </td>
@@ -321,15 +337,15 @@
 
 <div id="viewStaffPortfolio">
 <div id="PopupEditBox">
-  <div id="editForm" style="top:70px;left:400px;width:600px;height:570px;">
+  <div id="editForm" style="top:30px;left:350px;width:800px;height:670px;">
     <center><h2>Staff Portfolio</h2></center>
     <div style="position:absolute; right:50px;"><button id="btnEditSP" onclick="editSP()">Edit</button>
     <button id="btnDeleteSP" onclick = "deleteSP()">Delete</button>
     </div>
     <br><br>
-    <table id="viewStaffPortfolioTable">
+    <table id="viewStaffPortfolioTable" style="width:800px;">
     <tr>
-      <td rowspan="3" colspan="2" width="50%"><img id='imgS' height="150" width="150"/></td>
+      <td rowspan="2" colspan="2" width="50%"><img id='imgS' height="150" width="150"/></td>
        <td width="25%"> Staff ID </td>
        <td width="25%" id ="SID"></td>
     </tr>
@@ -338,14 +354,16 @@
        <td id ="sName">Name:</td>
     </tr>
     <tr>
-     <td> Password </td>
-       <td id ="Password">Password</td>
+      <td width="25%"> Inital Date </td>
+      <td width="25%" id = "?"> </td>
+      <td width="25%"> Password </td>
+      <td width="25%" id ="Password"> </td>
     </tr>
     <tr>
-       <td width="25%"> Date of Birth </td>
-       <td width="25%" id="sDOB"> Date of Birth</td>
-       <td width="25%"> Position </td>
-       <td width="25%" id = "sPosition"> </td>
+       <td> Date of Birth </td>
+       <td id="sDOB"> </td>
+       <td> Position </td>
+       <td id = "sPosition"> </td>
     </tr>
     <tr>
         <td> National ID </td>
@@ -366,12 +384,22 @@
         <td id="sEContact"> </td>
     </tr>
     <tr>
+        <td> Emergency Contact Name </td>
+        <td id ="?"> </td>
+        <td> Emergency Contact Relationship</td>
+        <td id="?"> </td>
+    </tr>
+    <tr>
        <td> Address</td>
        <td colspan="3" id = "sAddress"></td>
    </tr>
    <tr>
+       <td> Brief Description </td>
+       <td colspan="3" id = "?"> </td>
+   </tr>
+   <tr>
        <td> CV </td>
-       <td colspan="3" id = "sCV"> </td>
+       <td colspan="3" id ="?"></td>
    </tr>
    <tr>
        <td> License </td>
@@ -385,48 +413,54 @@
 
 <div id="editPatientPortfolio">
 <div id="PopupEditBox">
-  <div id="editForm" style="top:80px;left:400px;width:700px;height:600px;">
+  <div id="editForm" style="top:50px;left:400px;width:800px;height:620px;">
     <center><h2>Patient Portfolio</h2></center>
-    <table style="text-align: center;">
+    <table style="text-align: center;width:800px;">
     <tr>
-      <td width="50%"> Patient Picture URL:<p type="text" id="PictureP"></p></td>
-      <td width="50%"> Patient ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="PatientID2" placeholder="Patient ID" /></td>
+      <td rowspan="2" width="50%"> Patient Picture URL:<p type="text" id="PictureP" required></p></td>
+      <td width="50%"> Patient ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="PatientID2" placeholder="Patient ID" required/></td>
     </tr>
     <tr>
-       <td>Name: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientName2" placeholder="Name" /></td>
-       <td> Password: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    <input type="text" id="patientPassword2" placeholder="give a password" /></td>
+      <td>Name: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientName2" placeholder="Name" required/></td>
     </tr>
     <tr>
-       <td> Room number: &nbsp&nbsp&nbsp&nbsp<input type="text" id="patientRoomNo2" placeholder="101.." /></td>
-       <td> Date of Birth: &nbsp&nbsp&nbsp&nbsp<input type="text" id="patientDOB2" placeholder="yyyy/mm/dd" /></td>
+       <td> Room number: &nbsp&nbsp&nbsp&nbsp<input type="text" id="patientRoomNo2" placeholder="101.." required/></td>
+       <td> Password: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    <input type="text" id="patientPassword2" placeholder="give a password" required/></td>
     </tr>
     <tr>
-       <td> National ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientNID2" placeholder="National ID" /></td>
-       <td> Nationality: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientNationality2" placeholder="Nationality" /></td>
+       <td> National ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientNID2" placeholder="National ID" required/></td>
+       <td> Nationality: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientNationality2" placeholder="Nationality" required/></td>
     </tr>
     <tr>
-       <td> CNA Name: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="CNAName2" placeholder="CNA Name" /></td>
-       <td> CNA ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="CNAID2" placeholder="CNA ID" /></td>
+       <td> Date of Birth: &nbsp&nbsp&nbsp&nbsp<input type="text" id="patientDOB2" placeholder="yyyy/mm/dd" required/></td>
+       <td> Gender: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientGender2" placeholder="M/F" required/></td>
     </tr>
     <tr>
-       <td> Email Address: &nbsp&nbsp&nbsp&nbsp<input type="text" id="patientEmail2" placeholder="Email" /></td>
-       <td> Gender: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientGender2" placeholder="M/F" /></td>
+       <td> Admission Date: &nbsp&nbsp&nbsp&nbsp<input type="text" id="?" placeholder="Date" required/></td>
+       <td> Email Address: &nbsp&nbsp&nbsp&nbsp<input type="text" id="patientEmail2" placeholder="Email" required/></td>
     </tr>
     <tr>
-       <td> Contact No: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientContact2" placeholder="0123-456-780" /></td>
-       <td> Emergency Contact No: <input type="text" id="patientEContact2" placeholder="0123-456-780" /></td>
+       <td> Contact No: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientContact2" placeholder="0123-456-780" required/></td>
+       <td> Emergency Contact No: <input type="text" id="patientEContact2" placeholder="0123-456-780" required/></td>
     </tr>
     <tr>
-       <td colspan="2"> Address: &nbsp&nbsp&nbsp&nbsp<input type="text" id="patientAddress2" placeholder="Address" size="75"/></td>
+       <td> Emergency Contact Name: &nbsp&nbsp&nbsp<input type="text" id="?" placeholder="Enter Name" required/></td>
+       <td> Emergency Contact Relationship: <input type="text" id="?" placeholder="Enter Relationship" required/></td>
     </tr>
     <tr>
-       <td colspan="2">Appointment Record:<input type="textarea" id="AppointmentRecord2" placeholder="Appointment Record..." size="75"/></td>
+       <td colspan="2"> Address: &nbsp&nbsp&nbsp&nbsp<input type="text" id="patientAddress2" placeholder="Address" size="80" required/></td>
     </tr>
     <tr>
-       <td colspan="2">Medical Record:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="textarea" id="Medi</td>calRecord2" placeholder="Medical Record..." size="75"/></td>
+       <td colspan="2"> Admission Reason: &nbsp&nbsp&nbsp&nbsp<input type="text" id="?" placeholder="Enter Here" size="85" required/></td>
     </tr>
     <tr>
-       <td colspan="2">Brief Description:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="textarea" id="BriefDescription2" placeholder="Brief Description..." size="75"/></td>
+       <td colspan="2">Appointment Record:<input type="textarea" id="AppointmentRecord2" placeholder="Appointment Record..." size="85"/></td>
+    </tr>
+    <tr>
+       <td colspan="2">Medical Record:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="textarea" id="Medi</td>calRecord2" placeholder="Medical Record..." size="85"/></td>
+    </tr>
+    <tr>
+       <td colspan="2">Brief Description:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="textarea" id="BriefDescription2" placeholder="Brief Description..." size="85"/></td>
     </tr>
     </table>
     <center><button id ="btnSubmitPP" onclick="SubmitPP()"> Submit</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -438,41 +472,51 @@
 
 <div id="editStaffPortfolio">
 <div id="PopupEditBox">
-  <div id="editForm" style="top:90px;left:400px;width:690px;height:550px;">
+  <div id="editForm" style="top:50px;left:400px;width:800px;height:600px;">
     <center><h2>Staff Portfolio</h2></center>
-    <table style="text-align: center;">
-   <tr>
-        <td width="30%"> Staff Picture URL:<p type="text" id="PictureS"></p></td>
-        <td width="50%"> Staff ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="StaffID2" placeholder="Staff ID" /></td>
+    <table style="text-align: center;width:800px;">
+      <tr>
+        <td colspan="2"> Staff Picture URL:<p type="text" id="PictureS" required></p></td>
    </tr>
    <tr>
-       <td>Name: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffName2" placeholder="Name" /></td>
-       <td> Password: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffPassword2" placeholder="give a password" /></td>
+       <td width="50%">Name: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffName2" placeholder="Name" required/></td>
+       <td width="50%"> Staff ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="StaffID2" placeholder="Staff ID" required/></td>
    </tr>
    <tr>
-       <td> Position: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffPosition2" placeholder="Position" /></td>
-       <td> Date of Birth: &nbsp&nbsp&nbsp&nbsp<input type="text" id="staffDOB2" placeholder="yyyy/mm/dd" /></td>
+     <td> Password: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffPassword2" placeholder="give a password" required/></td>
+     <td> Initial Date: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="?" placeholder="Enter Date" required/></td>
    </tr>
    <tr>
-       <td> National ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffNID2" placeholder="National ID" /></td>
-       <td> Nationality: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffNationality2" placeholder="Nationality" /></td>
+       <td> Position: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffPosition2" placeholder="Position" required/></td>
+       <td> Date of Birth: &nbsp&nbsp&nbsp&nbsp<input type="text" id="staffDOB2" placeholder="yyyy/mm/dd" required/></td>
    </tr>
    <tr>
-       <td> Email Address: &nbsp&nbsp&nbsp&nbsp<input type="text" id="staffEmail2" placeholder="Email" /></td>
-       <td> Gender: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffGender2" placeholder="M/F" /></td>
+       <td> National ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffNID2" placeholder="National ID" required/></td>
+       <td> Nationality: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffNationality2" placeholder="Nationality" required/></td>
    </tr>
    <tr>
-       <td> Contact No: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffContact2" placeholder="0123-456-780" /></td>
-       <td> Emergency Contact No: <input type="text" id="staffEContact2" placeholder="0123-456-780" /></td>
+       <td> Email Address: &nbsp&nbsp&nbsp&nbsp<input type="text" id="staffEmail2" placeholder="Email" required/></td>
+       <td> Gender: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffGender2" placeholder="M/F" required/></td>
+   </tr>
+   <tr>
+       <td> Contact No: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffContact2" placeholder="0123-456-780" required/></td>
+       <td> Emergency Contact No: <input type="text" id="staffEContact2" placeholder="0123-456-780" required/></td>
+   </tr>
+   <tr>
+       <td> Emergency Contact Name: &nbsp&nbsp&nbsp<input type="text" id="?" placeholder="Enter Name" required/></td>
+       <td> Emergency Contact Relationship: <input type="text" id="?" placeholder="Enter Relationship" required/></td>
    </tr>
     <tr>
-       <td colspan="2"> Address: &nbsp&nbsp&nbsp&nbsp<input type="text" id="staffAddress2" placeholder="Address" size="75"/></td>
+       <td colspan="2"> Address: &nbsp&nbsp&nbsp&nbsp<input type="text" id="staffAddress2" placeholder="Address" size="80" required/></td>
    </tr>
    <tr>
-       <td colspan="2">CV: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="textarea" id="staffCV2" placeholder="CV..." size="75"/></td>
+      <td colspan="2"> Brief Description: &nbsp&nbsp&nbsp&nbsp<input type="text" id="?" placeholder="Enter Here" size="90"/></td>
+  </tr>
+   <tr>
+       <td colspan="2">CV: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="textarea" id="staffCV2" placeholder="CV..." size="90" required/></td>
    </tr>
    <tr>
-       <td colspan="2">License: &nbsp&nbsp&nbsp&nbsp<input type="textarea" id="stafflicense2" placeholder="License" size="75"/></td>
+       <td colspan="2">License: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="textarea" id="stafflicense2" placeholder="License" size="90" required/></td>
    </tr>
 </table><br>
     <center><button id ="btnSubmitSP" onclick="submitSP()"> Submit</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp

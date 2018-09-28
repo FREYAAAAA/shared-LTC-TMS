@@ -8,6 +8,7 @@
     var Month = ["January", "February", "March", "Apri", "May", "June", "July", "Augest", "September", "Octobor", "November", "December"];
      var wk_index = today.getDay();
      var d = dd;
+
      var mm = mm_index+1; // to make the month correct; For example: January is 0 , so add 1;
      // in order to have same format with "bday". orignal is 2018-9-13
      if(mm_index<10){
@@ -76,10 +77,7 @@ function default_display(){
         snapshot.forEach(function(childSnapshot){
             var childKey = childSnapshot.key;
             var childData = childSnapshot.val();
-<<<<<<< HEAD
-=======
-            //childData = childData.replace(/(?:\r\n|\r|\n)/g, '<br>');
->>>>>>> 3a4fcfb3b2f86eca5bba79e6239673e1d568ee96
+
             array.push(childKey);
             var arr = childKey.split("-");
             if(arr[0]==dd){

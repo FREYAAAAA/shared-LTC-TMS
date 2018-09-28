@@ -9,79 +9,86 @@
 <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
 <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Config.js"></script>
-<script type="text/javascript" src="/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/memo.js"></script>
-
+<script type="text/javascript" src="C:/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Config.js"></script>
+<script type="text/javascript" src="C:/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/memo.js"></script>
 </head>
-<body bgcolor= "#ddd">
+<body background="image\bg.jpg">
+
 <div class="topnav">
-<div class="dropdown">
-  <button class="dropbtn">Memo</button>
-  <div class="dropdown-content">
-    <a href="public\schedulepage.html">Schedule</a>
-    <a href="memopage.html">Memo</a>
-    <a href="statusrecordpage.html">Status Record</a>
-    <a href="taskeditorpage.html">Task Editor</a>
-    <a href="library.html">Library</a>
-    <a href="portfolio.html">E-portfolio</a>
-    <a href="helpandsupport.html">Help and Support</a>
+  <h2 style="color:#F5F5DC;"><center>Memo</center></h2>
+  <div style="position:absolute;right:1415px;top:10px;">
+    <img src="image\logo.jpg"
+  </div>
+  <div style="position:absolute;Right:-1400px;top:2px;">
+  <select>
+      <option value="English">English</option>
+      <option value="Chinese">Chinese</option>
+  </select>
+  <button id='btnLogout'>Logout</button>
   </div>
 </div>
-</div>
-<br><br><br>
-<div class="content">
-</div>
-<!--select language-->
-<div id="languageoption">
-<select>
-	<option value="English">English</option>
-    <option value="Chinese">Chinese</option>
-</select>
-</div>
-<!--spilt_layout-->
-<div class="spilt_layout">
+
+<div style="position: absolute; top:45px; right:0px;">
+    <table id="toptable" style=" background-color: #b6d7a8;">
+	     <tr>
+    	    <td id="toptd"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="scheduletest.html">Schedule</a></button></center></td>
+          <td id="toptd"><center><button class="block" style="background-color:#FFFAFA"><a style="color:#8B4513; font-weight: 600;" href="memo.html">Memo</a></button></center></td>
+          <td id="toptd"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="DVSR.html">Status Record</a></button></center></td>
+          <td id="toptd"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="scheduletest.html">Library</a></button></center></td>
+    	    <td id="toptd"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="scheduletest.html">Task Editor</a></button></center></td>
+          <td id="toptd"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="Portfolio.html">E-Portfolio</a></button></center></td>
+          <td id="toptd"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="scheduletest.html">Help and Support</a></button></center></td>
+        </tr>
+    </table>
 </div>
 
-<table id = memo_table>
-<tr >
-    <td>Date</td>
-    <td>Content</td>
-</tr>
-</table>
-<div class="form-popup" id="form">
-    <h1>New Memo</h1>
-    <input type ="date"  id = "selected_date"/>
-    <textarea id ="memo_text" rows="4" cols="42" ></textarea>
-    <button onclick ="submit()" type="button" class="btn" >Submit</button>
-    <button type="button" class="btn cancel" onclick="close_form()">Close</button>
+
+
+
+<div class="content">
 </div>
 <div class="month_title" id="boxhead">
     <h1 id='fullName_Month' ></h1>
 </div>
-<button class ="add_button"  onclick = "popup_form()">Add</button>
+<h1 id='current_date'  class = "current_Date" style="position:absolute;top:80px;left:70px;font-weight:bolder;font-size:100px;color:#000"></h1>
+<h1 id="current_month" class = "current_Month" style="position:absolute;top:220px;left:185px;font-weight:bold;font-size:20px;color:#000"></h1>
+<h1 id="current_year"class = "current_Year" style="position:absolute;top:120px;left:40px;font-weight:bold;font-size:20px;color:#000"></h1>
+<h1 id="current_week" class = "current_Week" style="position:absolute;top:240px;left:60px;font-weight:bold;font-size:40px;font-style: oblique;color:#000"></h1>
+
+<div class="spilt_layout">
+</div>
+
+<table id = memo_table style="width:805px;border-collapse:collapse;position:absolute;top:200px;left:600px;height: 500px;display: block;overflow-x: hidden;overflow-y: scroll;background-color:#d3d3d3;">
+<tr>
+    <th style="	padding: 10px 10px;border: 3px solid black;width:300px;">Date</td>
+    <th style="	padding: 10px 10px;border: 3px solid black;width:600px;">Content</td>
+</tr>
+</table>
+
+<div class="form-popup" id="form">
+    <h2>New Memo</h2>
+    <input type ="date"  id = "selected_date"/>
+    <textarea id ="memo_text" rows="8" cols="40" ></textarea>
+    <button onclick ="submit()" type="button" class="btn" >Submit</button>
+    <button type="button" class="btn cancel" onclick="close_form()">Close</button>
+</div>
+<button style="position:absolute; top:127px;left:530px;height:74px;width:70px;" class ="add_button"  onclick = "popup_form()">Add<br>Memo</button>
 
 
-<button  onclick = "lastMonth()" style = "position:absolute; top:200px; left:600px;">privious</button>
-<input type = "button"value = "next"onclick = "nextMonth()" style = "position:absolute; top:200px; left:1200px;"/>
-
-
-    <ul class = "today_memo"  id="today_memo">
-    </ul>
-
-
-
-<h1 id='current_date'  class = "current_Date"></h1>
-<h1 id="current_month" class = "current_Month"></h1>
-<h1 id="current_year"class = "current_Year"></h1>
-<h1 id="current_week" class = "current_Week"></h1>
+<button  onclick = "lastMonth()" style = "position:absolute; top:150px; left:630px;background-color: #6aa84f;"><img src="image\left-arrow.png" height="25px" width="30px"/></button>
+<button  value = "next" onclick = "nextMonth()" style = "position:absolute; top:150px; left:1330px;background-color: #6aa84f;"><img src="image\right-arrow.png" height="25px" width="30px"/></button>
+<div>
+<ul class = "today_memo"  id="today_memo">
+</ul>
+</div>
 <script>
-document.getElementById('current_date').innerHTML = dd;
-document.getElementById("current_month").innerHTML = month[mm_index];
-document.getElementById("current_week").innerHTML = weekday[wk_index];
-document.getElementById("current_year").innerHTML = year;
-document.getElementById("fullName_Month").innerHTML = Month[mm_index];
-
+    document.getElementById("fullName_Month").innerHTML = Month[mm_index];
+    document.getElementById('current_date').innerHTML = dd;
+    document.getElementById("current_month").innerHTML = month[mm_index];
+    document.getElementById("current_week").innerHTML = weekday[wk_index];
+    document.getElementById("current_year").innerHTML = year;
 </script>
+
 </body>
 
 </html>

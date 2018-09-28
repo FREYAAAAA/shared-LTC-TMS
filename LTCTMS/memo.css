@@ -1,3 +1,4 @@
+<style>
 * {
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
@@ -6,15 +7,19 @@
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  word-break: break-all;
 }
 
 /* Style the top navigation bar */
 .topnav {
     overflow: hidden;
     background-color: #6aa84f;
-    padding:10px;
+    padding:0px;
+    height:100px;
 }
+
+
+
+
 
 .dropbtn {
     background-color: #008000;
@@ -29,12 +34,13 @@ body {
 .dropdown {
     position: relative;
     display: inline-block;
+
 }
 
 .dropdown-content {
     display: none;
     position: fixed;
-    background-color: #b6d7a8;
+    background-color: #b6d7a8ff;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
@@ -67,38 +73,46 @@ body {
 }
 
 /* Style the content */
-.content {
+
+content {
     background-color: #ddd;
     padding: 10px;
-    height: 500px; /* Should be removed. Only for demonstration */
+    height:8 00px; /* Should be removed. Only for demonstration */
 }
-/*worklog_table*/
-table{
-width:600px;
-border-collapse: collapse;
-position:relative;
-top:-870px;
-left:600px;
-height:400px;
-display:block;
-overflow:scroll;
-}
-table, th, td
-{
 
-    padding: 10px;
-    border: 1px solid black;
-    width:600px;
 
+.block {
+    display: block;
+    border: none;
+    background-color: #b6d7a8;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+    font-size:20px;
+    width:199px;
+    height:50px;
 }
+.block:hover {
+    background-color: #b6d7a8;
+    color: black;
+}
+#toptd {
+  padding:0px 0px;
+  border-style:hidden;
+}
+#toptable {
+  padding: 0px 0px;
+}
+
+
 /*worklog title*/
 .month_title{
     background-color: #6aa84f;
     border-style:double;
-    width:600px;
+    width:800px;
     height:70px;
-    position:relative;
-    top:-1350px;
+    position:absolute;
+    top:127px;
     left:600px;
 }
 
@@ -107,23 +121,23 @@ table, th, td
     background-color: #fff;
 
     width:8px;
-    height:500px;
-    position:relative;
-    top:-555px;
+    height:650px;
+    position:absolute;
+    top:100px;
     left:270px;
 }
 /*Today*/
 .today{
     font-size:48px;
-    position:relative;
-    top:-550px;
+    position:absolute;
+    top:150px;
     right:10px;
 }
 /*view date*/
 .viewDate_button{
-    position:relative;
-    top:-1680px;
-    right:-20px;
+    position:absolute;
+    top:200px;
+    right:20px;
     width:200px;
     height:40px;
     border:none;
@@ -156,38 +170,18 @@ table, th, td
     top:-1350px;
     left:00px ;
 }
-#leftdate {
-    position:relative;
-    top:-1000px;
-    right:-80px;
-}
-#leftday {
-    position:relative;
-    top:-1050px;
-    right:-30px;
-    font-weight:normal;
-}
-#leftmonth {
-    position:relative;
-    top:-1280px;
-    left:200px;
-    font-size:20px;
-}
-#insertdate {
-    position:relative;
-    left:40px;
-    top:-1150px;
-}
+
 .form-popup {
   display: none;
   position: fixed;
-  bottom: 0;
-  right: 15px;
-  border: 3px solid #f1f1f1;
+  top: 200px;
+  left: 270px;
+  border: 5px solid #f1f1f1;
   z-index: 9;
   max-width: 300px;
   padding: 10px;
   background-color: white;
+  height:330px;
 }
 
 
@@ -214,7 +208,7 @@ table, th, td
 }
 .current_Date{
     position:absolute;
-    top:30px;
+    top:150px;
     left:80px;
     font-weight:bold;
     font-size:100px;
@@ -251,13 +245,17 @@ table, th, td
 .today_memo{
     position:absolute;
     top:400px;
-    left:10px;
+    left:15px;
     width : 200px;
-    height:150px;
-    overflow-y : visible;
+    height:260px;
+    overflow-y : scroll;
     white-space: pre-wrap;
-
+    background-color:#F0E68C;
+    word-wrap:break-word;
 }
-#memo_table{
-    white-space: pre-wrap;
+
+td {
+  padding: 10px 10px;
+  border: 1px solid black;
+  text-align:center;
 }
