@@ -11,29 +11,29 @@
 <body background="image\bg.jpg">
 
 <div class="topnav">
-  <h2 style="color:#F5F5DC;"><center>E-Portfolio</center></h2>
-  <div style="position:absolute;right:1415px;top:10px;">
-    <img src="image\logo.jpg"
-  </div>
-  <div style="position:absolute;Right:-1400px;top:2px;">
-  <select>
-      <option value="English">English</option>
-      <option value="Chinese">Chinese</option>
-  </select>
-  <button id='btnLogout'>Logout</button>
-  </div>
+    <h2 class="page_head"><center>E-Portfolio</center></h2>
+    <div class="tms_logo">
+      <img src="image\logo.jpg"
+    </div>
+    <div class="language_option">
+    <select>
+        <option value="English">English</option>
+        <option value="Chinese">Chinese</option>
+    </select>
+    <button>Logout</button>
+    </div>
 </div>
 
-<div style="position: absolute; top:45px; right:0px;">
-    <table id="toptable" style=" background-color: #b6d7a8; border-style: hidden; width:1250px;height:10px;">
+<div class="nav_position">
+    <table class="toptable">
 	     <tr>
-    	    <td id="toptd" width="13%"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="scheduletest.html">Schedule</a></button></center></td>
-          <td id="toptd" width="13%"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="scheduletest.html">Memo</a></button></center></td>
-          <td id="toptd" width="13%"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="DVSR.html">Status Record</a></button></center></td>
-          <td id="toptd" width="13%"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="scheduletest.html">Library</a></button></center></td>
-    	    <td id="toptd" width="13%"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="scheduletest.html">Task Editor</a></button></center></td>
-          <td id="toptd" width="13%"><center><button class="block" style="background-color:#FFFAFA"><a style="color:#8B4513; font-weight: 600;" href="Portfolio.html">E-Portfolio</a></button></center></td>
-          <td id="toptd" width="13%"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="scheduletest.html">Help and Support</a></button></center></td>
+    	    <td class="topth" width="13%"><center><button class="block"><a class="inside_nav_word" href="scheduletest.html">Schedule</a></button></center></td>
+          <td class="topth" width="13%"><center><button class="block"><a class="inside_nav_word" href="memo.html">Memo</a></button></center></td>
+          <td class="topth" width="13%"><center><button class="block"><a class="inside_nav_word" href="DVSR.html">Status Record</a></button></center></td>
+          <td class="topth" width="13%"><center><button class="block"><a class="inside_nav_word" href="scheduletest.html">Library</a></button></center></td>
+    	    <td class="topth" width="13%"><center><button class="block"><a class="inside_nav_word" href="scheduletest.html">Task Editor</a></button></center></td>
+          <td class="topth" width="13%"><center><button class="thisblock"><a class="inside_nav_word" href="Portfolio.html">E-Portfolio</a></button></center></td>
+          <td class="topth" width="13%"><center><button class="block"><a class="inside_nav_word" href="scheduletest.html">Help and Support</a></button></center></td>
         </tr>
     </table>
 </div>
@@ -41,17 +41,17 @@
 <div class="content">
 </div>
 
-  <input type="text" name="search" placeholder="Search" id="searchInput"  style="position:absolute;top:150px;left:50px">
-<div style="position:absolute; top:200px;left:90px">
+  <input type="text" name="search" placeholder="Search" id="searchInput"  class="portfolio_keyword_search">
+<div class="portfolio_search_position">
 <form action="/action_page.php">
-  <div style="background-color: rgba(255, 255, 255,0.40);">
-  <div style="font-weight:600;font-size:15px;color:#000;opacity:.95;">
+  <div class="portfolio_search_background">
+  <div class="portfolio_search_word">
     Position:
   </div>
   </div>
     <br><br>
-  <div style="background-color: rgb(255, 255, 255,0.15);">
-  <div style="font-weight:600;font-size:15px;color:#000;opacity:.95;">
+  <div class="portfolio_search_background">
+  <div class="portfolio_search_word">
     <input type="radio" name="?" value="?" onclick="?"> All <br>
     <input type="radio" name="position" value="staff" onclick="filterStaffP()"> Staff <br>
     <input type="radio" name="position" value="patient" onclick="filterPatientP()"> Patient <br>
@@ -60,8 +60,8 @@
 </form>
 
 <br>
-<div style="background-color: rgba(255, 255, 255,0.40);">
-  <div style="font-weight:600;font-size:15px;color:#000;opacity:.95;">
+<div class="portfolio_search_background">
+  <div class="portfolio_search_word">
     Room No.
   </div>
  </div>
@@ -78,8 +78,8 @@
     <option value="108">108</option>
 </select>
 <br><br>
-<div style="background-color: rgba(255, 255, 255,0.40);">
-<div style="font-weight:600;font-size:15px;color:#000;opacity:.95;">
+<div class="portfolio_search_background">
+<div class="portfolio_search_word">
     Nationality
 </div>
 </div>
@@ -96,8 +96,8 @@
     <option value="Malaysia">Malaysia</option>
 </select>
 <br><br>
-<div style="background-color: rgba(255, 255, 255,0.40);">
-<div style="font-weight:600;font-size:15px;color:#000;opacity:.95;">
+<div class="portfolio_search_background">
+<div class="portfolio_search_word">
     Gender
 </div>
 </div>
@@ -114,8 +114,8 @@
 <!--spilt_layout-->
 <div class="spilt_layout">
 </div>
-<div style="position:absolute;top:150px;left:350px;width:1150px; height:400px;overflow-x: scroll;overflow-y: scroll;border: 1px solid black;background-color:#D3D3D3;">
-<table>
+<div class="portfolio_display">
+<table class="portfolio_display_table">
     <tr>
         <th width=12%> I.D. </th>
         <th width=16%> Name </th>
@@ -125,7 +125,7 @@
         <th width=11%> Contact number</th>
         <th width=18%> Email</th>
         <th width=8%> Role</th>
-        <th width=8% style="background-color: #3a6070"> <button type="button" onclick = "addNewPortfolio()" ><img src="image\add.png" height="15px" width="15px"/></button> </th>
+        <th width=8%> <button type="button" onclick = "addNewPortfolio()" ><img src="image\add.png" height="15px" width="15px"/></button> </th>
     </tr>
     <tbody id = "briefPortfolio">
        <tr>
@@ -134,23 +134,21 @@
 </table>
 </div>
 <div id="newPortfolioSeletion">
-<div id="PopupEditBox">
-  <div id="editForm" style="top:200px;">
+  <div class="editformselectcreate">
     <center><h2>Select Role</h2><br></center>
-    <center><button style="width:100px;height:30px;"id="btnStaff" onclick="staffPortfolio()">STAFF</button>
+    <center><button class="selectpatientorstaff" id="btnStaff" onclick="staffPortfolio()">STAFF</button>
     &nbsp&nbsp&nbsp&nbsp
-    <button style="width:100px;height:30px;"id="btnPatient" onclick="patientPortfolio()">PATIENT</button>
+    <button class="selectpatientorstaff" id="btnPatient" onclick="patientPortfolio()">PATIENT</button>
     </center><br><br>
-    <center><button style="right:600px;"onclick="Cancel()">Back</button></center>
+    <center><button onclick="Cancel()">Back</button></center>
   </div>
 </div>
 </div>
 
 <div id="newStaffPortfolio">
-<div id="PopupEditBox">
-  <div id="editForm" style="top:100px;left:350px;width:800px;height:480px;">
+  <div class="editformcreatestaff">
     <center><h2>Staff Portfolio</h2></center>
-    <table style="text-align: center;">
+    <table class="portfolio_table">
    <tr>
        <td rowspan="2"> Insert Photo, CV and License: <br><br><input  id="btnPicture" type="file" multiple required/> </td>
        <td> Staff ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="StaffID" placeholder="Staff ID" required/></td>
@@ -197,10 +195,9 @@
 
 
 <div id="newPatientPortfolio">
-<div id="PopupEditBox">
-  <div id="editForm" style="top:80px;left:350px;width:800px;height:580px;">
+  <div class="editformcreatepatient">
     <center><h2>Patient Portfolio</h2></center>
-    <table style="text-align: center;">
+    <table class="portfolio_table">
    <tr>
        <td rowspan="2"> Insert Photo <br><br><input  id="btnPicture2" type="file" required/> </td>
        <td> Patient ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="PatientID" placeholder="Patient ID" required/></td>
@@ -256,14 +253,13 @@
 </div>
 
 <div id="viewPatientPortfolio">
-<div id="PopupEditBox">
-  <div id="editForm" style="top:30px;left:400px;width:800px;height:690px;">
+  <div class="editformview">
     <center><h2>Patient Portfolio</h2></center>
-    <div style="position:absolute; right:50px;"><button id="btnEditPP" onclick="editPP()">Edit</button>
+    <div><button id="btnEditPP" onclick="editPP()">Edit</button>
     <button id="btnDeleteSP" onclick = "deleteSP()">Delete</button>
     </div>
     <br><br>
-    <table id="viewPatientPortfolioTable" style="width:800px;">
+    <table id="viewPatientPortfolioTable">
    <tr>
        <td rowspan="2" colspan="2" width="50%"><img id='img1' height="150" width="150"/></td>
        <td width="25%"> Patient ID </td>
@@ -336,14 +332,13 @@
 </div>
 
 <div id="viewStaffPortfolio">
-<div id="PopupEditBox">
-  <div id="editForm" style="top:30px;left:350px;width:800px;height:670px;">
+  <div class="editformview">
     <center><h2>Staff Portfolio</h2></center>
-    <div style="position:absolute; right:50px;"><button id="btnEditSP" onclick="editSP()">Edit</button>
+    <div><button id="btnEditSP" onclick="editSP()">Edit</button>
     <button id="btnDeleteSP" onclick = "deleteSP()">Delete</button>
     </div>
     <br><br>
-    <table id="viewStaffPortfolioTable" style="width:800px;">
+    <table id="viewStaffPortfolioTable">
     <tr>
       <td rowspan="2" colspan="2" width="50%"><img id='imgS' height="150" width="150"/></td>
        <td width="25%"> Staff ID </td>
@@ -412,10 +407,9 @@
 </div>
 
 <div id="editPatientPortfolio">
-<div id="PopupEditBox">
-  <div id="editForm" style="top:50px;left:400px;width:800px;height:620px;">
+  <div class="editformedit">
     <center><h2>Patient Portfolio</h2></center>
-    <table style="text-align: center;width:800px;">
+    <table class="portfolio_table">
     <tr>
       <td rowspan="2" width="50%"> Patient Picture URL:<p type="text" id="PictureP" required></p></td>
       <td width="50%"> Patient ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="PatientID2" placeholder="Patient ID" required/></td>
@@ -462,7 +456,7 @@
     <tr>
        <td colspan="2">Brief Description:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="textarea" id="BriefDescription2" placeholder="Brief Description..." size="85"/></td>
     </tr>
-    </table>
+  </table> <br>
     <center><button id ="btnSubmitPP" onclick="SubmitPP()"> Submit</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
     <button id ="btnPCancel" onclick="Cancel()">Cancel</button></center>
 </div>
@@ -471,10 +465,9 @@
 
 
 <div id="editStaffPortfolio">
-<div id="PopupEditBox">
-  <div id="editForm" style="top:50px;left:400px;width:800px;height:600px;">
+  <div class="editformedit">
     <center><h2>Staff Portfolio</h2></center>
-    <table style="text-align: center;width:800px;">
+    <table class="portfolio_table">
       <tr>
         <td colspan="2"> Staff Picture URL:<p type="text" id="PictureS" required></p></td>
    </tr>

@@ -7,127 +7,96 @@
 <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
 <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 <link rel="stylesheet" href="SCHEDULE.css">
-
 </head>
-
 <body background="image\bg.jpg">
-
-<div class="topnav">
-  <h2 style="color:#F5F5DC;"><center>Schedule</center></h2>
-  <div style="position:absolute;right:1415px;top:10px;">
-    <img src="image\logo.jpg"
+  <div class="topnav">
+      <h2 class="page_head"><center>Schedule</center></h2>
+      <div class="tms_logo">
+        <img src="image\logo.jpg"
+      </div>
+      <div class="language_option">
+      <select>
+          <option value="English">English</option>
+          <option value="Chinese">Chinese</option>
+      </select>
+      <button id='btnLogout'>Logout</button>
+      </div>
   </div>
-  <div style="position:absolute;Right:-1400px;top:2px;">
-  <select>
-      <option value="English">English</option>
-      <option value="Chinese">Chinese</option>
-  </select>
-  <button id='btnLogout'>Logout</button>
+  <div class="nav_position">
+      <table class="toptable">
+  	     <tr>
+      	    <td class="topth" width="13%"><center><button class="thisblock"><a class="inside_nav_word" href="scheduletest.html">Schedule</a></button></center></td>
+            <td class="topth" width="13%"><center><button class="block"><a class="inside_nav_word" href="memo.html">Memo</a></button></center></td>
+            <td class="topth" width="13%"><center><button class="block"><a class="inside_nav_word" href="DVSR.html">Status Record</a></button></center></td>
+            <td class="topth" width="13%"><center><button class="block"><a class="inside_nav_word" href="scheduletest.html">Library</a></button></center></td>
+      	    <td class="topth" width="13%"><center><button class="block"><a class="inside_nav_word" href="scheduletest.html">Task Editor</a></button></center></td>
+            <td class="topth" width="13%"><center><button class="block"><a class="inside_nav_word" href="Portfolio.html">E-Portfolio</a></button></center></td>
+            <td class="topth" width="13%"><center><button class="block"><a class="inside_nav_word" href="scheduletest.html">Help and Support</a></button></center></td>
+          </tr>
+      </table>
   </div>
-</div>
-
-<div style="position: absolute; top:45px; right:0px;">
-    <table id="toptable" style=" background-color: #b6d7a8;">
-	     <tr>
-    	    <td id="toptd"><center><button class="block" style="background-color:#FFFAFA"><a style="color:#8B4513; font-weight: 600;" href="scheduletest.html">Schedule</a></button></center></td>
-          <td id="toptd"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="memo.html">Memo</a></button></center></td>
-          <td id="toptd"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="DVSR.html">Status Record</a></button></center></td>
-          <td id="toptd"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="scheduletest.html">Library</a></button></center></td>
-    	    <td id="toptd"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="scheduletest.html">Task Editor</a></button></center></td>
-          <td id="toptd"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="Portfolio.html">E-Portfolio</a></button></center></td>
-          <td id="toptd"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="scheduletest.html">Help and Support</a></button></center></td>
-        </tr>
-    </table>
-</div>
-
-
-
-
 <div class="content">
 </div>
-
-<div style="position:absolute;Right:30px;top:330px;width:730px; height:200px; overflow:scroll;border: 1px solid black;background-color:#D3D3D3;">
-<table id='WStable'>
+<div class="working_schedulebox">
+<table id='WStable' class="schedule_table">
     <tr>
         <th> ID </th>
         <th> Working Schedule </th>
-        <td style="background-color: #3a6070"></td>
-        <td style="background-color: #3a6070"> <button type="button" onclick="AddNewWS()"><img src="image\add.png" height="15px" width="15px"/></button> </td>
+        <th></th>
+        <th><button type="button" onclick="AddNewWS()"><img src="image\add.png" height="15px" width="15px"/></button> </th>
 </table>
 </div>
 
-<div style="position:absolute;Right:30px;top:110px;width:730px;height:200px;overflow:scroll;  border: 1px solid black;background-color:#D3D3D3;">
-<table id='CStable'>
+<div class="center_schedulebox">
+<table id='CStable' class="schedule_table">
   <tr>
       <th> ID </th>
       <th> Center Schedule </th>
-      <td style="background-color: #3a6070"></td>
-      <td style="background-color: #3a6070"> <button type="button" onclick="AddNewCS()"><img src="image\add.png" height="15px" width="15px"/></button> </td>
+      <th></th>
+      <th><button type="button" onclick="AddNewCS()"><img src="image\add.png" height="15px" width="15px"/></button> </th>
 </table>
 </div>
-<!--    <tr>
-      <td></td>
 
-      <td><input id="EventTime" type="text" name="EventDate"></td>
-      <td><input id="EventActivity"type="text" name="EventName" ></td><td> <button type="button" onclick="createNewEvent()">Enter</button> </td>
-    </tr>-->
-</table>
-</div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 
-<div style="position:absolute;Right:30px;top:550px;width:730px; height: 200px; overflow:scroll; border: 1px solid black;background-color:#D3D3D3;">
-<table id=tableWH>
+<div class="working_hourbox">
+<table id=tableWH class="schedule_table">
     <tr>
       <th>ID</th>
         <th> Working Hour </th>
-        <td style="background-color: #3a6070"></td>
-        <td style="background-color: #3a6070"> <button type="button"><img src="image\add.png" onclick="AddNewWH()" height="15px" width="15px"/></button> </td>
+        <th></th>
+        <th> <button type="button"><img src="image\add.png" onclick="AddNewWH()" height="15px" width="15px"/></button> </th>
     </tr>
 
 </table>
 </div>
 
-<div style="position:absolute;Right:790px;top:110px;width:720px; height: 640px; overflow:scroll; border: 1px solid black;background-color:#D3D3DC;">
-<table id="table" >
+<div class="announcementbox">
+<table id="table" class="announcement_table">
   <thread>
     <tr>
         <th>ID </th>
         <th> Announcement Title </th>
-        <td style="background-color: #3a6070; width:20%;"></td>
-        <td style="background-color: #3a6070"> <button id ="btnAdd" class="btn btn-action" type="button" onclick="AddNewA()"><img src="image\add.png" height="15px" width="15px"/></button> </td>
+        <th></th>
+        <th> <button id ="btnAdd" class="btn btn-action" type="button" onclick="AddNewA()"><img src="image\add.png" height="15px" width="15px"/></button> </th>
     </tr>
   </thread>
   <tbody>
 
 
   </tbody>
-<!--  <tr>
-    <td></td>
-    <td>
-      <textarea id="Announcement" type=text rows="4" cols="30"></textarea></td>
-        <td><button id="btnSubmitA" >Enter</button></td>
-    </tr>-->
 </table>
 </div>
 
 
 <div id="newABlock">
-<div id="PopupEditBox">
-  <div id="editForm">
-    <h2>New Announcement</h2>
-    <hr>
-    Announcement Title:
+  <div class="editForm_create_announcement">
+    <h2><center>New Announcement</center></h2>
+    <hr class="schedule_hr">
+    &nbsp&nbsp Announcement Title:
     <input id="Atitle" type="text" placeholder="title.." /><br>
-    Announcement:
-    <textarea id="Announcement" type=text rows="4" cols="30" placeholder="Text Here..."></textarea>
+    &nbsp&nbsp Announcement:
+    <textarea class="schedule_textarea" id="Announcement" type=text rows="4" cols="30" placeholder="Text Here..."></textarea>
+    <br>
     <button id="btnSubmitE" onclick="createNewAnnouncement()">Submit</button>
     <button id="Ecancel" onclick="editCancel()">Cancel</button>
   </div>
@@ -135,17 +104,17 @@
 </div>
 
 <div id="editABlock">
-<div id="PopupEditBox">
-  <div id="editForm">
-    <h2>Editing Announcement</h2>
-    <hr>
-    Announcement ID:
+  <div class="editForm_edit_announcement">
+    <h2><center>Editing Announcement</center></h2>
+    <hr class="schedule_hr">
+    &nbsp&nbsp Announcement ID:
     <p type=text id="announcement_id"> </p><br>
-    Announcement Title:
+    &nbsp&nbsp Announcement Title:
     <input id="AEtitle2" type="text" placeholder="title.." onkeydown="btnpopUp()"/><br>
     <br>
-    Announcement:
-    <textarea id="Amsg" onkeydown = "btnpopUp()"></textarea>
+    &nbsp&nbsp Announcement:
+    <textarea class="schedule_textarea" id="Amsg" onkeydown = "btnpopUp()"></textarea>
+    <br>
     <button id="Esave" onclick="editSave()">Save</button>
     <button id="Ecancel" onclick="editCancel()">Back</button>
   </div>
@@ -154,17 +123,16 @@
 
 
 <div id="newCSBlock">
-<div id="PopupEditBox">
-  <div id="editForm">
-    <h2>New Event</h2>
-    <hr>
-    File title/description:
+  <div class="editForm_upload_file">
+    <h2><center>New Event</center></h2>
+    <hr class="schedule_hr">
+    &nbsp&nbsp File title/description:
     <input id="fileTitle3" type=text></input>
     <br><br>
-    Upload File:
+    &nbsp&nbsp Upload File:
     <input type="file" id="fileButton3" />
     <progress value="0" max="100" id="uploader3">0%</progress>
-    <br><br>
+    <br><br><br>
     <button id="btnSubmitCS" >Submit</button>
     <button id="Ecancel" onclick="editCancel()">Cancel</button>
   </div>
@@ -174,16 +142,16 @@
 
 
 <div id="newWSBlock">
-<div id="PopupEditBox">
-  <div id="editForm">
-    <hr>
-    File title:
+  <div class="editForm_upload_file">
+    <h2><center>New Working Schedule</center></h2>
+    <hr class="schedule_hr">
+    &nbsp&nbsp File title:
     <input id="fileTitle" type=text></input>
     <br><br>
-    Upload File:
+    &nbsp&nbsp Upload File:
     <input type="file" id="fileButton" />
     <progress value="0" max="100" id="uploader">0%</progress>
-    <br><br>
+    <br><br><br>
     <button id="btnSubmitWS" >Submit</button>
     <button id="Ecancel" onclick="editCancel()">Cancel</button>
   </div>
@@ -192,16 +160,16 @@
 
 
 <div id="newWHBlock">
-<div id="PopupEditBox">
-  <div id="editForm">
-    <hr>
-    File title:
+  <div class="editForm_upload_file">
+    <h2><center>New Working Hour</center></h2>
+    <hr class="schedule_hr">
+    &nbsp&nbsp File title:
     <input id="fileTitle2" type=text></input>
     <br><br>
-    Upload File:
+    &nbsp&nbsp Upload File:
     <input type="file" id="fileButton2" />
     <progress value="0" max="100" id="uploader2">0%</progress>
-    <br><br>
+    <br><br><br>
     <button id="btnSubmitWH" >Submit</button>
     <button id="Ecancel" onclick="editCancel()">Cancel</button>
   </div>

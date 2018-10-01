@@ -17,85 +17,76 @@
 <body background="image\bg.jpg"//>
 <!--copyright=<a href="https://www.freepik.com/free-photos-vectors/people">People image created by Freepik</a>-->
 <div class="topnav">
-  <h2 style="color:#F5F5DC;"><center>Status Record</center></h2>
-  <div style="position:absolute;right:1415px;top:10px;">
+  <h2 class="page_head"><center>Status Record</center></h2>
+  <div class="tms_logo">
     <img src="image\logo.jpg"
   </div>
-  <div style="position:absolute;Right:-1400px;top:2px;">
+  <div class="language_option">
   <select>
       <option value="English">English</option>
       <option value="Chinese">Chinese</option>
   </select>
-  <button id='btnLogout'>Logout</button>
+  <button>Logout</button>
   </div>
 </div>
 
-<div style="position: absolute; top:45px; right:0px;">
-    <table id="toptable" style=" background-color: #b6d7a8; border-style: hidden; width:1250px;height:10px;">
+<div class="nav_position">
+    <table class="toptable">
 	     <tr>
-    	    <td id="toptd" width="13%"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="scheduletest.html">Schedule</a></button></center></td>
-          <td id="toptd" width="13%"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="memo.html">Memo</a></button></center></td>
-          <td id="toptd" width="13%"><center><button class="block" style="background-color:#FFFAFA"><a style="color:#8B4513; font-weight: 600;" href="DVSR.html">Status Record</a></button></center></td>
-          <td id="toptd" width="13%"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="scheduletest.html">Library</a></button></center></td>
-    	    <td id="toptd" width="13%"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="scheduletest.html">Task Editor</a></button></center></td>
-          <td id="toptd" width="13%"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="Portfolio.html">E-Portfolio</a></button></center></td>
-          <td id="toptd" width="13%"><center><button class="block"><a style="color:#8B4513; font-weight: 600;" href="scheduletest.html">Help and Support</a></button></center></td>
-
+    	    <td class="topth" width="13%"><center><button class="block"><a class="inside_nav_word" href="scheduletest.html">Schedule</a></button></center></td>
+          <td class="topth" width="13%"><center><button class="block"><a class="inside_nav_word" href="memo.html">Memo</a></button></center></td>
+          <td class="topth" width="13%"><center><button class="thisblock"><a class="inside_nav_word" href="DVSR.html">Status Record</a></button></center></td>
+          <td class="topth" width="13%"><center><button class="block"><a class="inside_nav_word" href="scheduletest.html">Library</a></button></center></td>
+    	    <td class="topth" width="13%"><center><button class="block"><a class="inside_nav_word" href="scheduletest.html">Task Editor</a></button></center></td>
+          <td class="topth" width="13%"><center><button class="block"><a class="inside_nav_word" href="Portfolio.html">E-Portfolio</a></button></center></td>
+          <td class="topth" width="13%"><center><button class="block"><a class="inside_nav_word" href="scheduletest.html">Help and Support</a></button></center></td>
         </tr>
     </table>
 </div>
 
-<div class="content">
-</div>
-<!--select language-->
-<!--spilt_layout-->
-<div class="spilt_layout">
+<div class="spilt_  layout">
 </div>
 
-<table id = "DSR_table" style="width: 500px; border-collapse: collapse; position:absolute; top:140px; left:400px; height:550px; display:block; overflow-x: hidden;overflow-y: scroll;background-color:#DCDCDC;">
+<table  id="DSR_table" class="daily_status_record" >
     <tr>
-        <th  colspan="2"> Daily Status Record </th>
+        <th colspan="2"> Daily Status Record </th>
     </tr>
 </table>
 
 
-
-<table id = "AI_table" style="width: 400px; border-collapse: collapse; position:absolute; top:140px; left:1000px; height:150px; display:block; overflow-x: hidden;overflow-y: scroll;background-color:#DCDCDC;">
+<table id="AI_table" class="a_i_status">
     <tr>
         <th colspan="2"> A.I. Status </th>
     </tr>
 </table>
 
 
-
-<table id = "VSR_table" style="width: 400px; border-collapse: collapse; position:absolute; top:340px; left:1000px; height:150px; display:block; overflow-x: hidden;overflow-y: scroll;background-color:#DCDCDC;">
-
+<table id="VSR_table" class="vital_status_record">
     <tr>
         <th colspan="2"> Vital Status Record </th>
     </tr>
 </table>
 
-<table id = "SC_table" style="width: 400px; border-collapse: collapse; position:absolute; top:540px; left:1000px; height:150px; display:block; overflow-x: hidden;overflow-y: scroll;background-color:#DCDCDC;">
 
+<table id="SC_table" class="special_care">
     <tr>
         <th colspan="2"> Special Care</th>
     </tr>
 </table>
 
-<!--selecting box is on the left side and the value inside is patient's ID -->
 
-<div style="position:absolute;top:410px;left:90px">
-
+<div class="status_record_option">
 <select id="selectPAT" onclick = "clearBox()"  onchange = "selectPatient()" ></select>
 <br><br><br>
-<select id="selectCNA"></select><br><br><br>
-
+<select id="selectCNA"></select>
+<br><br><br>
 </div>
 
-<h1 id='current_date' style="position:absolute;top:80px;left:70px;font-weight:bolder;font-size:100px;color:#000"></h1>
-<h1 id="current_month" style="position:absolute;top:220px;left:185px;font-weight:bold;font-size:20px;color:#000"></h1>
-<h1 id="current_year" style="position:absolute;top:120px;left:40px;font-weight:bold;font-size:20px;color:#000"></h1>
-<h1 id="current_week" style="position:absolute;top:240px;left:60px;font-weight:bold;font-size:40px;font-style: oblique;color:#000"></h1>
+
+<h1 id='current_date'></h1>
+<h1 id="current_month"></h1>
+<h1 id="current_year"></h1>
+<h1 id="current_week"></h1>
 <script>
 document.getElementById('current_date').innerHTML = dd;
 document.getElementById("current_month").innerHTML = month[mm_index];
@@ -104,8 +95,7 @@ document.getElementById("current_year").innerHTML = year;
 </script>
 <!--view date button-->
 
-<div style="position:absolute; top:350px;left:70px">
-
+<div class="status_record_date_option">
   <input type="date" id="bday">
   <script>
   console.log(nowadays);
@@ -113,8 +103,7 @@ document.getElementById("current_year").innerHTML = year;
   </script>
 <br><br>
 </div>
-<input style="position:absolute; top:530px; left:100px"type = "button" value="Display"  onclick = "return display_button (this);"/>
-
+<input class="status_record_display_button" type = "button" value="Display"  onclick = "return display_button (this);"/>
 
 </body>
 
