@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
 <title>E-portfolio</title>
+<link rel="icon" type="image/jpg" href="image\logo.jpg">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
 <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-<link rel="stylesheet" href="PortfolioStyle.css">
+<link rel="stylesheet" href="alldesign.css">
 </head>
 <body background="image\bg.jpg">
 
@@ -46,10 +47,9 @@
 <form action="/action_page.php">
   <div class="portfolio_search_background">
   <div class="portfolio_search_word">
-    Position:
+    <h3> Position: </h3>
   </div>
   </div>
-    <br><br>
   <div class="portfolio_search_background">
   <div class="portfolio_search_word">
     <input type="radio" name="?" value="?" onclick="?"> All <br>
@@ -62,10 +62,9 @@
 <br>
 <div class="portfolio_search_background">
   <div class="portfolio_search_word">
-    Room No.
+    <h3> Room No. </h3>
   </div>
  </div>
-    <br><br>
 <select id = "filterRoomNo" onchange = "filterRoomNo()">
     <option value="?"> All </option>
 	  <option value="101">101</option>
@@ -80,10 +79,9 @@
 <br><br>
 <div class="portfolio_search_background">
 <div class="portfolio_search_word">
-    Nationality
+    <h3> Nationality </h3>
 </div>
 </div>
- <br><br>
    <select id="filterNationality" onchange = "filterNationality()">
     <option value="?">All</option>
 	  <option value="Taiwan">Taiwan</option>
@@ -98,17 +96,16 @@
 <br><br>
 <div class="portfolio_search_background">
 <div class="portfolio_search_word">
-    Gender
+    <h3> Gender </h3>
 </div>
 </div>
-<br><br>
    <select id="filterGender" onchange = "filterGender()">
     <option value="?"> All </option>
 	  <option value="M">Male</option>
     <option value="F">Female</option>
     <option value="Others">Others</option>
 </select>
-<br><br><br>
+<br><br><br><br>
 <button onclick= 'Cancel()'> Refresh</button>
 </div>
 <!--spilt_layout-->

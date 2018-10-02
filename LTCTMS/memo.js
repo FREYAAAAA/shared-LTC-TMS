@@ -1,4 +1,5 @@
 // displaying the current date
+// go to the next year //
     var today = new Date();
     var dd = today.getDate();
     var mm_index = today.getMonth(); //January is 0!
