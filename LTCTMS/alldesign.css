@@ -65,6 +65,13 @@ body {
   Right:-1400px;
   top:2px;
 }
+.logout_button {
+      border-radius: 8px;
+      height:30px;
+      width:80px;
+      padding:5px 5px;
+      background-color:#aaa;
+}
 .nav_position {
   position: absolute;
   top:45px;
@@ -131,6 +138,9 @@ table th {
   color:#000;
 }
 
+/* login */
+
+/* stop login */
 /* status record */
 .daily_status_record {
   width: 500px;
@@ -449,7 +459,7 @@ table th {
   top:40px;
   left:25%;
   width:800px;
-  height:610px;
+  height:650px;
 }
 .editformcreatepatient {
   max-width:900px;

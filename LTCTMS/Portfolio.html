@@ -31,7 +31,7 @@
     	    <td class="topth" width="13%"><center><button class="block"><a class="inside_nav_word" href="scheduletest.html">Schedule</a></button></center></td>
           <td class="topth" width="13%"><center><button class="block"><a class="inside_nav_word" href="memo.html">Memo</a></button></center></td>
           <td class="topth" width="13%"><center><button class="block"><a class="inside_nav_word" href="DVSR.html">Status Record</a></button></center></td>
-          <td class="topth" width="13%"><center><button class="block"><a class="inside_nav_word" href="scheduletest.html">Library</a></button></center></td>
+          <td class="topth" width="13%"><center><button class="block"><a class="inside_nav_word" href="Library.html">Library</a></button></center></td>
     	    <td class="topth" width="13%"><center><button class="block"><a class="inside_nav_word" href="scheduletest.html">Task Editor</a></button></center></td>
           <td class="topth" width="13%"><center><button class="thisblock"><a class="inside_nav_word" href="Portfolio.html">E-Portfolio</a></button></center></td>
           <td class="topth" width="13%"><center><button class="block"><a class="inside_nav_word" href="scheduletest.html">Help and Support</a></button></center></td>
@@ -147,7 +147,7 @@
     <center><h2>Staff Portfolio</h2></center>
     <table class="portfolio_table">
    <tr>
-       <td rowspan="2"> Insert Photo, CV and License: <br><br><input  id="btnPicture" type="file" multiple required/> </td>
+       <td rowspan="2"> Insert Photo: <br><br><input  id="btnPicture" type="file" multiple required/> </td>
        <td> Staff ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="StaffID" placeholder="Staff ID" required/></td>
    </tr>
    <tr>
@@ -182,6 +182,10 @@
    </tr>
    <tr>
        <td colspan="2">Brief Description:<input type="textarea" id="?" placeholder="Please enter here" size="85"/></td>
+   </tr>
+   <tr>
+     <td> Insert CV: &nbsp&nbsp&nbsp&nbsp<input  id="?" type="file" multiple required/></td>
+     <td> Insert License: &nbsp&nbsp<input  id="?" type="file" multiple required/></td>
    </tr>
 </table><br>
     <center><button id ="btnSubmitP"> Submit</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -448,7 +452,7 @@
        <td colspan="2">Appointment Record:<input type="textarea" id="AppointmentRecord2" placeholder="Appointment Record..." size="85"/></td>
     </tr>
     <tr>
-       <td colspan="2">Medical Record:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="textarea" id="Medi</td>calRecord2" placeholder="Medical Record..." size="85"/></td>
+       <td colspan="2">Medical Record:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="textarea" id="MedicalRecord2" placeholder="Medical Record..." size="85"/></td>
     </tr>
     <tr>
        <td colspan="2">Brief Description:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="textarea" id="BriefDescription2" placeholder="Brief Description..." size="85"/></td>
@@ -503,10 +507,14 @@
       <td colspan="2"> Brief Description: &nbsp&nbsp&nbsp&nbsp<input type="text" id="?" placeholder="Enter Here" size="90"/></td>
   </tr>
    <tr>
-       <td colspan="2">CV: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="textarea" id="staffCV2" placeholder="CV..." size="90" required/></td>
+     <!-- should be image>
+       <td colspan="2">CV: <input type="textarea" id="staffCV2" placeholder="CV..." size="90" required/></td>
+       <-->
    </tr>
    <tr>
+     <!-- should be image
        <td colspan="2">License: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="textarea" id="stafflicense2" placeholder="License" size="90" required/></td>
+     -->
    </tr>
 </table><br>
     <center><button id ="btnSubmitSP" onclick="submitSP()"> Submit</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
