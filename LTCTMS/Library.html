@@ -201,43 +201,67 @@ table td{
     <select id = "filterCategory" onchange = "filter_Category()">
     <option>Category</option>
 </select>
-<input type="text" name="search" placeholder="Search" id="searchInput">
+<input type="text" name="search" placeholder="Search" id="searchInput" >
 <input type = "checkbox"  id = "all_checked" onclick = "toggleTask(this)" style= "position:absolute;left:260px;top:35px;"/>
-<table>
+<table id = assigningTask>
     <tr>
-        <th> Category </th>
-        <th> Task Name  </th>
+        <th onclick = "sortingTask(0)"> Category </th>
+        <th onclick = "sortingTask(1)"> Task Name  </th>
         <td style="background-color: #3a6070; width:35px;"></td>
         <td style="background-color: #3a6070; width:35px;"></td>
     </tr>
 
-    <tbody  id = assigningTask></tbody>
+
 </table>
 </div>
 <div style="position:absolute;left:800px;top:200px;width:650px; height:200px;overflow-x: hidden;overflow-y: scroll;border: 1px solid black;background-color:#D3D3D3;">
+    <select id = "filterPosition" onchange = "filter_Position()">
+    <option>Position</option>
+    <option>CNA</option>
+    <option>Patient</option>
 
+    </select>
+    <input type="text" name="search" placeholder="Search" id="searchkeyin" >
 <table id = assigningCF>
     <tr>
-        <th  onclick = "sorting(0)" style="padding:6px 60px;"> Position </th>
-        <th onclick = "sorting(1)"style="padding:6px 100px;"> Name  </th>
-        <th onclick = "sorting(2)" style="padding:6px 60px;"> I.D </th>
-        <input type = "checkbox"  id = "toggleCF" onclick = "toggleCF(this)" style= "position:absolute;left:600px;top:25px;"/>
+        <th  onclick = "sortingCF(0)" style="padding:6px 60px;"> Position </th>
+        <th onclick = "sortingCF(1)"style="padding:6px 100px;"> Name  </th>
+        <th onclick = "sortingCF(2)" style="padding:6px 60px;"> I.D </th>
+        <input type = "checkbox"   id = "toggleCF" onclick = "toggleCF(this)" style= "position:absolute;left:600px;top:25px;"/>
 
         <td style="background-color: #3a6070; width:35px;"></td>
     </tr>
 </table>
 
 </div>
-<div style="position:absolute; top: 450px; right:100px;"
+<div style="position:absolute; top: 450px; right:100px;">
 <button type="button" onclick="assign()">Assign Task</button>
 </div>
-<div style="position:absolute; top:600px; left:200px;"
-<button type="button" onclick="viewassignedtask()">View Assigned Task</button>
+<div style="position:absolute; top:600px; left:200px;">
+<button type="button" onclick="viewassignedtask()">View Assigned Task History</button>
 </div>
 
 <div class="form-popup" id="form">
     <h2>New Memo</h2>
-    <table id ="assigningList" ></table>
+    <select id = "filterNameList" onchange = "filterNameList()">
+    <option>Name</option>
+</select>
+    <select id = "filterTaskList" onchange = "filterTaskList()">
+    <option>Task Name</option>
+    <input type="text" name="search" placeholder="Search" id="searchKeyword" >
+    <input type = "checkbox"  id = "all_unchecked"  checked = "checked"  onclick = "toggleList(this)" style= "position:absolute;left:260px;top:35px;"/>
+    <table id ="assigningList" >
+    <tr>
+        <th  onclick = "sortingList(0)" style="padding:6px 60px;"> Position </th>
+        <th onclick = "sortingList(1)" style="padding:6px 60px;"> I.D </th>
+        <th onclick = "sortingList(2)"style="padding:6px 100px;"> Name  </th>
+        <th onclick = "sortingList(3)"> Category </th>
+        <th onclick = "sortingList(4)"> Task Name  </th>
+        <td style="background-color: #3a6070; width:35px;"></td>
+    </tr>
+    </table>
+
+
     <button onclick ="submit()" type="button" class="btn" >Submit</button>
     <button type="button" class="btn cancel" onclick="close_form()">Close</button>
 </div>
