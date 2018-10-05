@@ -31,8 +31,8 @@ fbTask.once("value")
             var checkBox = document.createElement("input");
             checkBox.type = "checkbox";
             checkBox.setAttribute("id", "checkbox_name["+num+"]");
-
-
+            button.setAttribute("id","button_id["+num+"]");
+            button.setAttribute("onclick", "display_Detail("+num+")");
             num = num +1;
             var row = assigningTask.insertRow(-1);
             tr[c].style.display = "table-row";
@@ -45,17 +45,25 @@ fbTask.once("value")
             var cellCheckbox = row.insertCell(-1);
             cellButton.appendChild(button);
             cellCheckbox.appendChild(checkBox);
-            c++
+            c++;
                     })
                 })
             })
-
+function display_Detail(num) {
+    num = num+1;
+    var table = document.getElementById("assigningTask");
+    var tr = table.getElementsByTagName("tr");
+    var path = "TaskInstruction/"+table.rows[num].cells[0].innerHTML+"/"+table.rows[num].cells[1].innerHTML;
+    document.getElementById("displayDetail").innerHTML = path;
+    var popup = document.getElementById("popup_detail")
+    popup.style.display = "block";
+}
 function toggleTask(source) {
 var table = document.getElementById("assigningTask");
 var tr = table.getElementsByTagName("tr");
+var length = tr.length-1;
     if(source.checked){
-        for(var i = 0; i < tr.length; ++i){
-            console.log(i);
+        for(var i = 0; i < length; ++i){
             if( tr[i].style.display ==  ""){
                 var value = document.getElementById("checkbox_name["+i+"]");
                 value.checked = false;
@@ -63,12 +71,11 @@ var tr = table.getElementsByTagName("tr");
             if(tr[i].style.display == "table-row"){
                 var value = document.getElementById("checkbox_name["+i+"]");
                 value.checked = true;
-
             }
         }
     }
     else{
-        for(var i = 0; i < tr.length; i= i+1){
+        for(var i = 0; i < length; i= i+1){
             var value = document.getElementById("checkbox_name["+i+"]");
             value.checked = false;
         }
@@ -77,13 +84,14 @@ var tr = table.getElementsByTagName("tr");
 function toggleCF(source) {
     var table = document.getElementById("assigningCF");
     var tr = table.getElementsByTagName("tr");
+    var length = tr.length-1;
     if(source.checked){
-        for(var i = 0; i < tr.length; i= i+1){
+        for(var i = 0; i < length; i= i+1){
              document.getElementById("checkbox_CFname["+i+"]").checked = true;
         }
     }
     else{
-        for(var i = 0; i < tr.length; i= i+1){
+        for(var i = 0; i < length; i= i+1){
             var value = document.getElementById("checkbox_CFname["+i+"]");
             value.checked = false;
         }
@@ -92,15 +100,16 @@ function toggleCF(source) {
 function toggleList(source) {
     var table = document.getElementById("assigningList");
     var tr = table.getElementsByTagName("tr");
+    var length = tr.length -1;
+    console.log(length);
     if(source.checked){
-        for(var i = 0; i < tr.length; i= i+1){
+        for(var i = 0; i < length ; i++){
              document.getElementById("checkbox_id["+i+"]").checked = true;
         }
     }
     else{
-        for(var i = 0; i < tr.length; i= i+1){
-            var value = document.getElementById("checkbox_id["+i+"]");
-            value.checked = false;
+        for(var i = 0; i < length; i= i+1){
+             document.getElementById("checkbox_id["+i+"]").checked = false;
         }
     }
 }
@@ -112,12 +121,10 @@ function assign(){
     var array = [];
     var arr = [];
     for(var d =  1 , c = 0; d < tr1.length; ++d){
-        console.log(tr1.length);
         if (document.getElementById("checkbox_CFname["+c+"]").checked == true){
             console.log(table1.rows[d].cells[2].innerHTML);
             if(table1.rows[d].cells[0].innerHTML == "CNA"){
                 for(var f = 1, i = 0; f < tr.length; ++f){
-                    console.log(f);
                     console.log("CNA/"+table1.rows[d].cells[2].innerHTML+"/Task"+"/"+table.rows[f].cells[0].innerHTML+"/"+table.rows[f].cells[1].innerHTML);
                     if(document.getElementById("checkbox_name["+i+"]").checked == true){
                         firebase.database().ref("CNA/"+table1.rows[d].cells[2].innerHTML+"/Task"+"/"+table.rows[f].cells[0].innerHTML+"/"+table.rows[f].cells[1].innerHTML).set("TaskInstruction/"+table.rows[f].cells[0].innerHTML+"/"+table.rows[f].cells[1].innerHTML);
@@ -125,7 +132,6 @@ function assign(){
                     }
             }
             if(table1.rows[d].cells[0].innerHTML == "Patient"){
-                console.log("f");
                 for(var e = 1, g = 0; e < tr.length; ++e){
                     if(document.getElementById("checkbox_name["+g+"]").checked == true){
                 //    arr[e] = table.rows[e].cells[1].innerHTML;
@@ -250,27 +256,38 @@ fbList.once("value")
                     childSnapshot2.forEach(function(childSnapshot3){
                         childSnapshot3.forEach(function(childSnapshot4){
                             var childKey = childSnapshot4.key;
-                            var checkBox = document.createElement("input");
-                            checkBox.type = "checkbox";
-                            checkBox.setAttribute("id", "checkbox_id["+checkbok_index+"]");
-                            checkBox.setAttribute("checked", true);
-                            checkbok_index++ ;
-                            var row = assigningList.insertRow(-1);
-                            var cellPosition = row.insertCell(0);
-                            cellPosition.appendChild(document.createTextNode("CNA"));
-                            var cellID = row.insertCell(1);
-                            cellID.appendChild(document.createTextNode(childSnapshot1.key));
+                            var childData = childSnapshot4.val();
+                            var fbExist = firebase.database().ref(childData);
+                            fbExist.on("value",function(ex){
+                                if(ex.exists()){
+                                    var checkBox = document.createElement("input");
+                                    checkBox.type = "checkbox";
+                                    checkBox.setAttribute("id", "checkbox_id["+checkbok_index+"]");
+                                    checkBox.setAttribute("checked", true);
+                                    checkbok_index++ ;
+                                    var row = assigningList.insertRow(-1);
+                                    var cellPosition = row.insertCell(0);
+                                    cellPosition.appendChild(document.createTextNode("CNA"));
+                                    var cellID = row.insertCell(1);
+                                    cellID.appendChild(document.createTextNode(childSnapshot1.key));
 
-                            var CFname = row.insertCell(2);
-                            CFname.appendChild(document.createTextNode(CF_Name));
+                                    var CFname = row.insertCell(2);
+                                    CFname.appendChild(document.createTextNode(CF_Name));
 
-                            var cellCategory = row.insertCell(3);
-                            cellCategory.appendChild(document.createTextNode(childSnapshot3.key));
-                            var cellName = row.insertCell(4);
-                            cellName.appendChild(document.createTextNode(childSnapshot4.key));
+                                    var cellCategory = row.insertCell(3);
+                                    cellCategory.appendChild(document.createTextNode(childSnapshot3.key));
+                                    var cellName = row.insertCell(4);
+                                    cellName.appendChild(document.createTextNode(childSnapshot4.key));
 
-                            var cellCheckbox = row.insertCell(-1);
-                            cellCheckbox.appendChild(checkBox);
+                                    var cellCheckbox = row.insertCell(-1);
+                                    cellCheckbox.appendChild(checkBox);
+                                }
+                                else{
+                                    fbExist.remove();
+                                }
+                            })
+
+
                                 })
                             })
                         }
@@ -306,26 +323,33 @@ fbList.once("value")
                     childSnapshot3.forEach(function(childSnapshot4){
                         var childKey = childSnapshot4.key;
                         var checkBox = document.createElement("input");
-                        checkBox.type = "checkbox";
-                        checkBox.setAttribute("id", "checkbox_id["+checkbok_index+"]");
-                        checkBox.setAttribute("checked", true);
-                        checkbok_index++ ;
-                        var row = assigningList.insertRow(-1);
-                        var cellPosition = row.insertCell(0);
-                        cellPosition.appendChild(document.createTextNode("Family"));
-                        var cellID = row.insertCell(1);
-                        cellID.appendChild(document.createTextNode(childSnapshot1.key));
+                        var childData = childSnapshot4.val();
+                        var fbExist1 = firebase.database().ref(childData);
+                        fbExist1.on("value",function(ex){
+                        if(ex.exists()){
+                            checkBox.type = "checkbox";
+                            checkBox.setAttribute("id", "checkbox_id["+checkbok_index+"]");
+                            checkBox.setAttribute("checked", true);
+                            checkbok_index++ ;
+                            var row = assigningList.insertRow(-1);
+                            var cellPosition = row.insertCell(0);
+                            cellPosition.appendChild(document.createTextNode("Family"));
+                            var cellID = row.insertCell(1);
+                            cellID.appendChild(document.createTextNode(childSnapshot1.key));
+                            var CFname = row.insertCell(2);
+                            CFname.appendChild(document.createTextNode(CF_Name));
+                            var cellCategory = row.insertCell(3);
+                            cellCategory.appendChild(document.createTextNode(childSnapshot3.key));
+                            var cellName = row.insertCell(4);
+                            cellName.appendChild(document.createTextNode(childSnapshot4.key));
+                            var cellCheckbox = row.insertCell(-1);
+                            cellCheckbox.appendChild(checkBox);
+                    }
+                    else{
+                        fbExist1.remove();
+                    }
+                })
 
-                        var CFname = row.insertCell(2);
-                        CFname.appendChild(document.createTextNode(CF_Name));
-
-                        var cellCategory = row.insertCell(3);
-                        cellCategory.appendChild(document.createTextNode(childSnapshot3.key));
-
-                        var cellName = row.insertCell(4);
-                        cellName.appendChild(document.createTextNode(childSnapshot4.key));
-                        var cellCheckbox = row.insertCell(-1);
-                        cellCheckbox.appendChild(checkBox);
                     })
                 })
             }
@@ -628,11 +652,13 @@ fbList.once("value")
     }
     function close_form(){
         document.getElementById("form").style.display = "none";
+        document.getElementById("popup_detail").style.display = "none";
     }
     function submit(){
     var table = document.getElementById("assigningList");
     var tr = table.getElementsByTagName("tr");
-    for(var a = 0; a < tr.length; a++){
+    var length = tr.length -1;
+    for(var a = 0; a < length; a++){
         if(table.rows[a].cells[0].innerHTML  == "CNA"){
             if (document.getElementById("checkbox_id["+a+"]").checked == false){
                 console.log("CNA/"+table.rows[a].cells[1].innerHTML+"/Task"+"/"+table.rows[a].cells[3].innerHTML+"/"+table.rows[a].cells[4].innerHTML);
@@ -641,7 +667,6 @@ fbList.once("value")
             }
         }
         if(table.rows[a].cells[0].innerHTML  == "Family"){
-
             if (document.getElementById("checkbox_id["+a+"]").checked == false){
                 console.log("Patient/"+table.rows[a].cells[1].innerHTML+"/Task"+"/"+table.rows[a].cells[3].innerHTML+"/"+table.rows[a].cells[4].innerHTML);
                  var unchecked = firebase.database().ref("Patient/"+table.rows[a].cells[1].innerHTML+"/Task"+"/"+table.rows[a].cells[3].innerHTML+"/"+table.rows[a].cells[4].innerHTML);
