@@ -680,4 +680,20 @@ table th {
   margin-bottom:30px
 }
 /* stop schedule */
+
+/* library */
+.library_form {
+  display: none;
+  position: absolute;
+  top: 150px;
+  left: 1%;
+  border: 5px solid #f1f1f1;
+  z-index: 9;
+  padding: 10px;
+  background-color: white;
+  height:68%;
+  width:96%;
+}
+
+/* stop library */
 </style>

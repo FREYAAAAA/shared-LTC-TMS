@@ -120,21 +120,23 @@ function assign(){
     var tr1 = table1.getElementsByTagName("tr");
     var array = [];
     var arr = [];
-    for(var d =  1 , c = 0; d < tr1.length; ++d){
+    var length1  = tr1.length-1;
+    var length = tr.length-1;
+    for(var d =  1 , c = 0; c < length1; d++){
         if (document.getElementById("checkbox_CFname["+c+"]").checked == true){
             console.log(table1.rows[d].cells[2].innerHTML);
             if(table1.rows[d].cells[0].innerHTML == "CNA"){
-                for(var f = 1, i = 0; f < tr.length; ++f){
-                    console.log("CNA/"+table1.rows[d].cells[2].innerHTML+"/Task"+"/"+table.rows[f].cells[0].innerHTML+"/"+table.rows[f].cells[1].innerHTML);
+                for(var f = 1, i = 0; i < length; f++){
+                  //  console.log("CNA/"+table1.rows[d].cells[2].innerHTML+"/Task"+"/"+table.rows[f].cells[0].innerHTML+"/"+table.rows[f].cells[1].innerHTML);
                     if(document.getElementById("checkbox_name["+i+"]").checked == true){
                         firebase.database().ref("CNA/"+table1.rows[d].cells[2].innerHTML+"/Task"+"/"+table.rows[f].cells[0].innerHTML+"/"+table.rows[f].cells[1].innerHTML).set("TaskInstruction/"+table.rows[f].cells[0].innerHTML+"/"+table.rows[f].cells[1].innerHTML);
                         }
+                      i++;
                     }
             }
             if(table1.rows[d].cells[0].innerHTML == "Patient"){
-                for(var e = 1, g = 0; e < tr.length; ++e){
+                for(var e = 1, g = 0; g < length; e++){
                     if(document.getElementById("checkbox_name["+g+"]").checked == true){
-                //    arr[e] = table.rows[e].cells[1].innerHTML;
                     console.log("Patient/"+table1.rows[d].cells[2].innerHTML+"/Task"+"/"+table.rows[e].cells[0].innerHTML+"/"+table.rows[e].cells[1].innerHTML);
                     firebase.database().ref("Patient/"+table1.rows[d].cells[2].innerHTML+"/Task"+"/"+table.rows[e].cells[0].innerHTML+"/"+table.rows[e].cells[1].innerHTML).set("TaskInstruction/"+table.rows[e].cells[0].innerHTML+"/"+table.rows[e].cells[1].innerHTML);
                     }
@@ -657,22 +659,24 @@ fbList.once("value")
     function submit(){
     var table = document.getElementById("assigningList");
     var tr = table.getElementsByTagName("tr");
-    var length = tr.length -1;
-    for(var a = 0; a < length; a++){
-        if(table.rows[a].cells[0].innerHTML  == "CNA"){
+    var length = tr.length-1 ;
+    for(var a = 0, b=1; a < length; a++){
+      console.log(table.rows[b].cells[0].innerHTML);
+        if(table.rows[b].cells[0].innerHTML  == "CNA"){
             if (document.getElementById("checkbox_id["+a+"]").checked == false){
-                console.log("CNA/"+table.rows[a].cells[1].innerHTML+"/Task"+"/"+table.rows[a].cells[3].innerHTML+"/"+table.rows[a].cells[4].innerHTML);
-                 var unchecked = firebase.database().ref("CNA/"+table.rows[a].cells[1].innerHTML+"/Task"+"/"+table.rows[a].cells[3].innerHTML+"/"+table.rows[a].cells[4].innerHTML);
+                console.log("CNA/"+table.rows[b].cells[1].innerHTML+"/Task"+"/"+table.rows[b].cells[3].innerHTML+"/"+table.rows[b].cells[4].innerHTML);
+                 var unchecked = firebase.database().ref("CNA/"+table.rows[b].cells[1].innerHTML+"/Task"+"/"+table.rows[b].cells[3].innerHTML+"/"+table.rows[b].cells[4].innerHTML);
                  unchecked.remove();
             }
         }
-        if(table.rows[a].cells[0].innerHTML  == "Family"){
+        if(table.rows[b].cells[0].innerHTML  == "Family"){
             if (document.getElementById("checkbox_id["+a+"]").checked == false){
-                console.log("Patient/"+table.rows[a].cells[1].innerHTML+"/Task"+"/"+table.rows[a].cells[3].innerHTML+"/"+table.rows[a].cells[4].innerHTML);
-                 var unchecked = firebase.database().ref("Patient/"+table.rows[a].cells[1].innerHTML+"/Task"+"/"+table.rows[a].cells[3].innerHTML+"/"+table.rows[a].cells[4].innerHTML);
-                 unchecked.remove();
+                console.log("Patient/"+table.rows[b].cells[1].innerHTML+"/Task"+"/"+table.rows[b].cells[3].innerHTML+"/"+table.rows[b].cells[4].innerHTML);
+                 var famunchecked = firebase.database().ref("Patient/"+table.rows[b].cells[1].innerHTML+"/Task"+"/"+table.rows[b].cells[3].innerHTML+"/"+table.rows[b].cells[4].innerHTML);
+                 famunchecked.remove();
             }
         }
+        b++
     }
-location.reload();
+  location.reload();
 }
