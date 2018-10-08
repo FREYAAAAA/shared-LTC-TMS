@@ -17,7 +17,7 @@
 <div class="topnav">
   <h2 class="page_head"><center> L &nbsp I &nbsp B &nbsp R &nbsp A &nbsp R &nbsp Y </center></h2>
   <div class="tms_logo">
-    <img src="image\logo.jpg"
+    <img src="image\Browser- logo final.png">
   </div>
   <div class="language_option">
   <select>
@@ -36,7 +36,7 @@
         <td class="topth"><center><button class="block" onclick="window.location.href='memo.html'"><a class="inside_nav_word">MEMO</a></button></center></td>
         <td class="topth"><center><button class="block" onclick="window.location.href='DVSR.html'"><a class="inside_nav_word">STATUS RECORD</a></button></center></td>
         <td class="topth"><center><button class="thisblock" onclick="window.location.href='Library.html'"><a class="inside_nav_word">LIBRARY</a></button></center></td>
-        <td class="topth"><center><button class="block" onclick="window.location.href='scheduletest.html'"><a class="inside_nav_word">TASK EDITOR</a></button></center></td>
+        <td class="topth"><center><button class="block" onclick="window.location.href='TaskEditor.html'"><a class="inside_nav_word">TASK EDITOR</a></button></center></td>
         <td class="topth"><center><button class="block" onclick="window.location.href='Portfolio.html'"><a class="inside_nav_word">E-PORTFOLIO</a></button></center></td>
         <td class="topth"><center><button class="block" onclick="window.location.href='HelpandSupport.html'"><a class="inside_nav_word">HELP AND SUPPORT</a></button></center></td>
       </tr>
@@ -47,87 +47,87 @@
 </div>
 
 
-<div style="position:absolute;left:100px;top:180px;width:650px; height:400px;overflow-x: hidden;overflow-y: scroll; background-color:rgba(255, 255, 255, .8); border: 5px solid rgba(255, 255, 255, .4);">
-<div style="background-color:#ADD8E6; opacity:.3">
-<center style="font-size:25px;font-weight:500;"><i>SELECT TASK</i></center>
+<div class="library_tasktable">
+<div class="library_tasktable_head">
+<center class="library_tasktable_headword"><i>SELECT TASK</i></center>
 </div>
 <br>
-<select style="position:absolute; left:20px;"id = "filterCategory" onchange = "filter_Category()">
+<select class="library_filter" id = "filterCategory" onchange = "filter_Category()">
     <option>Category</option>
 </select>
-<input style="position:absolute; left: 460px;" type="text" name="search" placeholder="Search" id="searchInput" >
+<input class="library_search" type="text" name="search" placeholder="Search" id="searchInput" >
 <br><br>
-<table style="position:absolute; width:635px;" id=assigningTask>
+<table class="library_tasktable_display" id=assigningTask>
     <tr>
-        <th onclick = "sortingTask(0)"> Category </th>
-        <th onclick = "sortingTask(1)"> Task Name  </th>
-        <th style="width:35px;"></th>
-        <th style="width:35px;"><input type = "checkbox"  id = "all_checked" onclick = "toggleTask(this)"></th>
+        <th onclick = "sortingTask(0)" class="library_table_firstbox"> Category </th>
+        <th onclick = "sortingTask(1)" class="library_table_secondbox"> Task Name  </th>
+        <th></th>
+        <th><input type = "checkbox"  id = "all_checked" onclick = "toggleTask(this)"></th>
     </tr>
 </table>
 </div>
 
-<div style="position:absolute;left:800px;top:180px;width:650px; height:400px;overflow-x: hidden;overflow-y: scroll;background-color:rgba(255, 255, 255, .8); border: 5px solid rgba(255, 255, 255, .4);">
-<div style="background-color:#E0FFFF; opacity:.3">
-  <center style="font-size:25px;font-weight:500;"><i>SELECT USER</i></center>
+<div class="library_usertable">
+<div class="library_usertable_head">
+  <center class="library_tasktable_headword"><i>SELECT USER</i></center>
 </div>
 <br>
-<select style="position:absolute; left:20px;" id = "filterPosition" onchange = "filter_Position()">
+<select class="library_filter" id = "filterPosition" onchange = "filter_Position()">
     <option>Position</option>
     <option>CNA</option>
     <option>Patient</option>
 </select>
-    <input style="position:absolute; left: 460px;" type="text" name="search" placeholder="Search" id="searchkeyin" >
+    <input class="library_search" type="text" name="search" placeholder="Search" id="searchkeyin" >
 <br><br>
-<table id = assigningCF>
+<table class="library_tasktable_display" id=assigningCF>
     <tr>
-        <th  onclick = "sortingCF(0)" style="padding:6px 60px;"> Position </th>
-        <th onclick = "sortingCF(1)"style="padding:6px 100px;"> Name  </th>
-        <th onclick = "sortingCF(2)" style="padding:6px 60px;"> I.D </th>
-        <th style="width:35px;"><input type = "checkbox"   id = "toggleCF" onclick = "toggleCF(this)" ></th>
+        <th  onclick = "sortingCF(0)" class="library_table_firstbox"> Position </th>
+        <th onclick = "sortingCF(1)"class="library_table_secondbox"> Name  </th>
+        <th onclick = "sortingCF(2)" class="library_table_thirdbox"> I.D </th>
+        <th><input type = "checkbox"   id = "toggleCF" onclick = "toggleCF(this)" ></th>
     </tr>
 </table>
 </div>
 
 
-<div class="library_assigntask" style="position:absolute; top: 610px; left:1380px;">
+<div class="library_assigntask">
   <div class="library_assigntask-inner">
     <div class="library_assigntask-front">
-      <button style="width:80px; height:60px;font-size:16px;">Assign Task</button>
+      <button class="library_assigntaskbutton">Assign Task</button>
     </div>
     <div class="library_assigntask-back">
-      <button style="width:80px; height:60px;font-size:20px;" type="button" onclick="assign()"> Go! </button>
+      <button class="library_assigntaskbutton" type="button" onclick="assign()"> Go! </button>
     </div>
   </div>
 </div>
 
-<div style="position:absolute; top:710px; left:100px;">
-<button style="height:30px;width:300px;font-size:14px;" type="button" onclick="viewassignedtask()">View Assigned Task History</button>
+<div class="library_viewassignedtaskhistory">
+<button class="library_viewassignedtaskhistorybutton" type="button" onclick="viewassignedtask()">View Assigned Task History</button>
 </div>
 
 <div class="library_form" id="form">
     <h2> <center> View Assigned Task History </center></h2>
-<select style="position:absolute; top:19%; left:4%;" id = "filterNameList" onchange = "filterNameList()">
+<select class="library_historyfiltername" id = "filterNameList" onchange = "filterNameList()">
     <option>Name</option>
 </select>
-    <select style="position:absolute; top:19%; left:13%;" id = "filterTaskList" onchange = "filterTaskList()">
+    <select class="library_historyfiltertask" id = "filterTaskList" onchange = "filterTaskList()">
     <option>Task Name</option>
     </select>
-    <input style="position:absolute; top:19%; left:83%;" type="text" name="search" placeholder="Search" id="searchKeyword" >
-    <div style="position:absolute; top:25%; width:93%;height:60%;overflow-y:auto;overflow-x:hidden">
-    <table style="position:absolute; left:4%; width:100%;" id ="assigningList">
+    <input class="library_historysearch" type="text" name="search" placeholder="Search" id="searchKeyword" >
+    <div class="library_historyoverflow">
+    <table class="library_historytable" id ="assigningList">
     <tr>
-        <th  onclick = "sortingList(0)" style="padding:6px 60px;"> Position </th>
-        <th onclick = "sortingList(1)" style="padding:6px 60px;"> I.D </th>
-        <th onclick = "sortingList(2)"style="padding:6px 100px;"> Name  </th>
-        <th onclick = "sortingList(3)"> Category </th>
-        <th onclick = "sortingList(4)"> Task Name  </th>
-        <th style="background-color: #3a6070; width:35px;"><input type = "checkbox"  id = "all_unchecked"  checked = "checked"  onclick = "toggleList(this)"</th>
+        <th  onclick = "sortingList(0)" style="padding:6px 40px;"> Position </th>
+        <th onclick = "sortingList(1)" style="padding:6px 50px;"> I.D </th>
+        <th onclick = "sortingList(2)"style="padding:6px 80px;"> Name  </th>
+        <th onclick = "sortingList(3)"style="padding:6px 40px;"> Category </th>
+        <th onclick = "sortingList(4)"style="padding:6px 80px;"> Task Name  </th>
+        <th><input type = "checkbox"  id = "all_unchecked"  checked = "checked"  onclick = "toggleList(this)"</th>
     </tr>
     </table>
     </div>
-    <button style="position:absolute; top:90%; left: 85%;" onclick ="submit()" type="button" class="btn" >Submit</button>
-    <button style="position:absolute; top:90%; left: 90%;" type="button" class="btn cancel" onclick="close_form()">Close</button>
+    <button class="library_historysubmit" onclick ="submit()" type="button" class="btn" >Submit</button>
+    <button class="library_historycancel" type="button" class="btn cancel" onclick="close_form()">Close</button>
 </div>
 
 <div class="library_detail" id="popup_detail">

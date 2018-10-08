@@ -214,7 +214,7 @@ textarea {
   width:1230px;
   height:680px;
   opacity:.95;
-  top:70px;
+  top:20%;
   left:305px;
   position:absolute;
   background-color:#313131;
@@ -225,7 +225,7 @@ textarea {
 #showbox{
   width:600px;
   padding: 10px;
-  top: 0px;
+  top: 20%;
   left: -300px;
   border: 1px solid black;
   text-align: center;

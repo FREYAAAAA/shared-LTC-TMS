@@ -1,35 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>TaskEditor</title>
+<title>Task Editor</title>
+<link rel="icon" type="image/jpg" href="image\logo.jpg">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
 <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-<script type = 'text/javascript' src="C:\inetpub\wwwroot\LTCTMS\vanillatree.js"></script>
-<script type = 'text/javascript' src="C:\inetpub\wwwroot\LTCTMS\vanillatree.min.js"></script>
-<link rel="stylesheet" href="TaskEditorStyle.css">
+<script type = 'text/javascript' src="C:\Users\kong\Documents\GitHub\shared-LTC-TMS\LTCTMS\vanillatree.js"></script>
+<script type = 'text/javascript' src="C:\Users\kong\Documents\GitHub\shared-LTC-TMS\LTCTMS\vanillatree.min.js"></script>
+<link rel="stylesheet" href="alldesign.css">
 <link href="vanillatree.css" rel="stylesheet">
-
 </head>
-<body bgcolor= "#ddd">
-<img  style="position:absolute;Right:25px;top:45px;font-size:12px;color:blue"  src="photo.png" alt='CNO/Director' >
-
+<body background="image\bg.jpg">
+<!--copyright=<a href="https://www.freepik.com/free-photos-vectors/people">People image created by Freepik</a>-->
 <div class="topnav">
-<div class="dropdown">
-  <button class="dropbtn">Task Editor</button>
-  <div class="dropdown-content">
-    <a href="#">Schedule</a>
-    <a href="#">Memo</a>
-    <a href="#">Status Record</a>
-    <a href="#">Task Editor</a>
-    <a href="#">Library</a>
-    <a href="#">E-portfolio</a>
-    <a href="helpandsupport.html">Help and Support</a>
+  <h2 class="page_head"><center>T &nbsp A &nbsp S &nbsp K &nbsp&nbsp&nbsp E &nbsp D &nbsp I &nbsp T &nbsp O &nbsp R</center></h2>
+  <div class="tms_logo">
+    <img src="image\Browser- logo final.png">
+  </div>
+  <div class="language_option">
+  <select>
+      <option value="English">English</option>
+      <option value="Chinese">Chinese</option>
+  </select>
+  <button>Logout</button>
   </div>
 </div>
+
+<div class="nav_position">
+    <table class="toptable">
+      <tr>
+        <td class="topth"><center><button class="block" onclick="window.location.href='scheduletest.html'"><a class="inside_nav_word">ABOUT US</a></button></center></td>
+        <td class="topth"><center><button class="block" onclick="window.location.href='scheduletest.html'"><a class="inside_nav_word">SCHEDULE</a></button></center></td>
+        <td class="topth"><center><button class="block" onclick="window.location.href='memo.html'"><a class="inside_nav_word">MEMO</a></button></center></td>
+        <td class="topth"><center><button class="block" onclick="window.location.href='DVSR.html'"><a class="inside_nav_word">STATUS RECORD</a></button></center></td>
+        <td class="topth"><center><button class="block" onclick="window.location.href='Library.html'"><a class="inside_nav_word">LIBRARY</a></button></center></td>
+        <td class="topth"><center><button class="thisblock" onclick="window.location.href='TaskEditor.html'"><a class="inside_nav_word">TASK EDITOR</a></button></center></td>
+        <td class="topth"><center><button class="block" onclick="window.location.href='Portfolio.html'"><a class="inside_nav_word">E-PORTFOLIO</a></button></center></td>
+        <td class="topth"><center><button class="block" onclick="window.location.href='HelpandSupport.html'"><a class="inside_nav_word">HELP AND SUPPORT</a></button></center></td>
+      </tr>
+    </table>
 </div>
-<br>
+
+<div class="content">
+</div>
+
 <div style="position:fixed;">
 Category:
 <select id="CategoryFilter" onchange = "filterCategory()">
@@ -37,21 +53,8 @@ Category:
 </select>
 <button id="createNewTask" onclick='$("#showbox").html(task_html);'>New Task</button>
 <div id="treemenu2" class="treeview">
-
 </div>
-
 </div>
-
-<div class="content">
-</div>
-<!--select language-->
-<div style="position:absolute;Right:30px;top:15px;">
-<select>
-	<option value="English">English</option>
-    <option value="Chinese">Chinese</option>
-</select>
-</div>
-<!--spilt_layout-->
 
 <div>
 <div class="spilt_layout">
@@ -100,8 +103,8 @@ Category:
 
 
 
-<script type = 'text/javascript' src = 'C:\inetpub\wwwroot\LTCTMS\Config.js'></script>
-<script type= 'text/javascript' src = 'C:\inetpub\wwwroot\LTCTMS\TaskEditorJS.js'></script>
+<script type = 'text/javascript' src = 'C:\Users\kong\Documents\GitHub\shared-LTC-TMS\LTCTMS\Config.js'></script>
+<script type= 'text/javascript' src = 'C:\Users\kong\Documents\GitHub\shared-LTC-TMS\LTCTMS\TaskEditorJS.js'></script>
 
 
 </body>

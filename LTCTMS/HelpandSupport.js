@@ -79,3 +79,18 @@ function CNAtableform(id,name,fbFeedback){
         });
     });
 }
+function view_feedback(){
+  document.getElementById("staffdisplay").style.display = "block";
+  document.getElementById("familydisplay").style.display = "block";
+}
+function view_family(){
+  console.log("f");
+  document.getElementById("familyfeedback").style.display = "block";
+  document.getElementById("stafffeedback").style.display = "none";
+}
+
+function view_stafffeedback(){
+  console.log("ff");
+  document.getElementById("stafffeedback").style.display = "block";
+  document.getElementById("familyfeedback").style.display = "none";
+}
