@@ -11,7 +11,7 @@
 </head>
 <body background="image\bg.jpg">
   <div class="topnav">
-      <h2 class="page_head"><center>Schedule</center></h2>
+      <h2 class="page_head"><center>S &nbsp C &nbsp H &nbsp E &nbsp D &nbsp U &nbsp L &nbsp E</center></h2>
       <div class="tms_logo">
         <img src="image\logo.jpg"
       </div>
@@ -20,20 +20,21 @@
           <option value="English">English</option>
           <option value="Chinese">Chinese</option>
       </select>
-      <button id='btnLogout' class="logout_button">Logout</button>
+      <button id='btnLogout'>Logout</button>
       </div>
   </div>
   <div class="nav_position">
       <table class="toptable">
-  	     <tr>
-      	    <td class="topth" width="13%"><center><button class="thisblock"><a class="inside_nav_word" href="scheduletest.html">Schedule</a></button></center></td>
-            <td class="topth" width="13%"><center><button class="block"><a class="inside_nav_word" href="memo.html">Memo</a></button></center></td>
-            <td class="topth" width="13%"><center><button class="block"><a class="inside_nav_word" href="DVSR.html">Status Record</a></button></center></td>
-            <td class="topth" width="13%"><center><button class="block"><a class="inside_nav_word" href="Library.html">Library</a></button></center></td>
-      	    <td class="topth" width="13%"><center><button class="block"><a class="inside_nav_word" href="scheduletest.html">Task Editor</a></button></center></td>
-            <td class="topth" width="13%"><center><button class="block"><a class="inside_nav_word" href="Portfolio.html">E-Portfolio</a></button></center></td>
-            <td class="topth" width="13%"><center><button class="block"><a class="inside_nav_word" href="scheduletest.html">Help and Support</a></button></center></td>
-          </tr>
+        <tr>
+          <td class="topth"><center><button class="block" onclick="window.location.href='scheduletest.html'"><a class="inside_nav_word">ABOUT US</a></button></center></td>
+          <td class="topth"><center><button class="thisblock" onclick="window.location.href='scheduletest.html'"><a class="inside_nav_word">SCHEDULE</a></button></center></td>
+          <td class="topth"><center><button class="block" onclick="window.location.href='memo.html'"><a class="inside_nav_word">MEMO</a></button></center></td>
+          <td class="topth"><center><button class="block" onclick="window.location.href='DVSR.html'"><a class="inside_nav_word">STATUS RECORD</a></button></center></td>
+          <td class="topth"><center><button class="block" onclick="window.location.href='Library.html'"><a class="inside_nav_word">LIBRARY</a></button></center></td>
+          <td class="topth"><center><button class="block" onclick="window.location.href='scheduletest.html'"><a class="inside_nav_word">TASK EDITOR</a></button></center></td>
+          <td class="topth"><center><button class="block" onclick="window.location.href='Portfolio.html'"><a class="inside_nav_word">E-PORTFOLIO</a></button></center></td>
+          <td class="topth"><center><button class="block" onclick="window.location.href='scheduletest.html'"><a class="inside_nav_word">HELP AND SUPPORT</a></button></center></td>
+        </tr>
       </table>
   </div>
 <div class="content">
@@ -44,7 +45,7 @@
         <th> ID </th>
         <th> Working Schedule </th>
         <th></th>
-        <th><button type="button" onclick="AddNewWS()"><img src="image\add.png" height="15px" width="15px"/></button> </th>
+        <th><button type="button" onclick="AddNewWS()" class="add_button"><img src="image\add.png" height="15px" width="15px"/></button> </th>
     </tr>
 </table>
 </div>
@@ -55,7 +56,7 @@
       <th> ID </th>
       <th> Center Schedule </th>
       <th></th>
-      <th><button type="button" onclick="AddNewCS()"><img src="image\add.png" height="15px" width="15px"/></button> </th>
+      <th><button type="button" onclick="AddNewCS()" class="add_button"><img src="image\add.png" height="15px" width="15px"/></button> </th>
   </tr>
 </table>
 </div>
@@ -67,7 +68,7 @@
       <th>ID</th>
         <th> Working Hour </th>
         <th></th>
-        <th> <button type="button"><img src="image\add.png" onclick="AddNewWH()" height="15px" width="15px"/></button> </th>
+        <th> <button type="button" class="add_button"><img src="image\add.png" onclick="AddNewWH()" height="15px" width="15px"/></button> </th>
     </tr>
 
 </table>
@@ -80,7 +81,7 @@
         <th>ID </th>
         <th> Announcement Title </th>
         <th></th>
-        <th> <button id ="btnAdd" class="btn btn-action" type="button" onclick="AddNewA()"><img src="image\add.png" height="15px" width="15px"/></button> </th>
+        <th> <button id ="btnAdd" class="add_button" type="button" onclick="AddNewA()"><img src="image\add.png" height="15px" width="15px"/></button> </th>
     </tr>
   </thread>
   <tbody>
@@ -100,8 +101,8 @@
     &nbsp&nbsp Announcement:
     <textarea class="schedule_textarea" id="Announcement" type=text rows="4" cols="30" placeholder="Text Here..."></textarea>
     <br>
-    <button id="btnSubmitE" onclick="createNewAnnouncement()">Submit</button>
-    <button id="Ecancel" onclick="editCancel()">Cancel</button>
+    <center><button id="btnSubmitE" onclick="createNewAnnouncement()">Submit</button> &nbsp&nbsp&nbsp&nbsp
+    <button id="Ecancel" onclick="editCancel()">Cancel</button></center>
   </div>
 </div>
 </div>
@@ -118,8 +119,8 @@
     &nbsp&nbsp Announcement:
     <textarea class="schedule_textarea" id="Amsg" onkeydown = "btnpopUp()"></textarea>
     <br>
-    <button id="Esave" onclick="editSave()">Save</button>
-    <button id="Ecancel" onclick="editCancel()">Back</button>
+    <center> <button id="Esave" onclick="editSave()">Save</button> &nbsp&nbsp&nbsp&nbsp
+    <button id="Ecancel" onclick="editCancel()">Back</button> </center>
   </div>
 </div>
 </div>
@@ -136,7 +137,7 @@
     <input type="file" id="fileButton3" />
     <progress value="0" max="100" id="uploader3">0%</progress>
     <br><br><br>
-    <button id="btnSubmitCS" >Submit</button>
+    &nbsp&nbsp&nbsp<button id="btnSubmitCS" >Submit</button> &nbsp&nbsp
     <button id="Ecancel" onclick="editCancel()">Cancel</button>
   </div>
 </div>
@@ -155,7 +156,7 @@
     <input type="file" id="fileButton" />
     <progress value="0" max="100" id="uploader">0%</progress>
     <br><br><br>
-    <button id="btnSubmitWS" >Submit</button>
+    &nbsp&nbsp&nbsp <button id="btnSubmitWS" >Submit</button> &nbsp&nbsp
     <button id="Ecancel" onclick="editCancel()">Cancel</button>
   </div>
 </div>
@@ -173,7 +174,7 @@
     <input type="file" id="fileButton2" />
     <progress value="0" max="100" id="uploader2">0%</progress>
     <br><br><br>
-    <button id="btnSubmitWH" >Submit</button>
+    &nbsp&nbsp&nbsp <button id="btnSubmitWH" >Submit</button> &nbsp&nbsp
     <button id="Ecancel" onclick="editCancel()">Cancel</button>
   </div>
 </div>
