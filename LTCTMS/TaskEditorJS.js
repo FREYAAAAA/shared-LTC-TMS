@@ -129,7 +129,7 @@ var main = document.getElementById('treemenu2'),
 
      firebase.database().ref().update(updates);
      tree.select(parentId);
-     
+
     });
   }
 
@@ -410,8 +410,8 @@ var i = j;
 console.log(j);
 if( j == 1){
   tbl.setAttribute("style","width:600px;top:100px;left:"+range+"px;height:720px;");
-
-}else{
+}
+else{
   j=j-1;
   var extend = 700*j;
   var r = range + extend;

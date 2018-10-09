@@ -46,7 +46,7 @@
 <div class="content">
 </div>
 
-<div style="position:fixed;">
+<div class="sticky">
 Category:
 <select id="CategoryFilter" onchange = "filterCategory()">
 <option> Select Category</option>
@@ -56,7 +56,7 @@ Category:
 </div>
 </div>
 
-<div>
+
 <div class="spilt_layout">
 </div>
 
@@ -94,15 +94,67 @@ Category:
         </td>
     </tr>
 </table>
-
-
-
 </div>
 </div>
 
-
-
-
+<div style="position:absolute; top:110%; left:25%; background-color:#aaa;width:35%;height:80%;
+  background-color:rgba(255, 255, 255, .8);">
+  <table style="border:hidden; width:98%;height:100%">
+    <tr>
+      <th colspan="2">
+        <button  onclick = "" class="previous_task"><img src="image\left-arrow.png" height="15px" width="15px" /></button>
+        Main Step 1</th>
+    </tr>
+    <tr style="height:10%;">
+      <td style="border:hidden;width:40%"> Main Step Name: </td>
+      <td style="border:hidden;text-align:left;width:60%;"> <input type="text" name="fname" size="40"> </td>
+    </tr>
+    <tr style="height:10%">
+      <td style="border:hidden;text-align:right;"> Main Step Number: </td>
+      <td style="border:hidden;text-align:left;"> <input type="text" name="fname"> </td>
+    </tr>
+    <tr style="height:10%">
+      <td colspan="2" style="border:hidden;"> Main Description: </td>
+    </tr>
+    <tr style="height:30%">
+      <td colspan="2" style="border:hidden;"> <textarea rows="12" cols="60"></textarea> </td>
+    </tr>
+    <tr style="height:30%">
+      <td style="border:hidden;"> Upload Picture: <br><br> <button>Upload Here</button></td>
+      <td style="border:hidden;"></td>
+    </tr>
+  </table>
+</div>
+<div style="background-color: #000;width:0.25%;height:80%;position:absolute;top:110%;left:59.5%;z-index:1;">
+</div>
+<div style="position:absolute; top:110%; left:60%; background-color:#aaa;width:35%;height:80%;
+  background-color:rgba(255, 255, 255, .8);">
+  <table style="border:hidden; width:98%;height:100%">
+    <tr>
+      <th colspan="2">
+        <button  id="createNewMainstep" onclick="onClick(clicks);" class="next_task"><img src="image\right-arrow.png" height="15px" width="15px"/></button>
+        Main Step 2</th>
+    </tr>
+    <tr style="height:10%;">
+      <td style="border:hidden;width:40%"> Main Step Name: </td>
+      <td style="border:hidden;text-align:left;width:60%;"> <input type="text" name="fname" size="40"> </td>
+    </tr>
+    <tr style="height:10%">
+      <td style="border:hidden;text-align:right;"> Main Step Number: </td>
+      <td style="border:hidden;text-align:left;"> <input type="text" name="fname"> </td>
+    </tr>
+    <tr style="height:10%">
+      <td colspan="2" style="border:hidden;"> Main Description: </td>
+    </tr>
+    <tr style="height:30%">
+      <td colspan="2" style="border:hidden;"> <textarea rows="12" cols="60"></textarea> </td>
+    </tr>
+    <tr style="height:30%">
+      <td style="border:hidden;"> Upload Picture: <br><br> <button>Upload Here</button></td>
+      <td style="border:hidden;"></td>
+    </tr>
+  </table>
+</div>
 <script type = 'text/javascript' src = 'C:\Users\kong\Documents\GitHub\shared-LTC-TMS\LTCTMS\Config.js'></script>
 <script type= 'text/javascript' src = 'C:\Users\kong\Documents\GitHub\shared-LTC-TMS\LTCTMS\TaskEditorJS.js'></script>
 
