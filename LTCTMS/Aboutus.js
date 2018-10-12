@@ -1,3 +1,4 @@
+
 var fbAboutus = firebase.database().ref("CenterInformation/Aboutus");
 fbAboutus.once("value")
 .then(function(snapshot){
@@ -49,7 +50,6 @@ fbCI.once("value")
 })
 
 function CI_edit(){
-    document.getElementById("aboutus_text").disabled = false;
     document.getElementById("CI_button").style.display = "block";
     document.getElementById("Name1").style.display = "block";
     document.getElementById("Contact_No1").style.display = "block";

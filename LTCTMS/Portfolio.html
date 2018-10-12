@@ -21,14 +21,14 @@
         <option value="English">English</option>
         <option value="Chinese">Chinese</option>
     </select>
-    <button>Logout</button>
+    <button onclick="window.location.href='Login.html'">Logout</button>
     </div>
 </div>
 
 <div class="nav_position">
     <table class="toptable">
       <tr>
-        <td class="topth"><center><button class="block" onclick="window.location.href='scheduletest.html'"><a class="inside_nav_word">ABOUT US</a></button></center></td>
+        <td class="topth"><center><button class="block" onclick="window.location.href='Aboutus.html'"><a class="inside_nav_word">ABOUT US</a></button></center></td>
         <td class="topth"><center><button class="block" onclick="window.location.href='scheduletest.html'"><a class="inside_nav_word">SCHEDULE</a></button></center></td>
         <td class="topth"><center><button class="block" onclick="window.location.href='memo.html'"><a class="inside_nav_word">MEMO</a></button></center></td>
         <td class="topth"><center><button class="block" onclick="window.location.href='DVSR.html'"><a class="inside_nav_word">STATUS RECORD</a></button></center></td>
@@ -148,14 +148,14 @@
     <center><h2>Staff Portfolio</h2></center>
     <table class="portfolio_table">
    <tr>
-       <td rowspan="2"> Insert Photo: <br><br><input  id="btnPicture" type="file" multiple required/> </td>
+       <td rowspan="2"> Insert Photo: <br><br><input  id="btnPicture" type="file" accept="image/jpeg,image/png" required/> </td>
        <td> Staff ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="StaffID" placeholder="Staff ID" required/></td>
    </tr>
    <tr>
        <td>Name: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffName" placeholder="Name" required/></td>
    </tr>
    <tr>
-       <td> Initial Date: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="?" placeholder="Enter Date" required/></td>
+       <td> Initial Date: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffInitialDate" placeholder="Enter Date" required/></td>
        <td> Password: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffPassword" placeholder="give a password" required/></td>
    </tr>
    <tr>
@@ -175,18 +175,18 @@
        <td> Emergency Contact No: <input type="text" id="staffEContact" placeholder="0123-456-780" required/></td>
    </tr>
    <tr>
-       <td> Emergency Contact Name: <input type="text" id="?" placeholder="Name" required/></td>
-       <td> Emergency Contact Relationship: <input type="text" id="?" placeholder="Relationship" required/></td>
+       <td> Emergency Contact Name: <input type="text" id="staffEName" placeholder="Name" required/></td>
+       <td> Emergency Contact Relationship: <input type="text" id="staffEERelationship" placeholder="Relationship" required/></td>
    </tr>
     <tr>
        <td colspan="2"> Address: &nbsp&nbsp&nbsp&nbsp<input type="text" id="staffAddress" placeholder="Address" size="80" required/></td>
    </tr>
    <tr>
-       <td colspan="2">Brief Description:<input type="textarea" id="?" placeholder="Please enter here" size="85"/></td>
+       <td colspan="2">Brief Description:<input type="textarea" id="staffbriefdescription" placeholder="Please enter here" size="85"/></td>
    </tr>
    <tr>
-     <td> Insert CV: &nbsp&nbsp&nbsp&nbsp<input  id="sCV" type="file" multiple required/></td>
-     <td> Insert License: &nbsp&nbsp<input  id="?" type="file" multiple required/></td>
+     <td> Insert CV: &nbsp&nbsp&nbsp&nbsp<input  id="?" type="file" accept="image/jpeg,image/png" required/></td>
+     <td> Insert License: &nbsp&nbsp<input  id="?" type="file" accept="image/jpeg,image/png" required/></td>
    </tr>
 </table><br>
     <center><button id ="btnSubmitP"> Submit</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -201,7 +201,7 @@
     <center><h2>Patient Portfolio</h2></center>
     <table class="portfolio_table">
    <tr>
-       <td rowspan="2"> Insert Photo <br><br><input  id="btnPicture2" type="file" required/> </td>
+       <td rowspan="2"> Insert Photo <br><br><input  id="btnPicture2" type="file" accept="image/jpeg,image/png" required/> </td>
        <td> Patient ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="PatientID" placeholder="Patient ID" required/></td>
    </tr>
    <tr>
@@ -220,7 +220,7 @@
        <td> Gender: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientGender" placeholder="M/F" required/></td>
    </tr>
    <tr>
-       <td> Admission Date: &nbsp&nbsp<input type="text" id="?" placeholder="Enter Date" required/></td>
+       <td> Admission Date: &nbsp&nbsp<input type="text" id="patientAdmissionDate" placeholder="Enter Date" required/></td>
        <td> Email Address: &nbsp&nbsp<input type="text" id="patientEmail" placeholder="Email" required/></td>
    </tr>
    <tr>
@@ -228,14 +228,14 @@
        <td> Emergency Contact No: <input type="text" id="patientEContact" placeholder="0123-456-780" required/></td>
    </tr>
    <tr>
-       <td> Emergency Contact Name: &nbsp<input type="text" id="?" placeholder="Enter Name" required/></td>
-       <td> Emergency Contact Relationship: <input type="text" id="?" placeholder="Enter Relationship" required/></td>
+       <td> Emergency Contact Name: &nbsp<input type="text" id="patientEName" placeholder="Enter Name" required/></td>
+       <td> Emergency Contact Relationship: <input type="text" id="patientERelationship" placeholder="Enter Relationship" required/></td>
    </tr>
     <tr>
        <td colspan="2"> Address: &nbsp&nbsp&nbsp&nbsp<input type="text" id="patientAddress" placeholder="Address" size="80" required/></td>
    </tr>
    <tr>
-      <td colspan="2"> Admission Reason: &nbsp&nbsp<input type="text" id="?" placeholder="Enter Here" size="85" required/></td>
+      <td colspan="2"> Admission Reason: &nbsp&nbsp<input type="text" id="patientAdmissionReason" placeholder="Enter Here" size="85" required/></td>
   </tr>
    <tr>
        <td colspan="2">Appointment Record:<input type="textarea" id="AppointmentRecord" placeholder="Appointment Record..." size="85"/></td>
@@ -292,7 +292,7 @@
 
    <tr>
       <td> Admission Date </td>
-      <td id="?"> Admission Date</td>
+      <td id="AdmissionDate"> Admission Date</td>
       <td> Email Address </td>
       <td id= "Email"> Email Address</td>
    </tr>
@@ -304,9 +304,9 @@
    </tr>
    <tr>
       <td> Emergency Contact Name </td>
-      <td id="?"> Emergency Contact Name </td>
+      <td id="EName"> Emergency Contact Name </td>
       <td> Emergency Contact Relationship </td>
-      <td id="?"> Emergency Contact Relationship</td>
+      <td id="ERelationship"> Emergency Contact Relationship</td>
    </tr>
     <tr>
       <td> Address </td>
@@ -314,7 +314,7 @@
    </tr>
    <tr>
      <td> Admission Reason </td>
-      <td colspan="3" id= "?"></td>
+      <td colspan="3" id= "AdmissionReason"></td>
   </tr>
    <tr>
      <td> Appointment Record </td>
@@ -353,9 +353,9 @@
     </tr>
     <tr>
       <td width="25%"> Inital Date </td>
-      <td width="25%" id = "Inital Date"> </td>
+      <td width="25%" id = "sInitalDate"> </td>
       <td width="25%"> Password </td>
-      <td width="25%" id ="Passwo"> </td>
+      <td width="25%" id ="sPassword"> </td>
     </tr>
     <tr>
        <td> Date of Birth </td>
@@ -383,9 +383,9 @@
     </tr>
     <tr>
         <td> Emergency Contact Name </td>
-        <td id ="?"> </td>
+        <td id ="sEName"> </td>
         <td> Emergency Contact Relationship</td>
-        <td id="?"> </td>
+        <td id="sERelationship"> </td>
     </tr>
     <tr>
        <td> Address</td>
@@ -393,7 +393,7 @@
    </tr>
    <tr>
        <td> Brief Description </td>
-       <td colspan="3" id = "?"> </td>
+       <td colspan="3" id = "sBriefDescription"> </td>
    </tr>
    <tr>
        <td> CV </td>
@@ -433,7 +433,7 @@
        <td> Gender: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientGender2" placeholder="M/F" required/></td>
     </tr>
     <tr>
-       <td> Admission Date: &nbsp&nbsp&nbsp&nbsp<input type="text" id="?" placeholder="Date" required/></td>
+       <td> Admission Date: &nbsp&nbsp&nbsp&nbsp<input type="text" id="patientAdmissionDate2" placeholder="Date" required/></td>
        <td> Email Address: &nbsp&nbsp&nbsp&nbsp<input type="text" id="patientEmail2" placeholder="Email" required/></td>
     </tr>
     <tr>
@@ -441,14 +441,14 @@
        <td> Emergency Contact No: <input type="text" id="patientEContact2" placeholder="0123-456-780" required/></td>
     </tr>
     <tr>
-       <td> Emergency Contact Name: &nbsp&nbsp&nbsp<input type="text" id="?" placeholder="Enter Name" required/></td>
-       <td> Emergency Contact Relationship: <input type="text" id="?" placeholder="Enter Relationship" required/></td>
+       <td> Emergency Contact Name: &nbsp&nbsp&nbsp<input type="text" id="patientEName2" placeholder="Enter Name" required/></td>
+       <td> Emergency Contact Relationship: <input type="text" id="patientERelationship2" placeholder="Enter Relationship" required/></td>
     </tr>
     <tr>
        <td colspan="2"> Address: &nbsp&nbsp&nbsp&nbsp<input type="text" id="patientAddress2" placeholder="Address" size="80" required/></td>
     </tr>
     <tr>
-       <td colspan="2"> Admission Reason: &nbsp&nbsp&nbsp&nbsp<input type="text" id="?" placeholder="Enter Here" size="85" required/></td>
+       <td colspan="2"> Admission Reason: &nbsp&nbsp&nbsp&nbsp<input type="text" id="patientAdmissionReason2" placeholder="Enter Here" size="85" required/></td>
     </tr>
     <tr>
        <td colspan="2">Appointment Record:<input type="textarea" id="AppointmentRecord2" placeholder="Appointment Record..." size="85"/></td>
@@ -480,7 +480,7 @@
    </tr>
    <tr>
      <td> Password: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffPassword2" placeholder="give a password" required/></td>
-     <td> Initial Date: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="?" placeholder="Enter Date" required/></td>
+     <td> Initial Date: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffInitialDate2" placeholder="Enter Date" required/></td>
    </tr>
    <tr>
        <td> Position: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffPosition2" placeholder="Position" required/></td>
@@ -499,14 +499,14 @@
        <td> Emergency Contact No: <input type="text" id="staffEContact2" placeholder="0123-456-780" required/></td>
    </tr>
    <tr>
-       <td> Emergency Contact Name: &nbsp&nbsp&nbsp<input type="text" id="?" placeholder="Enter Name" required/></td>
-       <td> Emergency Contact Relationship: <input type="text" id="?" placeholder="Enter Relationship" required/></td>
+       <td> Emergency Contact Name: &nbsp&nbsp&nbsp<input type="text" id="staffEName2" placeholder="Enter Name" required/></td>
+       <td> Emergency Contact Relationship: <input type="text" id="staffERelationship2" placeholder="Enter Relationship" required/></td>
    </tr>
     <tr>
        <td colspan="2"> Address: &nbsp&nbsp&nbsp&nbsp<input type="text" id="staffAddress2" placeholder="Address" size="80" required/></td>
    </tr>
    <tr>
-      <td colspan="2"> Brief Description: &nbsp&nbsp&nbsp&nbsp<input type="text" id="?" placeholder="Enter Here" size="90"/></td>
+      <td colspan="2"> Brief Description: &nbsp&nbsp&nbsp&nbsp<input type="text" id="staffBriefDescription2" placeholder="Enter Here" size="90"/></td>
   </tr>
    <tr>
      <!-- should be image><-->
@@ -526,8 +526,8 @@
 </div>
 
 
-<script type = 'text/javascript' src ="/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Config.js"></script>
-<script type= 'text/javascript' src = "/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/PortfolioJS.js"></script>
+<script type = 'text/javascript' src ="/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Config.js"></script>
+<script type= 'text/javascript' src = "/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/PortfolioJS.js"></script>
 
 </body>
 

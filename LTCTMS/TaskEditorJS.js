@@ -405,19 +405,19 @@ function MainstepPageGenerator(j){
 var body = document.getElementById("showbox");
 var tbl = document.createElement("table");
 tbl.setAttribute("id","Mtable"+j);
-var range = 1300;
+var range = -210;
 var i = j;
 console.log(j);
 if( j == 1){
-  tbl.setAttribute("style","width:600px;top:100px;left:"+range+"px;height:720px;");
+  tbl.setAttribute("style","position:absolute;width:500px;top:680px;left:"+range+"px;height:600px;background-color:rgba(255, 255, 255, .8);border:1px solid rgba(0, 0, 0, .8)");
 }
 else{
   j=j-1;
-  var extend = 700*j;
+  var extend = 569*j;
   var r = range + extend;
   console.log(r);
   console.log(range);
-  tbl.setAttribute("style","width:600px;top:100px;left:"+r+"px;height:720px;");
+  tbl.setAttribute("style","position:absolute;width:500px;top:680px;left:"+r+"px;height:600px;background-color:rgba(255, 255, 255, .8);border:1px solid rgba(0, 0, 0, .8)");
   j++;
 }
 
@@ -453,7 +453,7 @@ var tblBody = document.createElement("tbody");
   var mdtext = document.createElement("textarea");
   mdtext.setAttribute("id","MDescription"+j);
   mdtext.setAttribute("rows","7");
-  mdtext.setAttribute("cols","80");
+  mdtext.setAttribute("cols","70");
   md.setAttribute("colspan","2");
   md.appendChild(document.createTextNode("Main Description:"));
   md.appendChild(mdtext);

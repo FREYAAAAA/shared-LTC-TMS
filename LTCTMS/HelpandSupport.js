@@ -94,3 +94,13 @@ function view_stafffeedback(){
   document.getElementById("stafffeedback").style.display = "block";
   document.getElementById("familyfeedback").style.display = "none";
 }
+
+function bigqr(x) {
+    x.style.height = "100px";
+    x.style.width = "100px";
+}
+
+function normalqr(x) {
+    x.style.height = "64px";
+    x.style.width = "64px";
+}

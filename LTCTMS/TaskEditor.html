@@ -24,14 +24,14 @@
       <option value="English">English</option>
       <option value="Chinese">Chinese</option>
   </select>
-  <button>Logout</button>
+  <button onclick="window.location.href='Login.html'">Logout</button>
   </div>
 </div>
 
 <div class="nav_position">
     <table class="toptable">
       <tr>
-        <td class="topth"><center><button class="block" onclick="window.location.href='scheduletest.html'"><a class="inside_nav_word">ABOUT US</a></button></center></td>
+        <td class="topth"><center><button class="block" onclick="window.location.href='Aboutus.html'"><a class="inside_nav_word">ABOUT US</a></button></center></td>
         <td class="topth"><center><button class="block" onclick="window.location.href='scheduletest.html'"><a class="inside_nav_word">SCHEDULE</a></button></center></td>
         <td class="topth"><center><button class="block" onclick="window.location.href='memo.html'"><a class="inside_nav_word">MEMO</a></button></center></td>
         <td class="topth"><center><button class="block" onclick="window.location.href='DVSR.html'"><a class="inside_nav_word">STATUS RECORD</a></button></center></td>
@@ -102,145 +102,6 @@ Category:
 </div>
 
 
-
-<div style="position:absolute; top:110%; left:24.5%; background-color:#aaa;width:35%;height:80%;
-  background-color:rgba(255, 255, 255, .8);">
-  <table style="border:hidden; width:80%;height:100%;">
-    <col width="50%">
-    <col width="30%">
-    <col width="30%">
-    <tr>
-      <th colspan="3">
-        <button  onclick = "" class="previous_task"><img src="image\left-arrow.png" height="15px" width="15px" /></button>
-        Main Step 1</th>
-    </tr>
-    <tr style="height:10%;">
-      <td style="border:hidden;"> Main Step Name: </td>
-      <td colspan="2" style="border:hidden;"> <input type="text" name="fname" size="45"> </td>
-    </tr>
-    <tr style="height:10%">
-      <td style="border:hidden;text-align:right;"> Main Step Number: </td>
-      <td colspan="2" style="border:hidden;"> <input type="text" name="fname"> </td>
-    </tr>
-    <tr style="height:10%">
-      <td colspan="3" style="border:hidden;text-align:center;"> Main Description: </td>
-    </tr>
-    <tr style="height:30%">
-      <td colspan="3" style="border:hidden;"> <textarea rows="12" cols="60"></textarea> </td>
-    </tr>
-    <tr style="height:30%">
-      <td colspan="2" style="border:hidden;"> Upload Picture: <br><br> <input type="file"></td>
-      <td style="border:hidden;"></td>
-    </tr>
-  </table>
-</div>
-
-
-
-<div style="background-color: #000;width:0.25%;height:80%;position:absolute;top:110%;left:59.5%;z-index:1;">
-</div>
-
-
-
-<div style="position:absolute; top:110%; left:59.5%; background-color:#aaa;width:35%;height:80%;
-  background-color:rgba(255, 255, 255, .8);" id="thissecondmainstep">
-  <table style="border:hidden; width:80%;height:100%;">
-    <col width="50%">
-    <col width="30%">
-    <col width="30%">
-    <tr>
-      <th colspan="3">
-        <button  onclick = "task_nextarrow" class="next_task"><img src="image\right-arrow.png" height="15px" width="15px" /></button>
-        Main Step 2</th>
-    </tr>
-    <tr style="height:10%;">
-      <td style="border:hidden;"> Main Step Name: </td>
-      <td colspan="2" style="border:hidden;"> <input type="text" name="fname" size="45"> </td>
-    </tr>
-    <tr style="height:10%">
-      <td style="border:hidden;text-align:right;"> Main Step Number: </td>
-      <td colspan="2" style="border:hidden;"> <input type="text" name="fname"> </td>
-    </tr>
-    <tr style="height:10%">
-      <td colspan="3" style="border:hidden;text-align:center;"> Main Description: </td>
-    </tr>
-    <tr style="height:30%">
-      <td colspan="3" style="border:hidden;"> <textarea rows="12" cols="60"></textarea> </td>
-    </tr>
-    <tr style="height:30%">
-      <td colspan="2" style="border:hidden;"> Upload Picture: <br><br> <input type="file"></td>
-      <td style="border:hidden;"></td>
-    </tr>
-  </table>
-</div>
-
-
-
-<div style="display: none; position:absolute; top:110%; left:59.5%; background-color:#aaa;width:35%;height:80%;
-  background-color:rgba(255, 255, 255, .8);">
-  <table style="border:hidden; width:80%;height:100%;">
-    <col width="50%">
-    <col width="30%">
-    <col width="30%">
-    <tr>
-      <th colspan="3">
-        <button  onclick = "" class="previous_task"><img src="image\left-arrow.png" height="15px" width="15px" /></button>
-        Main Step 2</th>
-    </tr>
-    <tr style="height:10%;">
-      <td style="border:hidden;"> Main Step Name: </td>
-      <td colspan="2" style="border:hidden;"> <input type="text" name="fname" size="45"> </td>
-    </tr>
-    <tr style="height:10%">
-      <td style="border:hidden;text-align:right;"> Main Step Number: </td>
-      <td colspan="2" style="border:hidden;"> <input type="text" name="fname"> </td>
-    </tr>
-    <tr style="height:10%">
-      <td colspan="3" style="border:hidden;text-align:center;"> Main Description: </td>
-    </tr>
-    <tr style="height:30%">
-      <td colspan="3" style="border:hidden;"> <textarea rows="12" cols="60"></textarea> </td>
-    </tr>
-    <tr style="height:30%">
-      <td colspan="2" style="border:hidden;"> Upload Picture: <br><br> <input type="file"></td>
-      <td style="border:hidden;"></td>
-    </tr>
-  </table>
-</div>
-
-
-
-<div style="display:none; position:absolute; top:110%; left:59.5%; background-color:#aaa;width:35%;height:80%;
-  background-color:rgba(255, 255, 255, .8);" id="nextmainstep">
-  <table style="border:hidden; width:80%;height:100%;">
-    <col width="50%">
-    <col width="30%">
-    <col width="30%">
-    <tr>
-      <th colspan="3">
-        <button  onclick = "task_nextarrow" class="next_task"><img src="image\right-arrow.png" height="15px" width="15px" /></button>
-        Main Step 3</th>
-    </tr>
-    <tr style="height:10%;">
-      <td style="border:hidden;"> Main Step Name: </td>
-      <td colspan="2" style="border:hidden;"> <input type="text" name="fname" size="45"> </td>
-    </tr>
-    <tr style="height:10%">
-      <td style="border:hidden;text-align:right;"> Main Step Number: </td>
-      <td colspan="2" style="border:hidden;"> <input type="text" name="fname"> </td>
-    </tr>
-    <tr style="height:10%">
-      <td colspan="3" style="border:hidden;text-align:center;"> Main Description: </td>
-    </tr>
-    <tr style="height:30%">
-      <td colspan="3" style="border:hidden;"> <textarea rows="12" cols="60"></textarea> </td>
-    </tr>
-    <tr style="height:30%">
-      <td colspan="2" style="border:hidden;"> Upload Picture: <br><br> <input type="file"></td>
-      <td style="border:hidden;"></td>
-    </tr>
-  </table>
-</div>
 
 
 

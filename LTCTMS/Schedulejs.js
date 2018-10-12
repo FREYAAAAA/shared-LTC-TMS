@@ -3,6 +3,7 @@ btnLogout.addEventListener('click', e => {
   firebase.auth().signOut();
   window.location = 'Login.html';
 });
+
 //Create new Announcement button
 function AddNewA(){
     document.getElementById('newABlock').style.display ='block';

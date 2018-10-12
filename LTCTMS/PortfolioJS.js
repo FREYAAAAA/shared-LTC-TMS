@@ -66,9 +66,13 @@ uploadtask.on('state_changed',
      var staffContact = document.getElementById('staffContact').value;
      var staffEContact = document.getElementById('staffEContact').value;
      var staffAddress = document.getElementById("staffAddress")
-     var staffCV = document.getElementById('sCV').value;
      var staffPassword = document.getElementById('staffPassword').value;
      var staffPosition = document.getElementById('staffPosition').value;
+     var staffInitialDate = document.getElementById('staffInitialDate').value;
+     var staffEName = document.getElementById('staffEName').value;
+     var staffERelationship = document.getElementById('staffERelationship').value;
+     var staffbriefdescription = document.getElementById('staffbriefdescription').value;
+
 
      storageRef.getDownloadURL()
       .then(function(url){
@@ -89,7 +93,11 @@ uploadtask.on('state_changed',
        Address : staffAddress,
        CV : staffCV,
        Password : staffPassword,
-       Position : staffPosition
+       Position : staffPosition,
+       InitialDate : staffInitialDate,
+       EName : staffEName,
+       ERelationship : staffERelationship,
+       BriefDescription : staffbriefdescription,
 
      };
      updates[ staffPosition +'/'+StaffID +'/Portfolio/'] = postData;
@@ -151,6 +159,10 @@ uploadtask.on('state_changed',
      var MedicalRecord = document.getElementById('MedicalRecord').value;
      var BriefDescription = document.getElementById('BriefDescription').value;
      var patientRoomNo = document.getElementById('patientRoomNo').value;
+     var patientAdmissionDate = document.getElementById('patientAdmissionDate').value;
+     var patientEName = document.getElementById('patientEName').value;
+     var patientERelationship = document.getElementById('patientERelationship').value;
+     var patientAdmissionReason = document.getElementById('patientAdmissionReason').value;
      //var CNAName = document.getElementById('CNAName').value;
      //var CNAID = document.getElementById('CNAID').value;
 
@@ -175,6 +187,10 @@ uploadtask.on('state_changed',
        MedicalRecord : MedicalRecord,
        BriefDescription : BriefDescription,
        patientRoomNo : patientRoomNo,
+       AdmissionDate : patientAdmissionDate,
+       EName : patientEName,
+       ERelationship : patientERelationship,
+       AdmissionReason : patientAdmissionReason,
        //CNAName : CNAName,
        //CNAID : CNAID,
        Address : patientAddress,
@@ -281,9 +297,13 @@ function viewP(){
       var AR = snapshot.child('AppointmentRecord').val();
       var MR = snapshot.child('MedicalRecord').val();
       var BD = snapshot.child('BriefDescription').val();
-      var CNAname = snapshot.child('CNAName').val();
-      var CNAID= snapshot.child('CNAID').val();
+      //var CNAname = snapshot.child('CNAName').val();
+      //var CNAID= snapshot.child('CNAID').val();
       var roomno = snapshot.child('patientRoomNo').val();
+      var AdmissionDate = snapshot.child('AdmissionDate').val();
+      var EName = snapshot.child('EName').val();
+      var ERelationship = snapshot.child('ERelationship').val();
+      var AdmissionReason = snapshot.child('AdmissionReason').val();
 
       //TODO:image input and resize
       document.getElementById('img1').src = photo;
@@ -304,6 +324,10 @@ function viewP(){
       document.getElementById('ARV').innerHTML= AR;
       document.getElementById('MRV').innerHTML= MR;
       document.getElementById('BDV').innerHTML= BD;
+      document.getElementById('AdmissionDate').innerHTML= AdmissionDate;
+      document.getElementById('EName').innerHTML= EName;
+      document.getElementById('ERelationship').innerHTML= ERelationship;
+      document.getElementById('AdmissionReason').innerHTML= AdmissionReason;
     });
   }else{
     console.log('123');
@@ -335,6 +359,10 @@ function viewP(){
       var AddressV = snapshot.child('Address').val();
       var CV = snapshot.child('CV').val();
       var position = snapshot.child('Position').val();
+      var InitialDate = snapshot.child('InitialDate').val();
+      var EName = snapshot.child('EName').val();
+      var ERelationship = snapshot.child('ERelationship').val();
+      var BriefDescription = snapshot.child('BriefDescription').val();
 
       //TODO:pictureing display
       document.getElementById('imgS').src = photo;
@@ -351,6 +379,10 @@ function viewP(){
       document.getElementById('sAddress').innerHTML= AddressV ;
       document.getElementById('sCV').innerHTML= CV;
       document.getElementById('sPosition').innerHTML = position;
+      document.getElementById('sInitialDate').innerHTML = InitialDate;
+      document.getElementById('sEName').innerHTML = EName;
+      document.getElementById('sERelationship').innerHTML = ERelationship;
+      document.getElementById('sBriefDescription').innerHTML = BriefDescription;
 
     });
   }
@@ -383,6 +415,10 @@ function editPP(){
     var AR = snapshot.child('AppointmentRecord').val();
     var MR = snapshot.child('MedicalRecord').val();
     var BD = snapshot.child('BriefDescription').val();
+    var AdmissionDate = snapshot.child('AdmissionDate').val();
+    var EName = snapshot.child('EName').val();
+    var ERelationship = snapshot.child('ERelationship').val();
+    var AdmissionReason = snapshot.child('AdmissionReason').val();
 
 
     console.log(photo);
@@ -405,6 +441,10 @@ function editPP(){
     document.getElementById('MedicalRecord2').value= MR;
     document.getElementById('BriefDescription2').value= BD;
     document.getElementById('patientPassword2').value= pass;
+    document.getElementById('patientAdmissionDate2').value= AdmissionDate;
+    document.getElementById('patientEName2').value= EName;
+    document.getElementById('patientERelationship2').value= ERelationship;
+    document.getElementById('patientAdmissionReason2').value= AdmissionReason;
   });
 }
 function editSP(){
@@ -432,6 +472,10 @@ console.log(position);
     var CV = snapshot.child('CV').val();
     var pass = snapshot.child('Password').val();
     var Position = snapshot.child('Position').val();
+    var InitialDate = snapshot.child('InitialDate').val();
+    var EName = snapshot.child('EName').val();
+    var ERelationship = snapshot.child('ERelationship').val();
+    var BriefDescription = snapshot.child('BriefDescription').val();
     console.log(photo);
     //TODO: picture can't be edit?
     document.getElementById('PictureS').innerHTML = photo;
@@ -448,6 +492,10 @@ console.log(position);
     document.getElementById('staffPassword2').value= pass;
     document.getElementById('staffCV2').value= CV;
     document.getElementById('staffPosition2').value = Position;
+    document.getElementById('staffInitialDate2').value= InitialDate;
+    document.getElementById('staffEName2').value= EName;
+    document.getElementById('staffERelationship2').value= ERelationship;
+    document.getElementById('staffBriefDescription2').value= BriefDescription;
   });
 
 }
@@ -472,6 +520,10 @@ function submitPP(){
   var MR = document.getElementById('MedicalRecord2').value;
   var BD = document.getElementById('BriefDescription2').value;
   var pass = document.getElementById('patientPassword2').value;
+  var AdmissionDate = document.getElementById('patientAdmissionDate2').value;
+  var EName = document.getElementById('patientEName2').value;
+  var ERelationship = document.getElementById('patientERelationship2').value;
+  var AdmissionReason = document.getElementById('patientAdmissionReason2').value;
   console.log(id);
   var updates = {};
   var postData={
@@ -490,9 +542,13 @@ function submitPP(){
   MedicalRecord : MR,
   BriefDescription : BD,
   patientRoomNo : Room,
-  CNAName : CNAname,
-  CNAID : CNAID,
+  //CNAName : CNAname,
+  //CNAID : CNAID,
   Adress : Address,
+  AdmissionDate : AdmissionDate,
+  EName : EName,
+  ERelationship : ERelationship,
+  AdmissionReason : AdmissionReason,
   Position : 'Patient'
   };
   updates['Patient/'+ id+'/Portfolio'] = postData;
@@ -517,6 +573,10 @@ function submitSP(){
   var pass = document.getElementById('staffPassword2').value;
   var CV = document.getElementById('staffCV2').value;
   var position = document.getElementById('staffPosition2').value;
+  var InitialDate = document.getElementById('staffInitialDate2').value;
+  var EName = document.getElementById('staffEName2').value;
+  var ERelationship = document.getElementById('staffERelationship2').value;
+  var BriefDescription = document.getElementById('staffBriefDescription2').value;
 
   var updates = {};
   var postData={
@@ -533,7 +593,11 @@ function submitSP(){
   Address : Address,
   CV : CV,
   Password : pass,
-  Position : position
+  Position : position,
+  InitialDate : InitialDate,
+  EName : EName,
+  ERelationship : ERelationship,
+  BriefDescription : BriefDescription,
 
   };
   updates[ position +'/'+ id +'/Portfolio/'] = postData;
