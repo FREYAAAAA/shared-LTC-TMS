@@ -553,3 +553,9 @@ function deleteT(){
 
   }
 }
+
+function task_nextarrow(){
+  console.log("ff");
+  document.getElementById("nextmainstep").style.display = "block";
+  document.getElementById("thissecondmainstep").style.display = "none";
+}
