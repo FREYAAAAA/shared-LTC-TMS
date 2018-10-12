@@ -19,7 +19,7 @@ function Cancel(){
 
 //Staff Portfolio Database Storing
 //TODO: PLEASE DEBBUG THE FILE UPLOADING ISSUE
-var Uploader = document.getElementById('Uploader');
+var Uploader = document.getElementById('Uploader2');
 var btnPicture = document.getElementById('btnPicture');
 var btnSubmitP = document.getElementById('btnSubmitP')
 
@@ -66,7 +66,7 @@ uploadtask.on('state_changed',
      var staffContact = document.getElementById('staffContact').value;
      var staffEContact = document.getElementById('staffEContact').value;
      var staffAddress = document.getElementById("staffAddress")
-     var staffCV = document.getElementById('staffCV').value;
+     var staffCV = document.getElementById('sCV').value;
      var staffPassword = document.getElementById('staffPassword').value;
      var staffPosition = document.getElementById('staffPosition').value;
 
@@ -93,7 +93,7 @@ uploadtask.on('state_changed',
 
      };
      updates[ staffPosition +'/'+StaffID +'/Portfolio/'] = postData;
-     updates['Portfolio/'+ StaffID] = postData;
+     //updates['Portfolio/'+ StaffID] = postData;
      firebase.database().ref().update(updates);
      window.location.reload();
      });
@@ -151,8 +151,8 @@ uploadtask.on('state_changed',
      var MedicalRecord = document.getElementById('MedicalRecord').value;
      var BriefDescription = document.getElementById('BriefDescription').value;
      var patientRoomNo = document.getElementById('patientRoomNo').value;
-     var CNAName = document.getElementById('CNAName').value;
-     var CNAID = document.getElementById('CNAID').value;
+     //var CNAName = document.getElementById('CNAName').value;
+     //var CNAID = document.getElementById('CNAID').value;
 
 
      storageRef.getDownloadURL().then(function(url){
@@ -175,13 +175,13 @@ uploadtask.on('state_changed',
        MedicalRecord : MedicalRecord,
        BriefDescription : BriefDescription,
        patientRoomNo : patientRoomNo,
-       CNAName : CNAName,
-       CNAID : CNAID,
+       //CNAName : CNAName,
+       //CNAID : CNAID,
        Address : patientAddress,
        Position : 'Patient'
      };
      updates['Patient/'+PatientID +'/Portfolio'] = postData;
-     updates['Portfolio/'+ PatientID] = postData;
+     //updates['Portfolio/'+ PatientID] = postData;
      firebase.database().ref().update(updates);
      window.location.reload();
      });
@@ -190,43 +190,69 @@ uploadtask.on('state_changed',
 }
 
 //Brief Portfolio Table
- var fbP = firebase.database().ref().child('Portfolio')
-
+ var fbCNA = firebase.database().ref("CNA/");
+ var fbPAT = firebase.database().ref("Patient/");
+ var fbDIR = firebase.database().ref("DIR/");
+ var fbCNO = firebase.database().ref("CNO/");
 var briefPortfolio = document.getElementById('briefPortfolio');
 var rowIndexBP = 1;
-fbP.once('value',function(snapshot){
-  snapshot.forEach(function(childSnapshot){
-    var childKey = childSnapshot.key;
-    var childData = childSnapshot.val();
-    var button = document.createElement("button");
-    button.innerHTML="View";
+portfolio_Table(fbCNO);
+portfolio_Table(fbDIR);
+portfolio_Table(fbCNA);
+portfolio_Table(fbPAT);
+function portfolio_Table(fb){
+    fb.once('value',function(snapshot){
+      snapshot.forEach(function(childSnapshot){
+          childSnapshot.forEach(function(childSnapshot1){
+              if(childSnapshot1.key == "Portfolio"){
+                  var row = briefPortfolio.insertRow(rowIndexBP);
+                  var cellId = row.insertCell(0)
+                  var cellName = row.insertCell(1);
+                  var cellNationalID = row.insertCell(2);
+                  var cellNationality = row.insertCell(3);
+                  var cellGender= row.insertCell(4);
+                  var cellContactno= row.insertCell(5);
+                  var cellEmail= row.insertCell(6);
+                  var cellRole= row.insertCell(7);
+                  var cellButton= row.insertCell(8);
+                  var button = document.createElement("button");
+                  cellId.appendChild(document.createTextNode(childSnapshot.key));
+                  cellButton.appendChild(button);
+                  childSnapshot1.forEach(function(childSnapshot2){
+                      var childKey = childSnapshot2.key;
+                      var childData = childSnapshot2.val();
+                      button.innerHTML="View";
+                      if(childKey == "Name"){
+                          cellName.appendChild(document.createTextNode(childData));
+                      }
+                      if(childKey == "NationalID"){
+                          cellNationalID.appendChild(document.createTextNode(childData));
+                      }
+                      if(childKey == "Nationality"){
+                          cellNationality.appendChild(document.createTextNode(childData));
+                      }
+                      if(childKey =="Gender"){
+                          cellGender.appendChild(document.createTextNode(childData));
+                      }
+                      if(childKey == "EContact"){
+                          cellContactno.appendChild(document.createTextNode(childData));
+                      }
+                      if(childKey == "Email"){
+                          cellEmail.appendChild(document.createTextNode(childData));
+                      }
+                      if(childKey == "Position"){
+                          cellRole.appendChild(document.createTextNode(childData));
+                      }
+                      button.onclick = viewP;
+                  });
+                  rowIndexBP = rowIndexBP + 1;
 
-    var row = briefPortfolio.insertRow(rowIndexBP);
-    var cellId = row.insertCell(0)
-    var cellName = row.insertCell(1);
-    var cellNationalID = row.insertCell(2);
-    var cellNationality = row.insertCell(3);
-    var cellGender= row.insertCell(4);
-    var cellContactno= row.insertCell(5);
-    var cellEmail= row.insertCell(6);
-    var cellRole= row.insertCell(7);
-    var cellButton= row.insertCell(8);
+              }
+          });
+      });
+    });
+}
 
-    cellId.appendChild(document.createTextNode(childKey));
-    cellName.appendChild(document.createTextNode(childData.Name));
-    cellNationalID.appendChild(document.createTextNode(childData.NationalID));
-    cellNationality.appendChild(document.createTextNode(childData.Nationality));
-    cellGender.appendChild(document.createTextNode(childData.Gender));
-    cellContactno.appendChild(document.createTextNode(childData.Contact));
-    cellEmail.appendChild(document.createTextNode(childData.Email));
-    cellRole.appendChild(document.createTextNode(childData.Position));
-    cellButton.appendChild(button);
-
-    button.onclick = viewP;
-    rowIndexBP = rowIndexBP + 1;
-
-  });
-});
 
 
 //view portfolio
@@ -238,7 +264,7 @@ function viewP(){
   if(td == 'Patient'){
     document.getElementById('viewPatientPortfolio').style.display ='block';
     var id = $(this).closest('tr').children('td:first').text();
-    var fbV = firebase.database().ref('Portfolio/'+ id);
+    var fbV = firebase.database().ref('Patient/'+ id+"/Portfolio");
     fbV.on('value', function(snapshot){
       var photo = snapshot.child('pictureurl').val();
       var id = snapshot.child('ID').val();
@@ -248,6 +274,7 @@ function viewP(){
       var Gender = snapshot.child('Gender').val();
       var DOB = snapshot.child('DOB').val();
       var Email = snapshot.child('Email').val();
+      var Password = snapshot.child('Password').val();
       var Contact = snapshot.child('Contact').val();
       var EContact = snapshot.child('EContact').val();
       var AddressV = snapshot.child('Adress').val();
@@ -265,8 +292,9 @@ function viewP(){
       document.getElementById('NID').innerHTML= NationalID;
       document.getElementById('Gender').innerHTML= Gender;
       document.getElementById('Room').innerHTML= roomno;
-      document.getElementById('CNAnameV').innerHTML= CNAname;
-      document.getElementById('CNAIDV').innerHTML= CNAID;
+      document.getElementById('Password').innerHTML= Password;
+     // document.getElementById('CNAnameV').innerHTML= CNAname;
+      //document.getElementById('CNAIDV').innerHTML= CNAID;
       document.getElementById('Nationality').innerHTML= Nationality ;
       document.getElementById('Email').innerHTML= Email;
       document.getElementById('DOB').innerHTML= DOB;
@@ -278,11 +306,19 @@ function viewP(){
       document.getElementById('BDV').innerHTML= BD;
     });
   }else{
-    //console.log('123');
+    console.log('123');
     document.getElementById('viewStaffPortfolio').style.display ='block';
     var id = $(this).closest('tr').children('td:first').text();
     console.log(id);
-    var fbV = firebase.database().ref('Portfolio/'+ id);
+    if(td == "CNO"){
+        var fbV = firebase.database().ref('CNO/'+ id+"/Portfolio");
+    }
+    if(td == "CNA"){
+        var fbV = firebase.database().ref('CNA/'+ id+"/Portfolio");
+    }
+    if(td =="DIR"){
+        var fbV = firebase.database().ref('DIR/'+ id+"/Portfolio");
+    }
     fbV.on('value', function(snapshot){
       var photo = snapshot.child('pictureurl').val();
       var id = snapshot.child('ID').val();
@@ -290,6 +326,8 @@ function viewP(){
       var NationalID = snapshot.child('NationalID').val();
       var Nationality = snapshot.child('Nationality').val();
       var Gender = snapshot.child('Gender').val();
+      var Password = snapshot.child('Password').val();
+      console.log(Password);
       var DOB = snapshot.child('DOB').val();
       var Email = snapshot.child('Email').val();
       var Contact = snapshot.child('Contact').val();
@@ -304,6 +342,7 @@ function viewP(){
       document.getElementById('sName').innerHTML= Name;
       document.getElementById('sNID').innerHTML= NationalID;
       document.getElementById('sGender').innerHTML= Gender;
+      document.getElementById("Passwo").innerHTML= Password;
       document.getElementById('sNationality').innerHTML= Nationality ;
       document.getElementById('sEmail').innerHTML= Email;
       document.getElementById('sDOB').innerHTML= DOB;
@@ -314,20 +353,18 @@ function viewP(){
       document.getElementById('sPosition').innerHTML = position;
 
     });
-
   }
-
-
 }
 
 //edit Patient Portfolio
 function editPP(){
   document.getElementById('editPatientPortfolio').style.display ='block';
   var id = document.getElementById('PID').innerText;
+
   console.log(id);
   document.getElementById('viewPatientPortfolio').style.display = 'none';
 
-  var fbV = firebase.database().ref('Portfolio/'+ id);
+  var fbV = firebase.database().ref('Patient/'+ id+"/Portfolio");
   fbV.on('value', function(snapshot){
     var photo = snapshot.child('pictureurl').val();
     var id = snapshot.child('ID').val();
@@ -373,10 +410,12 @@ function editPP(){
 function editSP(){
   document.getElementById('editStaffPortfolio').style.display ='block';
   var id = document.getElementById('SID').innerText;
+  var position = document.getElementById('sPosition').innerText;
+
   console.log(id);
   document.getElementById('viewStaffPortfolio').style.display = 'none';
-
-  var fbV = firebase.database().ref('Portfolio/'+ id);
+console.log(position);
+  var fbV = firebase.database().ref( position+"/"+id+"/Portfolio");
   fbV.on('value', function(snapshot){
 
     var photo = snapshot.child('pictureurl').val();
@@ -457,7 +496,7 @@ function submitPP(){
   Position : 'Patient'
   };
   updates['Patient/'+ id+'/Portfolio'] = postData;
-  updates['Portfolio/'+ id] = postData;
+ // updates['Portfolio/'+ id] = postData;
   firebase.database().ref().update(updates);
   window.location.reload();
 
@@ -498,17 +537,15 @@ function submitSP(){
 
   };
   updates[ position +'/'+ id +'/Portfolio/'] = postData;
-  updates['Portfolio/'+ id] = postData;
+  //updates['Portfolio/'+ id] = postData;
   firebase.database().ref().update(updates);
   window.location.reload();
 }
 
 //Patient Portfolio deletion
 function deletePP(){
-  var fbP = firebase.database().ref('Portfolio');
   var fbPP = firebase.database().ref('Patient');
   var id = document.getElementById('PID').innerText;
-  fbP.child(id).remove();
   fbPP.child(id).remove();
   alert("successfully deleted!");
   window.location.reload();
@@ -517,11 +554,9 @@ function deletePP(){
 function deleteSP(){
  var position = document.getElementById('sPosition').innerText;
  var id = document.getElementById('SID').innerText;
- var fbP = firebase.database().ref('Portfolio');
- var fbSP = firebase.database().ref(position);
+var fbSP = firebase.database().ref(position);
+fbSP.child(id).remove();
 
- fbP.child(id).remove();
- fbSP.child(id).remove();
  alert("successfully deleted!");
  window.location.reload();
 }
@@ -560,6 +595,15 @@ function filterPatientP(){
     }
   }
 }
+function filterAllP(){
+  var table = document.getElementById("briefPortfolio");
+  var tr = table.getElementsByTagName("tr");
+  for (var i = 0; i < tr.length; i++) {
+      var td = tr[i].getElementsByTagName("td")[7];//row i cell number 7
+      tr[i].style.display = "";
+
+    }
+}
 
 //Keyword search
 $(document).ready(function(){
@@ -576,16 +620,24 @@ function filterNationality(){
   var table = document.getElementById("briefPortfolio");
   var filterN = document.getElementById("filterNationality").value;
   var tr = table.getElementsByTagName("tr");
-  for (var i = 0; i < tr.length; i++) {
-    var td = tr[i].getElementsByTagName("td")[3];//row i cell number 3
-    if(td){
-       if (td.innerText == filterN) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
+  if("all" == filterN){
+      for (var i = 0; i < tr.length; i++) {
+          tr[i].style.display = "";
+        }
   }
+  else{
+      for (var i = 0; i < tr.length; i++) {
+        var td = tr[i].getElementsByTagName("td")[3];//row i cell number 3
+        if(td){
+           if (td.innerText == filterN) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+  }
+
 }
 
 //Filter with Gender
@@ -593,16 +645,23 @@ function filterGender(){
   var table = document.getElementById("briefPortfolio");
   var filterG = document.getElementById("filterGender").value;
   var tr = table.getElementsByTagName("tr");
-  for (var i = 0; i < tr.length; i++) {
-    var td = tr[i].getElementsByTagName("td")[4];//row i cell number 4
-    if(td){
-      console.log(td.innerText);
-    if (td.innerText == filterG) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
+  if("all" == filterG){
+      for (var i = 0; i < tr.length; i++) {
+          tr[i].style.display = "";
+        }
+  }
+  else{
+      for (var i = 0; i < tr.length; i++) {
+        var td = tr[i].getElementsByTagName("td")[4];//row i cell number 4
+        if(td){
+          console.log(td.innerText);
+        if (td.innerText == filterG) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
       }
-    }
   }
 }
 
@@ -610,7 +669,7 @@ function filterGender(){
 function filterRoomNo() {
     var table = document.getElementById("briefPortfolio");
     var selectedroom = document.getElementById('filterRoomNo').value;
-    var fbPR = firebase.database().ref('Portfolio');
+    var fbPR = firebase.database().ref('Patient/');
     var tr = table.getElementsByTagName("tr");
 
     fbPR.once('value',function(snapshot){
@@ -631,6 +690,19 @@ function filterRoomNo() {
               }
             }
           }
+        }
+        if("all" == selectedroom){
+            for (var i = 0; i < tr.length; i++) {
+              var td = tr[i].getElementsByTagName("td")[0];//row i cell number 0
+              if(td){
+              if (td.innerText == id) {
+                  tr[i].style.display = "";
+                  console.log(id);
+                } else {
+                  tr[i].style.display = "none";
+                }
+              }
+            }
         }
 
 

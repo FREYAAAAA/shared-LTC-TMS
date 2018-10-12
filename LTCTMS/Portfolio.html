@@ -53,7 +53,7 @@
   </div>
   <div class="portfolio_search_background">
   <div class="portfolio_search_word">
-    <input type="radio" name="?" value="?" onclick="?"> All <br>
+    <input type="radio" name="position" value="all" onclick="filterAllP()"> All <br>
     <input type="radio" name="position" value="staff" onclick="filterStaffP()"> Staff <br>
     <input type="radio" name="position" value="patient" onclick="filterPatientP()"> Patient <br>
   </div>
@@ -67,7 +67,7 @@
   </div>
  </div>
 <select id = "filterRoomNo" onchange = "filterRoomNo()">
-    <option value="?"> All </option>
+    <option value="all"> All </option>
 	  <option value="101">101</option>
     <option value="102">102</option>
     <option value="103">103</option>
@@ -84,7 +84,7 @@
 </div>
 </div>
    <select id="filterNationality" onchange = "filterNationality()">
-    <option value="?">All</option>
+    <option value="all">All</option>
 	  <option value="Taiwan">Taiwan</option>
     <option value="Thailand">Thailand</option>
     <option value="Indonesia">Indonesia</option>
@@ -101,7 +101,7 @@
 </div>
 </div>
    <select id="filterGender" onchange = "filterGender()">
-    <option value="?"> All </option>
+    <option value="all"> All </option>
 	  <option value="M">Male</option>
     <option value="F">Female</option>
     <option value="Others">Others</option>
@@ -185,7 +185,7 @@
        <td colspan="2">Brief Description:<input type="textarea" id="?" placeholder="Please enter here" size="85"/></td>
    </tr>
    <tr>
-     <td> Insert CV: &nbsp&nbsp&nbsp&nbsp<input  id="?" type="file" multiple required/></td>
+     <td> Insert CV: &nbsp&nbsp&nbsp&nbsp<input  id="sCV" type="file" multiple required/></td>
      <td> Insert License: &nbsp&nbsp<input  id="?" type="file" multiple required/></td>
    </tr>
 </table><br>
@@ -258,7 +258,7 @@
   <div class="editformview">
     <center><h2>Patient Portfolio</h2></center>
     <div><button id="btnEditPP" onclick="editPP()">Edit</button>
-    <button id="btnDeleteSP" onclick = "deleteSP()">Delete</button>
+    <button id="btnDeletePP" onclick = "deletePP()">Delete</button>
     </div>
     <br><br>
     <table id="viewPatientPortfolioTable">
@@ -289,6 +289,7 @@
        <td> Gender </td>
        <td id="Gender"> Gender</td>
    </tr>
+
    <tr>
       <td> Admission Date </td>
       <td id="?"> Admission Date</td>
@@ -352,9 +353,9 @@
     </tr>
     <tr>
       <td width="25%"> Inital Date </td>
-      <td width="25%" id = "?"> </td>
+      <td width="25%" id = "Inital Date"> </td>
       <td width="25%"> Password </td>
-      <td width="25%" id ="Password"> </td>
+      <td width="25%" id ="Passwo"> </td>
     </tr>
     <tr>
        <td> Date of Birth </td>
@@ -396,7 +397,7 @@
    </tr>
    <tr>
        <td> CV </td>
-       <td colspan="3" id ="?"></td>
+       <td colspan="3" id ="sCV"></td>
    </tr>
    <tr>
        <td> License </td>
@@ -508,14 +509,14 @@
       <td colspan="2"> Brief Description: &nbsp&nbsp&nbsp&nbsp<input type="text" id="?" placeholder="Enter Here" size="90"/></td>
   </tr>
    <tr>
-     <!-- should be image>
+     <!-- should be image><-->
        <td colspan="2">CV: <input type="textarea" id="staffCV2" placeholder="CV..." size="90" required/></td>
-       <-->
+
    </tr>
    <tr>
-     <!-- should be image
+     <!-- should be image -->
        <td colspan="2">License: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="textarea" id="stafflicense2" placeholder="License" size="90" required/></td>
-     -->
+
    </tr>
 </table><br>
     <center><button id ="btnSubmitSP" onclick="submitSP()"> Submit</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -525,8 +526,8 @@
 </div>
 
 
-<script type = 'text/javascript' src = 'C:\inetpub\wwwroot\LTCTMS\Config.js'></script>
-<script type= 'text/javascript' src = 'C:\inetpub\wwwroot\LTCTMS\PortfolioJS.js'></script>
+<script type = 'text/javascript' src ="/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Config.js"></script>
+<script type= 'text/javascript' src = "/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/PortfolioJS.js"></script>
 
 </body>
 
