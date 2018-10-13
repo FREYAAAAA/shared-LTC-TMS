@@ -7,8 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
 <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-<script type = 'text/javascript' src = "/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Config.js"></script>
-<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Library.js'></script>
+<script type = 'text/javascript' src = "/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Config.js"></script>
+<script type = 'text/javascript' src = '/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Library.js'></script>
 <link rel="stylesheet" href="alldesign.css">
 </head>
 
@@ -128,6 +128,24 @@
     </div>
     <button class="library_historysubmit" onclick ="submit()" type="button" class="btn" >Submit</button>
     <button class="library_historycancel" type="button" class="btn cancel" onclick="close_form()">Close</button>
+</div>
+
+<div class="memo_form-popup" id="form1" style="position:absolute;top:20px;width:200%;height:200%">
+    <div id = "content">
+    </div>
+    <div id = "content2">
+        <h1>Task Name</h1>
+        <h1 id = "taskname"> </h1>
+        <h2>Category</h2>
+        <h2 id = category> </h2>
+        <h2>Video URL</h2>
+        <h2 id  = "video"> </h2>
+        <h2> Outline</h2>
+        <h2 id = "outline"> </h2>
+        <h2>Note</h2>
+        <h2 id = "note"> </h2>
+    </div>
+    <button type="button" class="btn cancel" onclick="close_form()">Close</button>
 </div>
 
 <div class="library_detail" id="popup_detail">
