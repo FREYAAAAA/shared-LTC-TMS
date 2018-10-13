@@ -21,29 +21,49 @@ function Cancel(){
 //TODO: PLEASE DEBBUG THE FILE UPLOADING ISSUE
 var Uploader = document.getElementById('Uploader2');
 var btnPicture = document.getElementById('btnPicture');
+var staffCV = document.getElementById('staffCV');
+var staffLicense = document.getElementById('staffLicense');
 var btnSubmitP = document.getElementById('btnSubmitP')
 
-btnPicture.addEventListener('change', handleuploadfile);
+btnPicture.addEventListener('change', handleuploadfile1);
+staffLicense.addEventListener('change', handleuploadfile2);
+staffCV.addEventListener('change', handleuploadfile3);
+
 //btnLicense.addEventListener('change', handleuploadfile2);
 btnSubmitP.addEventListener('click', handleuploadfileSubmit);
+let file1 = [];
+let file4 = [];
+let file3 = [];
 
-let file = [];
+function handleuploadfile1(e) {
+     file1=e.target.files[0];
+     console.log(file1.name);
 
+}
+function handleuploadfile2(e) {
 
-function handleuploadfile(e) {
-  file =[];
-  for (var i = 0; i < e.target.files.length;i++){
-    file=e.target.files[i];
-  }
+     file4=e.target.files[0];
+     console.log(file4.name);
+}
+function handleuploadfile3(e) {
+       file3=e.target.files[0];
+       console.log(file3.name);
 }
 
 
 function handleuploadfileSubmit(e) {
+    firebase.storage().ref('Staff/').child(file1.name).put(file1);
+    //firebase.storage().ref('Staff/').child(file4.name).put(file4);
+    firebase.storage().ref('Staff/').child(file3.name).put(file3);
+     var storageRef1 = firebase.storage().ref('Staff/'+file1+".png")
+      var storageRef3 = firebase.storage().ref('Staff/'+file3+".png")
+     //  var storageRef = firebase.storage().ref('Sponsor/'+name+".png")
 
-var storageRef=firebase.storage().ref('Staff/'+file.name);
-var uploadtask = storageRef.put(file);
 
-uploadtask.on('state_changed',
+    var uploadtask = storageRef1.put(file1);
+
+
+    uploadtask.on('state_changed',
 
   function progress(snapshot){
     var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
@@ -65,17 +85,24 @@ uploadtask.on('state_changed',
      var staffEmail = document.getElementById('staffEmail').value;
      var staffContact = document.getElementById('staffContact').value;
      var staffEContact = document.getElementById('staffEContact').value;
-     var staffAddress = document.getElementById("staffAddress")
+     var staffAddress = document.getElementById("staffAddress").value;
      var staffPassword = document.getElementById('staffPassword').value;
      var staffPosition = document.getElementById('staffPosition').value;
      var staffInitialDate = document.getElementById('staffInitialDate').value;
      var staffEName = document.getElementById('staffEName').value;
      var staffERelationship = document.getElementById('staffERelationship').value;
      var staffbriefdescription = document.getElementById('staffbriefdescription').value;
+     var staffCV = document.getElementById('staffCV').value;
+     var staffLicense = document.getElementById('staffLicense').value;
 
+    /* storageRef2.getDownloadURL()
+      .then(function(ur2){
+          firebase.database().ref(staffPosition+"/"+StaffID+"/Portfolio"+"/License/").set(url2);
+      });*/
 
-     storageRef.getDownloadURL()
+     storageRef1.getDownloadURL()
       .then(function(url){
+
        console.log("Success");
        console.log(url);
        var updates = {};
@@ -86,12 +113,12 @@ uploadtask.on('state_changed',
        NationalID : staffNID,
        Nationality : staffNationality,
        Gender : staffGender,
+
        DOB : staffDOB,
        Email : staffEmail,
        Contact : staffContact,
        EContact : staffEContact,
        Address : staffAddress,
-       CV : staffCV,
        Password : staffPassword,
        Position : staffPosition,
        InitialDate : staffInitialDate,
@@ -103,8 +130,14 @@ uploadtask.on('state_changed',
      updates[ staffPosition +'/'+StaffID +'/Portfolio/'] = postData;
      //updates['Portfolio/'+ StaffID] = postData;
      firebase.database().ref().update(updates);
-     window.location.reload();
-     });
+     //window.location.reload();
+      });
+      storageRef3.getDownloadURL()
+       .then(function(url3){
+           console.log(url3);
+           console.log(staffPosition+"/"+StaffID+"/Portfolio"+"/CV");
+           firebase.database().ref(staffPosition+"/"+StaffID+"/Portfolio"+"/CV").set(url3);
+       });
   }
 );
 }
@@ -293,7 +326,7 @@ function viewP(){
       var Password = snapshot.child('Password').val();
       var Contact = snapshot.child('Contact').val();
       var EContact = snapshot.child('EContact').val();
-      var AddressV = snapshot.child('Adress').val();
+      var AddressV = snapshot.child('Address').val();
       var AR = snapshot.child('AppointmentRecord').val();
       var MR = snapshot.child('MedicalRecord').val();
       var BD = snapshot.child('BriefDescription').val();
@@ -344,6 +377,7 @@ function viewP(){
         var fbV = firebase.database().ref('DIR/'+ id+"/Portfolio");
     }
     fbV.on('value', function(snapshot){
+        console.log(fbV);
       var photo = snapshot.child('pictureurl').val();
       var id = snapshot.child('ID').val();
       var Name = snapshot.child('Name').val();
@@ -357,27 +391,28 @@ function viewP(){
       var Contact = snapshot.child('Contact').val();
       var EContact = snapshot.child('EContact').val();
       var AddressV = snapshot.child('Address').val();
-      var CV = snapshot.child('CV').val();
+      var cv = snapshot.child('CV').val();
       var position = snapshot.child('Position').val();
       var InitialDate = snapshot.child('InitialDate').val();
       var EName = snapshot.child('EName').val();
       var ERelationship = snapshot.child('ERelationship').val();
       var BriefDescription = snapshot.child('BriefDescription').val();
-
+      var License = snapshot.child('License').val();
       //TODO:pictureing display
+      document.getElementById("sLicense").src = License;
       document.getElementById('imgS').src = photo;
       document.getElementById('SID').innerHTML= id;
       document.getElementById('sName').innerHTML= Name;
       document.getElementById('sNID').innerHTML= NationalID;
       document.getElementById('sGender').innerHTML= Gender;
-      document.getElementById("Passwo").innerHTML= Password;
+      document.getElementById("ssPassword").innerHTML= Password;
       document.getElementById('sNationality').innerHTML= Nationality ;
       document.getElementById('sEmail').innerHTML= Email;
       document.getElementById('sDOB').innerHTML= DOB;
       document.getElementById('sContact').innerHTML= Contact;
       document.getElementById('sEContact').innerHTML= EContact;
       document.getElementById('sAddress').innerHTML= AddressV ;
-      document.getElementById('sCV').innerHTML= CV;
+      document.getElementById('sCV').src= cv;
       document.getElementById('sPosition').innerHTML = position;
       document.getElementById('sInitialDate').innerHTML = InitialDate;
       document.getElementById('sEName').innerHTML = EName;
