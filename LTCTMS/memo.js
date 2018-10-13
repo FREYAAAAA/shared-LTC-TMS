@@ -12,7 +12,7 @@
 
      var mm = mm_index+1; // to make the month correct; For example: January is 0 , so add 1;
      // in order to have same format with "bday". orignal is 2018-9-13
-     if(mm_index<10){
+     if(mm_index<9){
          var mm = "0"+mm;
      }
      var nowadays = year +"-"+ mm+"-"+ dd; // 2018-09-13
@@ -46,6 +46,7 @@
 function popup_form(){
     document.getElementById("memo_text").value = "";
     document.getElementById("selected_date").value = year+"-"+mm+"-"+dd;
+    console.log(year+"-"+mm+"-"+dd);
     document.getElementById("form").style.display = "block";
 }
 function close_form(){
@@ -67,9 +68,11 @@ function submit(){
     location.reload();
 }
 
-default_display();
-function default_display(){
+window.onload=function(){
+    document.getElementById("years").innerHTML = year;
+
     var fbMemo = firebase.database().ref("MEMO/"+year_m);
+
     fbMemo.once("value")
     .then(function(snapshot){
         var array = [];
@@ -107,11 +110,14 @@ function lastMonth(){
     a[1] = a[1]-1;
     if(a[1]== 0){
         a[1] = 12;
+        a[0] = a[0]-1;
     }
-    console.log(a[1]);
+    console.log(a[0]);
     year_m = a[0]+"-"+a[1];
     console.log(year_m);
     document.getElementById("fullName_Month").innerHTML = Month[a[1]-1];
+    document.getElementById("years").innerHTML = a[0];
+
     var fbMemo = firebase.database().ref("MEMO/"+year_m);
     fbMemo.once("value")
     .then(function(snapshot){
@@ -140,10 +146,13 @@ function nextMonth(){
     a[1] =  parseInt(a[1]) +1;
     if(a[1]==13){
     a[1] = 1;
+    a[0] = parseInt(a[0]) +1;
     }
+    console.log(a[0]);
     year_m = a[0]+"-"+a[1];
     console.log(a[1]);
     document.getElementById("fullName_Month").innerHTML = Month[a[1]-1];
+    document.getElementById("years").innerHTML = a[0];
     var fbMemo = firebase.database().ref("MEMO/"+year_m);
     fbMemo.once("value")
     .then(function(snapshot){

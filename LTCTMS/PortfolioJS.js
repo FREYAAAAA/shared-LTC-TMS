@@ -768,10 +768,6 @@ function filterRoomNo() {
               }
             }
         }
-
-
-
-
       });
     });
 }
