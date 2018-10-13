@@ -26,11 +26,14 @@ var staffLicense = document.getElementById('staffLicense');
 var btnSubmitP = document.getElementById('btnSubmitP')
 
 btnPicture.addEventListener('change', handleuploadfile1);
-staffLicense.addEventListener('change', handleuploadfile2);
+staffLicense.addEventListener('change', handleuploadfile5);
+console.log(staffLicense);
 staffCV.addEventListener('change', handleuploadfile3);
+console.log(staffCV);
 
 //btnLicense.addEventListener('change', handleuploadfile2);
 btnSubmitP.addEventListener('click', handleuploadfileSubmit);
+console.log("12312412412");
 let file1 = [];
 let file4 = [];
 let file3 = [];
@@ -40,8 +43,8 @@ function handleuploadfile1(e) {
      console.log(file1.name);
 
 }
-function handleuploadfile2(e) {
-
+function handleuploadfile5(e) {
+console.log("999999999");
      file4=e.target.files[0];
      console.log(file4.name);
 }
@@ -53,10 +56,11 @@ function handleuploadfile3(e) {
 
 function handleuploadfileSubmit(e) {
     firebase.storage().ref('Staff/').child(file1.name).put(file1);
-    //firebase.storage().ref('Staff/').child(file4.name).put(file4);
+    firebase.storage().ref('Staff/').child(file4.name).put(file4);
     firebase.storage().ref('Staff/').child(file3.name).put(file3);
-     var storageRef1 = firebase.storage().ref('Staff/'+file1+".png")
-      var storageRef3 = firebase.storage().ref('Staff/'+file3+".png")
+     var storageRef1 = firebase.storage().ref('Staff/'+file1.name)
+      var storageRef3 = firebase.storage().ref('Staff/'+file3.name)
+      var storageRef4 = firebase.storage().ref('Staff/'+file4.name)
      //  var storageRef = firebase.storage().ref('Sponsor/'+name+".png")
 
 
@@ -95,10 +99,7 @@ function handleuploadfileSubmit(e) {
      var staffCV = document.getElementById('staffCV').value;
      var staffLicense = document.getElementById('staffLicense').value;
 
-    /* storageRef2.getDownloadURL()
-      .then(function(ur2){
-          firebase.database().ref(staffPosition+"/"+StaffID+"/Portfolio"+"/License/").set(url2);
-      });*/
+
 
      storageRef1.getDownloadURL()
       .then(function(url){
@@ -138,6 +139,11 @@ function handleuploadfileSubmit(e) {
            console.log(staffPosition+"/"+StaffID+"/Portfolio"+"/CV");
            firebase.database().ref(staffPosition+"/"+StaffID+"/Portfolio"+"/CV").set(url3);
        });
+       storageRef4.getDownloadURL()
+         .then(function(url4){
+           console.log(url4);
+             firebase.database().ref(staffPosition+"/"+StaffID+"/Portfolio"+"/License/").set(url4);
+         });
   }
 );
 }
@@ -511,6 +517,7 @@ console.log(position);
     var EName = snapshot.child('EName').val();
     var ERelationship = snapshot.child('ERelationship').val();
     var BriefDescription = snapshot.child('BriefDescription').val();
+    var License = snapshot.child('License').val();
     console.log(photo);
     //TODO: picture can't be edit?
     document.getElementById('PictureS').innerHTML = photo;
@@ -531,6 +538,7 @@ console.log(position);
     document.getElementById('staffEName2').value= EName;
     document.getElementById('staffERelationship2').value= ERelationship;
     document.getElementById('staffBriefDescription2').value= BriefDescription;
+    document.getElementById('stafflicense2').value= License;
   });
 
 }
@@ -612,6 +620,7 @@ function submitSP(){
   var EName = document.getElementById('staffEName2').value;
   var ERelationship = document.getElementById('staffERelationship2').value;
   var BriefDescription = document.getElementById('staffBriefDescription2').value;
+  var License = document.getElementById('stafflicense2').value;
 
   var updates = {};
   var postData={
@@ -633,6 +642,7 @@ function submitSP(){
   EName : EName,
   ERelationship : ERelationship,
   BriefDescription : BriefDescription,
+  License : License,
 
   };
   updates[ position +'/'+ id +'/Portfolio/'] = postData;

@@ -743,7 +743,7 @@ fbList.once("value")
     }
   location.reload();
 }
-function close_form(){
+function closeclose_form(){
     document.getElementById('form1').style.display ='none';
     var Table = document.getElementById("content");
     Table.innerHTML = ""

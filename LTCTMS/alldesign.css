@@ -922,6 +922,35 @@ font-size:16px;
   top:90%;
   left:90%;
 }
+.library_form-popup {
+  display: none;
+  position: absolute;
+  top: 36%;
+  left: 53%;
+  border: 5px solid #FFFFFF;
+  z-index: 9;
+  padding: 10px;
+  background-color: white;
+  height:60%;
+  width:45%;
+  overflow-y:auto;
+}
+.library_form-popup .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+.library_form-popup .cancel {
+  background-color: red;
+}
+.library_form-popup .btn:hover, .open-button:hover {
+  opacity: 1;
+}
 /* stop library */
 
 /* help and support */
