@@ -780,37 +780,32 @@ function filterRoomNo() {
     var selectedroom = document.getElementById('filterRoomNo').value;
     var fbPR = firebase.database().ref('Patient/');
     var tr = table.getElementsByTagName("tr");
-
     fbPR.once('value',function(snapshot){
       snapshot.forEach(function(childSnapshot){
           childSnapshot.forEach(function(childSnapshot1){
               if(childSnapshot1.key == "Portfolio"){
                   childSnapshot1.forEach(function(childSnapshot2){
                       var id = childSnapshot.key;
-                      var childData = childSnapshot2.key;
                       if(childSnapshot2.key == "patientRoomNo"){
-                          if (childSnapshot2.val() == selectedroom){
-                            for (var i = 0; i < tr.length; i++) {
-                              var td = tr[i].getElementsByTagName("td")[0];//row i cell number 0
-                              if(td){
-                              if (td.innerText == id) {
-                                  tr[i].style.display = "";
-                                  console.log(id);
-                                  console.log(td.innerText);
-                                }
-                                else {
-                                  tr[i].style.display = "none";
-                                  console.log(tr[i]);
-                                }
+                          if(childSnapshot2.val() == selectedroom){
+                              for( var i = 0; i < tr.length ; i++){
+                                  var td = tr[i].getElementsByTagName("td")[0];//row i cell number 4
+                                  if(td){
+                                    console.log(td);
+                                    if(td.innerText == id){
+                                    tr[i].style.display = "table-row";
+                                    }
+                                  }
                               }
-                            }
                           }
-                          if("all" == selectedroom){
-                              for (var i = 0; i < tr.length; i++) {
-                                var td = tr[i].getElementsByTagName("td")[0];//row i cell number 0
-                                if(td){
-                                    tr[i].style.display = "";
-                                }
+                          else{
+                              for( var i = 0; i < tr.length ; i++){
+                                  var td = tr[i].getElementsByTagName("td")[0];//row i cell number 4
+                                  if(td){
+                                      if(td.innerText == id){
+                                          tr[i].style.display = "none";
+                                      }
+                                  }
                               }
                           }
                       }
@@ -818,5 +813,23 @@ function filterRoomNo() {
               }
           })
       });
-    });
+  });
+  for( var i = 0; i < tr.length ; i++){// other position display "none"
+      var td = tr[i].getElementsByTagName("td")[0];//row i cell number 4
+      if(td){
+        console.log(td);
+        if(tr[i].style.display ==''){
+            tr[i].style.display = "none";
+        }
+      }
+  }
+  if("all" == selectedroom){
+      for( var i = 0; i < tr.length ; i++){
+          var td = tr[i].getElementsByTagName("td")[0];//row i cell number 4
+          if(td){
+                  tr[i].style.display = "";
+
+          }
+      }
+  }
 }
