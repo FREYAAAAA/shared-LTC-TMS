@@ -114,7 +114,6 @@ function handleuploadfileSubmit(e) {
        NationalID : staffNID,
        Nationality : staffNationality,
        Gender : staffGender,
-
        DOB : staffDOB,
        Email : staffEmail,
        Contact : staffContact,
@@ -131,7 +130,7 @@ function handleuploadfileSubmit(e) {
      updates[ staffPosition +'/'+StaffID +'/Portfolio/'] = postData;
      //updates['Portfolio/'+ StaffID] = postData;
      firebase.database().ref().update(updates);
-     //window.location.reload();
+
       });
       storageRef3.getDownloadURL()
        .then(function(url3){
@@ -146,6 +145,7 @@ function handleuploadfileSubmit(e) {
          });
   }
 );
+window.location.reload();
 }
 
 //Patient Portfolio Database Storing
@@ -153,22 +153,24 @@ var Uploader2 = document.getElementById('Uploader2');
 var btnPicture2 = document.getElementById('btnPicture2');
 var btnSubmitP2 = document.getElementById('btnSubmitP2')
 
-btnPicture2.addEventListener('change', handleuploadfile2);
+btnPicture2.addEventListener('change', handleuploadfile6);
 //btnLicense.addEventListener('change', handleuploadfile2);
-btnSubmitP2.addEventListener('click', handleuploadfileSubmit2);
+btnSubmitP2.addEventListener('click', handleuploadfileSubmit6);
 
-let file2;
+let file6 = [];
 
 
-function handleuploadfile2(e) {
-    file2=e.target.files[0];
+function handleuploadfile6(e) {
+    file6=e.target.files[0];
+     console.log(file6.name);
 }
 
 
-function handleuploadfileSubmit2(e) {
-
-var storageRef=firebase.storage().ref('Patient/'+file2.name);
-var uploadtask = storageRef.put(file2);
+function handleuploadfileSubmit6(e) {
+firebase.storage().ref('Patient/').child(file6.name).put(file6);
+var storageRef6=firebase.storage().ref('Patient/'+file6.name);
+console.log(file6);
+var uploadtask = storageRef6.put(file6);
 
 uploadtask.on('state_changed',
 
@@ -206,7 +208,9 @@ uploadtask.on('state_changed',
      //var CNAID = document.getElementById('CNAID').value;
 
 
-     storageRef.getDownloadURL().then(function(url){
+     storageRef6.getDownloadURL()
+     .then(function(url){
+
        console.log("Success");
        console.log(url);
        var updates = {};
@@ -452,7 +456,7 @@ function editPP(){
     var AddressV = snapshot.child('Address').val();
     var pass = snapshot.child('Password').val();
     var roomno = snapshot.child('patientRoomNo').val();
-    var CNAname = snapshot.child('CNAName').val();
+    //var CNAname = snapshot.child('CNAName').val();
     var AR = snapshot.child('AppointmentRecord').val();
     var MR = snapshot.child('MedicalRecord').val();
     var BD = snapshot.child('BriefDescription').val();
@@ -470,8 +474,8 @@ function editPP(){
     document.getElementById('patientNID2').value= NationalID;
     document.getElementById('patientGender2').value= Gender;
     document.getElementById('patientRoomNo2').value= roomno;
-    document.getElementById('CNAName2').value= CNAname;
-    document.getElementById('CNAID2').value= CNAID;
+    //document.getElementById('CNAName2').value= CNAname;
+    //document.getElementById('CNAID2').value= CNAID;
     document.getElementById('patientNationality2').value= Nationality ;
     document.getElementById('patientEmail2').value= Email;
     document.getElementById('patientDOB2').value= DOB;
@@ -544,15 +548,16 @@ console.log(position);
 }
 
 //Updating patient portfolio
-function submitPP(){
+function SubmitPPPP(){
+  console.log("poi");
   var photo = document.getElementById('PictureP').innerText;
   var id = document.getElementById('PatientID2').value;
   var Name = document.getElementById('patientName2').value;
   var NID = document.getElementById('patientNID2').value;
   var Gender = document.getElementById('patientGender2').value;
   var Room = document.getElementById('patientRoomNo2').value;
-  var CNAname = document.getElementById('CNAName2').value;
-  var CNAID = document.getElementById('CNAID2').value;
+  //var CNAname = document.getElementById('CNAName2').value;
+  //var CNAID = document.getElementById('CNAID2').value;
   var Nationality = document.getElementById('patientNationality2').value;
   var Email = document.getElementById('patientEmail2').value;
   var DOB = document.getElementById('patientDOB2').value;
