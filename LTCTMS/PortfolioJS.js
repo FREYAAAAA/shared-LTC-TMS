@@ -783,36 +783,40 @@ function filterRoomNo() {
 
     fbPR.once('value',function(snapshot){
       snapshot.forEach(function(childSnapshot){
-        var id = childSnapshot.key;
-        var childData = childSnapshot.val();
-        var room = childData.patientRoomNo;
-        console.log(childData.patientRoomNo);
-        if (room == selectedroom){
-          for (var i = 0; i < tr.length; i++) {
-            var td = tr[i].getElementsByTagName("td")[0];//row i cell number 0
-            if(td){
-            if (td.innerText == id) {
-                tr[i].style.display = "";
-                console.log(id);
-              } else {
-                tr[i].style.display = "none";
+          childSnapshot.forEach(function(childSnapshot1){
+              if(childSnapshot1.key == "Portfolio"){
+                  childSnapshot1.forEach(function(childSnapshot2){
+                      var id = childSnapshot.key;
+                      var childData = childSnapshot2.key;
+                      if(childSnapshot2.key == "patientRoomNo"){
+                          if (childSnapshot2.val() == selectedroom){
+                            for (var i = 0; i < tr.length; i++) {
+                              var td = tr[i].getElementsByTagName("td")[0];//row i cell number 0
+                              if(td){
+                              if (td.innerText == id) {
+                                  tr[i].style.display = "";
+                                  console.log(id);
+                                  console.log(td.innerText);
+                                }
+                                else {
+                                  tr[i].style.display = "none";
+                                  console.log(tr[i]);
+                                }
+                              }
+                            }
+                          }
+                          if("all" == selectedroom){
+                              for (var i = 0; i < tr.length; i++) {
+                                var td = tr[i].getElementsByTagName("td")[0];//row i cell number 0
+                                if(td){
+                                    tr[i].style.display = "";
+                                }
+                              }
+                          }
+                      }
+                  })
               }
-            }
-          }
-        }
-        if("all" == selectedroom){
-            for (var i = 0; i < tr.length; i++) {
-              var td = tr[i].getElementsByTagName("td")[0];//row i cell number 0
-              if(td){
-              if (td.innerText == id) {
-                  tr[i].style.display = "";
-                  console.log(id);
-                } else {
-                  tr[i].style.display = "none";
-                }
-              }
-            }
-        }
+          })
       });
     });
 }
