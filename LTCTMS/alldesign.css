@@ -60,20 +60,18 @@ body {
 }
 .tms_logo {
   position:absolute;
-  right:1415px;
+  left:10px;
   top:10px;
 }
 .language_option {
   position:absolute;
-  Right:10px;
-  top:5px;
+  left:10px;
+  top:10px;
 }
 .logout_button {
-      border-radius: 8px;
-      height:30px;
-      width:80px;
-      padding:5px 5px;
-      background-color:#aaa;
+    border-radius: 8px;
+    padding:5px 5px;
+    background-color:#aaa;
 }
 .nav_position {
   position: absolute;
@@ -165,13 +163,28 @@ table td {
 
 /* stop login */
 /* status record */
+.environment_table{
+    position:absolute;
+    top:73%;
+    left:18%;
+    width:20%;
+    height:20%;
+    border-collapse: collapse;
+    display:block;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color:#DCDCDC;
+    background-color:rgba(255, 255, 255, .8);
+    border: 5px solid rgba(255, 255, 255, .4);
+}
+
 .daily_status_record {
-  width: 500px;
+  width: 43%;
   border-collapse: collapse;
   position:absolute;
-  top:140px;
-  left:400px;
-  height:550px;
+  top:110px;
+  left:18%;
+  height:52.5%;
   display:block;
   overflow-x: hidden;
   overflow-y: auto;
@@ -179,12 +192,12 @@ table td {
   border: 5px solid rgba(255, 255, 255, .4);
 }
 .a_i_status {
-  width: 400px;
+  width: 30%;
   border-collapse: collapse;
   position:absolute;
-  top:140px;
-  left:1000px;
-  height:150px;
+  top:15%;
+  left:65.5%;
+  height:36%;
   display:block;
   overflow-x: hidden;
   overflow-y: auto;
@@ -193,12 +206,12 @@ table td {
   border: 5px solid rgba(255, 255, 255, .4);
 }
 .vital_status_record {
-  width: 400px;
+  width: 30%;
   border-collapse: collapse;
   position:absolute;
-  top:340px;
-  left:1000px;
-  height:150px;
+  top:57%;
+  left:65.5%;
+  height:36%;
   display:block;
   overflow-x: hidden;
   overflow-y: auto;
@@ -207,12 +220,12 @@ table td {
   border: 5px solid rgba(255, 255, 255, .4);
 }
 .special_care {
-  width: 400px;
+  width: 20%;
   border-collapse: collapse;
   position:absolute;
-  top:540px;
-  left:1000px;
-  height:150px;
+  top:73%;
+  left:41%;
+  height:20%;
   display:block;
   overflow-x: hidden;
   overflow-y: auto;
@@ -223,17 +236,20 @@ table td {
 .status_record_option {
   position:absolute;
   top:410px;
-  left:90px
+  left:5%;
+  text-align:center;
 }
 .status_record_date_option {
   position:absolute;
   top:350px;
   left:70px;
+  text-align:center;
 }
 .status_record_display_button {
   position:absolute;
   top:530px;
   left:100px;
+  text-align:center;
 }
 /* stop status record */
 
@@ -861,12 +877,15 @@ table td {
 }
 .library_table_firstbox {
   padding:6px 40px;
+  width:30%;
 }
 .library_table_secondbox {
   padding:6px 105px;
+  width:55%;
 }
 .library_table_thirdbox {
   padding:6px 70px;
+  width:25%;
 }
 .library_assigntaskbutton {
 width:80px;
@@ -909,7 +928,7 @@ font-size:16px;
 .library_historytable {
   position:absolute;
   left:4%;
-  width:100%;
+  width:96.5%;
   border-style:hidden;
 }
 .library_historysubmit {

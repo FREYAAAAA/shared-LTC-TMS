@@ -235,6 +235,12 @@ url.once("value").then(function(snapshot){
 }
 
 
+function DownloadNewCS(){
+var url= firebase.storage().ref('CenterSchedule/csnew.xlsx');
+url.getDownloadURL().then(function(ur2) {
+      window.location = ur2;
+   });
+   }
 
 
 //Working Schedule table
@@ -348,12 +354,25 @@ url.once("value").then(function(snapshot){
    window.location = downloadURL;
 });
 }
+function DownloadNewWS(){
+var url= firebase.storage().ref('CenterSchedule/wsnew.xlsx');
+url.getDownloadURL().then(function(ur2) {
+      window.location = ur2;
+   });
+   }
 
 
 //Working hour
 function AddNewWH(){
 document.getElementById('newWHBlock').style.display ='block';
 }
+
+function DownloadNewWH(){
+var url= firebase.storage().ref('CenterSchedule/whnew.xlsx');
+url.getDownloadURL().then(function(ur2) {
+      window.location = ur2;
+   });
+   }
 
 //Upload file
 var uploader2 = document.getElementById('uploader2');

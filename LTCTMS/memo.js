@@ -63,9 +63,16 @@ function submit(){
 
     year_m = a[0]+"-"+a[1];
     dd = a[2];
+
+    if(text == ""){
+      close_form();
+      location.reload();
+    }
+    else {
     firebase.database().ref("MEMO/"+year_m+"/"+dd+"-"+time).set(text);
     close_form();
     location.reload();
+  }
 }
 
 window.onload=function(){
