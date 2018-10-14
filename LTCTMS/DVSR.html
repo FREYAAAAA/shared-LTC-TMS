@@ -9,8 +9,8 @@
 <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
 <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script type = 'text/javascript' src = '/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Config.js'></script>
-<script type = 'text/javascript' src = '/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/DVSR.js'></script>
+<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Config.js'></script>
+<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/DVSR.js'></script>
 
 <link rel="stylesheet" href="alldesign.css">
 </head>
@@ -64,6 +64,13 @@
     </tr>
     </table>
 
+<div style=" position:absolute; top:43%; left:98%;">
+<input type = "button" onclick="viewMore()" value="view more" style="position:absolute;right:20px; top:60px;">
+</div>
+
+
+
+
 
 <table id="VSR_table" class="vital_status_record">
     <tr>
@@ -78,15 +85,22 @@
     </tr>
 </table>
 
-<input type = "button" onclick="viewMore()" value="view more" style="position:absolute;right:20px; top:60px;">
-
-<div class="memo_form-popup" id="form" style="position:absolute;right:20px; top:60px;display:none">
-    <table id = "heartRateRecord">
+<div class="dvsr_form-popup" id="form" style="position:absolute;left:250px; top:100px;display:none;overflow-y:scroll;">
+<div style="position:absolute; left:10px;top:18px;">
+<table id = "heartRateRecord" style="border-style:hidden;">
         <tr>
-            <th colspan="3"> HeartRateRecord</th>
+            <th colspan="3"> Heart Rate Record</th>
         </tr>
-    </table>
-    <button type="button" class="btn cancel" onclick="close_form()">Close</button>
+</table>
+</div>
+<div style="position:absolute; left:620px;top:18px;">
+<table id="VisitRecord" style="border-style:hidden;">
+  <tr>
+      <th colspan="3" onclick="sortvisitrecord()"> Visit Record</th>
+  </tr>
+</table>
+</div>
+    <button type="button" class="btn cancel" onclick="close_form()"><p style="position:absolute; top:-6px;left:16.5px;">X</p></button>
 </div>
 
 <div class="status_record_option">
@@ -94,7 +108,7 @@
 <option>Patient ID</option>
 </select>
 <br><br><br>
-<select id="selectCNA">
+<select id="selectCNA" style="width:70px;">
     <option>CNA ID</option>
 </select>
 <br><br><br>
