@@ -60,16 +60,18 @@ body {
 }
 .tms_logo {
   position:absolute;
-  left:10px;
-  top:10px;
+  left:1%;
+  top:1.5%;
 }
 .language_option {
   position:absolute;
-  left:10px;
-  top:10px;
+  left:90%;
+  top:1%;
 }
 .logout_button {
     border-radius: 8px;
+    height:30px;
+    width:80px;
     padding:5px 5px;
     background-color:#aaa;
 }
