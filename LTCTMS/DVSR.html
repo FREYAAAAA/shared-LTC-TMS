@@ -9,9 +9,8 @@
 <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
 <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Config.js'></script>
-<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/DVSR.js'></script>
-
+<script type = 'text/javascript' src = '/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Config.js'></script>
+<script type = 'text/javascript' src = '/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/DVSR.js'></script>
 
 <link rel="stylesheet" href="alldesign.css">
 </head>
@@ -63,7 +62,7 @@
     <tr>
         <th colspan="3"> A.I. Status </th>
     </tr>
-</table>
+    </table>
 
 
 <table id="VSR_table" class="vital_status_record">
@@ -79,13 +78,25 @@
     </tr>
 </table>
 
+<input type = "button" onclick="viewMore()" value="view more" style="position:absolute;right:20px; top:60px;">
+
+<div class="memo_form-popup" id="form" style="position:absolute;right:20px; top:60px;display:none">
+    <table id = "heartRateRecord">
+        <tr>
+            <th colspan="3"> HeartRateRecord</th>
+        </tr>
+    </table>
+    <button type="button" class="btn cancel" onclick="close_form()">Close</button>
+</div>
 
 <div class="status_record_option">
 <select id="selectPAT" onclick = "clearBox()"  onchange = "selectPatient()" >
 <option>Patient ID</option>
 </select>
 <br><br><br>
-<select id="selectCNA"></select>
+<select id="selectCNA">
+    <option>CNA ID</option>
+</select>
 <br><br><br>
 </div>
 

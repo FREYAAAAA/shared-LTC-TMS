@@ -8,13 +8,14 @@ fbPAT.once("value")
         var index = 0;
         snapshot.forEach(function(childSnapshot){
           var childKey = childSnapshot.key;
-           array.push(childKey); // add the childkey into array, push is add
-          console.log(array[index]); // to show the key on the console
-          var x = document.getElementById("selectPAT");
-          var opt = document.createElement("option");
-         opt.text= array[index];
-          x.add(opt);
-          index=index+1;
+          if(childSnapshot.key != "EnvironmentStatus"){
+               array.push(childKey); // add the childkey into array, push is add
+              var x = document.getElementById("selectPAT");
+              var opt = document.createElement("option");
+             opt.text= array[index];
+              x.add(opt);
+              index=index+1;
+          }
        });
     });
 
@@ -39,26 +40,52 @@ fbPAT.once("value")
         recreated_search = arr[0]+"-"+arr[1]+"-"+arr[2];
         var selected_id = document.getElementById("selectPAT").value;// get the patient's ID
         var fbPAT_CNA= firebase.database().ref("Activities/"+selected_id+"/"+recreated_search);
+        var fbRoom = firebase.database().ref("Patient/"+selected_id+"/Portfolio/patientRoomNo")
+        fbRoom.once("value")
+            .then(function(snapshot){
+            var room = snapshot.val();
+            console.log(room);
+            display_Environment(room, recreated_search);
+            })
 
         //grab the Patient's ID from database and put into the selected box
         fbPAT_CNA.once("value")
             .then(function(snapshot){
                 var arr = [];
                 var i = 0;
-                snapshot.forEach(function(CNA_childSnapshot){
-                  var CNA_childKey = CNA_childSnapshot.key;
-                   arr.push(CNA_childKey); // add the childkey into array, push is add
-                  console.log(arr[i]); // to show the key on the console
-                  var y = document.getElementById("selectCNA");
-                  var option = document.createElement("option");
-                 option.text= arr[i];
-                  y.add(option);
-                  console.log(i);
-                  i=i+1;
+                snapshot.forEach(function(childSnapshot){
+                    if(childSnapshot.key != "AI"){
+                        arr.push(childSnapshot.key); // add the childkey into array, push is add
+                       console.log(arr[i]); // to show the key on the console
+                       var y = document.getElementById("selectCNA");
+                       var option = document.createElement("option");
+                      option.text= arr[i];
+                       y.add(option);
+                       console.log(i);
+                       i=i+1;
+                    }
               });
-            });
+        });
     }
 
+function display_Environment(room, recreated_search){
+    console.log(room);
+    var fbEnv= firebase.database().ref("Activities/EnvironmentStatus/"+recreated_search+"/"+room);
+    fbEnv.once("value")
+        .then(function(snapshot){
+            snapshot.forEach(function(childSnapshot1){
+                var row = Environmenttable.insertRow(1);
+                var roomNo = row.insertCell(0)
+                var time = row.insertCell(1);
+                var val = row.insertCell(2);
+                roomNo.appendChild(document.createTextNode(room));
+                time.appendChild(document.createTextNode(childSnapshot1.key));
+                val.appendChild(document.createTextNode(childSnapshot1.val()));
+            })
+
+        })
+
+}
 
 
 
@@ -127,23 +154,75 @@ fbPAT.once("value")
                 })
             })
 
-            var fbPAT_AI = firebase.database().ref("Activities/"+selected_id+"/"+recreated_search+"/"+selected_CNA+"/AI");
+            var fbPAT_AI = firebase.database().ref("Activities/"+selected_id+"/"+recreated_search+"/AI");
                 fbPAT_AI.once("value")
                 .then(function(snapshot){
-                    var array = [];
-                    var array_val = [];
-                    var index = 0;
                     snapshot.forEach(function(childSnapshot){
-                        var childKey = childSnapshot.key;
-                        var childData = childSnapshot.val();
-                        array.push(childKey);
-                        console.log(childData);
-                        console.log(array[index]);
-                        var row = AI_table.insertRow(1);
-                        var cellId = row.insertCell(0)
-                        var celleventDate = row.insertCell(1);
-                        cellId.appendChild(document.createTextNode(childKey));
-                        celleventDate.appendChild(document.createTextNode(childData));
+                        console.log(childSnapshot.key);
+                        if(childSnapshot.key =="HeartRate"){
+                            childSnapshot.forEach(function(childSnapshot1){
+                                var row = AI_table.insertRow(1);
+                                var a = childSnapshot1.val().split("→");
+                                var heartRate = row.insertCell(0)
+                                var time = row.insertCell(1);
+                                var rate = row.insertCell(2);
+                                a[0] = a[0].replace("~",":");//22:33~11
+                                a[0] = a[0].replace("~",":");//22:33:11
+                                heartRate.appendChild(document.createTextNode(childSnapshot.key));
+                                time.appendChild(document.createTextNode(a[0]));
+                                rate.appendChild(document.createTextNode(a[1]));
+                            })
+                        }
+                        if(childSnapshot.key =="HeartRateRecord"){
+                            childSnapshot.forEach(function(childSnapshot1){
+                                var row = heartRateRecord.insertRow(1);
+                                var heartRate = row.insertCell(0)
+                                var time = row.insertCell(1);
+                                var rate = row.insertCell(2);
+                                heartRate.appendChild(document.createTextNode(childSnapshot.key));
+                                time.appendChild(document.createTextNode(childSnapshot1.key));
+                                rate.appendChild(document.createTextNode(childSnapshot1.val()));
+                            })
+                        }
+                        if(childSnapshot.key =="Step"){
+                            childSnapshot.forEach(function(childSnapshot1){
+                                var row = AI_table.insertRow(1);
+                                var a = childSnapshot1.val().split("→");
+                                var Step = row.insertCell(0)
+                                var time = row.insertCell(1);
+                                var totalStep = row.insertCell(2);
+                                a[0] = a[0].replace("~",":");
+                                Step.appendChild(document.createTextNode(childSnapshot.key));
+                                time.appendChild(document.createTextNode(a[0]));
+                                totalStep.appendChild(document.createTextNode(a[1]));
+                            })
+                        }
+                        var BreakException = {};
+                        if(childSnapshot.key =="Location"){
+
+                                childSnapshot.forEach(function(childSnapshot1){
+                                    try {//break
+                                    childSnapshot1.forEach(function(childSnapshot2){
+                                        var row = AI_table.insertRow(1);
+                                        var a = childSnapshot2.val().split("→");
+                                        a[1] = a[1].replace("~",":");
+                                        var lastvisit = row.insertCell(0);
+                                        var place = row.insertCell(1)
+                                        var time = row.insertCell(2);
+                                        lastvisit.appendChild(document.createTextNode("Last Visit:"));
+                                        place.appendChild(document.createTextNode(childSnapshot1.key));
+                                        time.appendChild(document.createTextNode(a[1]));
+                                        throw BreakException;
+                                    })
+                                }
+                                catch (e) {
+                                    if (e !== BreakException) throw e;
+                                }
+
+                            })
+                        }
+
+
                 })
             })
 
@@ -203,7 +282,12 @@ fbPAT.once("value")
             //    var AI_data = snapshot.child("")
         //    })
 
-
+function viewMore(){
+    document.getElementById("form").style.display = "block";
+}
+function close_form(){
+    document.getElementById("form").style.display = "none";
+}
 
 window.onload=function(){
 // displaying the current date
