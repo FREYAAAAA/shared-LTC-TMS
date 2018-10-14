@@ -9,8 +9,8 @@
 <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
 <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script type = 'text/javascript' src = 'C:\Users\kong\Documents\GitHub\shared-LTC-TMS\LTCTMS\Config.js'></script>
-<script type = 'text/javascript' src = 'C:\Users\kong\Documents\GitHub\shared-LTC-TMS\LTCTMS\DVSR.js'></script>
+<script type = 'text/javascript' src = '/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Config.js'></script>
+<script type = 'text/javascript' src = '/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/DVSR.js'></script>
 
 
 <link rel="stylesheet" href="alldesign.css">
@@ -51,34 +51,36 @@
 
 <table  id="DSR_table" class="daily_status_record" >
     <tr>
-        <th colspan="2"> Daily Status Record </th>
+        <th colspan="3"> Daily Status Record </th>
     </tr>
 </table>
 
 
 <table id="AI_table" class="a_i_status">
     <tr>
-        <th colspan="2"> A.I. Status </th>
+        <th colspan="3"> A.I. Status </th>
     </tr>
 </table>
 
 
 <table id="VSR_table" class="vital_status_record">
     <tr>
-        <th colspan="2"> Vital Status Record </th>
+        <th colspan="3"> Vital Status Record </th>
     </tr>
 </table>
 
 
 <table id="SC_table" class="special_care">
     <tr>
-        <th colspan="2"> Special Care</th>
+        <th colspan="3"> Special Care</th>
     </tr>
 </table>
 
 
 <div class="status_record_option">
-<select id="selectPAT" onclick = "clearBox()"  onchange = "selectPatient()" ></select>
+<select id="selectPAT" onclick = "clearBox()"  onchange = "selectPatient()" >
+<option>Patient ID</option>
+</select>
 <br><br><br>
 <select id="selectCNA"></select>
 <br><br><br>
@@ -89,20 +91,11 @@
 <h1 id="current_month"></h1>
 <h1 id="current_year"></h1>
 <h1 id="current_week"></h1>
-<script>
-document.getElementById('current_date').innerHTML = dd;
-document.getElementById("current_month").innerHTML = month[mm_index];
-document.getElementById("current_week").innerHTML = weekday[wk_index];
-document.getElementById("current_year").innerHTML = year;
-</script>
+
 <!--view date button-->
 
 <div class="status_record_date_option">
   <input type="date" id="bday">
-  <script>
-  console.log(nowadays);
-  document.getElementById("bday").value = nowadays;
-  </script>
 <br><br>
 </div>
 <input class="status_record_display_button" type = "button" value="Display"  onclick = "return display_button (this);"/>

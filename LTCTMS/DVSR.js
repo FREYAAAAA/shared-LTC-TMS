@@ -87,10 +87,43 @@ fbPAT.once("value")
                     console.log(childData);
                     console.log(array[index]);
                     var row = DSR_table.insertRow(1);
-                    var cellId = row.insertCell(0)
-                    var celleventDate = row.insertCell(1);
-                    cellId.appendChild(document.createTextNode(childKey));
-                    celleventDate.appendChild(document.createTextNode(childData));
+                    var time = row.insertCell(0)
+                    var Evt = row.insertCell(1);
+                    var val = row.insertCell(2);
+                    var a = childKey.split("_");
+                    var SCrow = SC_table.insertRow(1);
+                    if(a[1] == "Oxygen used" ){
+                        row.remove();
+                        var SCtime = SCrow.insertCell(0)
+                        var SCEvt = SCrow.insertCell(1);
+                        var SCval = SCrow.insertCell(2);
+                        SCtime.appendChild(document.createTextNode(a[0]));
+                        SCEvt.appendChild(document.createTextNode(a[1]));
+                        SCval.appendChild(document.createTextNode(childData));
+                    }
+                    if(a[1] == "Steam used"){
+                        row.remove();
+                        var SCtime = SCrow.insertCell(0)
+                        var SCEvt = SCrow.insertCell(1);
+                        var SCval = SCrow.insertCell(2);
+                        SCtime.appendChild(document.createTextNode(a[0]));
+                        SCEvt.appendChild(document.createTextNode(a[1]));
+                        SCval.appendChild(document.createTextNode(childData));
+                    }
+                    else{
+                        time.appendChild(document.createTextNode(a[0]));
+                        Evt.appendChild(document.createTextNode(a[1]));
+                        if(childData == "true"){
+                            childData = "Yes";
+                            val.appendChild(document.createTextNode(childData));
+                        }
+                        else{
+                            val.appendChild(document.createTextNode(childData));
+                        }
+
+                    }
+
+
                 })
             })
 
@@ -114,7 +147,7 @@ fbPAT.once("value")
                 })
             })
 
-            var fbPAT_VSR = firebase.database().ref("Activities/"+selected_id+"/"+recreated_search+"/"+selected_CNA+"/vital status");
+            var fbPAT_VSR = firebase.database().ref("Activities/"+selected_id+"/"+recreated_search+"/"+selected_CNA+"/vital_status");
                 fbPAT_VSR.once("value")
                 .then(function(snapshot){
                     var array = [];
@@ -127,10 +160,22 @@ fbPAT.once("value")
                         console.log(childData);
                         console.log(array[index]);
                         var row = VSR_table.insertRow(1);
-                        var cellId = row.insertCell(0)
-                        var celleventDate = row.insertCell(1);
-                        cellId.appendChild(document.createTextNode(childKey));
-                        celleventDate.appendChild(document.createTextNode(childData));
+                        var time = row.insertCell(0)
+                        var Evt = row.insertCell(1);
+                        var val = row.insertCell(2);
+
+                        var a = childKey.split("_");
+
+                        time.appendChild(document.createTextNode(a[0]));
+                        Evt.appendChild(document.createTextNode(a[1]));
+
+                        if(childData == "true"){
+                            childData = "Yes";
+                            val.appendChild(document.createTextNode(childData));
+                        }
+                        else{
+                            val.appendChild(document.createTextNode(childData));
+                        }
                 })
             })
             var fbPAT_SC = firebase.database().ref("Activities/"+selected_id+"/"+recreated_search+"/"+selected_CNA+"/special care");
@@ -160,7 +205,7 @@ fbPAT.once("value")
 
 
 
-
+window.onload=function(){
 // displaying the current date
     var today = new Date();
     var dd = today.getDate();
@@ -169,14 +214,22 @@ fbPAT.once("value")
     var weekday =  ["Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     var month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
      var wk_index = today.getDay();
+
      if (dd<10){
          dd = "0"+dd;
      }
+     document.getElementById('current_date').innerHTML = dd;
+     document.getElementById("current_month").innerHTML = month[mm_index];
+     document.getElementById("current_week").innerHTML = weekday[wk_index];
+     document.getElementById("current_year").innerHTML = year;
 
      //defaut date is today's  patinet's vital record
      var mm = mm_index+1; // to make the month correct; For example: January is 0 , so add 1;
      // in order to have same format with "bday". orignal is 2018-9-13
-     if(mm_index<10){
+     if(mm_index<9){
          var mm = "0"+mm;
      }
     var nowadays = year +"-"+ mm+"-"+ dd; // 2018-09-13
+    document.getElementById("bday").value = nowadays;
+
+}
