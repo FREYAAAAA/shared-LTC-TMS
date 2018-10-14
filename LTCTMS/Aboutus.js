@@ -16,6 +16,8 @@ function aboutus_submit(){
     document.getElementById("aboutus_text").disabled = true;
     document.getElementById("aboutus_button").style.display = "none";
     firebase.database().ref("CenterInformation/Aboutus").set(text);
+    firebase.database().ref("CenterInformation/AboutusAndroid").set("$$"+text+"$$");
+
 }
 
 var fbCI = firebase.database().ref("CenterInformation/ContactInfo");
@@ -67,6 +69,12 @@ function CI_submit(){
     firebase.database().ref("CenterInformation/ContactInfo/Contact No").set(contact_no);
     firebase.database().ref("CenterInformation/ContactInfo/Email Address").set(email_address);
     firebase.database().ref("CenterInformation/ContactInfo/Address").set(address);
+
+    firebase.database().ref("CenterInformation/ContactInfo/NameAndroid").set("$$"+name+"$$");
+    firebase.database().ref("CenterInformation/ContactInfo/ContactNoAndroid").set("$$"+contact_no+"$$");
+    firebase.database().ref("CenterInformation/ContactInfo/EmailAddressAndroid").set("$$"+email_address+"$$");
+    firebase.database().ref("CenterInformation/ContactInfo/AddressAndroid").set("$$"+address+"$$");
+
     document.getElementById("aboutus_text").disabled = true;
     document.getElementById("CI_button").style.display = "none";
     document.getElementById("Name1").style.display = "none";
