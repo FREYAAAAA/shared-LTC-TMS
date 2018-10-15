@@ -760,7 +760,7 @@ fbList.once("value")
         }
         b++
     }
-  location.reload();
+  //location.reload();
 }
 function closeclose_form(){
     document.getElementById('form1').style.display ='none';
