@@ -760,8 +760,13 @@ fbList.once("value")
         }
         b++
     }
-  //location.reload();
+    var r = alert("Task has been unassigned!");
+             if(true)
+             {
+               window.location.reload();
+             }
 }
+
 function closeclose_form(){
     document.getElementById('form1').style.display ='none';
     var Table = document.getElementById("content");
