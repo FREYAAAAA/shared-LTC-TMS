@@ -751,7 +751,7 @@ fbList.once("value")
                  unchecked.remove();
             }
         }
-        if(table.rows[b].cells[0].innerHTML  == "Family"){
+        if(table.rows[b].cells[0].innerHTML  == "Patient"){
             if (document.getElementById("checkbox_id["+a+"]").checked == false){
                 console.log("Patient/"+table.rows[b].cells[1].innerHTML+"/Task"+"/"+table.rows[b].cells[3].innerHTML+"/"+table.rows[b].cells[4].innerHTML);
                  var famunchecked = firebase.database().ref("Patient/"+table.rows[b].cells[1].innerHTML+"/Task"+"/"+table.rows[b].cells[3].innerHTML+"/"+table.rows[b].cells[4].innerHTML);
