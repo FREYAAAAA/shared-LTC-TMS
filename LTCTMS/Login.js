@@ -10,7 +10,7 @@
      if (childSnapshot.key == "Name"){
        document.getElementById('contactname').innerHTML=childSnapshot.val();
      }
-     if (childSnapshot.key == "Email Address"){
+     if (childSnapshot.key == "Email"){
        document.getElementById('contactemail').innerHTML=childSnapshot.val();
      }
      if (childSnapshot.key == "Contact No"){
@@ -23,7 +23,7 @@
    });
 
 
-   var logincontact= firebase.database().ref("CenterInformation/")
+   var logincontact= firebase.database().ref("CenterInformation/"+"ContactInfo/")
 
    logincontact.once('value')
    .then(function(snapshot){

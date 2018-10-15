@@ -115,7 +115,7 @@ table td {
 .spilt_layout2{
     background-color: #aaa;
     width:0.5%;
-    height:186%;
+    height:86%;
     position:absolute;
     top:13%;
     left:18%;
@@ -1055,7 +1055,7 @@ box-shadow: 2px 2px;
 #hidebox{
   width:82%;
   height:186%;
-  opacity:.4;
+  opacity:1;
   top:13%;
   left:18%;
   position:absolute;

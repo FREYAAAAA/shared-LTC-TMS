@@ -405,11 +405,11 @@ function MainstepPageGenerator(j){
 var body = document.getElementById("showbox");
 var tbl = document.createElement("table");
 tbl.setAttribute("id","Mtable"+j);
-var range = -210;
+var range = 660;
 var i = j;
 console.log(j);
 if( j == 1){
-  tbl.setAttribute("style","position:absolute;width:500px;top:680px;left:"+range+"px;height:600px;background-color:rgba(255, 255, 255, .8);border:1px solid rgba(0, 0, 0, .8)");
+  tbl.setAttribute("style","position:absolute;width:500px;top:-4.2px;left:"+range+"px;height:603px;background-color:rgba(255, 255, 255, .8);border:1px solid rgba(0, 0, 0, .8);border: 5px solid rgba(255, 255, 255, .4);");
 }
 else{
   j=j-1;
@@ -417,7 +417,7 @@ else{
   var r = range + extend;
   console.log(r);
   console.log(range);
-  tbl.setAttribute("style","position:absolute;width:500px;top:680px;left:"+r+"px;height:600px;background-color:rgba(255, 255, 255, .8);border:1px solid rgba(0, 0, 0, .8)");
+  tbl.setAttribute("style","position:absolute;width:500px;top:-4.2px;left:"+r+"px;height:603px;background-color:rgba(255, 255, 255, .8);border:1px solid rgba(0, 0, 0, .8);border: 5px solid rgba(255, 255, 255, .4);");
   j++;
 }
 

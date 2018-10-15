@@ -125,12 +125,12 @@ function handleuploadfileSubmit(e) {
        EName : staffEName,
        ERelationship : staffERelationship,
        BriefDescription : staffbriefdescription,
-
+       CV: staffCV,
+       License: staffLicense,
      };
      updates[ staffPosition +'/'+StaffID +'/Portfolio/'] = postData;
      //updates['Portfolio/'+ StaffID] = postData;
-     firebase.database().ref().update(updates);
-
+    firebase.database().ref().update(updates);
       });
       storageRef3.getDownloadURL()
        .then(function(url3){
@@ -142,10 +142,11 @@ function handleuploadfileSubmit(e) {
          .then(function(url4){
            console.log(url4);
              firebase.database().ref(staffPosition+"/"+StaffID+"/Portfolio"+"/License/").set(url4);
+             location.reload();
+
          });
-  }
-);
-window.location.reload();
+  });
+
 }
 
 //Patient Portfolio Database Storing

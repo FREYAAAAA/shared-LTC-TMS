@@ -295,12 +295,13 @@ uploadtask.on('state_changed',
      };
      updates['WorkingSchedule/' + postKey] = postData;
      firebase.database().ref().update(updates);
-     //window.location.reload();
+     window.location.reload();
 
      });
   }
 );
 }
+
 
 //Display WS table
 var rowIndexWS = 1;
