@@ -15,8 +15,8 @@ function aboutus_submit(){
     var text = $("#aboutus_text").val();
     document.getElementById("aboutus_text").disabled = true;
     document.getElementById("aboutus_button").style.display = "none";
-    firebase.database().ref("CenterInformation/Aboutus").set(text);
-    firebase.database().ref("CenterInformation/AboutusAndroid").set("$$"+text+"$$");
+    firebase.database().ref("CenterInformation/ContactInfo/Aboutus").set(text);
+    firebase.database().ref("CenterInformation/ContactInfo/AboutusAndroid").set("$$"+text+"$$");
 
 }
 

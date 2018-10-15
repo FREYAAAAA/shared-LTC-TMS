@@ -81,9 +81,11 @@ console.log(length);
     }
     else{
         for(var i = 1; i < tr.length; i= i+1){
-            var c = i-1;
-            var value = document.getElementById("checkbox_name["+c+"]");
-            value.checked = false;
+            if(tr[i].style.display == "table-row"){
+                var c = i-1;
+                var value = document.getElementById("checkbox_name["+c+"]");
+                value.checked = false;
+            }
         }
     }
 }
@@ -107,9 +109,11 @@ function toggleCF(source) {
     }
     else{
         for(var i = 1; i < tr.length; i= i+1){
-            var c = i-1;
-            var value = document.getElementById("checkbox_CFname["+c+"]");
-            value.checked = false;
+            if(tr[i].style.display == "table-row"){
+                var c = i-1;
+                var value = document.getElementById("checkbox_CFname["+c+"]");
+                value.checked = false;
+            }
         }
     }
 
@@ -632,7 +636,15 @@ fbList.once("value")
             if (td.innerText == val) {
                 tr[0].style.display = "table-row"
                 tr[i].style.display =  "table-row";
-              }
+                document.getElementById("all_checked").checked = false;
+                var c = i-1;
+                var value = document.getElementById("checkbox_name["+c+"]");
+                console.log("checkbox_name["+c+"]");
+                if(value.checked == true){
+                        document.getElementById("all_checked").checked = true;
+                }
+
+             }
             else {
                 tr[i].style.display = "none";
               }
@@ -656,6 +668,13 @@ fbList.once("value")
             if (td.innerText == val) {
                 tr[0].style.display = "table-row";
                 tr[i].style.display =  "table-row";
+                document.getElementById("toggleCF").checked = false;
+                var c = i-1;
+                var value = document.getElementById("checkbox_CFname["+c+"]");
+                console.log("checkbox_CFname["+c+"]");
+                if(value.checked == true){
+                        document.getElementById("toggleCF").checked = true;
+                }
               }
             else {
                 tr[i].style.display = "none";
