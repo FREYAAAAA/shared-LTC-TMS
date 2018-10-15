@@ -1,5 +1,5 @@
 
-var fbAboutus = firebase.database().ref("CenterInformation/Aboutus");
+var fbAboutus = firebase.database().ref("CenterInformation/ContactInfo/Aboutus");
 fbAboutus.once("value")
 .then(function(snapshot){
     document.getElementById("aboutus_text").innerHTML = snapshot.val();
