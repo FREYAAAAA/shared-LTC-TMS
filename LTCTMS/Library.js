@@ -182,7 +182,7 @@ function assign(){
   }
   c++;
 }
-var r = alert("success");
+var r = alert("Task have been assigned!");
          if(true)
          {
            window.location.reload();
@@ -760,7 +760,7 @@ fbList.once("value")
         }
         b++
     }
-    var r = alert("Task has been unassigned!");
+    var r = alert("Task have been unassigned!");
              if(true)
              {
                window.location.reload();

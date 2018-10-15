@@ -36,7 +36,7 @@ fbCI.once("value")
                 document.getElementById("Contact_No1").innerHTML = childSnapshot1.val();
 
             }
-            if(childSnapshot1.key =="Email Address"){
+            if(childSnapshot1.key =="Email"){
                 document.getElementById("Email_Address").innerHTML = childSnapshot1.val();
                 document.getElementById("Email_Address1").innerHTML = childSnapshot1.val();
 
