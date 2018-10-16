@@ -96,8 +96,8 @@ function view_stafffeedback(){
 }
 
 function bigqr(x) {
-    x.style.height = "100px";
-    x.style.width = "100px";
+    x.style.height = "85px";
+    x.style.width = "85 px";
 }
 
 function normalqr(x) {
