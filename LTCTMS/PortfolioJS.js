@@ -661,8 +661,14 @@ function submitSP(){
 function deletePP(){
   var fbPP = firebase.database().ref('Patient');
   var id = document.getElementById('PID').innerText;
-  fbPP.child(id).remove();
-  alert("successfully deleted!");
+  var r = confirm("Press a button!");
+    if (r == true) {
+        fbPP.child(id).remove();
+        alert("successfully deleted!");
+    } 
+    else {
+    }
+
   window.location.reload();
 }
 
