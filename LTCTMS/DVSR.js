@@ -78,9 +78,11 @@ function display_Environment(room, recreated_search){
                 var roomNo = row.insertCell(0)
                 var time = row.insertCell(1);
                 var val = row.insertCell(2);
+                var temp = childSnapshot1.val()
+                temp = temp.replace(/[*+?^${}()|]/g," ");
                 roomNo.appendChild(document.createTextNode(room));
                 time.appendChild(document.createTextNode(childSnapshot1.key));
-                val.appendChild(document.createTextNode(childSnapshot1.val()));
+                val.appendChild(document.createTextNode(temp));
             })
 
         })
@@ -119,20 +121,22 @@ function display_Environment(room, recreated_search){
                     var val = row.insertCell(2);
                     var a = childKey.split("_");
                     var SCrow = SC_table.insertRow(1);
-                    if(a[1] == "Oxygen used" ){
+                    if(a[1] == "Oxygen Used" ){
                         row.remove();
                         var SCtime = SCrow.insertCell(0)
                         var SCEvt = SCrow.insertCell(1);
                         var SCval = SCrow.insertCell(2);
+                        childData = childData.replace(/[*+?^${}()"|]/g,"");
                         SCtime.appendChild(document.createTextNode(a[0]));
                         SCEvt.appendChild(document.createTextNode(a[1]));
                         SCval.appendChild(document.createTextNode(childData));
                     }
-                    if(a[1] == "Steam used"){
+                    if(a[1] == "Steam Used"){
                         row.remove();
                         var SCtime = SCrow.insertCell(0)
                         var SCEvt = SCrow.insertCell(1);
                         var SCval = SCrow.insertCell(2);
+                        childData = childData.replace(/[*+?^${}()"|]/g,"");
                         SCtime.appendChild(document.createTextNode(a[0]));
                         SCEvt.appendChild(document.createTextNode(a[1]));
                         SCval.appendChild(document.createTextNode(childData));
@@ -166,8 +170,9 @@ function display_Environment(room, recreated_search){
                                 var heartRate = row.insertCell(0)
                                 var time = row.insertCell(1);
                                 var rate = row.insertCell(2);
-                                a[0] = a[0].replace("~",":");//22:33~11
-                                a[0] = a[0].replace("~",":");//22:33:11
+                                a[0] = a[0].replace("?","");
+                                a[0] = a[0].replace(/[~]/g,":");
+                                a[1] = a[1].replace(/[?'"]/g," ");
                                 heartRate.appendChild(document.createTextNode(childSnapshot.key));
                                 time.appendChild(document.createTextNode(a[0]));
                                 rate.appendChild(document.createTextNode(a[1]));
@@ -179,9 +184,11 @@ function display_Environment(room, recreated_search){
                                 var heartRate = row.insertCell(0)
                                 var time = row.insertCell(1);
                                 var rate = row.insertCell(2);
+                                var hm = childSnapshot1.key.replace(/[~]/g,":");
+                                var val = childSnapshot1.val().replace(/[?'"]/g,"");
                                 heartRate.appendChild(document.createTextNode(childSnapshot.key));
-                                time.appendChild(document.createTextNode(childSnapshot1.key));
-                                rate.appendChild(document.createTextNode(childSnapshot1.val()));
+                                time.appendChild(document.createTextNode(hm));
+                                rate.appendChild(document.createTextNode(val));
                             })
                         }
                         if(childSnapshot.key =="Step"){
@@ -192,6 +199,9 @@ function display_Environment(room, recreated_search){
                                 var time = row.insertCell(1);
                                 var totalStep = row.insertCell(2);
                                 a[0] = a[0].replace("~",":");
+                                a[0] = a[0].replace("?","");
+                                a[1] = a[1].replace(/[?]/g," ");
+
                                 Step.appendChild(document.createTextNode(childSnapshot.key));
                                 time.appendChild(document.createTextNode(a[0]));
                                 totalStep.appendChild(document.createTextNode(a[1]));
@@ -204,14 +214,13 @@ function display_Environment(room, recreated_search){
                                     try {//break
                                     childSnapshot1.forEach(function(childSnapshot2){
                                         var row = AI_table.insertRow(1);
-                                        var a = childSnapshot2.val().split("→");
-                                        a[1] = a[1].replace("~",":");
                                         var lastvisit = row.insertCell(0);
-                                        var place = row.insertCell(1)
-                                        var time = row.insertCell(2);
+                                        var time = row.insertCell(1);
+                                        var place = row.insertCell(2)
+                                        var hs = childSnapshot2.key.replace("~",":");
                                         lastvisit.appendChild(document.createTextNode("Last Visit:"));
                                         place.appendChild(document.createTextNode(childSnapshot1.key));
-                                        time.appendChild(document.createTextNode(a[1]));
+                                        time.appendChild(document.createTextNode(hs));
                                         throw BreakException;
                                     })
                                 }
@@ -226,14 +235,14 @@ function display_Environment(room, recreated_search){
                                 childSnapshot.forEach(function(childSnapshot1){
                                     childSnapshot1.forEach(function(childSnapshot2){
                                         var row = VisitRecord.insertRow(1);
-                                        var a = childSnapshot2.val().split("→");
-                                        a[1] = a[1].replace("~",":");
+
                                         var lastvisit = row.insertCell(0);
-                                        var place = row.insertCell(1)
-                                        var time = row.insertCell(2);
+                                        var time = row.insertCell(1);
+                                        var place = row.insertCell(2)
+                                        var hs = childSnapshot2.key.replace("~",":");
                                         lastvisit.appendChild(document.createTextNode("Location:"));
                                         place.appendChild(document.createTextNode(childSnapshot1.key));
-                                        time.appendChild(document.createTextNode(a[1]));
+                                        time.appendChild(document.createTextNode(hs));
                                     })
                                 })
 
@@ -270,6 +279,7 @@ function display_Environment(room, recreated_search){
                             val.appendChild(document.createTextNode(childData));
                         }
                         else{
+                            childData = childData.replace(/[*+?^${}()"|]/g,"");
                             val.appendChild(document.createTextNode(childData));
                         }
                 })
