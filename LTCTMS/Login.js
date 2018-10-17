@@ -121,28 +121,32 @@
 
 
 function validate(){
-var username = document.getElementById("txtEmail").value;
-var password = document.getElementById("txtPassword").value;
+    var username = document.getElementById("txtEmail").value;
+    var password = document.getElementById("txtPassword").value;
 
-console.log(cnoindex);
-console.log(dirindex);
+    console.log(cnoindex);
+    console.log(dirindex);
 
-for(var c=0; c<=cnoindex; c++){
-  console.log("asbviabvdsob")
-  if ( username == cnousername[c] && password == cnopassword[c]){
-alert ("Login successfully!");
-window.location = "Aboutus.html";
-}
-}
+    for(var c=0; c<=cnoindex; c++){
+      console.log("asbviabvdsob")
+          if ( username == cnousername[c] && password == cnopassword[c]){
+            alert ("Login successfully!");
+            window.location = "Aboutus.html";
+        }
+    }
 
-for(var d=0; d<=dirindex; d++){
-console.log("asbviabvdsob")
-if ( username == dirusername[d] && password == dirpassword[d]){
-alert ("Login successfully");
-window.location = "Aboutus.html";
-}
-}
-if(window.location != "Aboutus.html"){
-alert ("wrong");
-}
+    for(var d=0; d<=dirindex; d++){
+        console.log("asbviabvdsob")
+        if ( username == dirusername[d] && password == dirpassword[d]){
+            alert ("Login successfully");
+            window.location = "Aboutus.html";
+        }
+        else{
+            var r = confirm("it's Wrong.");
+             if(r){
+               window.location.reload();
+               break;
+             }
+        }
+    }
 }
