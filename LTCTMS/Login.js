@@ -129,19 +129,13 @@ function validate(){
 
     for(var c=0; c<=cnoindex; c++){
       console.log("asbviabvdsob")
-          if ( username == cnousername[c] && password == cnopassword[c]){
+          if( ( username == cnousername[c] && password == cnopassword[c])||( username == dirusername[c] && password == dirpassword[c])){
             alert ("Login successfully!");
             window.location = "Aboutus.html";
-        }
-    }
-
-    for(var d=0; d<=dirindex; d++){
-        console.log("asbviabvdsob")
-        if ( username == dirusername[d] && password == dirpassword[d]){
-            alert ("Login successfully");
-            window.location = "Aboutus.html";
+            break;
         }
         else{
+            console.log("fail:")
             var r = confirm("it's Wrong.");
              if(r){
                window.location.reload();
@@ -149,4 +143,6 @@ function validate(){
              }
         }
     }
+
+
 }
