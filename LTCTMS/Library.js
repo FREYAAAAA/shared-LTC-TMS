@@ -424,13 +424,27 @@ fbList.once("value")
     })
 })
 */
+
+
+
+
     $(document).ready(function(){
-      $("#searchInput").on("keyup", function() {
+    $("#searchInput").on("keyup", function() {
+        var table = document.getElementById("assigningTask");
+        var tr = table.getElementsByTagName("tr");
         var value = $(this).val().toLowerCase();
-        $("#assigningTask tr:not(:first)").filter(function() {
-          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        console.log(value);
+              $("#assigningTask tr:not(:first)").filter(function() {
+                  for(var i = 1; i < tr.length; i++){
+                      if( tr[i].style.display ==  "table-row"){
+                          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                      }
+                      else{
+                          tr[i].style.display = "none";
+                      }
+                  }
+              });
         });
-      });
     });
 
     $(document).ready(function(){
@@ -643,7 +657,6 @@ fbList.once("value")
                 if(value.checked == true){
                         document.getElementById("all_checked").checked = true;
                 }
-
              }
             else {
                 tr[i].style.display = "none";
