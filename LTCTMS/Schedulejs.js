@@ -183,10 +183,14 @@ uploadtask3.on('state_changed',
        titleAndroid : title2,
        titleIOS: title
      };
+    // if(url == "" || title =="")
+    //  alert ("Please input")
+    //else {
      updates['CenterSchedule/' + postKey] = postData;
      firebase.database().ref().update(updates);
+     alert ("Entered Succesfully");
      window.location.reload();
-
+   //}
      });
   }
 );
@@ -229,9 +233,14 @@ function deleteCS(){
 var fbCS= firebase.database().ref('CenterSchedule');
 var Ukey = $(this).closest('tr').children('td:first').text();
 console.log(Ukey);
-fbCS.child(Ukey).remove();
-alert("successfully deleted!");
-window.location.reload();
+var r = confirm("Are you sure you want to delete a center schedule?");
+if (r == true) {
+  fbCS.child(Ukey).remove();
+  alert("successfully deleted!");
+  window.location.reload();
+}
+else {
+}
 }
 
 //CS download
@@ -308,6 +317,7 @@ uploadtask.on('state_changed',
      };
      updates['WorkingSchedule/' + postKey] = postData;
      firebase.database().ref().update(updates);
+    alert ("Entered Succesfully");
      window.location.reload();
 
      });
@@ -352,9 +362,14 @@ function deleteWS(){
 var fbWS= firebase.database().ref('WorkingSchedule');
 var Ukey = $(this).closest('tr').children('td:first').text();
 console.log(Ukey);
-fbWS.child(Ukey).remove();
-alert("successfully deleted!");
-window.location.reload();
+var r = confirm("Are you sure you want to delete a working schedule?");
+if (r == true) {
+  fbWS.child(Ukey).remove();
+  alert("successfully deleted!");
+  window.location.reload();
+}
+else {
+}
 }
 //WS download
 function downloadWS(){
@@ -435,6 +450,7 @@ uploadtask.on('state_changed',
      };
      updates['WorkingHourRecord/' + postKey] = postData;
      firebase.database().ref().update(updates);
+    alert ("Entered Succesfully");
      window.location.reload();
 
      });
@@ -478,9 +494,14 @@ function deleteWH(){
 var fbWH= firebase.database().ref('WorkingHourRecord');
 var Ukey = $(this).closest('tr').children('td:first').text();
 console.log(Ukey);
-fbWH.child(Ukey).remove();
-alert("successfully deleted!");
-window.location.reload();
+var r = confirm("Are you sure you want to delete a working hour?");
+if (r == true) {
+  fbWH.child(Ukey).remove();
+  alert("successfully deleted!");
+  window.location.reload();
+}
+else {
+}
 }
 
 //WH download

@@ -65,13 +65,17 @@ function submit(){
     dd = a[2];
 
     if(text == ""){
-      close_form();
-      location.reload();
+      alert ("Please enter data");
     }
     else {
-    firebase.database().ref("MEMO/"+year_m+"/"+dd+"-"+time).set(text);
-    close_form();
-    location.reload();
+      var r = confirm("Are you sure you want to enter this data?");
+      if (r == true) {
+        firebase.database().ref("MEMO/"+year_m+"/"+dd+"-"+time).set(text);
+        close_form();
+        location.reload();
+      }
+      else {
+      }
   }
 }
 
