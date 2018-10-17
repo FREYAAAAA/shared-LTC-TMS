@@ -25,9 +25,7 @@ fbPAT.once("value")
 }
 
     var search;//search Date
-
     function selectPatient(){
-
         search = document.getElementById("bday").value;//get the date value
         var arr = search.split("-");
         if (arr[1]<10){
@@ -40,14 +38,6 @@ fbPAT.once("value")
         recreated_search = arr[0]+"-"+arr[1]+"-"+arr[2];
         var selected_id = document.getElementById("selectPAT").value;// get the patient's ID
         var fbPAT_CNA= firebase.database().ref("Activities/"+selected_id+"/"+recreated_search);
-        var fbRoom = firebase.database().ref("Patient/"+selected_id+"/Portfolio/patientRoomNo")
-        fbRoom.once("value")
-            .then(function(snapshot){
-            var room = snapshot.val();
-            console.log(room);
-            display_Environment(room, recreated_search);
-            })
-
         //grab the Patient's ID from database and put into the selected box
         fbPAT_CNA.once("value")
             .then(function(snapshot){
@@ -67,31 +57,8 @@ fbPAT.once("value")
               });
         });
     }
-
-function display_Environment(room, recreated_search){
-    console.log(room);
-    var fbEnv= firebase.database().ref("Activities/EnvironmentStatus/"+recreated_search+"/"+room);
-    fbEnv.once("value")
-        .then(function(snapshot){
-            snapshot.forEach(function(childSnapshot1){
-                var row = Environmenttable.insertRow(1);
-                var roomNo = row.insertCell(0)
-                var time = row.insertCell(1);
-                var val = row.insertCell(2);
-                var th = childSnapshot1.val()
-                th = th.replace(/[*+?^${}()|→TH]/g," ");
-                roomNo.appendChild(document.createTextNode(room));
-                time.appendChild(document.createTextNode(childSnapshot1.key));
-                val.appendChild(document.createTextNode(th));
-            })
-        })
-}
-
-
-
     var count = 0;
-    function display_button(nnn){
-
+    function display_button(nnn,room){
         if(count%2 == 1){//  in order to exchange the text of button into "display" and"refresh"
             nnn .value= "Refresh";
             location.reload();//reload the page
@@ -100,6 +67,28 @@ function display_Environment(room, recreated_search){
         count = count + 1;
         var selected_id = document.getElementById("selectPAT").value;// get the patient's ID
         var selected_CNA = document.getElementById("selectCNA").value
+
+        var fbRoom = firebase.database().ref("Patient/"+selected_id+"/Portfolio/patientRoomNo")
+        fbRoom.once("value")
+            .then(function(snapshot){
+            var room = snapshot.val();
+            var fbEnv= firebase.database().ref("Activities/EnvironmentStatus/"+recreated_search+"/"+room);
+            fbEnv.once("value")
+                .then(function(snapshot1){
+                    snapshot1.forEach(function(childSnapshot1){
+                        var row = Environmenttable.insertRow(1);
+                        var roomNo = row.insertCell(0)
+                        var time = row.insertCell(1);
+                        var val = row.insertCell(2);
+                        var th = childSnapshot1.val()
+                        th = th.replace(/[*+?^${}()|→TH]/g," ");
+                        roomNo.appendChild(document.createTextNode(room));
+                        time.appendChild(document.createTextNode(childSnapshot1.key));
+                        val.appendChild(document.createTextNode(th));
+                    })
+                })
+            })
+
         var fbPAT_DRS = firebase.database().ref("Activities/"+selected_id+"/"+recreated_search+"/"+selected_CNA+"/daily_status");
         fbPAT_DRS.once("value")
             .then(function(snapshot){
