@@ -309,8 +309,8 @@ function display_List(fbList){
 
                             childSnapshot3.forEach(function(childSnapshot4){
                                 var childKey = childSnapshot4.key;
-                                var childData = childSnapshot4.val();
-                                var fbExist = firebase.database().ref(childData);
+                                var path = childSnapshot4.val();
+                                var fbExist = firebase.database().ref(path);
 
                                 fbExist.on("value",function(ex){
                                     if(ex.exists()){
@@ -335,13 +335,11 @@ function display_List(fbList){
                                             cellPosition.appendChild(document.createTextNode("CNA"));
                                             x++;
                                             tr[x].style.display = "table-row";
-                                            console.log(x);
                                         }
                                         else{
                                             cellPosition.appendChild(document.createTextNode("Patient"));
                                             x++;
                                             tr[x].style.display = "table-row";
-                                            console.log(x);
                                         }
                                         cellID.appendChild(document.createTextNode(childSnapshot1.key));
                                         CFname.appendChild(document.createTextNode(CF_Name));
@@ -350,7 +348,12 @@ function display_List(fbList){
                                         cellCheckbox.appendChild(checkBox);
                                     }
                                     else{
-                                        fbExist.remove();
+                                        console.log("it be removed");
+                                        //fbExist.remove();
+                                        var fbList_CNA = firebase.database().ref("CNA/");
+                                        var fbList_PAT = firebase.database().ref("Patient/");
+                                        deleteNotExist(fbList_CNA,path);
+                                        deleteNotExist(fbList_PAT,path);
                                     }
                                 })
                             })
@@ -360,6 +363,32 @@ function display_List(fbList){
             })
         })
 }
+function deleteNotExist(fbList,path){
+        fbList.once("value")
+        .then(function(snapshot){
+            var array = [];
+            var index = 0;
+            var a = [];
+            var i = 0;
+            snapshot.forEach(function(childSnapshot1){
+                var CF_Name;
+                    childSnapshot1.forEach(function(childSnapshot2){
+                        if(childSnapshot2.key == "Task"){
+                            childSnapshot2.forEach(function(childSnapshot3){
+                                childSnapshot3.forEach(function(childSnapshot4){
+                                    var childKey = childSnapshot4.key;
+                                    var childData = childSnapshot4.val();
+                                    if(childData == path){
+                                        fbList.child(childSnapshot1.key+"/"+"Task/"+childSnapshot3.key+"/"+childSnapshot4.key).remove();
+                                    }
+                                });
+                            });
+                        }
+                    });
+                });
+            });
+}
+
 
 /*var fbList = firebase.database().ref("Patient/");
 var checkbok_index = 0;
