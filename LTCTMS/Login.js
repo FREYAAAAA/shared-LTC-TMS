@@ -129,7 +129,7 @@ console.log(dirindex);
 
 for(var c=0; c<=cnoindex; c++){
   console.log("asbviabvdsob")
-if ( username == cnousername[c] && password == cnopassword[c]){
+  if ( username == cnousername[c] && password == cnopassword[c]){
 alert ("Login successfully!");
 window.location = "Aboutus.html";
 }
@@ -141,5 +141,8 @@ if ( username == dirusername[d] && password == dirpassword[d]){
 alert ("Login successfully");
 window.location = "Aboutus.html";
 }
+}
+if(window.location != "Aboutus.html"){
+alert ("wrong");
 }
 }

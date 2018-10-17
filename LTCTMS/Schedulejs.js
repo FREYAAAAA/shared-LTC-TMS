@@ -51,14 +51,19 @@ function createNewAnnouncement(){
     a_id : keyA,
     ATitleAndroid: title2 ,
     ATitleIOS:title1 ,
-    AnnouncementAndroid: data2,
+    AnnouncementAndroid:data2,
     AnnouncementIOS: data
   }
   var updates = {};
+  if(data == ""){
+    alert(' Please input a data');
+  }
+  else {
   updates['Announcements/'+ keyA] = AData;
   firebase.database().ref().update(updates);
   alert('Successfully Entered');
   window.location.reload();
+}
 }
 
 //Deleting Announcements
@@ -66,10 +71,14 @@ function deleteA(){
   var fbB= firebase.database().ref('Announcements');
   var Ukey = $(this).closest('tr').children('td:first').text();
   console.log(Ukey);
-  fbB.child(Ukey).remove();
-  alert("successfully deleted!");
-  window.location.reload();
-
+  var r = confirm("Are you sure you want to delete an announcement?");
+    if (r == true) {
+        fbB.child(Ukey).remove();
+        alert("successfully deleted!");
+        window.location.reload();
+    }
+    else {
+    }
 }
 
 //View/Editing Announcement
@@ -100,11 +109,15 @@ function editSave(){
     AnnouncementIOS: editedData,
     a_id: akey
 };
+if(editedData == ""){
+  alert(' Please input a data');
+}
+else {
   var updates={};
   updates['Announcements/'+ akey] = wholeA;
   window.location.reload();
   return firebase.database().ref().update(updates);
-
+}
 }
 
 function btnpopUp(){

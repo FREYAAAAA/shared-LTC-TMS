@@ -95,6 +95,10 @@ function upload_logo(){
 function upload(){
     var text = $("#url_text").val();
     var name = $("#sponsorName").val();
+    if ( text == "" || name ==""){
+      alert ("Please insert all data")
+    }
+    else{
     firebase.database().ref("CenterInformation/"+"Sponsor/"+name+"/url").set(text);
      var storageRef = firebase.storage().ref('Sponsor/'+name+".png");
     storageRef.getDownloadURL().then(function (url) {
@@ -102,8 +106,8 @@ function upload(){
     document.getElementById("form").style.display = "none";
     alert("success");
     location.reload();
-
     });
+  }
 }
 
 window.onload=function(){
