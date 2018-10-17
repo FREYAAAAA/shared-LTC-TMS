@@ -59,8 +59,8 @@ function handleuploadfileSubmit(e) {
     firebase.storage().ref('Staff/').child(file4.name).put(file4);
     firebase.storage().ref('Staff/').child(file3.name).put(file3);
      var storageRef1 = firebase.storage().ref('Staff/'+file1.name)
-      var storageRef3 = firebase.storage().ref('Staff/'+file3.name)
-      var storageRef4 = firebase.storage().ref('Staff/'+file4.name)
+     var storageRef3 = firebase.storage().ref('Staff/'+file3.name)
+    var storageRef4 = firebase.storage().ref('Staff/'+file4.name)
      //  var storageRef = firebase.storage().ref('Sponsor/'+name+".png")
 
 
@@ -96,8 +96,6 @@ function handleuploadfileSubmit(e) {
      var staffEName = document.getElementById('staffEName').value;
      var staffERelationship = document.getElementById('staffERelationship').value;
      var staffbriefdescription = document.getElementById('staffbriefdescription').value;
-     var staffCV = document.getElementById('staffCV').value;
-     var staffLicense = document.getElementById('staffLicense').value;
 
 
 
@@ -124,9 +122,7 @@ function handleuploadfileSubmit(e) {
        InitialDate : staffInitialDate,
        EName : staffEName,
        ERelationship : staffERelationship,
-       BriefDescription : staffbriefdescription,
-       CV: staffCV,
-       License: staffLicense,
+       BriefDescription : staffbriefdescription
      };
      updates[ staffPosition +'/'+StaffID +'/Portfolio/'] = postData;
      //updates['Portfolio/'+ StaffID] = postData;
@@ -205,8 +201,6 @@ uploadtask.on('state_changed',
      var patientEName = document.getElementById('patientEName').value;
      var patientERelationship = document.getElementById('patientERelationship').value;
      var patientAdmissionReason = document.getElementById('patientAdmissionReason').value;
-     //var CNAName = document.getElementById('CNAName').value;
-     //var CNAID = document.getElementById('CNAID').value;
 
 
      storageRef6.getDownloadURL()
@@ -235,8 +229,6 @@ uploadtask.on('state_changed',
        EName : patientEName,
        ERelationship : patientERelationship,
        AdmissionReason : patientAdmissionReason,
-       //CNAName : CNAName,
-       //CNAID : CNAID,
        Address : patientAddress,
        Position : 'Patient'
      };
@@ -665,7 +657,7 @@ function deletePP(){
     if (r == true) {
         fbPP.child(id).remove();
         alert("successfully deleted!");
-    } 
+    }
     else {
     }
 
