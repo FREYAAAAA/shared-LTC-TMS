@@ -47,19 +47,10 @@ fbTask.once("value")
             var cellCheckbox = row.insertCell(-1);
             cellButton.appendChild(button);
             cellCheckbox.appendChild(checkBox);
-            //console.log(c);
                     })
                 })
             })
-/*function display_Detail(num) {
-    num = num+1;
-    var table = document.getElementById("assigningTask");
-    var tr = table.getElementsByTagName("tr");
-    var path = "TaskInstruction/"+table.rows[num].cells[0].innerHTML+"/"+table.rows[num].cells[1].innerHTML;
-    document.getElementById("displayDetail").innerHTML = path;
-    var popup = document.getElementById("popup_detail")
-    popup.style.display = "block";
-}*/
+
 function toggleTask(source) {
 var table = document.getElementById("assigningTask");
 var tr = table.getElementsByTagName("tr");
@@ -276,6 +267,9 @@ fbPAT.once("value")
 
 var fbList_CNA = firebase.database().ref("CNA/");
 var fbList_PAT = firebase.database().ref("Patient/");
+console.log(fbList_CNA);
+console.log(fbList_PAT);
+
 display_List(fbList_CNA);
 display_List(fbList_PAT);
 var checkBox_index = 0;
@@ -331,7 +325,9 @@ function display_List(fbList){
                                         var cellCategory = row.insertCell(3);
                                         var cellName = row.insertCell(4);
                                         var cellCheckbox = row.insertCell(-1);
-                                        if(fbList == fbList_CNA){
+
+                                        if(fbList.key == "CNA"){
+
                                             cellPosition.appendChild(document.createTextNode("CNA"));
                                             x++;
                                             tr[x].style.display = "table-row";
@@ -390,69 +386,7 @@ function deleteNotExist(fbList,path){
 }
 
 
-/*var fbList = firebase.database().ref("Patient/");
-var checkbok_index = 0;
-fbList.once("value")
-    .then(function(snapshot){
-        var array = [];
-        var index = 0;
-        var a = [];
-        var i = 0;
-        snapshot.forEach(function(childSnapshot1){
-            var CF_Name;
-            childSnapshot1.forEach(function(childSnapshot2){
-                if(childSnapshot2.key == "Portfolio"){
-                childSnapshot2.forEach(function(childSnapshot3){
-                    if( childSnapshot3.key == "Name"){
-                        CF_Name = childSnapshot3.val();
-                        a.push(CF_Name);
-                       var x = document.getElementById("filterNameList");
-                       var opt = document.createElement("option");
-                       opt.text= a[i];
-                        x.add(opt);
-                        i = i +1;
-                        }
-            })
-                }
-            if(childSnapshot2.key == "Task"){
-                childSnapshot2.forEach(function(childSnapshot3){
-                    childSnapshot3.forEach(function(childSnapshot4){
-                        var childKey = childSnapshot4.key;
-                        var checkBox = document.createElement("input");
-                        var childData = childSnapshot4.val();
-                        var fbExist1 = firebase.database().ref(childData);
-                        fbExist1.on("value",function(ex){
-                        if(ex.exists()){
-                            checkBox.type = "checkbox";
-                            checkBox.setAttribute("id", "checkbox_id["+checkbok_index+"]");
-                            checkBox.setAttribute("checked", true);
-                            checkbok_index++ ;
-                            var row = assigningList.insertRow(-1);
-                            var cellPosition = row.insertCell(0);
-                            cellPosition.appendChild(document.createTextNode("Family"));
-                            var cellID = row.insertCell(1);
-                            cellID.appendChild(document.createTextNode(childSnapshot1.key));
-                            var CFname = row.insertCell(2);
-                            CFname.appendChild(document.createTextNode(CF_Name));
-                            var cellCategory = row.insertCell(3);
-                            cellCategory.appendChild(document.createTextNode(childSnapshot3.key));
-                            var cellName = row.insertCell(4);
-                            cellName.appendChild(document.createTextNode(childSnapshot4.key));
-                            var cellCheckbox = row.insertCell(-1);
-                            cellCheckbox.appendChild(checkBox);
-                    }
-                    else{
-                        fbExist1.remove();
-                    }
-                })
 
-                    })
-                })
-            }
-        })
-    })
-})
-*/
 
 
 
@@ -464,14 +398,7 @@ fbList.once("value")
         var value = $(this).val().toLowerCase();
         console.log(value);
               $("#assigningTask tr:not(:first)").filter(function() {
-                  for(var i = 1; i < tr.length; i++){
-                      if( tr[i].style.display ==  "table-row"){
-                          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                      }
-                      else{
-                          tr[i].style.display = "none";
-                      }
-                  }
+                  $(tr[i]).toggle($(tr[i]).text().toLowerCase().indexOf(value) > -1)
               });
         });
     });
@@ -827,10 +754,6 @@ function display_Detail(num){
   var array = [];
   var i = 0;
   fbTask.on('value', function(snapshot){
-     // var heading1 = document.createElement("h1");
-     // var element = document.getElementById("content2");
-     // heading1.innerText =Ukey1;
-      //element.appendChild(heading1);
       document.getElementById("taskname").innerHTML = Ukey1;
       document.getElementById("category").innerHTML = Ukey;
 
@@ -843,23 +766,6 @@ function display_Detail(num){
               document.getElementById('outline').innerHTML= outline;
               var note = snapshot1.child('NoteIOS').val();
               document.getElementById('note').innerHTML= note;
-              /*snapshot1.forEach(function(snapshot2){
-                  console.log(snapshot2.key);
-                  if(snapshot2.key == "videoURL"){
-                     // document.getElementById('video').innerHTML= snapshot2.val();
-
-                  }
-
-                  /*if(snapshot2.key == "MDescriptionIOS"){
-                     var para = document.createElement("p");
-                     var heading = document.createElement("h5");
-                     var node = document.createTextNode(snapshot2.val());
-                     heading.innerText = "Step"+i;
-                     para.appendChild(heading);
-                     para.appendChild(node);
-                    element.appendChild(para);
-                  }
-              })*/
               i++;
           }
       })
