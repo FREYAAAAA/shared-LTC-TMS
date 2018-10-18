@@ -131,19 +131,17 @@ function validate(){
   }
   else {
     for(var c=0; c<=cnoindex; c++){
-      console.log("asbviabvdsob")
-          if( ( username == cnousername[c] && password == cnopassword[c])||( username == dirusername[c] && password == dirpassword[c])){
+         if( ( username == cnousername[c] && password == cnopassword[c])||( username == dirusername[c] && password == dirpassword[c])){
             alert ("Login successfully!");
             window.location = "Aboutus.html";
             break;
         }
         else{
             console.log("fail:")
-            var r = confirm("Wrong username or password");
-             if(r){
-               window.location.reload();
-               break;
-             }
+            alert("Wrong username or password");
+             location.reload();
+             break;
+
         }
     }
 }
