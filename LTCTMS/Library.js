@@ -267,6 +267,9 @@ fbPAT.once("value")
 
 var fbList_CNA = firebase.database().ref("CNA/");
 var fbList_PAT = firebase.database().ref("Patient/");
+console.log(fbList_CNA);
+console.log(fbList_PAT);
+
 display_List(fbList_CNA);
 display_List(fbList_PAT);
 var checkBox_index = 0;
@@ -322,7 +325,9 @@ function display_List(fbList){
                                         var cellCategory = row.insertCell(3);
                                         var cellName = row.insertCell(4);
                                         var cellCheckbox = row.insertCell(-1);
-                                        if(fbList == fbList_CNA){
+
+                                        if(fbList.key == "CNA"){
+
                                             cellPosition.appendChild(document.createTextNode("CNA"));
                                             x++;
                                             tr[x].style.display = "table-row";
@@ -393,12 +398,7 @@ function deleteNotExist(fbList,path){
         var value = $(this).val().toLowerCase();
         console.log(value);
               $("#assigningTask tr:not(:first)").filter(function() {
-                  for(var i = 1; i < tr.length; i++){
-                      if(i ==1 || i ==2||i ==3){
-                          $(tr[i]).toggle($(tr[i]).text().toLowerCase().indexOf(value) > -1)
-
-                      }
-                  }
+                  $(tr[i]).toggle($(tr[i]).text().toLowerCase().indexOf(value) > -1)
               });
         });
     });
