@@ -655,27 +655,29 @@ function submitSP(){
 function deletePP(){
   var fbPP = firebase.database().ref('Patient');
   var id = document.getElementById('PID').innerText;
-  var r = confirm("Press a button!");
+  var r = confirm("Are you sure you want to delete?");
     if (r == true) {
         fbPP.child(id).remove();
         alert("successfully deleted!");
     }
     else {
     }
-
   window.location.reload();
 }
 
 function deleteSP(){
  var position = document.getElementById('sPosition').innerText;
  var id = document.getElementById('SID').innerText;
-var fbSP = firebase.database().ref(position);
-fbSP.child(id).remove();
-
- alert("successfully deleted!");
- window.location.reload();
+ var fbSP = firebase.database().ref(position);
+ var r = confirm ("Are you sure you want to delete?");
+  if (r == true) {
+	   fbSP.child(id).remove();
+	    alert("Succesfully Deleted!");
+      window.location.reload();
 }
-
+else {
+}
+}
 //Keyword search
 $(document).ready(function(){
   $("#searchInput").on("keyup", function() {
