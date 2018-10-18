@@ -150,10 +150,13 @@ let file3;
 
 function handleuploadfile3(e) {
  file3=e.target.files[0];
+
 }
 
 function handleuploadfileSubmit3(e) {
-
+  if(file3 == undefined){
+    alert ("Please enter data!")
+  }
 var storageRef=firebase.storage().ref('CenterSchedule/'+file3.name);
 var uploadtask3 = storageRef.put(file3);
 
@@ -285,7 +288,9 @@ function handleuploadfile(e) {
 }
 
 function handleuploadfileSubmit(e) {
-
+  if(file == undefined){
+    alert ("Please enter data!")
+  }
 var storageRef=firebase.storage().ref('WorkingSchedule/'+file.name);
 var uploadtask = storageRef.put(file);
 
@@ -418,7 +423,9 @@ function handleuploadfile2(e) {
 }
 
 function handleuploadfileSubmit2(e) {
-
+  if(file2 == undefined){
+    alert ("Please enter data!")
+  }
 var storageRef=firebase.storage().ref('WorkingHourRecord/'+file2.name);
 var uploadtask = storageRef.put(file2);
 

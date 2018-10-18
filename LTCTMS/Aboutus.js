@@ -17,7 +17,7 @@ function aboutus_submit(){
     document.getElementById("aboutus_button").style.display = "none";
     firebase.database().ref("CenterInformation/ContactInfo/Aboutus").set(text);
     firebase.database().ref("CenterInformation/ContactInfo/AboutusAndroid").set(text+"(end)");
-
+    alert("Succesfully entered");
 
 }
 
@@ -66,6 +66,10 @@ function CI_submit(){
     var email_address = $("#Email_Address1").val();
     var address = $("#Address1").val();
 
+    if(name == "" || contact_no == "" || email_address == "" || address == ""){
+      alert ("Please enter all information")
+    }
+    else {
     firebase.database().ref("CenterInformation/ContactInfo/Name").set(name);
     firebase.database().ref("CenterInformation/ContactInfo/Contact No").set(contact_no);
     firebase.database().ref("CenterInformation/ContactInfo/Email").set(email_address);
@@ -78,8 +82,9 @@ function CI_submit(){
     document.getElementById("Contact_No1").style.display = "none";
     document.getElementById("Email_Address1").style.display = "none";
     document.getElementById("Address1").style.display = "none";
-
+    alert ("Succesfully entered")
     location.reload();
+  }
 }
 
 function sponsor_edit(){
@@ -105,7 +110,6 @@ window.onload=function(){
    }
 
 function upload(){
-    console.log(file.name);
     var text = $("#url_text").val();
     var name = $("#sponsorName").val();
     if ( text == "" || name ==""){
@@ -113,7 +117,7 @@ function upload(){
     }
     else{
     firebase.database().ref("CenterInformation/"+"Sponsor/"+name+"/url").set(text);
-     var storageRef = firebase.storage().ref('Sponsor/'+file.name);
+     var storageRef = firebase.storage().ref('Sponsor/'+name+".png");
     storageRef.getDownloadURL().then(function (url) {
     firebase.database().ref("CenterInformation/"+"Sponsor/"+name+"/photo/").set(url);
     document.getElementById("form").style.display = "none";
@@ -175,8 +179,14 @@ fbSponsor.once("value")
 function remove(sponsor){
     console.log(sponsor);
     console.log(sp[sponsor]);
+    var r = confirm("Are you sure you want to remove a sponsor?");
+    if (r == true) {
     firebase.database().ref("CenterInformation/"+"Sponsor/"+sp[sponsor]).remove();
-    location.reload();
+      alert("successfully removed!");
+      window.location.reload();
+    }
+    else {
+    }
 }
 
 

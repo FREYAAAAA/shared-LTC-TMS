@@ -254,11 +254,15 @@ function TaskSubmit(){
     NoteAndroid : Note2,
     Category : selectCat
   }
+  if(Ttitle == "" || Outline == ""){
+    alert("Please enter title and outline")
+  }
+  else {
   var updates = {};
   updates['TaskInstruction/'+ selectCat + '/' + Ttitle + '/Info' ] = Tdata;
   firebase.database().ref().update(updates);
   alert('Successfully Created a New Task');
-
+}
 }
 
 //mainstep submission TODO: Fix the upload file
@@ -308,7 +312,10 @@ function MainstepSubmit(j){
   var MstepNo = document.getElementById('MstepNo'+j).value;
   var MD = document.getElementById('MDescription'+j).value;
   var MD2 = 'xdsx'+MD+'xdex';
-
+  if ( Mtitle == "" || MD == ""){
+    alert ("Please enter mainstep title and description")
+  }
+  else {
   var updates={};
   var uploader=document.getElementById('uploader'+j).value;
   //console.log(uploader);
@@ -327,6 +334,7 @@ function MainstepSubmit(j){
     firebase.database().ref().update(updates);
     alert('Successfully Created a step');
   }
+}
 
 
 //$('.vtree').load(window.locaiton.href+ ".vtree");

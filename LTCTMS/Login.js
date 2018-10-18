@@ -126,7 +126,10 @@ function validate(){
 
     console.log(cnoindex);
     console.log(dirindex);
-
+  if(username == "" || password == ""){
+    alert ("Please enter username and password")
+  }
+  else {
     for(var c=0; c<=cnoindex; c++){
       console.log("asbviabvdsob")
           if( ( username == cnousername[c] && password == cnopassword[c])||( username == dirusername[c] && password == dirpassword[c])){
@@ -136,11 +139,12 @@ function validate(){
         }
         else{
             console.log("fail:")
-            var r = confirm("it's Wrong.");
+            var r = confirm("Wrong username or password");
              if(r){
                window.location.reload();
                break;
              }
         }
     }
+}
 }
