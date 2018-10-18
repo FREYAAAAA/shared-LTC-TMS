@@ -97,10 +97,11 @@ function upload_logo(){
     //document.getElementById("form").style.display = "none";
 
 }
+var file;
 window.onload=function(){
     var fileButton = document.getElementById('fileButton');
     fileButton.addEventListener("change",function(e){
-       var file= e.target.files[0];
+       file= e.target.files[0];
        console.log(file.name);
 
        //create storage ref to the firebase storage
@@ -117,7 +118,7 @@ function upload(){
     }
     else{
     firebase.database().ref("CenterInformation/"+"Sponsor/"+name+"/url").set(text);
-     var storageRef = firebase.storage().ref('Sponsor/'+name+".png");
+     var storageRef = firebase.storage().ref('Sponsor/'+file.name);
     storageRef.getDownloadURL().then(function (url) {
     firebase.database().ref("CenterInformation/"+"Sponsor/"+name+"/photo/").set(url);
     document.getElementById("form").style.display = "none";
