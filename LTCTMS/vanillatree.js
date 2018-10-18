@@ -192,9 +192,8 @@
 			return this[ this.getLeaf( id ).classList.contains( 'closed' ) ? 'open' : 'close' ]( id );
 		},
 		select: function( id ) {
-            console.log(id);
 			var leaf = this.getLeaf( id );
-
+            console.log(leaf);
 			if( !leaf.classList.contains( 'vtree-selected' ) ) {
 				$( 'li.vtree-leaf', this.tree ).forEach( function( leaf ) {
 					leaf.classList.remove( 'vtree-selected' );

@@ -159,11 +159,6 @@ function filterCategory(cat){
   }
   var categoryname = document.getElementById('CategoryFilter').value;
   fbTask = fbCat.child(categoryname);
-  if(cat != null){
-      fbTask = fbCat.child(cat);
-      document.getElementById('CategoryFilter').innerHTML =cat;
-
-  }
   fbTask.once('value')
     .then(function(snapshot){
       snapshot.forEach(function(childSnapshot){
@@ -182,8 +177,6 @@ function filterCategory(cat){
                 label: childid,
                 id:childid + ':' +id,
                 parent:id,
-
-
 
               }
               tree.add(task);
@@ -571,19 +564,19 @@ function task_nextarrow(){
   document.getElementById("thissecondmainstep").style.display = "none";
 }
 
-//window.onload = function() {
+///////////////////////////////////////////////////////////////////////////////////////////
     var from = sessionStorage.getItem("from");
     var cat = sessionStorage.getItem("category");
     var taskN = sessionStorage.getItem("taskname");
     var old_html = $('.vtree').html();
-
     console.log(cat);
     console.log(taskN);
+
     if(from == 'Library.html') {
         sessionStorage.setItem("from","");
-
+        console.log(cat);
+        console.log(taskN);
         filterCategory(cat);
-    //    console.log(x);
-        tree.select(taskN);
+
+        //tree.select(parentId);
     }
-//}
