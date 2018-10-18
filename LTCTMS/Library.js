@@ -771,3 +771,13 @@ function display_Detail(num){
       })
   });
 }
+function directTask(){
+    var cat = document.getElementById("category").innerHTML;
+    var taskN = document.getElementById("taskname").innerHTML;
+    sessionStorage.setItem("from","Library.html");
+    sessionStorage.setItem("category",cat);
+    sessionStorage.setItem("taskname",taskN);
+
+    location.href ="TaskEditor.html";
+
+}
