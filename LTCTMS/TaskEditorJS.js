@@ -146,6 +146,8 @@ fbCat.once("value").then(function(snapshot){
   var y = document.getElementById("CategoryFilter");
   var Coption = document.createElement("option");
   Coption.setAttribute("value",""+C_childKey+"");
+  Coption.setAttribute("id",""+C_childKey+"");
+
   Coption.text= arr[k];
   y.appendChild(Coption);
   k=k+1;
@@ -156,6 +158,11 @@ var old_html = $('.vtree').html();
 function filterCategory(cat){
   if(document.getElementById('treemenu2').innerText != ""){
   $('.vtree').html(old_html);
+  }
+  if(cat != null){
+      var ccat = document.getElementById(cat);
+      ccat.setAttribute("selected","selected")
+      document.getElementById('CategoryFilter').value = cat;
   }
   var categoryname = document.getElementById('CategoryFilter').value;
   fbTask = fbCat.child(categoryname);
@@ -565,6 +572,7 @@ function task_nextarrow(){
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
+
     var from = sessionStorage.getItem("from");
     var cat = sessionStorage.getItem("category");
     var taskN = sessionStorage.getItem("taskname");
