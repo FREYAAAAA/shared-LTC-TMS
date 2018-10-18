@@ -232,9 +232,12 @@ uploadtask.on('state_changed',
        Address : patientAddress,
        Position : 'Patient'
      };
+
+
      updates['Patient/'+PatientID +'/Portfolio'] = postData;
-     //updates['Portfolio/'+ PatientID] = postData;
+
      firebase.database().ref().update(updates);
+     firebase.database().ref('Room').child(patientRoomNo+'/'+PatientID).set(patientName);
      window.location.reload();
      });
   }
@@ -258,6 +261,7 @@ function portfolio_Table(fb){
           childSnapshot.forEach(function(childSnapshot1){
               if(childSnapshot1.key == "Portfolio"){
                   var row = briefPortfolio.insertRow(rowIndexBP);
+                  row.setAttribute("class","table-list-row");
                   var cellId = row.insertCell(0)
                   var cellName = row.insertCell(1);
                   var cellNationalID = row.insertCell(2);
@@ -269,6 +273,7 @@ function portfolio_Table(fb){
                   var cellButton= row.insertCell(8);
                   var button = document.createElement("button");
                   cellId.appendChild(document.createTextNode(childSnapshot.key));
+                  //row.setAttribute("data-idroom",childSnapshot.key);
                   cellButton.appendChild(button);
                   childSnapshot1.forEach(function(childSnapshot2){
                       var childKey = childSnapshot2.key;
@@ -282,9 +287,11 @@ function portfolio_Table(fb){
                       }
                       if(childKey == "Nationality"){
                           cellNationality.appendChild(document.createTextNode(childData));
+                          row.setAttribute('data-nationality', childData);
                       }
                       if(childKey =="Gender"){
                           cellGender.appendChild(document.createTextNode(childData));
+                          row.setAttribute('data-gender',childData);
                       }
                       if(childKey == "EContact"){
                           cellContactno.appendChild(document.createTextNode(childData));
@@ -294,6 +301,7 @@ function portfolio_Table(fb){
                       }
                       if(childKey == "Position"){
                           cellRole.appendChild(document.createTextNode(childData));
+                          row.setAttribute('data-position', childData);
                       }
                       button.onclick = viewP;
                   });
@@ -333,8 +341,6 @@ function viewP(){
       var AR = snapshot.child('AppointmentRecord').val();
       var MR = snapshot.child('MedicalRecord').val();
       var BD = snapshot.child('BriefDescription').val();
-      //var CNAname = snapshot.child('CNAName').val();
-      //var CNAID= snapshot.child('CNAID').val();
       var roomno = snapshot.child('patientRoomNo').val();
       var AdmissionDate = snapshot.child('AdmissionDate').val();
       var EName = snapshot.child('EName').val();
@@ -401,7 +407,7 @@ function viewP(){
       var ERelationship = snapshot.child('ERelationship').val();
       var BriefDescription = snapshot.child('BriefDescription').val();
       var License = snapshot.child('License').val();
-      //TODO:pictureing display
+
       document.getElementById("sLicense").src = License;
       document.getElementById('imgS').src = photo;
       document.getElementById('SID').innerHTML= id;
@@ -467,8 +473,6 @@ function editPP(){
     document.getElementById('patientNID2').value= NationalID;
     document.getElementById('patientGender2').value= Gender;
     document.getElementById('patientRoomNo2').value= roomno;
-    //document.getElementById('CNAName2').value= CNAname;
-    //document.getElementById('CNAID2').value= CNAID;
     document.getElementById('patientNationality2').value= Nationality ;
     document.getElementById('patientEmail2').value= Email;
     document.getElementById('patientDOB2').value= DOB;
@@ -549,8 +553,6 @@ function SubmitPPPP(){
   var NID = document.getElementById('patientNID2').value;
   var Gender = document.getElementById('patientGender2').value;
   var Room = document.getElementById('patientRoomNo2').value;
-  //var CNAname = document.getElementById('CNAName2').value;
-  //var CNAID = document.getElementById('CNAID2').value;
   var Nationality = document.getElementById('patientNationality2').value;
   var Email = document.getElementById('patientEmail2').value;
   var DOB = document.getElementById('patientDOB2').value;
@@ -583,8 +585,6 @@ function SubmitPPPP(){
   MedicalRecord : MR,
   BriefDescription : BD,
   patientRoomNo : Room,
-  //CNAName : CNAname,
-  //CNAID : CNAID,
   Adress : Address,
   AdmissionDate : AdmissionDate,
   EName : EName,
@@ -592,9 +592,11 @@ function SubmitPPPP(){
   AdmissionReason : AdmissionReason,
   Position : 'Patient'
   };
+
+
   updates['Patient/'+ id+'/Portfolio'] = postData;
- // updates['Portfolio/'+ id] = postData;
   firebase.database().ref().update(updates);
+  firebase.database().ref('Room').child(Room+'/'+id).set(Name);
   window.location.reload();
 
 }
@@ -674,111 +676,18 @@ fbSP.child(id).remove();
  window.location.reload();
 }
 
-
-
-//filter staff portfolio function
-function filterStaffP(){
-  var table = document.getElementById("briefPortfolio");
-  var tr = table.getElementsByTagName("tr");
-  for (i = 0; i < tr.length; i++) {
-    var td = tr[i].getElementsByTagName("td")[7];//row i cell number 7
-
-    if(td){
-    if (td.innerText == 'CNO' || td.innerText == 'Director'|| td.innerText == 'CNA') {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-  }
-}
-//Filter patient portfolio function
-function filterPatientP(){
-  var table = document.getElementById("briefPortfolio");
-  var tr = table.getElementsByTagName("tr");
-  for (var i = 0; i < tr.length; i++) {
-    var td = tr[i].getElementsByTagName("td")[7];//row i cell number 7
-    //alert(td.innerText);
-    if(td){
-    if (td.innerText == 'Patient') {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-  }
-}
-function filterAllP(){
-  var table = document.getElementById("briefPortfolio");
-  var tr = table.getElementsByTagName("tr");
-  for (var i = 0; i < tr.length; i++) {
-      var td = tr[i].getElementsByTagName("td")[7];//row i cell number 7
-      tr[i].style.display = "";
-
-    }
-}
-
 //Keyword search
 $(document).ready(function(){
   $("#searchInput").on("keyup", function() {
     var value = $(this).val().toLowerCase();
     $("#briefPortfolio tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+      var searchedTable = $("#briefPortfolio").html();
     });
   });
 });
 
-//Filter with Nationality
-function filterNationality(){
-  var table = document.getElementById("briefPortfolio");
-  var filterN = document.getElementById("filterNationality").value;
-  var tr = table.getElementsByTagName("tr");
-  if("all" == filterN){
-      for (var i = 0; i < tr.length; i++) {
-          tr[i].style.display = "";
-        }
-  }
-  else{
-      for (var i = 0; i < tr.length; i++) {
-        var td = tr[i].getElementsByTagName("td")[3];//row i cell number 3
-        if(td){
-           if (td.innerText == filterN) {
-            tr[i].style.display = "";
-          } else {
-            tr[i].style.display = "none";
-          }
-        }
-      }
-  }
-
-}
-
-//Filter with Gender
-function filterGender(){
-  var table = document.getElementById("briefPortfolio");
-  var filterG = document.getElementById("filterGender").value;
-  var tr = table.getElementsByTagName("tr");
-  if("all" == filterG){
-      for (var i = 0; i < tr.length; i++) {
-          tr[i].style.display = "";
-        }
-  }
-  else{
-      for (var i = 0; i < tr.length; i++) {
-        var td = tr[i].getElementsByTagName("td")[4];//row i cell number 4
-        if(td){
-          console.log(td.innerText);
-        if (td.innerText == filterG) {
-            tr[i].style.display = "";
-          } else {
-            tr[i].style.display = "none";
-          }
-        }
-      }
-  }
-}
-
-//TODO:Filter with Room number
+//Room number filter
 function filterRoomNo() {
     var table = document.getElementById("briefPortfolio");
     var selectedroom = document.getElementById('filterRoomNo').value;
@@ -832,62 +741,75 @@ function filterRoomNo() {
           var td = tr[i].getElementsByTagName("td")[0];//row i cell number 4
           if(td){
                   tr[i].style.display = "";
+
           }
       }
   }
 }
-function sortingPortfoilo(n){
-  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-  table = document.getElementById("briefPortfolio");
-  switching = true;
-  console.log(table.row);
-  //Set the sorting direction to ascending:
-  dir = "asc";
-  /*Make a loop that will continue until
-  no switching has been done:*/
-  while (switching) {
-    //start by saying: no switching is done:
-    switching = false;
-    rows = table.rows;
-    /*Loop through all table rows (except the
-    first, which contains table headers):*/
-    for (i = 1; i < (rows.length - 1); i++) {
-      //start by saying there should be no switching:
-      shouldSwitch = false;
-      /*Get the two elements you want to compare,
-      one from current row and one from the next:*/
-      x = rows[i].getElementsByTagName("TD")[n];
-      y = rows[i + 1].getElementsByTagName("TD")[n];
-      /*check if the two rows should switch place,
-      based on the direction, asc or desc:*/
-      if (dir == "asc") {
-        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-          //if so, mark as a switch and break the loop:
-          shouldSwitch= true;
-          break;
-        }
-      } else if (dir == "desc") {
-        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-          //if so, mark as a switch and break the loop:
-          shouldSwitch = true;
-          break;
-        }
-      }
+
+// Combined Filters
+var positionF,nationalityF,genderF,roomF,idnroomF;
+function updateTable(){
+  $(".table-list-row").hide().filter(function(){
+    var self = $(this);
+    var result = true;
+    if (positionF && (positionF != 'all')) {
+      result = result && positionF === self.data('position');
     }
-    if (shouldSwitch) {
-      /*If a switch has been marked, make the switch
-      and mark that a switch has been done:*/
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
-      //Each time a switch is done, increase this count by 1:
-      switchcount ++;
-    } else {
-      /*If no switching has been done AND the direction is "asc",
-      set the direction to "desc" and run the while loop again.*/
-      if (switchcount == 0 && dir == "asc") {
-        dir = "desc";
-        switching = true;
-      }
+    if (nationalityF && (nationalityF != 'all')) {
+      result = result && nationalityF === self.data('nationality');
     }
-  }
+    if (genderF && (genderF != 'all')) {
+      result = result && genderF === self.data('gender');
+    }
+  /*  if (idnroomF && (idnroomF != 'all')) {
+      result = result && idnroomF === self.data('idroom');
+      console.log('idroom = '+self.data('idroom'));
+      console.log('idnroomF = '+idnroomF);
+    }*/
+
+    console.log('123');
+    return result;
+  }).show();
 }
+
+$('#filterPosition').on('change', function() {
+  positionF = this.value;
+  updateTable();
+});
+
+$('#filterNationality').on('change', function() {
+  nationalityF = this.value;
+  updateTable();
+});
+
+$('#filterGender').on('change', function() {
+  genderF = this.value;
+  updateTable();
+});
+
+/*var scope = [];
+$('#filterRoomNo').on('change', function(){
+
+  roomF = this.value;
+  readP();
+  console.log(scope);
+  scope.length = 0;
+      //updateTable();
+});
+
+function readP(){
+  var fbPR = firebase.database().ref('Patient/');
+  fbPR.once('value', readallP);
+
+}
+
+function readallP(snapshot){
+    snapshot.forEach(function(childSnapshot){
+      var id = childSnapshot.key;
+      var room = childSnapshot.child('Portfolio/patientRoomNo').val();
+      scope.push(id);
+      scope.push(room);
+      });
+      console.log(scope);
+}*/

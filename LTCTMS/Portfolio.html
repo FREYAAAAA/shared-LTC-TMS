@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
 <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-<link rel="stylesheet" href="alldesign.css">
+<link rel="stylesheet" href="PortfolioStyle.css">
 </head>
 <body background="image\bg.jpg">
 
@@ -45,28 +45,26 @@
 
   <input type="text" name="search" placeholder="Search" id="searchInput"  class="portfolio_keyword_search">
 <div class="portfolio_search_position">
-<form action="/action_page.php">
   <div class="portfolio_search_background">
   <div class="portfolio_search_word">
     <h3> Position: </h3>
   </div>
   </div>
-  <div class="portfolio_search_background">
-  <div class="portfolio_search_word">
-    <input type="radio" name="position" value="all" onclick="filterAllP()"> All <br>
-    <input type="radio" name="position" value="staff" onclick="filterStaffP()"> Staff <br>
-    <input type="radio" name="position" value="patient" onclick="filterPatientP()"> Patient <br>
-  </div>
-  </div>
-</form>
 
+  <select id="filterPosition">
+   <option value="all">All</option>
+   <option value="DIR">Director</option>
+   <option value="CNO">CNO</option>
+   <option value="CNA">CNA</option>
+   <option value="Patient">Patient</option>
+ </select>
 <br>
 <div class="portfolio_search_background">
   <div class="portfolio_search_word">
     <h3> Room No. </h3>
   </div>
  </div>
-<select id = "filterRoomNo" onchange = "filterRoomNo()">
+<select id = "filterRoomNo" onchange ="filterRoomNo()" >
     <option value="all"> All </option>
 	  <option value="101">101</option>
     <option value="102">102</option>
@@ -83,7 +81,7 @@
     <h3> Nationality </h3>
 </div>
 </div>
-   <select id="filterNationality" onchange = "filterNationality()">
+   <select id="filterNationality">
     <option value="all">All</option>
 	  <option value="Taiwan">Taiwan</option>
     <option value="Thailand">Thailand</option>
@@ -100,7 +98,7 @@
     <h3> Gender </h3>
 </div>
 </div>
-   <select id="filterGender" onchange = "filterGender()">
+   <select id="filterGender">
     <option value="all"> All </option>
 	  <option value="M">Male</option>
     <option value="F">Female</option>
@@ -113,16 +111,16 @@
 <div class="spilt_layout">
 </div>
 <div class="portfolio_display">
-<table class="portfolio_display_table" >
+<table class="portfolio_display_table">
     <tr>
-        <th style="width:12%"onclick="sortingPortfoilo(0)"> I.D. </th>
-        <th style="width:16%"onclick="sortingPortfoilo(1)"> Name </th>
-        <th style="width:12%"onclick="sortingPortfoilo(2)"> National ID </th>
-        <th style="width:12%"onclick="sortingPortfoilo(3)"> Nationality </th>
-        <th style="width:3%"onclick="sortingPortfoilo(4)"> Gender</th>
-        <th style="width:15%"onclick="sortingPortfoilo(5)"> Contact number</th>
-        <th style="width:15%"onclick="sortingPortfoilo(6)"> Email</th>
-        <th style="width:6%"onclick="sortingPortfoilo(7)"> Role</th>
+        <th style="width:12%"> I.D. </th>
+        <th style="width:16%"> Name </th>
+        <th style="width:12%"> National ID </th>
+        <th style="width:12%"> Nationality </th>
+        <th style="width:3%"> Gender</th>
+        <th style="width:15%"> Contact number</th>
+        <th style="width:15%"> Email</th>
+        <th style="width:6%"> Role</th>
         <th style="width:6%"> <button type="button" onclick = "addNewPortfolio()" class="add_button"><img src="image\add.png" height="15px" width="15px"/></button> </th>
     </tr>
     <tbody id = "briefPortfolio">
@@ -526,8 +524,8 @@
 </div>
 
 
-<script type = 'text/javascript' src = '/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Config.js'></script>
-<script type = 'text/javascript' src = '/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/PortfolioJS.js'></script>
+<script type = 'text/javascript' src = 'C:\inetpub\wwwroot\LTCTMS\Config.js'></script>
+<script type = 'text/javascript' src = 'C:\inetpub\wwwroot\LTCTMS\PortfolioJS.js'></script>
 
 </body>
 
