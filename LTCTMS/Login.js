@@ -126,23 +126,19 @@ function validate(){
 
     console.log(cnoindex);
     console.log(dirindex);
-  if(username == "" || password == ""){
-    alert ("Please enter username and password")
-  }
-  else {
-    for(var c=0; c<=cnoindex; c++){
-         if( ( username == cnousername[c] && password == cnopassword[c])||( username == dirusername[c] && password == dirpassword[c])){
-            alert ("Login successfully!");
-            window.location = "Aboutus.html";
-            break;
+      if(username == "" || password == ""){
+        alert ("Please enter username and password")
+      }
+      else {
+        for(var c=0; c<=cnoindex; c++){
+             if( ( username == cnousername[c] && password == cnopassword[c])||( username == dirusername[c] && password == dirpassword[c])){
+                alert ("Login successfully!");
+                window.location = "Aboutus.html";
+                return;
+            }
         }
-        else{
-            console.log("fail:")
-            alert("Wrong username or password");
-             location.reload();
-             break;
-
-        }
+        console.log("fail:")
+        alert("Wrong username or password");
+        location.reload();
     }
-}
 }
