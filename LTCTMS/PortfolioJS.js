@@ -33,7 +33,7 @@ console.log(staffCV);
 
 //btnLicense.addEventListener('change', handleuploadfile2);
 btnSubmitP.addEventListener('click', handleuploadfileSubmit);
-console.log("12312412412");
+//console.log("12312412412");
 let file1 = [];
 let file4 = [];
 let file3 = [];
@@ -255,6 +255,10 @@ portfolio_Table(fbCNO);
 portfolio_Table(fbDIR);
 portfolio_Table(fbCNA);
 portfolio_Table(fbPAT);
+var arr = [];
+var arr1 = [];
+var i = 0;
+var index = 0;
 function portfolio_Table(fb){
     fb.once('value',function(snapshot){
       snapshot.forEach(function(childSnapshot){
@@ -272,13 +276,35 @@ function portfolio_Table(fb){
                   var cellRole= row.insertCell(7);
                   var cellButton= row.insertCell(8);
                   var button = document.createElement("button");
+
                   cellId.appendChild(document.createTextNode(childSnapshot.key));
                   //row.setAttribute("data-idroom",childSnapshot.key);
+
                   cellButton.appendChild(button);
                   childSnapshot1.forEach(function(childSnapshot2){
                       var childKey = childSnapshot2.key;
                       var childData = childSnapshot2.val();
                       button.innerHTML="View";
+                      if(childKey == "patientRoomNo"){
+                          arr1.push(childData);
+                          var y = document.getElementById("filterRoomNo");
+                          var option = document.createElement("option");
+                          var x1 = "true";
+                          console.log(arr1[index]);
+                          for(var c =0; c< index ; c++){
+                              if(arr1[c] == arr1[index]){
+                                  x1 = "false"
+                                  break;
+                              }
+                          }
+                          console.log(x1);
+                          if(x1 == "true"){
+                              option.text= arr1[index];
+                              y.add(option);
+                              console.log(arr1[index]);
+                          }
+                          index++;
+                      }
                       if(childKey == "Name"){
                           cellName.appendChild(document.createTextNode(childData));
                       }
@@ -288,6 +314,24 @@ function portfolio_Table(fb){
                       if(childKey == "Nationality"){
                           cellNationality.appendChild(document.createTextNode(childData));
                           row.setAttribute('data-nationality', childData);
+                         arr.push(childData); // add the childkey into array, push is add
+                         ; // to show the key on the console
+                         var y = document.getElementById("filterNationality");
+                         var option = document.createElement("option");
+                         var x = "true";
+                         for(var c =0; c< i ; c++){
+                             if(arr[c] == arr[i]){
+                                 x = "false"
+                                 break;
+                             }
+                         }
+                        // console.log(x);
+                         if(x == "true"){
+                             option.text= arr[i];
+                             y.add(option);
+                         }
+                         i++;
+
                       }
                       if(childKey =="Gender"){
                           cellGender.appendChild(document.createTextNode(childData));
