@@ -577,13 +577,13 @@ console.log(position);
     document.getElementById('staffEContact2').value= EContact;
     document.getElementById('staffAddress2').value= AddressV ;
     document.getElementById('staffPassword2').value= pass;
-    document.getElementById('staffCV2').value= CV;
+    document.getElementById('staffCV2').innerHTML= CV;
     document.getElementById('staffPosition2').value = Position;
     document.getElementById('staffInitialDate2').value= InitialDate;
     document.getElementById('staffEName2').value= EName;
     document.getElementById('staffERelationship2').value= ERelationship;
     document.getElementById('staffBriefDescription2').value= BriefDescription;
-    document.getElementById('stafflicense2').value= License;
+    document.getElementById('stafflicense2').innerHTML= License;
   });
 
 }
@@ -658,13 +658,13 @@ function submitSP(){
   var Econtact = document.getElementById('staffEContact2').value;
   var Address = document.getElementById('staffAddress2').value;
   var pass = document.getElementById('staffPassword2').value;
-  var CV = document.getElementById('staffCV2').value;
+  var CV = document.getElementById('staffCV2').innerHTML;
   var position = document.getElementById('staffPosition2').value;
   var InitialDate = document.getElementById('staffInitialDate2').value;
   var EName = document.getElementById('staffEName2').value;
   var ERelationship = document.getElementById('staffERelationship2').value;
   var BriefDescription = document.getElementById('staffBriefDescription2').value;
-  var License = document.getElementById('stafflicense2').value;
+  var License = document.getElementById('stafflicense2').innerHTML;
 
   var updates = {};
   var postData={
