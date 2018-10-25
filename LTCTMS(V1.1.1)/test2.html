@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8">
+      <title>Firebase Web Test</title>
+      <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+      <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    </head>
+<body>
+    <h1 id="bigOne"> </h1>
+
+    <table style="width:100%">
+    <tr>
+    <td>Id: </td>
+    <td><input type="text" name="id" id="user_id" ></td>
+    </tr>
+    <tr>
+    <td>Place Name: </td>
+    <td><input type="text" name="user_name" id="user_name" ></td>
+    </tr>
+    <tr>
+    <td colspan="2">
+    <input type="button" value="Add Place" onclick="create_row();" />
+    <input type="button" value="Delete" onclick="delete_row();" />
+    </td>
+    </tr>
+    </table>
+
+    <table id="tbl_users_list" border="1">
+    <tr>
+    <td>#Id</td>
+    <td>PLACE NAME</td>
+    </tr>
+    </table>
+
+
+<script src="https://www.gstatic.com/firebasejs/5.4.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCZSYudtrbWzpAg8_i6RDVi6n-LoNwmGnU",
+    authDomain: "ltctms-18e9b.firebaseapp.com",
+    databaseURL: "https://ltctms-18e9b.firebaseio.com",
+    projectId: "ltctms-18e9b",
+    storageBucket: "ltctms-18e9b.appspot.com",
+    messagingSenderId: "553898554827"
+  };
+  firebase.initializeApp(config);
+
+  var tblUsers = document.getElementById("tbl_users_list");
+  // firebase reference
+  var database = firebase.database().ref('users/');
+  var rowIndex = 1;
+
+  database.once('value', function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+        var childKey = childSnapshot.key;
+        var childData = childSnapshot.val();
+
+        var row = tblUsers.insertRow(rowIndex);
+        var cellId = row.insertCell(0);
+        var cellName = row.insertCell(1);
+        var cellButtons = row.insertCell(2).outerHTML=
+        "<tr id='row"+rowIndex+"'><td><input type='button' value='Delete' class='delete' onclick='delete_row("+childKey+")'></td></tr>";
+
+        cellId.appendChild(document.createTextNode(childKey));
+        cellName.appendChild(document.createTextNode(childData.user_name));
+        rowIndex = rowIndex + 1;
+    });
+ });
+
+function create_row() {
+  var user_name = document.getElementById('user_name').value;
+  var uid = firebase.database().ref().child('users').push().key;
+
+  var data = {
+    user_id: uid,
+    user_name: user_name
+  }
+
+  var updates = {};
+  updates['/users/' + uid] = data;
+  firebase.database().ref().update(updates);
+
+  alert('the user was created successfully');
+  window.location.reload();
+}
+
+function delete_row(childKey) {
+    //var key = document.getElementById(row).row.childData;
+
+    firebase.database().ref().child('users/' + childKey + '/').remove();
+    alert('row was removed');
+    window.location.reload();
+}
+
+</script>
+
+
+
+</body>
