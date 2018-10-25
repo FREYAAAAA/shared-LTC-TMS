@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>E-portfolio</title>
+<link rel="icon" type="image/jpg" href="/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/image/logo.jpg">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/alldesign.css">
+</head>
+<body background="/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/image/bg.jpg">
+
+<div class="topnav">
+    <h2 class="page_head"><center>E &nbsp - &nbsp P &nbsp O &nbsp R &nbsp T &nbsp F &nbsp O &nbsp L &nbsp I &nbsp O</center></h2>
+    <div class="tms_logo">
+    <img src="/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/image/Browser- logo final.png">
+    </div>
+    <div class="language_option">
+    <select>
+        <option value="English">English</option>
+        <option value="Chinese">Chinese</option>
+    </select>
+    <button onclick="window.location.href='Login.html'">Logout</button>
+    </div>
+</div>
+
+<div class="nav_position">
+    <table class="toptable">
+      <tr>
+          <td class="topth"><center><button class="thisblock" onclick="/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Aboutus/Aboutus.html'"><a class="inside_nav_word">ABOUT US</a></button></center></td>
+          <td class="topth"><center><button class="block" onclick="window.location.href='/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Schedule/scheduletest.html'"><a class="inside_nav_word">SCHEDULE</a></button></center></td>
+          <td class="topth"><center><button class="block" onclick="window.location.href='/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Memo/memo.html'"><a class="inside_nav_word">MEMO</a></button></center></td>
+          <td class="topth"><center><button class="block" onclick="window.location.href='/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Status Record/DVSR.html'"><a class="inside_nav_word">STATUS RECORD</a></button></center></td>
+          <td class="topth"><center><button class="block" onclick="window.location.href='/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Library/Library.html'"><a class="inside_nav_word">LIBRARY</a></button></center></td>
+          <td class="topth"><center><button class="block" onclick="window.location.href='/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Task Editor/TaskEditor.html'"><a class="inside_nav_word">TASK EDITOR</a></button></center></td>
+          <td class="topth"><center><button class="block" onclick="window.location.href='/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Task Editor/TaskEditor.html'"><a class="inside_nav_word">E-PORTFOLIO</a></button></center></td>
+          <td class="topth"><center><button class="block" onclick="window.location.href='/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Help and Support/HelpandSupport.html'"><a class="inside_nav_word">HELP AND SUPPORT</a></button></center></td>
+      </tr>
+    </table>
+</div>
+
+<div class="content">
+</div>
+
+  <input type="text" name="search" placeholder="Search" id="searchInput"  class="portfolio_keyword_search">
+<div class="portfolio_search_position">
+  <div class="portfolio_search_background">
+  <div class="portfolio_search_word">
+    <h3> Position: </h3>
+  </div>
+  </div>
+
+  <select id="filterPosition">
+   <option value="all">All</option>
+   <option value="DIR">Director</option>
+   <option value="CNO">CNO</option>
+   <option value="CNA">CNA</option>
+   <option value="Patient">Patient</option>
+ </select>
+<br>
+<div class="portfolio_search_background">
+  <div class="portfolio_search_word">
+    <h3> Room No. </h3>
+  </div>
+ </div>
+<select id = "filterRoomNo" onchange ="filterRoomNo()" >
+    <option value="all"> All </option>
+
+</select>
+<br><br>
+<div class="portfolio_search_background">
+<div class="portfolio_search_word">
+    <h3> Nationality </h3>
+</div>
+</div>
+   <select id="filterNationality">
+    <option value="all">All</option>
+
+</select>
+<br><br>
+<div class="portfolio_search_background">
+<div class="portfolio_search_word">
+    <h3> Gender </h3>
+</div>
+</div>
+   <select id="filterGender">
+    <option value="all"> All </option>
+	  <option value="M">Male</option>
+    <option value="F">Female</option>
+    <option value="Others">Others</option>
+</select>
+<br><br><br><br>
+<button onclick= 'Cancel()'> Refresh</button>
+</div>
+<!--spilt_layout-->
+<div class="spilt_layout">
+</div>
+<div class="portfolio_display">
+<table class="portfolio_display_table">
+    <tr>
+        <th style="width:12%"> ID </th>
+        <th style="width:16%"> Name </th>
+        <th style="width:12%"> National ID </th>
+        <th style="width:12%"> Nationality </th>
+        <th style="width:3%"> Gender</th>
+        <th style="width:15%"> Contact number</th>
+        <th style="width:15%"> Email</th>
+        <th style="width:6%"> Role</th>
+        <th style="width:6%"> <button type="button" onclick = "addNewPortfolio()" class="add_button"><img src="/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/image/add.png" height="15px" width="15px"/></button> </th>
+    </tr>
+    <tbody id = "briefPortfolio">
+       <tr>
+      </tr>
+     </tbody>
+</table>
+</div>
+<div id="newPortfolioSeletion">
+  <div class="editformselectcreate">
+    <center><h2>Select Role</h2><br></center>
+    <center><button class="selectpatientorstaff" id="btnStaff" onclick="staffPortfolio()">STAFF</button>
+    &nbsp&nbsp&nbsp&nbsp
+    <button class="selectpatientorstaff" id="btnPatient" onclick="patientPortfolio()">PATIENT</button>
+    </center><br><br>
+    <center><button onclick="Cancel()">Back</button></center>
+  </div>
+</div>
+</div>
+
+<div id="newStaffPortfolio">
+  <div class="editformcreatestaff">
+    <center><h2>Staff Portfolio</h2></center>
+    <table class="portfolio_table">
+   <tr>
+       <td rowspan="2"> Insert Photo: <br><br><input  id="btnPicture" type="file" accept="image/*" required/> </td>
+       <td> Staff ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="StaffID" placeholder="Staff ID" required/></td>
+   </tr>
+   <tr>
+       <td>Name: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffName" placeholder="Name" required/></td>
+   </tr>
+   <tr>
+       <td> Initial Date: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffInitialDate" placeholder="Enter Date" required/></td>
+       <td> Password: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffPassword" placeholder="give a password" required/></td>
+   </tr>
+   <tr>
+       <td> Position: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffPosition" placeholder="Position" required/></td>
+       <td> Date of Birth: &nbsp&nbsp&nbsp&nbsp<input type="text" id="staffDOB" placeholder="yyyy/mm/dd" required/></td>
+   </tr>
+   <tr>
+       <td> National ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffNID" placeholder="National ID" required/></td>
+       <td> Nationality: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffNationality" placeholder="Nationality" required/></td>
+   </tr>
+   <tr>
+       <td> Email Address: &nbsp&nbsp&nbsp&nbsp<input type="text" id="staffEmail" placeholder="Email" required/></td>
+       <td> Gender: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffGender" placeholder="M/F" required/></td>
+   </tr>
+   <tr>
+       <td> Contact No: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffContact" placeholder="0123-456-780" required/></td>
+       <td> Emergency Contact No: <input type="text" id="staffEContact" placeholder="0123-456-780" required/></td>
+   </tr>
+   <tr>
+       <td> Emergency Contact Name: <input type="text" id="staffEName" placeholder="Name" required/></td>
+       <td> Emergency Contact Relationship: <input type="text" id="staffERelationship" placeholder="Relationship" required/></td>
+   </tr>
+    <tr>
+       <td colspan="2"> Address: &nbsp&nbsp&nbsp&nbsp<input type="text" id="staffAddress" placeholder="Address" size="80" required/></td>
+   </tr>
+   <tr>
+       <td colspan="2">Brief Description:<input type="textarea" id="staffbriefdescription" placeholder="Please enter here" size="85"/></td>
+   </tr>
+   <tr>
+     <td> Insert CV: &nbsp&nbsp&nbsp&nbsp<input  id="staffCV" type="file" accept="image/*" required/></td>
+     <td> Insert License: &nbsp&nbsp<input  id="staffLicense" type="file" accept="image/*" required/></td>
+   </tr>
+</table><br>
+    <center><button id ="btnSubmitP"> Submit</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <button id ="btnPCancel" onclick="Cancel()">Cancel</button></center>
+  </div>
+</div>
+</div>
+
+
+<div id="newPatientPortfolio">
+  <div class="editformcreatepatient">
+    <center><h2>Patient Portfolio</h2></center>
+    <table class="portfolio_table">
+   <tr>
+       <td rowspan="2"> Insert Photo <br><br><input  id="btnPicture2" type="file" accept="image/*" required/> </td>
+       <td> Patient ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="PatientID" placeholder="Patient ID" required/></td>
+   </tr>
+   <tr>
+       <td>Name: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientName" placeholder="Name" required/></td>
+   </tr>
+   <tr>
+       <td> Room number: &nbsp&nbsp&nbsp&nbsp<input type="text" id="patientRoomNo" placeholder="101.." required/></td>
+       <td> Password: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientPassword" placeholder="give a password" required/></td>
+   </tr>
+   <tr>
+       <td> National ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientNID" placeholder="National ID" required/></td>
+       <td> Nationality: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientNationality" placeholder="Nationality" required/></td>
+   </tr>
+   <tr>
+       <td> Date of Birth:  &nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientDOB" placeholder="yyyy/mm/dd" required/></td>
+       <td> Gender: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientGender" placeholder="M/F" required/></td>
+   </tr>
+   <tr>
+       <td> Admission Date: &nbsp&nbsp<input type="text" id="patientAdmissionDate" placeholder="Enter Date" required/></td>
+       <td> Email Address: &nbsp&nbsp<input type="text" id="patientEmail" placeholder="Email" required/></td>
+   </tr>
+   <tr>
+       <td> Contact No: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientContact" placeholder="0123-456-780" required/></td>
+       <td> Emergency Contact No: <input type="text" id="patientEContact" placeholder="0123-456-780" required/></td>
+   </tr>
+   <tr>
+       <td> Emergency Contact Name: &nbsp<input type="text" id="patientEName" placeholder="Enter Name" required/></td>
+       <td> Emergency Contact Relationship: <input type="text" id="patientERelationship" placeholder="Enter Relationship" required/></td>
+   </tr>
+    <tr>
+       <td colspan="2"> Address: &nbsp&nbsp&nbsp&nbsp<input type="text" id="patientAddress" placeholder="Address" size="80" required/></td>
+   </tr>
+   <tr>
+      <td colspan="2"> Admission Reason: &nbsp&nbsp<input type="text" id="patientAdmissionReason" placeholder="Enter Here" size="85" required/></td>
+  </tr>
+   <tr>
+       <td colspan="2">Appointment Record:<input type="textarea" id="AppointmentRecord" placeholder="Appointment Record..." size="85"/></td>
+   </tr>
+   <tr>
+       <td colspan="2">Medical Record:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="textarea" id="MedicalRecord" placeholder="Medical Record..." size="85"/></td>
+   </tr>
+   <tr>
+       <td colspan="2">Brief Description:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="textarea" id="BriefDescription" placeholder="Brief Description..." size="85"/></td>
+   </tr>
+</table>
+    Upload:<progress value="0" max="100" id="Uploader2">0%</progress>
+    <center><button id ="btnSubmitP2"> Submit</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <button id ="btnPCancel" onclick="Cancel()">Cancel</button></center>
+  </div>
+</div>
+</div>
+
+<div id="viewPatientPortfolio">
+  <div class="editformview">
+    <center><h2>Patient Portfolio</h2></center>
+    <div><button id="btnEditPP" onclick="editPP()">Edit</button>
+    <button id="btnDeletePP" onclick = "deletePP()">Delete</button>
+    </div>
+    <br><br>
+    <table id="viewPatientPortfolioTable">
+   <tr>
+       <td rowspan="2" colspan="2" width="50%"><img id='img1' height="150" width="150"/></td>
+       <td width="25%"> Patient ID </td>
+       <td width="25%" id ="PID"></td>
+   </tr>
+   <tr>
+      <td> Name </td>
+       <td id ="Name">Name:</td>
+   </tr>
+   <tr>
+     <td width="25%"> Room No </td>
+     <td width="25%" id="Room"> Room No.</td>
+     <td width="25%"> Password </td>
+     <td width="25%" id ="Password">Password</td>
+   </tr>
+   <tr>
+      <td> National ID </td>
+      <td id="NID"> National ID </td>
+      <td> Nationality </td>
+      <td id="Nationality"> Nationality</td>
+   </tr>
+   <tr>
+       <td> Date of Birth </td>
+       <td id="DOB"> </td>
+       <td> Gender </td>
+       <td id="Gender"> Gender</td>
+   </tr>
+
+   <tr>
+      <td> Admission Date </td>
+      <td id="AdmissionDate"> Admission Date</td>
+      <td> Email Address </td>
+      <td id= "Email"> Email Address</td>
+   </tr>
+   <tr>
+      <td> Contact No </td>
+      <td id="Contactno"> Contact No. </td>
+      <td> Emergency Contact No </td>
+      <td id="EContactnoV"> Emergency Contact No</td>
+   </tr>
+   <tr>
+      <td> Emergency Contact Name </td>
+      <td id="EName"> Emergency Contact Name </td>
+      <td> Emergency Contact Relationship </td>
+      <td id="ERelationship"> Emergency Contact Relationship</td>
+   </tr>
+    <tr>
+      <td> Address </td>
+       <td colspan="3" id= "AddressV"></td>
+   </tr>
+   <tr>
+     <td> Admission Reason </td>
+      <td colspan="3" id= "AdmissionReason"></td>
+  </tr>
+   <tr>
+     <td> Appointment Record </td>
+       <td colspan="3" id = "ARV"> </td>
+   </tr>
+   <tr>
+     <td> Medical Record </td>
+       <td colspan="3" id= "MRV"> </td>
+   </tr>
+   <tr>
+     <td> Brief Description </td>
+       <td colspan="3"id= "BDV"> </td>
+   </tr>
+</table><br>
+<button type="button" onclick="Cancel()" >Back</button>
+  </div>
+</div>
+</div>
+
+<div id="viewStaffPortfolio">
+  <div class="editformview" style="height:1080px;">
+    <center><h2>Staff Portfolio</h2></center>
+    <div><button id="btnEditSP" onclick="editSP()">Edit</button>
+    <button id="btnDeleteSP" onclick = "deleteSP()">Delete</button>
+    </div>
+    <br><br>
+    <table id="viewStaffPortfolioTable">
+    <tr>
+      <td rowspan="2" colspan="2" width="50%"><img id='imgS' height="150" width="150"/></td>
+       <td width="25%"> Staff ID </td>
+       <td width="25%" id ="SID"></td>
+    </tr>
+    <tr>
+      <td> Name </td>
+       <td id ="sName">Name:</td>
+    </tr>
+    <tr>
+      <td width="25%"> Inital Date </td>
+      <td width="25%" id = "sInitialDate"> </td>
+      <td width="25%"> Password </td>
+      <td width="25%" id ="ssPassword"> </td>
+    </tr>
+    <tr>
+       <td> Date of Birth </td>
+       <td id="sDOB"> </td>
+       <td> Position </td>
+       <td id = "sPosition"> </td>
+    </tr>
+    <tr>
+        <td> National ID </td>
+        <td id = "sNID"> </td>
+        <td> Nationality</td>
+        <td id = "sNationality"> </td>
+    </tr>
+    <tr>
+        <td> Email Address</td>
+        <td id ="sEmail"> </td>
+        <td> Gender</td>
+        <td id ="sGender">  </td>
+    </tr>
+    <tr>
+        <td> Contact No. </td>
+        <td id ="sContact"> </td>
+        <td> Emergency Contact No.</td>
+        <td id="sEContact"> </td>
+    </tr>
+    <tr>
+        <td> Emergency Contact Name </td>
+        <td id ="sEName"> </td>
+        <td> Emergency Contact Relationship</td>
+        <td id="sERelationship"> </td>
+    </tr>
+    <tr>
+       <td> Address</td>
+       <td colspan="3" id = "sAddress"></td>
+   </tr>
+   <tr>
+       <td> Brief Description </td>
+       <td colspan="3" id = "sBriefDescription"> </td>
+   </tr>
+   <tr>
+       <td> CV </td>
+       <td colspan="3" ><img id ="sCV" height="150" width="150"/></td>
+   </tr>
+   <tr>
+       <td> License </td>
+       <td colspan="3" ><img id ="sLicense" height="150" width="150"/></td>
+   </tr>
+    </table><br>
+ <button type="button" onclick="Cancel()" >Back</button>
+</div>
+</div>
+</div>
+
+<div id="editPatientPortfolio">
+  <div class="editformedit">
+    <center><h2>Patient Portfolio</h2></center>
+    <table class="portfolio_table">
+    <tr>
+      <td rowspan="2" width="50%"> Patient Picture URL:<p type="text" id="PictureP" required></p></td>
+      <td width="50%"> Patient ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="PatientID2" placeholder="Patient ID" required/></td>
+    </tr>
+    <tr>
+      <td>Name: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientName2" placeholder="Name" required/></td>
+    </tr>
+    <tr>
+       <td> Room number: &nbsp&nbsp&nbsp&nbsp<input type="text" id="patientRoomNo2" placeholder="101.." required/></td>
+       <td> Password: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp    <input type="text" id="patientPassword2" placeholder="give a password" required/></td>
+    </tr>
+    <tr>
+       <td> National ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientNID2" placeholder="National ID" required/></td>
+       <td> Nationality: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientNationality2" placeholder="Nationality" required/></td>
+    </tr>
+    <tr>
+       <td> Date of Birth: &nbsp&nbsp&nbsp&nbsp<input type="text" id="patientDOB2" placeholder="yyyy/mm/dd" required/></td>
+       <td> Gender: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientGender2" placeholder="M/F" required/></td>
+    </tr>
+    <tr>
+       <td> Admission Date: &nbsp&nbsp&nbsp&nbsp<input type="text" id="patientAdmissionDate2" placeholder="Date" required/></td>
+       <td> Email Address: &nbsp&nbsp&nbsp&nbsp<input type="text" id="patientEmail2" placeholder="Email" required/></td>
+    </tr>
+    <tr>
+       <td> Contact No: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientContact2" placeholder="0123-456-780" required/></td>
+       <td> Emergency Contact No: <input type="text" id="patientEContact2" placeholder="0123-456-780" required/></td>
+    </tr>
+    <tr>
+       <td> Emergency Contact Name: &nbsp&nbsp&nbsp<input type="text" id="patientEName2" placeholder="Enter Name" required/></td>
+       <td> Emergency Contact Relationship: <input type="text" id="patientERelationship2" placeholder="Enter Relationship" required/></td>
+    </tr>
+    <tr>
+       <td colspan="2"> Address: &nbsp&nbsp&nbsp&nbsp<input type="text" id="patientAddress2" placeholder="Address" size="80" required/></td>
+    </tr>
+    <tr>
+       <td colspan="2"> Admission Reason: &nbsp&nbsp&nbsp&nbsp<input type="text" id="patientAdmissionReason2" placeholder="Enter Here" size="85" required/></td>
+    </tr>
+    <tr>
+       <td colspan="2">Appointment Record:<input type="textarea" id="AppointmentRecord2" placeholder="Appointment Record..." size="85"/></td>
+    </tr>
+    <tr>
+       <td colspan="2">Medical Record:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="textarea" id="MedicalRecord2" placeholder="Medical Record..." size="85"/></td>
+    </tr>
+    <tr>
+       <td colspan="2">Brief Description:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="textarea" id="BriefDescription2" placeholder="Brief Description..." size="85"/></td>
+    </tr>
+  </table> <br>
+    <center><button id ="btnSubmitPP" onclick="SubmitPPPP()"> Submit</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <button id ="btnPCancel" onclick="Cancel()">Cancel</button></center>
+</div>
+</div>
+</div>
+
+
+<div id="editStaffPortfolio">
+  <div class="editformedit">
+    <center><h2>Staff Portfolio</h2></center>
+    <table class="portfolio_table">
+      <tr>
+        <td colspan="2"> Staff Picture URL:<p type="text" id="PictureS" required></p></td>
+   </tr>
+   <tr>
+       <td width="50%">Name: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffName2" placeholder="Name" required/></td>
+       <td width="50%"> Staff ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="StaffID2" placeholder="Staff ID" required/></td>
+   </tr>
+   <tr>
+     <td> Password: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffPassword2" placeholder="give a password" required/></td>
+     <td> Initial Date: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffInitialDate2" placeholder="Enter Date" required/></td>
+   </tr>
+   <tr>
+       <td> Position: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffPosition2" placeholder="Position" required/></td>
+       <td> Date of Birth: &nbsp&nbsp&nbsp&nbsp<input type="text" id="staffDOB2" placeholder="yyyy/mm/dd" required/></td>
+   </tr>
+   <tr>
+       <td> National ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffNID2" placeholder="National ID" required/></td>
+       <td> Nationality: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffNationality2" placeholder="Nationality" required/></td>
+   </tr>
+   <tr>
+       <td> Email Address: &nbsp&nbsp&nbsp&nbsp<input type="text" id="staffEmail2" placeholder="Email" required/></td>
+       <td> Gender: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffGender2" placeholder="M/F" required/></td>
+   </tr>
+   <tr>
+       <td> Contact No: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffContact2" placeholder="0123-456-780" required/></td>
+       <td> Emergency Contact No: <input type="text" id="staffEContact2" placeholder="0123-456-780" required/></td>
+   </tr>
+   <tr>
+       <td> Emergency Contact Name: &nbsp&nbsp&nbsp<input type="text" id="staffEName2" placeholder="Enter Name" required/></td>
+       <td> Emergency Contact Relationship: <input type="text" id="staffERelationship2" placeholder="Enter Relationship" required/></td>
+   </tr>
+    <tr>
+       <td colspan="2"> Address: &nbsp&nbsp&nbsp&nbsp<input type="text" id="staffAddress2" placeholder="Address" size="80" required/></td>
+   </tr>
+   <tr>
+      <td colspan="2"> Brief Description: &nbsp&nbsp&nbsp&nbsp<input type="text" id="staffBriefDescription2" placeholder="Enter Here" size="90"/></td>
+  </tr>
+   <tr>
+     <!-- should be image><-->
+       <td colspan="2"> CV: <p type="text" id="staffCV2"></p></td>
+   </tr>
+   <tr>
+     <!-- should be image -->
+       <td colspan="2">License: <p type="text" id="stafflicense2"></p></td>
+   </tr>
+</table><br>
+    <center><button id ="btnSubmitSP" onclick="submitSP()"> Submit</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <button id ="btnPCancel" onclick="Cancel()">Cancel</button></center>
+  </div>
+</div>
+</div>
+
+
+<script type = 'text/javascript' src = '/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Config.js'></script>
+<script type = 'text/javascript' src = '/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Portfolio/PortfolioJS.js'></script>
+
+</body>
+
+</html>
