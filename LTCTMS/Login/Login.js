@@ -133,7 +133,7 @@ function validate(){
         for(var c=0; c<=cnoindex; c++){
              if( ( username == cnousername[c] && password == cnopassword[c])||( username == dirusername[c] && password == dirpassword[c])){
                 alert ("Login successfully!");
-                window.location = "Aboutus.html";
+                window.location = "/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Aboutus/Aboutus.html";
                 return;
             }
         }
