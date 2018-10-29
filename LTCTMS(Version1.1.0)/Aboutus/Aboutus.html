@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title> About us </title>
+<link rel="icon" type="image/jpg" href="/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/image/logo.jpg">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+<script type = 'text/javascript' src = '/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Config.js'></script>
+<script type = 'text/javascript' src = '/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Aboutus/Aboutus.js'></script>
+<link rel="stylesheet" href="/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/alldesign.css">
+</head>
+
+<body background="/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/image/bg.jpg">
+<!--copyright=<a href="https://www.freepik.com/free-photos-vectors/people">People image created by Freepik</a>-->
+<div class="topnav">
+  <h2 class="page_head"><center>A &nbsp B &nbsp O &nbsp U &nbsp T &nbsp&nbsp&nbsp U &nbsp S</center></h2>
+  <div class="tms_logo">
+    <img src="/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/image/Browser- logo final.png">
+  </div>
+  <div class="language_option">
+  <select>
+      <option value="English">English</option>
+      <option value="Chinese">Chinese</option>
+  </select>
+  <button onclick="window.location.href='Login.html'">Logout</button>
+  </div>
+</div>
+
+<div class="nav_position">
+    <table class="toptable">
+	     <tr>
+         <td class="topth"><center><button class="thisblock" onclick="/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Aboutus/Aboutus.html'"><a class="inside_nav_word">ABOUT US</a></button></center></td>
+         <td class="topth"><center><button class="block" onclick="window.location.href='/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Schedule/scheduletest.html'"><a class="inside_nav_word">SCHEDULE</a></button></center></td>
+         <td class="topth"><center><button class="block" onclick="window.location.href='/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Memo/memo.html'"><a class="inside_nav_word">MEMO</a></button></center></td>
+         <td class="topth"><center><button class="block" onclick="window.location.href='/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Status Record/DVSR.html'"><a class="inside_nav_word">STATUS RECORD</a></button></center></td>
+         <td class="topth"><center><button class="block" onclick="window.location.href='/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Library/Library.html'"><a class="inside_nav_word">LIBRARY</a></button></center></td>
+         <td class="topth"><center><button class="block" onclick="window.location.href='/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Task Editor/TaskEditor.html'"><a class="inside_nav_word">TASK EDITOR</a></button></center></td>
+         <td class="topth"><center><button class="block" onclick="window.location.href='/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Task Editor/TaskEditor.html'"><a class="inside_nav_word">E-PORTFOLIO</a></button></center></td>
+         <td class="topth"><center><button class="block" onclick="window.location.href='/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Help and Support/HelpandSupport.html'"><a class="inside_nav_word">HELP AND SUPPORT</a></button></center></td>
+       </tr>
+    </table>
+</div>
+
+<div class="content">
+</div>
+
+<div style="position:absolute; top:14%;left:28%;height:42%; width:50%;  border: 5px solid rgba(255, 255, 255, .4);background-color:rgba(255, 255, 255, .8);">
+    <table style="height:100%;width:100%;border-style:hidden;">
+        <tr>
+            <th style="height:20%;"> About Us <button onclick = "aboutus_edit()" style="position:absolute; left:89%;top:8.5%; width:6%; height:8%;">Edit</button></th>
+        </tr>
+        <tr>
+            <td style="border-style:hidden;"><textarea disabled id = "aboutus_text" style="position:absolute; top:25%;left:3%; width:93%; height:180px;"></textarea></td>
+        </tr>
+        <button  style="display:none; position:absolute; top:88%;left:88%;width:8%; height:8%" id = "aboutus_button" onclick = "aboutus_submit()">OK</button>
+    </table>
+
+</div>
+
+<div style="position:absolute; top:59%; left:5%;width:45%; height:39%; border: 5px solid rgba(255, 255, 255, .4);background-color:rgba(255, 255, 255, .8);">
+    <table id = "sponsor_table" style="height:100%;width:100%;border-style:hidden;">
+        <tr>
+          <th style="height:20%;"> Sponsored
+            <button onclick = "sponsor_edit()"  style="position:absolute; left:90%;">Add</button>
+            <button onclick = "sponsor_delete()"  style="position:absolute; left:5%;">Remove</button>
+          </th>
+        </tr>
+        <tr>
+            <td  id = "sponsor_td"style="height:180px;border-style:hidden;">
+    </table>
+
+</div>
+
+<div class="memo_form-popup" id="form" style="position:absolute; left:24%;top:40%; width:100%; height:50%; ">
+    <h3>Sponsor</h3>
+    <textarea id ="sponsorName" rows="1" cols="39" ></textarea>
+    <p style="font-size:12px;"> </p>
+    <br>
+    <p>Link:</p>
+    <textarea id ="url_text" rows="1" cols="39" ></textarea>
+    <br><br>
+    <input type="file" value="" name="Photo" id="fileButton" accept="image/*" />
+    <br><br>
+    <button onclick ="upload()" type="button" class="btn" >Upload</button>
+    <button type="button" class="btn cancel" onclick="close_form()">Close</button>
+</div>
+
+
+
+<div style="position:absolute; top:59%; left:55%;width:40%; height:39%; border: 5px solid rgba(255, 255, 255, .4);background-color:rgba(255, 255, 255, .8);">
+    <table id = ContactInfo_table style="width:100%; height:96%;border-style:hidden;">
+        <tr>
+            <th colspan="2" style="height:20%;"> Center Contact Information <button id = "CI_edit" onclick = "CI_edit()" style="position:absolute; left:530px;">Edit</button></th>
+        </tr>
+        <tr>
+            <th style="width:35%;"> Name: </th>
+            <td id = "Name">  </td>
+            <textarea id = "Name1" style=" display:none; position:absolute; top:23%; left:230px;width:360px;height:11%;"></textarea>
+        </tr>
+        <tr>
+            <th> Email Address: </th>
+            <td id = "Email_Address" >  </td>
+            <textarea id = "Email_Address1" style=" display:none; position:absolute; top:39%; left:230px;width:360px;height:11%;"></textarea>
+        </tr>
+        <tr>
+            <th> Contact No:</th>
+            <td id = "Contact_No" > </td>
+            <textarea id = "Contact_No1" style=" display:none; position:absolute; top:55%; left:230px;width:360px;height:11%;"></textarea>
+        </tr>
+        <tr>
+            <th> Address:</th>
+            <td id = "Address" > </td>
+            <textarea id = "Address1" style=" display:none; position:absolute; top:74%; left:230px;width:360px;height:11%;"></textarea>
+        </tr>
+        <button id = "CI_button" style="display:none;position:absolute;top:94%; left:89%;width:8%;" onclick = "CI_submit()">OK</button>
+    </table>
+</div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title> Status Record </title>
+<link rel="icon" type="image/jpg" href="/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/image/logo.jpg">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,500" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type = 'text/javascript' src = '/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Config.js'></script>
+<script type = 'text/javascript' src = '/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Status Record/DVSR.js'></script>
+
+<link rel="stylesheet" href="/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/alldesign.css">
+</head>
+<body background="/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/image/bg.jpg">
+<!--copyright=<a href="https://www.freepik.com/free-photos-vectors/people">People image created by Freepik</a>-->
+<div class="topnav">
+  <h2 class="page_head"><center>S &nbsp T &nbsp A &nbsp T &nbsp U &nbsp S &nbsp&nbsp&nbsp R &nbsp E &nbsp C &nbsp O &nbsp R &nbsp D</center></h2>
+  <div class="tms_logo">
+    <img src="/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/image/Browser- logo final.png">
+  </div>
+  <div class="language_option">
+  <select>
+      <option value="English">English</option>
+      <option value="Chinese">Chinese</option>
+  </select>
+  <button onclick="window.location.href='Login.html'">Logout</button>
+  </div>
+</div>
+
+<div class="nav_position">
+    <table class="toptable">
+	     <tr>
+             <td class="topth"><center><button class="thisblock" onclick="/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Aboutus/Aboutus.html'"><a class="inside_nav_word">ABOUT US</a></button></center></td>
+             <td class="topth"><center><button class="block" onclick="window.location.href='/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Schedule/scheduletest.html'"><a class="inside_nav_word">SCHEDULE</a></button></center></td>
+             <td class="topth"><center><button class="block" onclick="window.location.href='/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Memo/memo.html'"><a class="inside_nav_word">MEMO</a></button></center></td>
+             <td class="topth"><center><button class="block" onclick="window.location.href='/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Status Record/DVSR.html'"><a class="inside_nav_word">STATUS RECORD</a></button></center></td>
+             <td class="topth"><center><button class="block" onclick="window.location.href='/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Library/Library.html'"><a class="inside_nav_word">LIBRARY</a></button></center></td>
+             <td class="topth"><center><button class="block" onclick="window.location.href='/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Task Editor/TaskEditor.html'"><a class="inside_nav_word">TASK EDITOR</a></button></center></td>
+             <td class="topth"><center><button class="block" onclick="window.location.href='/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Task Editor/TaskEditor.html'"><a class="inside_nav_word">E-PORTFOLIO</a></button></center></td>
+             <td class="topth"><center><button class="block" onclick="window.location.href='/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Help and Support/HelpandSupport.html'"><a class="inside_nav_word">HELP AND SUPPORT</a></button></center></td>
+       </tr>
+    </table>
+</div>
+
+<table  id="Environmenttable" class="environment_table" onclick="sortENV()">
+    <tr>
+        <th colspan="3"> Environment Condition </th>
+    </tr>
+</table>
+
+<table  id="DSR_table" class="daily_status_record" onclick="sortDSR()" >
+    <tr>
+        <th colspan="3"> Daily Status Record </th>
+    </tr>
+</table>
+
+
+<table id="AI_table" class="a_i_status" onclick="sortAI()">
+    <tr>
+        <th colspan="3"> AI Status </th>
+    </tr>
+    </table>
+
+<div style=" position:absolute; top:43%; left:98%;">
+<input type = "button" onclick="viewMore()" value="view more" style="position:absolute;right:20px; top:60px;">
+</div>
+
+
+
+
+
+<table id="VSR_table" class="vital_status_record" onclick="sortVSR()">
+    <tr>
+        <th colspan="3"> Vital Status Record </th>
+    </tr>
+</table>
+
+
+<table id="SC_table" class="special_care" >
+    <tr>
+        <th colspan="3"> Special Care</th>
+    </tr>
+</table>
+
+<div class="dvsr_form-popup" id="form" style="position:absolute;left:250px; top:100px;display:none;overflow-y:scroll;">
+<div style="position:absolute; left:10px;top:18px;">
+<table id = "heartRateRecord" style="border-style:hidden;" onclick="sortHRR()">
+        <tr>
+            <th colspan="3"> Heart Rate Record</th>
+        </tr>
+</table>
+</div>
+<div style="position:absolute; left:620px;top:18px;">
+<table id="VisitRecord" style="border-style:hidden;">
+  <tr>
+      <th colspan="3" onclick="sortvisitrecord()"> Visit Record</th>
+  </tr>
+</table>
+</div>
+    <button type="button" class="btn cancel" onclick="close_form()"><p style="position:absolute; top:-6px;left:16.5px;">X</p></button>
+</div>
+
+<div class="status_record_option">
+<select id="selectPAT" onclick = "clearBox()"  onchange = "selectPatient()" >
+<option>Patient ID</option>
+</select>
+<br><br><br>
+<select id="selectCNA" style="width:70px;">
+    <option>CNA ID</option>
+</select>
+<br><br><br>
+</div>
+
+
+<h1 id='current_date'></h1>
+<h1 id="current_month"></h1>
+<h1 id="current_year"></h1>
+<h1 id="current_week"></h1>
+
+<!--view date button-->
+
+<div class="status_record_date_option">
+  <input type="date" id="bday">
+<br><br>
+</div>
+<input class="status_record_display_button" type = "button" value="Display"  onclick = " display_button (this);"/>
+
+</body>
+
+</html>
