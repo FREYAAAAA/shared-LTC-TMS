@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Schedule</title>
+<link rel="icon" type="image/jpg" href="/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/image/logo.png">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+<link rel="stylesheet" href="/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/alldesign.css">
+</head>
+<body background="/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/image/bg.jpg">
+  <div class="topnav">
+      <h2 class="page_head"><center>S &nbsp C &nbsp H &nbsp E &nbsp D &nbsp U &nbsp L &nbsp E</center></h2>
+      <div class="tms_logo">
+      <img src="/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/image/Browser- logo final.png">
+      </div>
+      <div class="language_option">
+      <select>
+          <option value="English">English</option>
+          <option value="Chinese">Chinese</option>
+      </select>
+      <button id='btnLogout'>Logout</button>
+      </div>
+  </div>
+  <div class="nav_position">
+      <table class="toptable">
+        <tr>
+            <td class="topth"><center><button class="thisblock" onclick="/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Aboutus/Aboutus.html'"><a class="inside_nav_word">ABOUT US</a></button></center></td>
+            <td class="topth"><center><button class="block" onclick="window.location.href='/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Schedule/scheduletest.html'"><a class="inside_nav_word">SCHEDULE</a></button></center></td>
+            <td class="topth"><center><button class="block" onclick="window.location.href='/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Memo/memo.html'"><a class="inside_nav_word">MEMO</a></button></center></td>
+            <td class="topth"><center><button class="block" onclick="window.location.href='/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Status Record/DVSR.html'"><a class="inside_nav_word">STATUS RECORD</a></button></center></td>
+            <td class="topth"><center><button class="block" onclick="window.location.href='/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Library/Library.html'"><a class="inside_nav_word">LIBRARY</a></button></center></td>
+            <td class="topth"><center><button class="block" onclick="window.location.href='/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Task Editor/TaskEditor.html'"><a class="inside_nav_word">TASK EDITOR</a></button></center></td>
+            <td class="topth"><center><button class="block" onclick="window.location.href='/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Task Editor/TaskEditor.html'"><a class="inside_nav_word">E-PORTFOLIO</a></button></center></td>
+            <td class="topth"><center><button class="block" onclick="window.location.href='/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Help and Support/HelpandSupport.html'"><a class="inside_nav_word">HELP AND SUPPORT</a></button></center></td>
+        </tr>
+      </table>
+  </div>
+<div class="content">
+</div>
+<div class="working_schedulebox">
+<table id='WStable' class="schedule_table">
+    <tr>
+        <th> ID </th>
+        <th> Working Schedule </th>
+        <th><button type="button" onclick="DownloadNewWS()" class="add_button" style="background-color:#B0C4DE;width:120px;height:40px;">Download <br>New Form</button></th>
+        <th><button type="button" onclick="AddNewWS()" class="add_button"><img src="/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/image/add.png" height="15px" width="15px"/></button> </th>
+    </tr>
+</table>
+</div>
+
+<div class="center_schedulebox">
+<table id='CStable' class="schedule_table">
+  <tr>
+      <th> ID </th>
+      <th> Center Schedule </th>
+      <th><button type="button" onclick="DownloadNewCS()" class="add_button" style="background-color:#B0C4DE;width:120px;height:40px;">Download <br>New Form</button></th>
+      <th><button type="button" onclick="AddNewCS()" class="add_button"><img src="/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/image/add.png" height="15px" width="15px"/></button> </th>
+  </tr>
+</table>
+</div>
+
+
+<div class="working_hourbox">
+<table id=tableWH class="schedule_table">
+    <tr>
+      <th>ID</th>
+        <th> Working Hour </th>
+        <th><button type="button" onclick="DownloadNewWH()" class="add_button" style="background-color:#B0C4DE;width:120px;height:40px;">Download <br>New Form</button></th>
+        <th> <button type="button" class="add_button"><img src="/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/image/add.png" onclick="AddNewWH()" height="15px" width="15px"/></button> </th>
+    </tr>
+
+</table>
+</div>
+
+<div class="announcementbox">
+<table id="table" class="announcement_table">
+  <thread>
+    <tr>
+        <th>ID </th>
+        <th> Announcement Title </th>
+        <th></th>
+        <th> <button id ="btnAdd" class="add_button" type="button" onclick="AddNewA()"><img src="/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/image/add.png" height="15px" width="15px"/></button> </th>
+    </tr>
+  </thread>
+  <tbody>
+
+
+  </tbody>
+</table>
+</div>
+
+
+<div id="newABlock">
+  <div class="editForm_create_announcement">
+    <h2><center>New Announcement</center></h2>
+    <hr class="schedule_hr">
+    &nbsp&nbsp Announcement Title:
+    <input id="Atitle" type="text" placeholder="title.." /><br>
+    &nbsp&nbsp Announcement:
+    <textarea class="schedule_textarea" id="Announcement" type=text rows="4" cols="30" placeholder="Text Here..."></textarea>
+    <br>
+    <center><button id="btnSubmitE" onclick="createNewAnnouncement()">Submit</button> &nbsp&nbsp&nbsp&nbsp
+    <button id="Ecancel" onclick="editCancel()">Cancel</button></center>
+  </div>
+</div>
+</div>
+
+<div id="editABlock">
+  <div class="editForm_edit_announcement">
+    <h2><center>Editing Announcement</center></h2>
+    <hr class="schedule_hr">
+    &nbsp&nbsp Announcement ID:
+    <p type=text id="announcement_id"> </p><br>
+    &nbsp&nbsp Announcement Title:
+    <input id="AEtitle2" type="text" placeholder="title.." onkeydown="btnpopUp()"/><br>
+    <br>
+    &nbsp&nbsp Announcement:
+    <textarea class="schedule_textarea" id="Amsg" onkeydown = "btnpopUp()"></textarea>
+    <br>
+    <center> <button id="Esave" onclick="editSave()">Save</button> &nbsp&nbsp&nbsp&nbsp
+    <button id="Ecancel" onclick="editCancel()">Back</button> </center>
+  </div>
+</div>
+</div>
+
+
+<div id="newCSBlock">
+  <div class="editForm_upload_file">
+    <h2><center>New Center Schedule</center></h2>
+    <hr class="schedule_hr">
+    &nbsp&nbsp File title/description:
+    <input id="fileTitle3" type=text></input>
+    <br><br>
+    &nbsp&nbsp Upload File:
+    <input type="file" id="fileButton3" accept="image/*,application/pdf" />
+    <progress value="0" max="100" id="uploader3">0%</progress>
+    <br><br><br>
+    &nbsp&nbsp&nbsp<button id="btnSubmitCS" >Submit</button> &nbsp&nbsp
+    <button id="Ecancel" onclick="editCancel()">Cancel</button>
+  </div>
+</div>
+</div>
+
+
+
+<div id="newWSBlock">
+  <div class="editForm_upload_file">
+    <h2><center>New Working Schedule</center></h2>
+    <hr class="schedule_hr">
+    &nbsp&nbsp File title:
+    <input id="fileTitle" type=text></input>
+    <br><br>
+    &nbsp&nbsp Upload File:
+    <input type="file" id="fileButton" accept="image/*,application/pdf" />
+    <progress value="0" max="100" id="uploader">0%</progress>
+    <br><br><br>
+    &nbsp&nbsp&nbsp <button id="btnSubmitWS" >Submit</button> &nbsp&nbsp
+    <button id="Ecancel" onclick="editCancel()">Cancel</button>
+  </div>
+</div>
+</div>
+
+
+<div id="newWHBlock">
+  <div class="editForm_upload_file">
+    <h2><center>New Working Hour</center></h2>
+    <hr class="schedule_hr">
+    &nbsp&nbsp File title:
+    <input id="fileTitle2" type=text></input>
+    <br><br>
+    &nbsp&nbsp Upload File:
+    <input type="file" id="fileButton2" accept="image/*,application/pdf" />
+    <progress value="0" max="100" id="uploader2">0%</progress>
+    <br><br><br>
+    &nbsp&nbsp&nbsp <button id="btnSubmitWH" >Submit</button> &nbsp&nbsp
+    <button id="Ecancel" onclick="editCancel()">Cancel</button>
+  </div>
+</div>
+</div>
+
+
+<script type = 'text/javascript' src = '\Users\ian50408\Documents\GitHub\shared-LTC-TMS\LTCTMS\Config.js'></script>
+<script type = 'text/javascript' src = '/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Schedule/Schedulejs.js'></script>
+</body>
+
+</html>

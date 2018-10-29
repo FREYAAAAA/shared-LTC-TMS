@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>LTCTMS</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,500" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
+<link rel="stylesheet" href="/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/alldesign.css">
+<script type="text/javascript" src="\Users\ian50408\Documents\GitHub\shared-LTC-TMS\LTCTMS\Config.js"></script>
+<script type="text/javascript" src="/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Login/Login.js"></script>
+</head>
+
+<body background="/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/image/tree(2).jpg"/>
+<!-- https://pngtree.com/freepng/vector-palm-tree-background_3255403.html -->
+<div class="topnav">
+  <br>
+  <h1 class="page_head"><center><i>Welcome To Long-Term Care Center</i></center></h1>
+  <div class="tms_logo">
+    <img src="/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/image/Browser- logo final.png">
+  </div>
+  <div class="language_option" style="position:absolute; left:94%;">
+  <select>
+      <option value="English">English</option>
+      <option value="Chinese">Chinese</option>
+  </select>
+  </div>
+</div>
+
+<div style="width:25%;height:45%;padding:20px;position:absolute;top:17%;left:27%;background-color:#78c869ff; opacity:.5 ;">
+</div>
+<div style="width:25%;height:45%;padding:20px;position:absolute;top:18%;left:27%;opacity:1">
+    <h2 style="font-size:30px;"><center> Login </center></h2>
+    ___________________________________________
+    <center>
+       <label for="Email"><b style="position:absolute; top:35%; left:45%;font-size:20px;">Email</b></label>
+       <input style="position:absolute; top:45%; left:20%;width:60%;height:5%;" id="txtEmail" type="text" placeholder="Enter Email">
+       <label for="Password"><b style="position:absolute; top:60%; left:40%; font-size:20px;">Password</b></label>
+       <input style="position:absolute; top:70%; left:20%; width:60%; height:5%;" id="txtPassword" type="password" placeholder="Enter Password"  >
+       <button  style="position:absolute; z-index:1; top:85%; left:40%; width:20%" id="btnLogin" style="margin-left:100px;" class= "btn btn-action" onclick="validate()">Login</button>
+     </center>
+</div>
+
+<div style="position:absolute; top:35%; left:-9%;">
+  <table style="border-style:hidden;">
+    <tr>
+      <td style="border-style:hidden;font-size:16px;text-shadow: 0px 0px"> <b >English Android:</b><br><br>
+        <img onmouseover="bigqr(this)" onmouseout="normalqr(this)" src="/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/image/englishandroiddd.jpg" style="z-index:10;height:16px; width:16px;"> <br> <a href="https://drive.google.com/open?id=1UPPpo7K8ikw-E_ujKuMvXCZg5418TMXX"> https://drive.google.com/open?id=1UPPpo<br>7K8ikw-E_ujKuMvXCZg5418TMXX </td>
+    </tr>
+    <tr>
+      <td style="border-style:hidden;font-size:16px;text-shadow: 0px 0px"> <b>Chinese Android:</b><br><br>
+        <img onmouseover="bigqr(this)" onmouseout="normalqr(this)" src="/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/image/qr-code.png" style="z-index:10;height:16px; width:16px;"><br> <a href="http://google.com"> https://drive.google.com/open?id=1UPPpo<br>7K8ikw-E_ujKuMvXCZg5418TMXX </td>
+    </tr>
+    <tr>
+      <td style="border-style:hidden;font-size:16px;text-shadow: 0px 0px"> <b>English IOS:</b><br><br>
+        <img onmouseover="bigqr(this)" onmouseout="normalqr(this)" src="/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/image/qr-code.png" style="z-index:10;height:16px; width:16px;"><br>  <a href="http://google.com"> https://drive.google.com/open?id=1UPPpo<br>7K8ikw-E_ujKuMvXCZg5418TMXX </td>
+    </tr>
+    <tr>
+      <td style="border-style:hidden;font-size:16px;text-shadow: 0px 0px"> <b>Chinese IOS:</b><br><br>
+        <img onmouseover="bigqr(this)" onmouseout="normalqr(this)" src="/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/image/qr-code.png" style="z-index:10;height:16px; width:16px;"><br>  <a href="http://google.com"> https://drive.google.com/open?id=1UPPpo<br>7K8ikw-E_ujKuMvXCZg5418TMXX </td>
+    </tr>
+  </table>
+</div>
+
+<div style="width:38%;height:70%;padding:20px;position:absolute;top:18%;left:59%;background-color:#FFFFFF;opacity:.8;">
+<div style="opacity:1;width:100%; height:80%;">
+  <h2><center> About Us </center></h2>
+  _______________________________________________________________________
+  <br><br>
+  <p id="loginaboutus"></p>
+</div>
+</div>
+
+<div style="height:20%;padding:20px;position:absolute;top:66%;left:20%;">
+  <table style="border-style:hidden;font-size:18px;">
+    <tr>
+      <td colspan="4" style="border-style:hidden;"> <b>Center Contact Information </b> <br> _______________________________________________________</td>
+    </tr>
+    <tr>
+      <td style="border-style:hidden;width:20%;"> Name </td>
+      <td id="contactname" style="border-style:hidden;width:25%;"></td>
+      <td style="border-style:hidden;width:20%;"> Email Address </td>
+      <td id="contactemail" style="border-style:hidden;width:35%;"></td>
+    </tr>
+    <tr>
+      <td style="border-style:hidden;"> Contact No </td>
+      <td id="contactno" style="border-style:hidden;"></td>
+      <td style="border-style:hidden;"> Address </td>
+      <td id="contactaddress" style="border-style:hidden;"></td>
+    </tr>
+  </table>
+</div>
+</body>
+
+</html>

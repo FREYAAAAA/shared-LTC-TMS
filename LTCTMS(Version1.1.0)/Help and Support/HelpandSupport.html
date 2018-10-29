@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title> Help and Support </title>
+<link rel="icon" type="image/jpg" href="/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/image/logo.jpg">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+<script type = 'text/javascript' src = "/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Config.js"></script>
+<script type = 'text/javascript' src = '/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Help and Support/HelpandSupport.js'></script>
+<link rel="stylesheet" href="/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/alldesign.css">
+</head>
+<body background="/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/image/bg.jpg">
+<!--copyright=<a href="https://www.freepik.com/free-photos-vectors/people">People image created by Freepik</a>-->
+<div class="topnav">
+  <h2 class="page_head"><center>H &nbsp E &nbsp L &nbsp P &nbsp&nbsp&nbsp A &nbsp N &nbsp D &nbsp&nbsp&nbsp S &nbsp U &nbsp P &nbsp P &nbsp O &nbsp R &nbsp T</center></h2>
+  <div class="tms_logo">
+    <img src="/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/image/Browser- logo final.png">
+  </div>
+  <div class="language_option">
+  <select>
+      <option value="English">English</option>
+      <option value="Chinese">Chinese</option>
+  </select>
+  <button onclick="window.location.href='Login.html'">Logout</button>
+  </div>
+</div>
+
+<div class="nav_position">
+    <table class="toptable">
+      <tr>
+          <td class="topth"><center><button class="thisblock" onclick="/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Aboutus/Aboutus.html'"><a class="inside_nav_word">ABOUT US</a></button></center></td>
+          <td class="topth"><center><button class="block" onclick="window.location.href='/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Schedule/scheduletest.html'"><a class="inside_nav_word">SCHEDULE</a></button></center></td>
+          <td class="topth"><center><button class="block" onclick="window.location.href='/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Memo/memo.html'"><a class="inside_nav_word">MEMO</a></button></center></td>
+          <td class="topth"><center><button class="block" onclick="window.location.href='/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Status Record/DVSR.html'"><a class="inside_nav_word">STATUS RECORD</a></button></center></td>
+          <td class="topth"><center><button class="block" onclick="window.location.href='/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Library/Library.html'"><a class="inside_nav_word">LIBRARY</a></button></center></td>
+          <td class="topth"><center><button class="block" onclick="window.location.href='/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Task Editor/TaskEditor.html'"><a class="inside_nav_word">TASK EDITOR</a></button></center></td>
+          <td class="topth"><center><button class="block" onclick="window.location.href='/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Task Editor/TaskEditor.html'"><a class="inside_nav_word">E-PORTFOLIO</a></button></center></td>
+          <td class="topth"><center><button class="block" onclick="window.location.href='/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Help and Support/HelpandSupport.html'"><a class="inside_nav_word">HELP AND SUPPORT</a></button></center></td>
+            </tr>
+    </table>
+</div>
+
+<div class="content">
+</div>
+
+<div style="position:absolute; top:18%; left:8%; width:20%;">
+  <table style="border:hidden; width:100%;">
+    <tr>
+      <td rowspan="3" style="border:hidden;"> <button id = "view_feedback" onclick="view_feedback()" style="width:100%; height:100px;" class="help_viewfeedback">Click To View Feedback</button></td>
+    </tr>
+    <tr>
+      <td style="border:hidden;"> <button id='staffdisplay' onclick="view_stafffeedback()" class="help_staffandfamily">Staff</button></td>
+    </tr>
+    <tr>
+      <td style="border:hidden;"> <button id='familydisplay' onclick="view_family()"  class="help_staffandfamily" style="position:absolute; top:55%;">Family</button> </td>
+    </tr>
+  </table>
+</div>
+
+<div style="position:absolute; top:36%; left:12%; height:32%; width:20%; border: 5px solid rgba(255, 255, 255, .4);background-color:rgba(255, 255, 255, .8);">
+  <table style="border-style:hidden;height:100%; width:100%;">
+    <tr>
+      <td style="border-style:hidden;font-size:18px;"> <b >Tablet Version:</b><br><br>
+        <img onmouseover="bigqr(this)" onmouseleave="normalqr(this)" src="/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/image/tabletqrcode.jpg" style="z-index:10;height:64px; width:64px;"> <br><br><a href="https://drive.google.com/open?id=1UPPpo7K8ikw-E_ujKuMvXCZg5418TMXX"> https://drive.google.com/open?id=1UPPpo7K8ikw-E_ujKuMvXCZg5418TMXX </td>
+    </tr>
+  </table>
+</div>
+
+<div id='stafffeedback' style="display:none; position:absolute; top: 18%; left:35%;width:58%; height:48%;overflow-y:scroll;  border: 5px solid rgba(255, 255, 255, .4);
+  background-color:rgba(255, 255, 255, .8);">
+    <table id = "CNA_Feedback" style="width:100%;border-style:hidden;">
+        <tr>
+            <th colspan="3"> <h3><i>Staff Feedback</i></h3></th>
+        </tr>
+        <tr>
+            <th style="width:20%"> I.D </th>
+            <th style="width:20%"> Name </th>
+            <th style="width:60%"> Comment </th>
+        </tr>
+    </table>
+</div>
+
+<div id="familyfeedback" style="display:none; position:absolute; top: 18%; left:35%;width:58%; height:48%;overflow-y:scroll;  border: 5px solid rgba(255, 255, 255, .4);
+  background-color:rgba(255, 255, 255, .8);">
+    <table id = "Patient_Feedback" style="width:100%;border-style:hidden;">
+        <tr>
+            <th colspan="3"> <h3><i>Family Feedback</i></h3></th>
+        </tr>
+        <tr>
+            <th style="width:20%"> I.D </th>
+            <th style="width:20%"> Name </th>
+            <th style="width:60%"> Comment </th>
+        </tr>
+
+    </table>
+</div>
+
+<div style=" position:absolute; top: 70%; left:10%; width:80%;  border: 5px solid rgba(255, 255, 255, .4);
+  background-color:rgba(255, 255, 255, .8);">
+    <table id ="Contact_information" style="width:100%;border-style:hidden;">
+        <tr>
+            <th colspan="4"> <h3><i>Development Team Contact Information</i></h3></th>
+        </tr>
+        <tr>
+            <th style="width:20%"> Name </th>
+            <td style="width:25%"> ICAC 4 </td>
+            <th style="width:20%"> Email Address </th>
+            <td style="width:35%"> icac4@gmail.com </td>
+        </tr>
+        <tr>
+            <th> Contact No </th>
+            <td> 0988-635-145 </td>
+            <th> Address </th>
+            <td> 15 Deming Rd, Guishan District, Taoyuan City, Taiwan </td>
+        </tr>
+    </table>
+</div>
+
+</body>
+
+</html>
