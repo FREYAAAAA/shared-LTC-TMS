@@ -23,7 +23,6 @@ fbA.once('value',function(snapshot){
     var button2 = document.createElement("button");
     button.innerHTML="Detail";
     button2.innerHTML="Delete";
-
     var row = Atable.insertRow(rowIndex);
     //var cellId = row.insertCell(0)
     var cellAnnouncement= row.insertCell(0);
