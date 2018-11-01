@@ -121,9 +121,8 @@ function upload(){
      var storageRef = firebase.storage().ref('Sponsor/'+file.name);
     storageRef.getDownloadURL().then(function (url) {
     firebase.database().ref("CenterInformation/"+"Sponsor/"+name+"/photo/").set(url);
-    document.getElementById("form").style.display = "none";
     alert("success");
-    location.reload();
+    window.location.reload();
     });
   }
 }
@@ -157,6 +156,7 @@ fbSponsor.once("value")
                 newLink.appendChild(img);
                 img.style.width= "100px";
                 img.style.height = "100px";
+                img.style.margin = "20px";
                 sponsorTD.appendChild(button);
                 button.setAttribute("id","button_id["+i+"]");
                 button.setAttribute("onclick","remove("+i+")");
@@ -196,4 +196,23 @@ function sponsor_delete(){
         console.log("button_id["+i+"]");
         document.getElementById("button_id["+i+"]").setAttribute("style","display:inline;");
     }
+}
+
+
+function showintroduction(){
+  document.getElementById("data1").style.display = "block";
+  document.getElementById("data2").style.display = "none";
+  document.getElementById("data3").style.display = "none";
+}
+
+function showcenterinfo(){
+  document.getElementById("data1").style.display = "none";
+  document.getElementById("data2").style.display = "block";
+  document.getElementById("data3").style.display = "none";
+}
+
+function showsponsored(){
+  document.getElementById("data1").style.display = "none";
+  document.getElementById("data2").style.display = "none";
+  document.getElementById("data3").style.display = "block";
 }

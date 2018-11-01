@@ -529,29 +529,29 @@ url.once("value").then(function(snapshot){
 
 
 function showannouncement(){
-  document.getElementById("WStable").style.display = "none";
-  document.getElementById("CStable").style.display = "none";
-  document.getElementById("tableWH").style.display = "none";
-  document.getElementById("table").style.display = "block";
+  document.getElementById("data1").style.display = "block";
+  document.getElementById("data2").style.display = "none";
+  document.getElementById("data3").style.display = "none";
+  document.getElementById("data4").style.display = "none";
 }
 
 function showcs(){
-  document.getElementById("WStable").style.display = "none";
-  document.getElementById("CStable").style.display = "block";
-  document.getElementById("tableWH").style.display = "none";
-  document.getElementById("table").style.display = "none";
+  document.getElementById("data1").style.display = "none";
+  document.getElementById("data2").style.display = "block";
+  document.getElementById("data3").style.display = "none";
+  document.getElementById("data4").style.display = "none";
 }
 
 function showws(){
-  document.getElementById("WStable").style.display = "block";
-  document.getElementById("CStable").style.display = "none";
-  document.getElementById("tableWH").style.display = "none";
-  document.getElementById("table").style.display = "none";
+  document.getElementById("data1").style.display = "none";
+  document.getElementById("data2").style.display = "none";
+  document.getElementById("data3").style.display = "block";
+  document.getElementById("data4").style.display = "none";
 }
 
 function showwh(){
-  document.getElementById("WStable").style.display = "none";
-  document.getElementById("CStable").style.display = "none";
-  document.getElementById("tableWH").style.display = "block";
-  document.getElementById("table").style.display = "none";
+  document.getElementById("data1").style.display = "none";
+  document.getElementById("data2").style.display = "none";
+  document.getElementById("data3").style.display = "none";
+  document.getElementById("data4").style.display = "block";
 }

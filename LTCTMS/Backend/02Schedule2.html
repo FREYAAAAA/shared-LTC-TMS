@@ -12,15 +12,12 @@
 		<link rel="stylesheet" type="text/css" href="statics/css/style.css" />
 		<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
 		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-<<<<<<< HEAD
 		<script type = 'text/javascript' src = 'Schedulejs.js'></script>
 		<script type = 'text/javascript' src = 'Config.js'></script>
 		<script type = 'text/javascript' src = 'chat.js'></script>
-=======
-		<script type = 'text/javascript' src = '/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/Schedulejs.js'></script>
-		<script type = 'text/javascript' src = '/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/Config.js'></script>
-		<script type = 'text/javascript' src = '/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/chat.js'></script>
->>>>>>> 9780b9a7981c4d177aec7ecca53562a32c4bd61c
+		<script type = 'text/javascript' src = 'Schedulejs.js'></script>
+		<script type = 'text/javascript' src = 'Config.js'></script>
+		<script type = 'text/javascript' src = 'chat.js'></script>
 	</head>
 	<style>
 
@@ -184,16 +181,7 @@
 	border: none;
 	background: none;
 	}
-	.announcementbox {
-		position:absolute;
-	  left:30%;
-	  top:30%;
-	  width:54%;
-	  height:55%;
-	  overflow-x:hidden;
-	  overflow-y:scroll;
-	  background-color:#D3D3DC;
-	}
+
 	table, th, td
 	{
 	    padding: 10px;
@@ -291,13 +279,13 @@
 			</div>
 			<div class="right">
 				<div class="tap">
-					<span onclick="showannouncement">Announcement</span>
-					<span onclick="showcs">Center Schedule</span>
-					<span onclick="showws">Working Schedule</span>
-          			<span onclick="showwh">Working Hour</span>
+					<span onclick="showannouncement()">Announcement</span>
+					<span onclick="showcs()">Center Schedule</span>
+					<span onclick="showws()">Working Schedule</span>
+          <span onclick="showwh()">Working Hour</span>
 				</div>
 
-					<div class="announcementbox">
+				<div class="container" id="data1">
 					<table id="table" style="width:100%;border-style:hidden;" class="announcement_table">
 					  <thread>
 					    <tr>
@@ -314,10 +302,9 @@
 					</table>
 				</div>
 
-					<div class="center_schedulebox" style="display:none;">
+				<div class="container" id="data2" style="display:none;">
 					<table id='CStable' class="schedule_table">
 					  <tr>
-					      <th> ID </th>
 					      <th> Center Schedule </th>
 					      <th><button type="button" onclick="DownloadNewCS()" class="add_button" style="background-color:#B0C4DE;width:120px;height:40px;">Download <br>New Form</button></th>
 					      <th><button type="button" onclick="AddNewCS()" class="add_button"><img src="image\add.png" height="15px" width="15px"/></button> </th>
@@ -325,10 +312,9 @@
 					</table>
 					</div>
 
-					<div class="working_schedulebox" style="display:none;">
+				<div class="container" id="data3" style="display:none;">
 					<table id='WStable' class="schedule_table">
 					    <tr>
-					        <th> ID </th>
 					        <th> Working Schedule </th>
 					        <th><button type="button" onclick="DownloadNewWS()" class="add_button" style="background-color:#B0C4DE;width:120px;height:40px;">Download <br>New Form</button></th>
 					        <th><button type="button" onclick="AddNewWS()" class="add_button"><img src="image\add.png" height="15px" width="15px"/></button> </th>
@@ -336,16 +322,16 @@
 					</table>
 					</div>
 
-			<div class="working_hourbox" style="display:none;">
-			<table id=tableWH class="schedule_table">
-				<tr>
-				  <th>ID</th>
-					<th> Working Hour </th>
-					<th><button type="button" onclick="DownloadNewWH()" class="add_button" style="background-color:#B0C4DE;width:120px;height:40px;">Download <br>New Form</button></th>
-					<th> <button type="button" class="add_button"><img src="image\add.png" onclick="AddNewWH()" height="15px" width="15px"/></button> </th>
-				</tr>
+				<div class="container" id="data4" style="display:none;">
+					<table id=tableWH class="schedule_table">
+					    <tr>
 
-			</table>
+					        <th> Working Hour </th>
+					        <th><button type="button" onclick="DownloadNewWH()" class="add_button" style="background-color:#B0C4DE;width:120px;height:40px;">Download <br>New Form</button></th>
+					        <th> <button type="button" class="add_button"><img src="image\add.png" onclick="AddNewWH()" height="15px" width="15px"/></button> </th>
+					    </tr>
+
+					</table>
 			</div>
 
 			</div>

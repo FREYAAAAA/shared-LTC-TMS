@@ -8,10 +8,11 @@
 		<link rel="icon" type="image/jpg" href="image\logo.jpg">
 		<link rel="stylesheet" type="text/css" href="statics/css/iconfont.css" />
 		<link rel="stylesheet" type="text/css" href="statics/css/style.css" />
-		<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-		<script type = 'text/javascript' src = '/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Config.js'></script>
-		<script type = 'text/javascript' src = '/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/chat.js'></script>
+		<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
+		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+		<script type = 'text/javascript' src = 'Config.js'></script>
+		<script type = 'text/javascript' src = 'Aboutus.js'></script>
+		<script type = 'text/javascript' src = 'chat.js'></script>
 	</head>
 	<style>
 
@@ -257,30 +258,78 @@
 			</div>
 			<div class="right">
 				<div class="tap">
-					<span id="span">Introduction</span>
-					<span id="span2">Center Info</span>
-					<span id="span3">Sposored</span>
+					<span id="span" onclick="showintroduction()">Introduction</span>
+					<span id="span2" onclick="showcenterinfo()">Center Info</span>
+					<span id="span3" onclick="showsponsored()">Sponsored</span>
 				</div>
 
-				<div class="container">
-					<textarea disabled style="width:93%;height:300px;">dvdsvds</textarea>
-					<button onclick = "aboutus_edit()" style="position:absolute; top:29%; left:85%; width:3.6%;">Edit</button>
-					<button  style="display: none;position:absolute; top:64.5%;left:85%;width:3.6%" id = "aboutus_button" onclick = "aboutus_submit()">OK</button>
+				<div class="container" id="data1" style="position:relative;top:10%; left:0%;">
+					    <table style="height:100%;width:100%;border-style:hidden;">
+					        <tr>
+					            <th style="height:20%;"> About Us <button onclick = "aboutus_edit()" style="position:relative;left:40%;height:40%;width:5%;">Edit</button></th>
+					        </tr>
+					        <tr>
+					            <td style="border-style:hidden;"><textarea disabled id = "aboutus_text" style="position:absolute; top:25%;left:3%; width:93%; height:200px;background-color:#FFF;font-size:18px;"></textarea></td>
+					        </tr>
+					        <button  style="display:none; position:absolute; top:88%;left:88%;width:8%; height:8%" id = "aboutus_button" onclick = "aboutus_submit()">OK</button>
+					    </table>
 				</div>
 
-				<div class="container2" style="display:none">
-					<textarea disabled style="width:93%;height:300px;">dvdsvds</textarea>
-					<button onclick = "aboutus_edit()" style="position:absolute; top:29%; left:85%; width:3.6%;">Edit</button>
-					<button  style="display: none;position:absolute; top:64.5%;left:85%;width:3.6%" id = "aboutus_button" onclick = "aboutus_submit()">OK</button>
+				<div class="container" id="data2" style="display:none; position:relative;">
+					    <table id = ContactInfo_table style="width:100%; height:96%;border-style:hidden;">
+					        <tr>
+					            <th colspan="2" style="height:20%;"> Center Contact Information <button id = "CI_edit" onclick = "CI_edit()" style="position:relative;left:30%;height:40%;width:5%;">Edit</button></th>
+					        </tr>
+					        <tr>
+					            <th style="width:35%;"> Name: </th>
+					            <td id = "Name">  </td>
+					            <textarea id = "Name1" style=" display:none; position:absolute;; top:23%; left:30%;width:360px;height:11%;"></textarea>
+					        </tr>
+					        <tr>
+					            <th> Email Address: </th>
+					            <td id = "Email_Address" >  </td>
+					            <textarea id = "Email_Address1" style=" display:none; position:absolute; top:42%; left:30%;width:360px;height:11%;"></textarea>
+					        </tr>
+					        <tr>
+					            <th> Contact No:</th>
+					            <td id = "Contact_No" > </td>
+					            <textarea id = "Contact_No1" style=" display:none; position:absolute; top:62%; left:30%;width:360px;height:11%;"></textarea>
+					        </tr>
+					        <tr>
+					            <th> Address:</th>
+					            <td id = "Address" > </td>
+					            <textarea id = "Address1" style=" display:none; position:absolute; top:81%; left:30%;width:500px;height:11%;"></textarea>
+					        </tr>
+					        <button id = "CI_button" style="display:none;position:absolute;top:94%; left:89%;width:8%;" onclick = "CI_submit()">OK</button>
+					    </table>
 				</div>
 
-				<div class="container3" style="display:none">
-					<textarea disabled style="width:93%;height:300px;">dvdsvds</textarea>
-					<button onclick = "aboutus_edit()" style="position:absolute; top:29%; left:85%; width:3.6%;">Edit</button>
-					<button  style="display: none;position:absolute; top:64.5%;left:85%;width:3.6%" id = "aboutus_button" onclick = "aboutus_submit()">OK</button>
-				</div>
+				<div class="container" id="data3" style="display:none;position:relative;">
+					    <table id = "sponsor_table" style="height:100%;width:70%;">
+					        <tr>
+					          <th> Sponsored
+					            <button onclick = "sponsor_delete()"  style="left:-50%;">Remove</button>
+					          </th>
+					        </tr>
+					        <tr>
+					            <td id = "sponsor_td" style="text-align:center;"></td>
+									</tr>
+					    </table>
 
+					<div style="position:absolute; left:68%;top:2%; width:30%; height:94%;background-color:#ddd;">
+									    <h3>Sponsor</h3>
+									    <textarea id ="sponsorName" rows="1" cols="39" ></textarea>
+									    <p style="font-size:12px;"> </p>
+									    <br>
+									    <p>Link:</p>
+									    <textarea id ="url_text" rows="1" cols="39" ></textarea>
+									    <br><br>
+									    <input type="file" value="" name="Photo" id="fileButton" accept="image/*" />
+									    <br><br>
+									    <button onclick ="upload()" type="button" class="btn" >Upload</button>
+					</div>
 			</div>
+		</div>
 
 
 

@@ -641,3 +641,40 @@ function sortHRR(){
     }
   }
 }
+
+
+function showdsr(){
+  document.getElementById("data1").style.display = "block";
+  document.getElementById("data2").style.display = "none";
+  document.getElementById("data3").style.display = "none";
+  document.getElementById("data4").style.display = "none";
+  document.getElementById("data5").style.display = "none";
+}
+function showvsr(){
+  document.getElementById("data1").style.display = "none";
+  document.getElementById("data2").style.display = "block";
+  document.getElementById("data3").style.display = "none";
+  document.getElementById("data4").style.display = "none";
+  document.getElementById("data5").style.display = "none";
+}
+function showais(){
+  document.getElementById("data1").style.display = "none";
+  document.getElementById("data2").style.display = "none";
+  document.getElementById("data3").style.display = "block";
+  document.getElementById("data4").style.display = "none";
+  document.getElementById("data5").style.display = "none";
+}
+function showsc(){
+  document.getElementById("data1").style.display = "none";
+  document.getElementById("data2").style.display = "none";
+  document.getElementById("data3").style.display = "none";
+  document.getElementById("data4").style.display = "block";
+  document.getElementById("data5").style.display = "none";
+}
+function showec(){
+  document.getElementById("data1").style.display = "none";
+  document.getElementById("data2").style.display = "none";
+  document.getElementById("data3").style.display = "none";
+  document.getElementById("data4").style.display = "none";
+  document.getElementById("data5").style.display = "block";
+}
