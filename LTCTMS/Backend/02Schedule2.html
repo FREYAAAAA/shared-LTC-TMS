@@ -283,13 +283,12 @@
 			</div>
 			<div class="right">
 				<div class="tap">
-					<span >Announcement</span>
-					<span>Center Schedule</span>
-					<span >Working Schedule</span>
-          <span id="span4">Working Hour</span>
+					<span onclick="showannouncement">Announcement</span>
+					<span onclick="showcs">Center Schedule</span>
+					<span onclick="showws">Working Schedule</span>
+          			<span onclick="showwh">Working Hour</span>
 				</div>
 
-				<div class="container">
 					<div class="announcementbox">
 					<table id="table" style="width:100%;border-style:hidden;" class="announcement_table">
 					  <thread>
@@ -306,25 +305,40 @@
 					  </tbody>
 					</table>
 				</div>
-				</div>
 
-				<div class="container2" style="display:none">
-					<textarea disabled style="width:93%;height:300px;">dvdsvds</textarea>
-					<button onclick = "aboutus_edit()" style="position:absolute; top:29%; left:85%; width:3.6%;">Edit</button>
-					<button  style="display: none;position:absolute; top:64.5%;left:85%;width:3.6%" id = "aboutus_button" onclick = "aboutus_submit()">OK</button>
-				</div>
+					<div class="center_schedulebox" style="display:none;">
+					<table id='CStable' class="schedule_table">
+					  <tr>
+					      <th> ID </th>
+					      <th> Center Schedule </th>
+					      <th><button type="button" onclick="DownloadNewCS()" class="add_button" style="background-color:#B0C4DE;width:120px;height:40px;">Download <br>New Form</button></th>
+					      <th><button type="button" onclick="AddNewCS()" class="add_button"><img src="image\add.png" height="15px" width="15px"/></button> </th>
+					  </tr>
+					</table>
+					</div>
 
-				<div class="container3" style="display:none">
-					<textarea disabled style="width:93%;height:300px;">dvdsvds</textarea>
-					<button onclick = "aboutus_edit()" style="position:absolute; top:29%; left:85%; width:3.6%;">Edit</button>
-					<button  style="display: none;position:absolute; top:64.5%;left:85%;width:3.6%" id = "aboutus_button" onclick = "aboutus_submit()">OK</button>
-				</div>
+					<div class="working_schedulebox" style="display:none;">
+					<table id='WStable' class="schedule_table">
+					    <tr>
+					        <th> ID </th>
+					        <th> Working Schedule </th>
+					        <th><button type="button" onclick="DownloadNewWS()" class="add_button" style="background-color:#B0C4DE;width:120px;height:40px;">Download <br>New Form</button></th>
+					        <th><button type="button" onclick="AddNewWS()" class="add_button"><img src="image\add.png" height="15px" width="15px"/></button> </th>
+					    </tr>
+					</table>
+					</div>
 
-        <div class="container4" style="display:none">
-					<textarea disabled style="width:93%;height:300px;">dvdsvds</textarea>
-					<button onclick = "aboutus_edit()" style="position:absolute; top:29%; left:85%; width:3.6%;">Edit</button>
-					<button  style="display: none;position:absolute; top:64.5%;left:85%;width:3.6%" id = "aboutus_button" onclick = "aboutus_submit()">OK</button>
-				</div>
+			<div class="working_hourbox" style="display:none;">
+			<table id=tableWH class="schedule_table">
+				<tr>
+				  <th>ID</th>
+					<th> Working Hour </th>
+					<th><button type="button" onclick="DownloadNewWH()" class="add_button" style="background-color:#B0C4DE;width:120px;height:40px;">Download <br>New Form</button></th>
+					<th> <button type="button" class="add_button"><img src="image\add.png" onclick="AddNewWH()" height="15px" width="15px"/></button> </th>
+				</tr>
+
+			</table>
+			</div>
 
 			</div>
 

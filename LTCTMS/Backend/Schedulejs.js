@@ -204,6 +204,7 @@ var rowIndexCS = 1;
 var fbCS = firebase.database().ref('CenterSchedule')
 var WStable = document.getElementById('CStable');
 
+
 fbCS.once('value',function(snapshot){
 snapshot.forEach(function(childSnapshot){
   var childKey = childSnapshot.key;
@@ -522,4 +523,34 @@ url.once("value").then(function(snapshot){
    console.log(downloadURL);
    window.location = downloadURL;
 });
+}
+
+
+
+function showannouncement(){
+  document.getElementById("WStable").style.display = "none";
+  document.getElementById("CStable").style.display = "none";
+  document.getElementById("tableWH").style.display = "none";
+  document.getElementById("table").style.display = "block";
+}
+
+function showcs(){
+  document.getElementById("WStable").style.display = "none";
+  document.getElementById("CStable").style.display = "block";
+  document.getElementById("tableWH").style.display = "none";
+  document.getElementById("table").style.display = "none";
+}
+
+function showws(){
+  document.getElementById("WStable").style.display = "block";
+  document.getElementById("CStable").style.display = "none";
+  document.getElementById("tableWH").style.display = "none";
+  document.getElementById("table").style.display = "none";
+}
+
+function showwh(){
+  document.getElementById("WStable").style.display = "none";
+  document.getElementById("CStable").style.display = "none";
+  document.getElementById("tableWH").style.display = "block";
+  document.getElementById("table").style.display = "none";
 }
