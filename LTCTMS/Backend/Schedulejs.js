@@ -1,8 +1,8 @@
-var btnLogout = document.getElementById('btnLogout')
-btnLogout.addEventListener('click', e => {
-  firebase.auth().signOut();
-  window.location = 'Login.html';
-});
+//var btnLogout = document.getElementById('btnLogout')
+//btnLogout.addEventListener('click', e => {
+//  firebase.auth().signOut();
+//  window.location = 'Login.html';
+//});
 
 //Create new Announcement button
 function AddNewA(){
@@ -10,8 +10,9 @@ function AddNewA(){
 }
 
 //Read firebase Announcements
+var fbB=firebase.database().ref('CNA');
 var fbA = firebase.database().ref('Announcements');
-var Atable = document.getElementById('table')
+var Atable = document.getElementById('table');
 var rowIndex = 1;
 
 fbA.once('value',function(snapshot){

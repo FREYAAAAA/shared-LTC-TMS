@@ -781,3 +781,14 @@ function directTask(){
     location.href ="TaskEditor.html";
 
 }
+
+
+function showassigntask(){
+  document.getElementById("data1").style.display = "block";
+  document.getElementById("data2").style.display = "none";
+}
+
+function showtaskhistory(){
+  document.getElementById("data1").style.display = "none";
+  document.getElementById("data2").style.display = "block";
+}

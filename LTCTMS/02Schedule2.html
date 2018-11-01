@@ -4,15 +4,17 @@
 
 	<head>
 		<meta charset="UTF-8">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>LTCTMS</title>
 		<link rel="icon" type="image/jpg" href="image\logo.jpg">
 		<link rel="stylesheet" type="text/css" href="statics/css/iconfont.css" />
 		<link rel="stylesheet" type="text/css" href="statics/css/style.css" />
 		<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
 		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-		<script type = 'text/javascript' src = "Config.js"></script>
-		<script type = 'text/javascript' src = 'Library.js'></script>
-		<script type = 'text/javascript' src = 'chat.js'></script>
+		<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TM	S/LTCTMS/Schedulejs.js'></script>
+		<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Config.js'></script>
+		<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/chat.js'></script>
 	</head>
 	<style>
 
@@ -176,11 +178,21 @@
 	border: none;
 	background: none;
 	}
+	.announcementbox {
+		position:absolute;
+	  left:30%;
+	  top:30%;
+	  width:54%;
+	  height:55%;
+	  overflow-x:hidden;
+	  overflow-y:scroll;
+	  background-color:#D3D3DC;
+	}
 	table, th, td
 	{
-	    padding: 5px;
+	    padding: 10px;
 	    border: 1px solid black;
-	    width:400px;
+	    width:600px;
 	    text-align: center;
 	    word-wrap: break-word;
 	}
@@ -228,7 +240,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="02Schedule2.html">
+						<a href="02Schedule2.html" class="active">
 							<i class="icon iconfont icon-fangzidichan"></i>
 							Schedule
 						</a>
@@ -246,7 +258,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="05Library2.html" class="active">
+						<a href="05Library2.html">
 							<i class="icon iconfont icon-pinglun"></i>
 							Library
 						</a>
@@ -273,80 +285,55 @@
 			</div>
 			<div class="right">
 				<div class="tap">
-					<span id="span" onclick="showassigntask()">Assign Task</span>
-					<span id="span2" onclick="showtaskhistory()">Task History</span>
+					<span id="span">Announcement</span>
+					<span id="span2">Center Schedule</span>
+					<span id="span3">Working Schedule</span>
+          <span id="span4">Working Hour</span>
 				</div>
 
-				<div class="container" id="data1">
-
-					<div class="library_tasktable" style="position:relative;top:5%; left:5%;">
-
-					<select class="library_filter" id = "filterCategory" onchange = "filter_Category()">
-					    <option>Category</option>
-					</select>
-					<input class="library_search" type="text" name="search" placeholder="Search" id="searchInput" >
-					<br><br>
-					<table class="library_tasktable_display" id="assigningTask" style="border-style:hidden;overflow:scroll;">
+				<div class="container">
+					<div class="announcementbox">
+					<table id="table" style="width:100%;border-style:hidden;" class="announcement_table">
+					  <thread>
 					    <tr>
-					        <th onclick = "sortingTask(0)" class="library_table_firstbox"> Category </th>
-					        <th onclick = "sortingTask(1)" class="library_table_secondbox"> Task Name  </th>
+					        <th>ID </th>
+					        <th> Announcement Title </th>
 					        <th></th>
-					        <th><input type = "checkbox"  id = "all_checked" onclick = "toggleTask(this)"></th>
+					        <th> <button id ="btnAdd" class="add_button" type="button" onclick="AddNewA()"><img src="image\add.png" height="15px" width="15px"/></button> </th>
 					    </tr>
+					  </thread>
+					  <tbody>
+
+
+					  </tbody>
 					</table>
-					</div>
-
-					<div style="position:relative;left:50%;top:-50%;background-color:#000; height:150%;width:0.2%;z-index:2;">
-					</div>
-
-					<div class="library_usertable" style="position:relative; top:-166%; left:54%;">
-
-					<select class="library_filter" id = "filterPosition" onchange = "filter_Position()">
-					    <option>Position</option>
-					    <option>CNA</option>
-					    <option>Patient</option>
-					</select>
-					    <input class="library_search" type="text" name="search" placeholder="Search" id="searchkeyin" >
-					<br><br>
-					<table class="library_tasktable_display" id="assigningCF" style="border-style:hidden;overflow:scroll;">
-					    <tr>
-					        <th  onclick = "sortingCF(0)" class="library_table_firstbox"> Position </th>
-					        <th onclick = "sortingCF(1)"class="library_table_secondbox"> Name  </th>
-					        <th onclick = "sortingCF(2)" class="library_table_thirdbox"> I.D </th>
-					        <th><input type = "checkbox"   id = "toggleCF" onclick = "toggleCF(this)" ></th>
-					    </tr>
-					</table>
-					</div>
+				</div>
 				</div>
 
+				<div class="container2" style="display:none">
+					<textarea disabled style="width:93%;height:300px;">dvdsvds</textarea>
+					<button onclick = "aboutus_edit()" style="position:absolute; top:29%; left:85%; width:3.6%;">Edit</button>
+					<button  style="display: none;position:absolute; top:64.5%;left:85%;width:3.6%" id = "aboutus_button" onclick = "aboutus_submit()">OK</button>
+				</div>
 
-				<div class="container" id="data2" style="display:none;">
-					<select class="library_historyfiltername" id = "filterNameList" onchange = "filterNameList()">
-					    <option>Name</option>
-					</select>
-					<select class="library_historyfiltertask" id = "filterTaskList" onchange = "filterTaskList()">
-					    <option>Task Name</option>
-					</select>
-					    <input class="library_historysearch" type="text" name="search" placeholder="Search" id="searchKeyword" >
-					 <div class="library_historyoverflow">
-						 <br>
-					    <table class="library_historytable" id ="assigningList" style="border-style:hidden;width:98%;overflow-y:scroll;">
-					    <tr>
-					        <th  onclick = "sortingList(0)" style="padding:0px 40px;width:15%;"> Position </th>
-					        <th onclick = "sortingList(1)" style="padding:0px 50px;width:15%;"> I.D </th>
-					        <th onclick = "sortingList(2)"style="padding:0px 80px;width:25%;"> Name  </th>
-					        <th onclick = "sortingList(3)"style="padding:0px 40px;width:15%;"> Category </th>
-					        <th onclick = "sortingList(4)"style="padding:0px 80px;width:25%;"> Task Name  </th>
-					        <th style="width:5%;"><input type = "checkbox"  id = "all_unchecked"  checked = "checked"  onclick = "toggleList(this)"</th>
-					    </tr>
-					 		</table>
-					 </div>
-					    <button class="library_historysubmit" onclick ="submit()" type="button" class="btn" style="position:relative;left:94%;top:100%;">Submit</button>
-			</div>
+				<div class="container3" style="display:none">
+					<textarea disabled style="width:93%;height:300px;">dvdsvds</textarea>
+					<button onclick = "aboutus_edit()" style="position:absolute; top:29%; left:85%; width:3.6%;">Edit</button>
+					<button  style="display: none;position:absolute; top:64.5%;left:85%;width:3.6%" id = "aboutus_button" onclick = "aboutus_submit()">OK</button>
+				</div>
+
+        <div class="container4" style="display:none">
+					<textarea disabled style="width:93%;height:300px;">dvdsvds</textarea>
+					<button onclick = "aboutus_edit()" style="position:absolute; top:29%; left:85%; width:3.6%;">Edit</button>
+					<button  style="display: none;position:absolute; top:64.5%;left:85%;width:3.6%" id = "aboutus_button" onclick = "aboutus_submit()">OK</button>
+				</div>
+
 			</div>
 
 
 
+
+		</div>
 		<div id="expand" onclick="expand()" >Chat</div>
 		  <div id="im">
 			 <div id="cover" onclick="cancel()">
