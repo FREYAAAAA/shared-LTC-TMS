@@ -25,11 +25,7 @@ a{text-decoration: none;}
 .main .left ul li a:hover{border-left: 3px solid #62ab00;background: #f3f7ed;color: #62ab00;}
 .main .right{float: left;width: 980px;height: auto;overflow: hidden;}
 .main .right .tap{width: 100%;height: 40px;border-bottom: 2px solid #62ab00;background: #f9fafa;}
-.main .right .tap #span{display: block;width: 150px;height: 100%;line-height: 40px;color: #fff;text-align: center;background: #62ab00;}
-.main .right .tap #span2{display: block;width: 150px;height: 5.3%;line-height: 40px;color: #fff;text-align: center;background: #62ab00;left:35.5%; top:22.6%;position:absolute;}
-.main .right .tap #span3{display: block;width: 150px;height: 5.3%;line-height: 40px;color: #fff;text-align: center;background: #62ab00;left:45.8%; top:22.6%;position:absolute;}
-.main .right .tap #span4{display: block;width: 150px;height: 5.3%;line-height: 40px;color: #fff;text-align: center;background: #62ab00;left:56.1%; top:22.6%;position:absolute;}
-.main .right .tap #span5{display: block;width: 150px;height: 5.3%;line-height: 40px;color: #fff;text-align: center;background: #62ab00;left:66.4%; top:22.6%;position:absolute;}
+.main .right .tap span{display: inline-block;width: 150px;height: 100%;line-height: 40px;color: #fff;text-align: center;background: #62ab00;}
 
 .main .right .container{width: 100%;height: 400px;overflow: hidden;background: #fff;}
 .main .right .container .no-doc{width: 100%;height: 350px;text-align: center;color: #999;font-size: 13px;}

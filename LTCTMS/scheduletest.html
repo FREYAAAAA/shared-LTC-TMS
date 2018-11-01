@@ -42,7 +42,6 @@
 <div class="working_schedulebox">
 <table id='WStable' class="schedule_table">
     <tr>
-        <th> ID </th>
         <th> Working Schedule </th>
         <th><button type="button" onclick="DownloadNewWS()" class="add_button" style="background-color:#B0C4DE;width:120px;height:40px;">Download <br>New Form</button></th>
         <th><button type="button" onclick="AddNewWS()" class="add_button"><img src="image\add.png" height="15px" width="15px"/></button> </th>
@@ -53,7 +52,6 @@
 <div class="center_schedulebox">
 <table id='CStable' class="schedule_table">
   <tr>
-      <th> ID </th>
       <th> Center Schedule </th>
       <th><button type="button" onclick="DownloadNewCS()" class="add_button" style="background-color:#B0C4DE;width:120px;height:40px;">Download <br>New Form</button></th>
       <th><button type="button" onclick="AddNewCS()" class="add_button"><img src="image\add.png" height="15px" width="15px"/></button> </th>
@@ -65,7 +63,7 @@
 <div class="working_hourbox">
 <table id=tableWH class="schedule_table">
     <tr>
-      <th>ID</th>
+
         <th> Working Hour </th>
         <th><button type="button" onclick="DownloadNewWH()" class="add_button" style="background-color:#B0C4DE;width:120px;height:40px;">Download <br>New Form</button></th>
         <th> <button type="button" class="add_button"><img src="image\add.png" onclick="AddNewWH()" height="15px" width="15px"/></button> </th>
@@ -78,7 +76,7 @@
 <table id="table" class="announcement_table">
   <thread>
     <tr>
-        <th>ID </th>
+
         <th> Announcement Title </th>
         <th></th>
         <th> <button id ="btnAdd" class="add_button" type="button" onclick="AddNewA()"><img src="image\add.png" height="15px" width="15px"/></button> </th>
@@ -111,8 +109,7 @@
   <div class="editForm_edit_announcement">
     <h2><center>Editing Announcement</center></h2>
     <hr class="schedule_hr">
-    &nbsp&nbsp Announcement ID:
-    <p type=text id="announcement_id"> </p><br>
+    
     &nbsp&nbsp Announcement Title:
     <input id="AEtitle2" type="text" placeholder="title.." onkeydown="btnpopUp()"/><br>
     <br>
@@ -181,8 +178,13 @@
 </div>
 
 
+<<<<<<< HEAD
 <script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Config.js'></script>
 <script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Schedulejs.js'></script>
+=======
+<script type = 'text/javascript' src = '/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/Config.js'></script>
+<script type = 'text/javascript' src = '/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Schedulejs.js'></script>
+>>>>>>> 9780b9a7981c4d177aec7ecca53562a32c4bd61c
 </body>
 
 </html>
