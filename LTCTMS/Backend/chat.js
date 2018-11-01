@@ -6,7 +6,7 @@ $(function(){
       $show = $('#show'),
       ms = new Date().getTime();
 
-  var database = firebase.database().ref("Chat");
+  var database = firebase.database().ref("chat");
 
   $btn.on('click',write);
   $content.on('keydown', function(e){
@@ -50,15 +50,16 @@ $(function(){
 
   database.limitToLast(1).on('value', function(snapshot) {
     for(var i in snapshot.val()){
-       $show.append('<div class="'+snapshot.val()[i].id+'"><div class="time">'+snapshot.val()[i].time+'</div><div class="name">'+snapshot.val()[i].name+' 說</div><div class="content">'+snapshot.val()[i].content+'</div>');
+       $show.append('<div class="'+snapshot.val()[i].id+'"><div class="time">'+snapshot.val()[i].time+'</div><div class="name">'+snapshot.val()[i].name+' 說</div><div class="contentI">'+snapshot.val()[i].content+'</div>');
     }
     $show.scrollTop($show[0].scrollHeight);
     $show.find('.id'+ms+' .name').css({
       'float':'right',
       'padding-top':'12px',
-      'color':'#fc0'
+      'color':'#FFCC33'
+
     });
-    $show.find('.id'+ms+' .content').css({
+    $show.find('.id'+ms+' .contentI').css({
       'float':'right',
       'margin-right':'10px'
     });
@@ -67,6 +68,11 @@ $(function(){
       'color':'#777'
     });
   });
-
-
 });
+
+function cancel(){
+    document.getElementById("im").style.display = "none";
+}
+function expand(){
+    document.getElementById("im").style.display = "block";
+}
