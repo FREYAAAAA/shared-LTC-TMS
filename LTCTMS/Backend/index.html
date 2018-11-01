@@ -4,13 +4,14 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>后台用户中心</title>
+		<title>LTCTMS</title>
+		<link rel="icon" type="image/jpg" href="image\logo.jpg">
 		<link rel="stylesheet" type="text/css" href="statics/css/iconfont.css" />
 		<link rel="stylesheet" type="text/css" href="statics/css/style.css" />
 		<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-		<script type = 'text/javascript' src = '/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Config.js'></script>
-		<script type = 'text/javascript' src = '/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/chat.js'></script>
+		<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Config.js'></script>
+		<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/chat.js'></script>
 	</head>
 	<style>
 
@@ -179,8 +180,8 @@
 		<div class="header">
 			<div class="bar">
 				<div class="w1200">
-					<span class="l">xxx网<font>用户中心</font></span>
-					<span class="r"><a href="#"><i class="icon iconfont icon-dianyuan"></i>退出</a></span>
+					<span class="l"><img src="image\Browser- logo final.png"><font>LTCTMS</font></span>
+					<span class="r"><a href="#"><i class="icon iconfont icon-dianyuan"></i>Logout</a></span>
 				</div>
 			</div>
 			<div class="user-info">
@@ -189,14 +190,14 @@
 						<img src="statics/images/user_face.jpg"/>
 					</div>
 					<div class="user-account">
-						<p class="tip">下午好，Tom</p>
+						<p class="tip">Good Afternoon</p>
 						<p class="account">
-							<span>帐户名：Tom</span>
-							<span>用户：tomandjerry</span>
+							<span>Name : Tom</span>
+							<span>UserID : tomandjerry</span>
 						</p>
 					</div>
 					<div class="user-modify">
-						<a href="#">修改资料></a>
+						<a href="#">Profile</a>
 					</div>
 				</div>
 			</div>
@@ -207,58 +208,79 @@
 					<li>
 						<a href="#" class="active">
 							<i class="icon iconfont icon-lingdang"></i>
-							消息
+							About Us
 						</a>
 					</li>
 					<li>
 						<a href="#">
 							<i class="icon iconfont icon-fangzidichan"></i>
-							房源管理
+							Schedule
 						</a>
 					</li>
 					<li>
 						<a href="#">
 							<i class="icon iconfont icon-wenda"></i>
-							问答
+							Memo
 						</a>
 					</li>
 					<li>
 						<a href="#">
 							<i class="icon iconfont icon-icon--"></i>
-							卖房
+							Status Record
 						</a>
 					</li>
 					<li>
 						<a href="#">
 							<i class="icon iconfont icon-pinglun"></i>
-							评论
+							Library
 						</a>
 					</li>
 					<li>
 						<a href="#">
 							<i class="icon iconfont icon-geren"></i>
-							个人资料
+							Task Editor
 						</a>
 					</li>
 					<li>
 						<a href="#">
 							<i class="icon iconfont icon-jilu"></i>
-							看房记录
+							E-Portfolio
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="icon iconfont icon-geren"></i>
+							Help and Support
 						</a>
 					</li>
 				</ul>
 			</div>
 			<div class="right">
 				<div class="tap">
-					<span>系统消息</span>
+					<span id="span">Introduction</span>
+					<span id="span2">Center Info</span>
+					<span id="span3">Sposored</span>
 				</div>
 				<div class="container">
-					<div class="no-doc">
-						<img src="statics/images/no_doc.jpg"/>
-						<p>您还没有消息哦~</p>
-					</div>
+					<textarea disabled style="width:93%;height:300px;">dvdsvds</textarea>
+					<button onclick = "aboutus_edit()" style="position:absolute; top:29%; left:85%; width:3.6%;">Edit</button>
+					<button  style="display: none;position:absolute; top:64.5%;left:85%;width:3.6%" id = "aboutus_button" onclick = "aboutus_submit()">OK</button>
+				</div>
+				<div class="container2" style="display:none">
+					<textarea disabled style="width:93%;height:300px;">dvdsvds</textarea>
+					<button onclick = "aboutus_edit()" style="position:absolute; top:29%; left:85%; width:3.6%;">Edit</button>
+					<button  style="display: none;position:absolute; top:64.5%;left:85%;width:3.6%" id = "aboutus_button" onclick = "aboutus_submit()">OK</button>
+				</div>
+				<div class="container3" style="display:none">
+					<textarea disabled style="width:93%;height:300px;">dvdsvds</textarea>
+					<button onclick = "aboutus_edit()" style="position:absolute; top:29%; left:85%; width:3.6%;">Edit</button>
+					<button  style="display: none;position:absolute; top:64.5%;left:85%;width:3.6%" id = "aboutus_button" onclick = "aboutus_submit()">OK</button>
 				</div>
 			</div>
+
+
+
+
 		</div>
 		<div id="expand" onclick="expand()" >Chat</div>
 		  <div id="im">
