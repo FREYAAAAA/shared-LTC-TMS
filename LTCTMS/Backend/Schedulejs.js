@@ -186,7 +186,9 @@ uploadtask3.on('state_changed',
        url : url,
        id : postKey,
        titleAndroid : title2,
-       titleIOS: title
+       titleIOS: title,
+       filename: file3.name
+
      };
     // if(url == "" || title =="")
     //  alert ("Please input")
@@ -247,9 +249,13 @@ var Ukey = cs[rowIndexCS];
 console.log(Ukey);
 var r = confirm("Are you sure you want to delete a center schedule?");
 if (r == true) {
-  fbCS.child(Ukey).remove();
-  alert("successfully deleted!");
-  window.location.reload();
+    fbCS.child(Ukey+"/filename").once('value').
+    then(function(snapshot){
+        var storageRef=firebase.storage().ref();
+        storageRef.child("CenterSchedule/"+snapshot.val()).delete().then(function(){
+            fbCS.child(Ukey).remove();
+            alert("successfully deleted!");
+            window.location.reload();
 }
 else {
 }
@@ -329,7 +335,8 @@ uploadtask.on('state_changed',
        url : url,
        id : postKey,
        titleAndroid : title2,
-       titleIOS : title
+       titleIOS : title,
+       filename: file.name
      };
      updates['WorkingSchedule/' + postKey] = postData;
      firebase.database().ref().update(updates);
@@ -384,9 +391,13 @@ var Ukey = ws[rowIndexWS];
 console.log(Ukey);
 var r = confirm("Are you sure you want to delete a working schedule?");
 if (r == true) {
-  fbWS.child(Ukey).remove();
-  alert("successfully deleted!");
-  window.location.reload();
+    fbWS.child(Ukey+"/filename").once('value').
+    then(function(snapshot){
+        var storageRef=firebase.storage().ref();
+        storageRef.child("WorkingHourRecord/"+snapshot.val()).delete().then(function(){
+            fbWS.child(Ukey).remove();
+            alert("successfully deleted!");
+            window.location.reload();
 }
 else {
 }
@@ -470,7 +481,9 @@ uploadtask.on('state_changed',
        url : url,
        id : postKey,
        titleAndroid : title2,
-       titleIOS : title
+       titleIOS : title,
+       filename: file2.name
+
      };
      updates['WorkingHourRecord/' + postKey] = postData;
      firebase.database().ref().update(updates);
@@ -524,9 +537,16 @@ var Ukey = wh[rowIndexWH];
 console.log(Ukey);
 var r = confirm("Are you sure you want to delete a working hour?");
 if (r == true) {
-  fbWH.child(Ukey).remove();
-  alert("successfully deleted!");
-  window.location.reload();
+    fbWH.child(Ukey+"/filename").once('value').
+    then(function(snapshot){
+        var storageRef=firebase.storage().ref();
+        storageRef.child("WorkingHourRecord/"+snapshot.val()).delete().then(function(){
+            fbWH.child(Ukey).remove();
+            alert("successfully deleted!");
+            window.location.reload();
+       });
+    });
+
 }
 else {
 }
