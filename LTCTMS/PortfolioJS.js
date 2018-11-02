@@ -1,3 +1,17 @@
+firebase.auth().onAuthStateChanged(function (firebaseUser){
+if(firebaseUser){
+  console.log(firebaseUser);
+  var userid = firebaseUser.uid;
+  console.log(userid);
+}else{
+  alert("You're Logged out now! Please Login again if you need to use this system!");
+  window.location.href = "Login.html";
+}
+});
+
+
+
+
 //Add new Portfolio
 function addNewPortfolio(){
   document.getElementById('newPortfolioSeletion').style.display ='block';
@@ -33,7 +47,6 @@ console.log(staffCV);
 
 //btnLicense.addEventListener('change', handleuploadfile2);
 btnSubmitP.addEventListener('click', handleuploadfileSubmit);
-console.log("12312412412");
 let file1 = [];
 let file4 = [];
 let file3 = [];
@@ -44,7 +57,6 @@ function handleuploadfile1(e) {
 
 }
 function handleuploadfile5(e) {
-console.log("999999999");
      file4=e.target.files[0];
      console.log(file4.name);
 }
@@ -98,7 +110,8 @@ function handleuploadfileSubmit(e) {
      var staffbriefdescription = document.getElementById('staffbriefdescription').value;
 
 
-
+     //var x =storageRef1.getDownloadURL();
+     //console.log('testing function:'+x);
      storageRef1.getDownloadURL()
       .then(function(url){
 
@@ -122,7 +135,11 @@ function handleuploadfileSubmit(e) {
        InitialDate : staffInitialDate,
        EName : staffEName,
        ERelationship : staffERelationship,
-       BriefDescription : staffbriefdescription
+       BriefDescription : staffbriefdescription,
+       picFilename: file1.name,
+       cvFilename: file3.name,
+       licenseFilename: file4.name
+
      };
      updates[ staffPosition +'/'+StaffID +'/Portfolio/'] = postData;
      //updates['Portfolio/'+ StaffID] = postData;
@@ -132,15 +149,26 @@ function handleuploadfileSubmit(e) {
        .then(function(url3){
            console.log(url3);
            console.log(staffPosition+"/"+StaffID+"/Portfolio"+"/CV");
-           firebase.database().ref(staffPosition+"/"+StaffID+"/Portfolio"+"/CV").set(url3);
+           firebase.database().ref(staffPosition+"/"+StaffID+"/Portfolio"+"/CV/").set(url3);
        });
        storageRef4.getDownloadURL()
          .then(function(url4){
            console.log(url4);
              firebase.database().ref(staffPosition+"/"+StaffID+"/Portfolio"+"/License/").set(url4);
-             location.reload();
+            // location.reload();
 
          });
+         const promise = firebase.auth().createUserWithEmailAndPassword(staffEmail,staffPassword).then(
+           (user)=>{
+             if(user){
+               user.updateProfile({
+                 displayName:staffName,
+                 photoURL: storageRef1.getDownloadURL(),
+                 workID: StaffID
+               })
+             }
+             });
+         promise.catch(e=> console.log(e.message));
   });
 
 }
@@ -230,7 +258,8 @@ uploadtask.on('state_changed',
        ERelationship : patientERelationship,
        AdmissionReason : patientAdmissionReason,
        Address : patientAddress,
-       Position : 'Patient'
+       Position : 'Patient',
+       picFilename: file6.name
      };
 
 
@@ -507,7 +536,7 @@ function editPP(){
     var EName = snapshot.child('EName').val();
     var ERelationship = snapshot.child('ERelationship').val();
     var AdmissionReason = snapshot.child('AdmissionReason').val();
-
+    var picfilename = snapshot.child('picFilename').val();
 
     console.log(photo);
     //TODO: picture can't be edit?
@@ -531,6 +560,7 @@ function editPP(){
     document.getElementById('patientEName2').value= EName;
     document.getElementById('patientERelationship2').value= ERelationship;
     document.getElementById('patientAdmissionReason2').value= AdmissionReason;
+    document.getElementById('patientpicFilename').innerHTML = picfilename;
   });
 }
 function editSP(){
@@ -563,6 +593,9 @@ console.log(position);
     var ERelationship = snapshot.child('ERelationship').val();
     var BriefDescription = snapshot.child('BriefDescription').val();
     var License = snapshot.child('License').val();
+    var picfilename = snapshot.child('picFilename').val();
+    var cvfilename = snapshot.child('cvFilename').val();
+    var licensefilename = snapshot.child('licenseFilename').val();
     console.log(photo);
     //TODO: picture can't be edit?
     document.getElementById('PictureS').innerHTML = photo;
@@ -577,20 +610,23 @@ console.log(position);
     document.getElementById('staffEContact2').value= EContact;
     document.getElementById('staffAddress2').value= AddressV ;
     document.getElementById('staffPassword2').value= pass;
-    document.getElementById('staffCV2').value= CV;
+    document.getElementById('staffCV2').innerHTML= CV;
     document.getElementById('staffPosition2').value = Position;
     document.getElementById('staffInitialDate2').value= InitialDate;
     document.getElementById('staffEName2').value= EName;
     document.getElementById('staffERelationship2').value= ERelationship;
     document.getElementById('staffBriefDescription2').value= BriefDescription;
-    document.getElementById('stafflicense2').value= License;
+    document.getElementById('stafflicense2').innerHTML= License;
+    document.getElementById('staffpicfilename').innerHTML= picfilename;
+    document.getElementById('staffcvfilename').innerHTML= cvfilename;
+    document.getElementById('stafflicensefilename').innerHTML= licensefilename;
   });
 
 }
 
 //Updating patient portfolio
 function SubmitPPPP(){
-  console.log("poi");
+
   var photo = document.getElementById('PictureP').innerText;
   var id = document.getElementById('PatientID2').value;
   var Name = document.getElementById('patientName2').value;
@@ -611,7 +647,8 @@ function SubmitPPPP(){
   var EName = document.getElementById('patientEName2').value;
   var ERelationship = document.getElementById('patientERelationship2').value;
   var AdmissionReason = document.getElementById('patientAdmissionReason2').value;
-  console.log(id);
+  var picfilename = document.getElementById('patientpicFilename').innerText;
+
   var updates = {};
   var postData={
   ID : id,
@@ -629,12 +666,13 @@ function SubmitPPPP(){
   MedicalRecord : MR,
   BriefDescription : BD,
   patientRoomNo : Room,
-  Adress : Address,
+  Address : Address,
   AdmissionDate : AdmissionDate,
   EName : EName,
   ERelationship : ERelationship,
   AdmissionReason : AdmissionReason,
-  Position : 'Patient'
+  Position : 'Patient',
+  picFilename : picfilename
   };
 
 
@@ -665,6 +703,9 @@ function submitSP(){
   var ERelationship = document.getElementById('staffERelationship2').value;
   var BriefDescription = document.getElementById('staffBriefDescription2').value;
   var License = document.getElementById('stafflicense2').value;
+  var picfilename = document.getElementById('staffpicfilename').innerText;
+  var cvfilename = document.getElementById('staffcvfilename').innerText;
+  var licensefilename = document.getElementById('stafflicensefilename').innerText;
 
   var updates = {};
   var postData={
@@ -687,10 +728,12 @@ function submitSP(){
   ERelationship : ERelationship,
   BriefDescription : BriefDescription,
   License : License,
-
+  picFilename : picfilename,
+  cvFilename : cvfilename,
+  licenseFilename : licensefilename
   };
+
   updates[ position +'/'+ id +'/Portfolio/'] = postData;
-  //updates['Portfolio/'+ id] = postData;
   firebase.database().ref().update(updates);
   window.location.reload();
 }
@@ -701,12 +744,19 @@ function deletePP(){
   var id = document.getElementById('PID').innerText;
   var r = confirm("Are you sure you want to delete?");
     if (r == true) {
-        fbPP.child(id).remove();
+      fbPP.child(id+"/Portfolio").on('value',function(snapshot){
+        var pic = snapshot.child('picFilename').val();
+        var storageRef = firebase.storage().ref();
+        var file = storageRef.child('Patient/'+pic);
+        file.delete().then(function(){
+          fbPP.child(id).remove();
+          window.location.reload();
+        }).catch(function(error){
+          alert('failed to delete!');
+        });;
+      });
         alert("successfully deleted!");
     }
-    else {
-    }
-  window.location.reload();
 }
 
 function deleteSP(){
@@ -715,12 +765,24 @@ function deleteSP(){
  var fbSP = firebase.database().ref(position);
  var r = confirm ("Are you sure you want to delete?");
   if (r == true) {
-	   fbSP.child(id).remove();
+    fbSP.child(id+'/Portfolio').on('value',function(snapshot){
+      var pic = snapshot.child('picFilename').val();
+      var cv = snapshot.child('cvFilename').val();
+      var license = snapshot.child('licenseFilename').val();
+
+      firebase.storage().ref('Staff/').child(cv).delete();
+      firebase.storage().ref('Staff/').child(license).delete();
+      firebase.storage().ref('Staff/').child(pic).delete().then(function(){
+        alert('successfully deleted the storage file!');
+         fbSP.child(id).remove();
+        window.location.reload();
+      }).catch(function(error){
+        alert('failed to delete!');
+      });
+    });
 	    alert("Succesfully Deleted!");
-      window.location.reload();
 }
-else {
-}
+
 }
 //Keyword search
 $(document).ready(function(){
