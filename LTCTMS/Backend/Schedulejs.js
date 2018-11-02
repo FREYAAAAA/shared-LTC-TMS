@@ -256,6 +256,8 @@ if (r == true) {
             fbCS.child(Ukey).remove();
             alert("successfully deleted!");
             window.location.reload();
+        });
+    });
 }
 else {
 }
@@ -394,10 +396,12 @@ if (r == true) {
     fbWS.child(Ukey+"/filename").once('value').
     then(function(snapshot){
         var storageRef=firebase.storage().ref();
-        storageRef.child("WorkingHourRecord/"+snapshot.val()).delete().then(function(){
+        storageRef.child("WorkingSchedule/"+snapshot.val()).delete().then(function(){
             fbWS.child(Ukey).remove();
             alert("successfully deleted!");
             window.location.reload();
+        });
+    });
 }
 else {
 }
