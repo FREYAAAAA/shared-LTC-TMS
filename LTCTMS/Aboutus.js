@@ -1,3 +1,12 @@
+firebase.auth().onAuthStateChanged(function (firebaseUser){
+if(firebaseUser){
+  console.log(firebaseUser);
+}else{
+  alert("You're Logged out now! Please Login again if you need to use this system!");
+  window.location.href = "Login.html";
+}
+});
+
 
 var fbAboutus = firebase.database().ref("CenterInformation/ContactInfo/Aboutus");
 fbAboutus.once("value")
@@ -196,4 +205,10 @@ function sponsor_delete(){
         console.log("button_id["+i+"]");
         document.getElementById("button_id["+i+"]").setAttribute("style","display:inline;");
     }
+}
+
+function Logout(){
+  firebase.auth().signOut();
+  console.log('logout');
+  window.location.href = "Login.html";
 }
