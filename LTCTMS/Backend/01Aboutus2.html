@@ -262,8 +262,7 @@
 					<span id="span2" onclick="showcenterinfo()">Center Info</span>
 					<span id="span3" onclick="showsponsored()">Sponsored</span>
 				</div>
-
-				<div class="container" id="data1" style="position:relative;top:10%; left:0%;">
+				<div class="container" id="data1" style="position:relative;top:0%; left:0%;">
 					    <table style="height:100%;width:100%;border-style:hidden;">
 					        <tr>
 					            <th style="height:20%;"> About Us <button onclick = "aboutus_edit()" style="position:relative;left:40%;height:40%;width:5%;">Edit</button></th>
@@ -317,8 +316,8 @@
 					    </table>
 
 					<div style="position:absolute; left:68%;top:2%; width:30%; height:94%;background-color:#ddd;">
-									    <h3>Sponsor</h3>
-									    <textarea id ="sponsorName" rows="1" cols="39" ></textarea>
+									    <h3 style="text-align:center;">Add Sponsor</h3><br>
+									    <p> Name :<textarea id ="sponsorName" rows="1" cols="39" ></textarea> </p>
 									    <p style="font-size:12px;"> </p>
 									    <br>
 									    <p>Link:</p>
@@ -326,7 +325,7 @@
 									    <br><br>
 									    <input type="file" value="" name="Photo" id="fileButton" accept="image/*" />
 									    <br><br>
-									    <button onclick ="upload()" type="button" class="btn" >Upload</button>
+									    <center><button onclick ="upload()" type="button" class="btn" style="text-align:center;">Upload</button></center>
 					</div>
 			</div>
 		</div>

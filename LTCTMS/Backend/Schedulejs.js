@@ -544,3 +544,30 @@ url.once("value").then(function(snapshot){
    window.location = downloadURL;
 });
 }
+
+
+function showannouncement(){
+  document.getElementById("data1").style.display = "block";
+  document.getElementById("data2").style.display = "none";
+  document.getElementById("data3").style.display = "none";
+  document.getElementById("data4").style.display = "none";
+}
+
+function showcs(){
+  document.getElementById("data1").style.display = "none";
+  document.getElementById("data2").style.display = "block";
+  document.getElementById("data3").style.display = "none";
+  document.getElementById("data4").style.display = "none";
+}
+function showws(){
+  document.getElementById("data1").style.display = "none";
+  document.getElementById("data2").style.display = "none";
+  document.getElementById("data3").style.display = "block";
+  document.getElementById("data4").style.display = "none";
+}
+function showwh(){
+  document.getElementById("data1").style.display = "none";
+  document.getElementById("data2").style.display = "none";
+  document.getElementById("data3").style.display = "none";
+  document.getElementById("data4").style.display = "block";
+}

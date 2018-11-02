@@ -192,6 +192,123 @@
 	table td {
 	  text-shadow: 2px 2px #FFFFFF;
 	}
+	#newABlock{
+	  width:100%;
+	  height:100%;
+	  opacity:.95;
+	  right:0;
+	  top:0;
+	  padding:40px, 60px;
+	  display:none;
+	  position:fixed;
+	  background-color:#313131;
+	  overflow:auto
+	}
+	#editABlock {
+	  width:100%;
+	  height:100%;
+	  opacity:.95;
+	  right:0;
+	  top:0;
+	  padding:40px, 60px;
+	  display:none;
+	  position:fixed;
+	  background-color:#313131;
+	  overflow:auto
+	}
+	#newCSBlock{
+	  width:100%;
+	  height:100%;
+	  opacity:.95;
+	  right:0;
+	  top:0;
+	  padding:40px, 60px;
+	  display:none;
+	  position:fixed;
+	  background-color:#313131;
+	  overflow:auto;
+	}
+	#newWSBlock{
+	  width:100%;
+	  height:100%;
+	  opacity:.95;
+	  top:0;
+	  left:0;
+	  display:none;
+	  position:fixed;
+	  background-color:#313131;
+	  overflow:auto
+	}
+	#newWHBlock{
+	  width:100%;
+	  height:100%;
+	  opacity:.95;
+	  top:0;
+	  left:0;
+	  display:none;
+	  position:fixed;
+	  background-color:#313131;
+	  overflow:auto
+	}
+	.editForm_create_announcement {
+	  max-width:600px;
+	  min-width:200px;
+	  padding:10px 50px
+	  border:2px solid gray;
+	  border-radius:10px;
+	  font-family:raleway;
+	  background-color:#fff;
+	  position:absolute;
+	  left:500px;
+	  top:200px;
+	  width:500px;
+	  height:350px;
+	}
+	.editForm_edit_announcement {
+	  max-width:600px;
+	  min-width:200px;
+	  padding:10px 50px
+	  border:2px solid gray;
+	  border-radius:10px;
+	  font-family:raleway;
+	  background-color:#fff;
+	  position:absolute;
+	  left:500px;
+	  top:150px;
+	  width:500px;
+	  height:450px;
+	}
+	.editForm_upload_file {
+	  max-width:600px;
+	  min-width:200px;
+	  padding:10px 50px
+	  border:2px solid gray;
+	  border-radius:10px;
+	  font-family:raleway;
+	  background-color:#fff;
+	  position:absolute;
+	  left:500px;
+	  top:300px;
+	  width:550px;
+	  height:210px;
+	}
+	.schedule_hr {
+	  margin:10px 0px;
+	  border:0;
+	  border-top:1px solid #ccc
+	}
+	.schedule_textarea {
+	  width:82%;
+	  height:140px;
+	  padding:10px;
+	  resize:none;
+	  margin-top:10px;
+	  border:1px solid #ccc;
+	  font-size:16px;
+	  font-family:raleway;
+	  margin-bottom:20px;
+	  margin-left:30px;
+	}
 	</style>
 	<body>
 		<div class="header">
@@ -284,9 +401,9 @@
 					<table id="table" style="width:100%;border-style:hidden;" class="announcement_table">
 					  <thread>
 						 <tr>
-					        <th> Announcement Title </th>
-					        <th></th>
-					        <th> <button id ="btnAdd" class="add_button" type="button" onclick="AddNewA()"><img src="image\add.png" height="15px" width="15px"/></button> </th>
+					        <th style="width:50%"> Announcement Title </th>
+					        <th style="width:25%"></th>
+					        <th style="width:25%"> <button id ="btnAdd" class="add_button" type="button" onclick="AddNewA()"><img src="image\add.png" height="15px" width="15px"/></button> </th>
 					    </tr>
 					  </thread>
 
@@ -294,43 +411,40 @@
 				</div>
 
 				<div class="container" id="data2" style="display:none;">
-					<table id='CStable' class="schedule_table">
+					<table id='CStable' class="schedule_table" style="width:100%;border-style:hidden;">
 					  <tr>
-					      <th> Center Schedule </th>
-					      <th><button type="button" onclick="DownloadNewCS()" class="add_button" style="background-color:#B0C4DE;width:120px;height:40px;">Download <br>New Form</button></th>
-					      <th><button type="button" onclick="AddNewCS()" class="add_button"><img src="image\add.png" height="15px" width="15px"/></button> </th>
+					      <th style="width:50%"> Center Schedule </th>
+					      <th style="width:25%"><button type="button" onclick="DownloadNewCS()" class="add_button" style="background-color:#B0C4DE;width:120px;height:40px;">Download <br>New Form</button></th>
+					      <th style="width:25%"><button type="button" onclick="AddNewCS()" class="add_button"><img src="image\add.png" height="15px" width="15px"/></button> </th>
 					  </tr>
 					</table>
 					</div>
 
 				<div class="container" id="data3" style="display:none;">
-					<table id='WStable' class="schedule_table">
+					<table id='WStable' class="schedule_table" style="width:100%;border-style:hidden;">
 					    <tr>
-					        <th> Working Schedule </th>
-					        <th><button type="button" onclick="DownloadNewWS()" class="add_button" style="background-color:#B0C4DE;width:120px;height:40px;">Download <br>New Form</button></th>
-					        <th><button type="button" onclick="AddNewWS()" class="add_button"><img src="image\add.png" height="15px" width="15px"/></button> </th>
+					        <th style="width:50%"> Working Schedule </th>
+					        <th style="width:25%"><button type="button" onclick="DownloadNewWS()" class="add_button" style="background-color:#B0C4DE;width:120px;height:40px;">Download <br>New Form</button></th>
+					        <th style="width:25%"><button type="button" onclick="AddNewWS()" class="add_button"><img src="image\add.png" height="15px" width="15px"/></button> </th>
 					    </tr>
 					</table>
 					</div>
 
 				<div class="container" id="data4" style="display:none;">
-					<table id=tableWH class="schedule_table">
+					<table id=tableWH class="schedule_table" style="width:100%;border-style:hidden;">
 					    <tr>
 
-					        <th> Working Hour </th>
-					        <th><button type="button" onclick="DownloadNewWH()" class="add_button" style="background-color:#B0C4DE;width:120px;height:40px;">Download <br>New Form</button></th>
-					        <th> <button type="button" class="add_button"><img src="image\add.png" onclick="AddNewWH()" height="15px" width="15px"/></button> </th>
+					        <th style="width:50%"> Working Hour </th>
+					        <th style="width:25%"><button type="button" onclick="DownloadNewWH()" class="add_button" style="background-color:#B0C4DE;width:120px;height:40px;">Download <br>New Form</button></th>
+					        <th style="width:25%"> <button type="button" class="add_button"><img src="image\add.png" onclick="AddNewWH()" height="15px" width="15px"/></button> </th>
 					    </tr>
 
 					</table>
 			</div>
 
 			</div>
-
-
-
-
 		</div>
+
 		<div id="newABlock">
 		  <div class="editForm_create_announcement">
 		    <h2><center>New Announcement</center></h2>
@@ -432,8 +546,8 @@
 		    </div>
 		    <div id="show"></div>
 		  </div>
-		 <script type = 'text/javascript' src = '/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/Config.js'></script>
-	  	<script type = 'text/javascript' src = '/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/Schedulejs.js'></script>
+		 <script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/Config.js'></script>
+	  	<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/Schedulejs.js'></script>
 	  	<script type = 'text/javascript' src = 'chat.js'></script>
 	</body>
 

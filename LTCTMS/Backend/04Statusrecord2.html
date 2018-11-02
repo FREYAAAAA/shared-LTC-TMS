@@ -178,6 +178,98 @@
 	border: none;
 	background: none;
 	}
+	#current_date {
+		top:7%;
+		left:31%;
+	  font-size:60px;
+	  color:#2F4F4F;
+	}
+	#current_month {
+		top:7%;
+		left:35%;
+	  font-size:25px;
+	  color:#A0522D;
+	}
+	#current_year {
+		top:7%;
+		left:56%;
+	  font-size:15px;
+	  color:#A0522D;
+	}
+	#current_week {
+		top:8%;
+		left:28%;
+	  font-size:25px;
+	  color:#000;
+	}
+	.status_record_option {
+	  position:relative;
+	  top:15%;
+	  left:0%;
+	  text-align:center;
+	}
+	.status_record_date_option {
+	  position:relative;
+	  top:15%;
+	  left:0%;
+	  text-align:center;
+	}
+	.status_record_display_button {
+	  position:relative;
+	  left:40%;
+	  text-align:center;
+	}
+	table, th, td
+	{
+	    padding: 10px;
+	    border: 1px solid black;
+	    width:600px;
+	    text-align: center;
+	    word-wrap: break-word;
+	}
+	table th {
+	  background-color: #B0C4DE;
+	  color: #000;
+	}
+	table td {
+	  text-shadow: 2px 2px #FFFFFF;
+	}
+	.dvsr_form-popup {
+	  display: none;
+	  position: fixed;
+	  top: 45%;
+	  left: 48%;
+	  border: 5px solid #f1f1f1;
+	  z-index: 9;
+	  padding: 10px;
+	  background-color: white;
+	  height:80%;
+	  width:80% ;
+	}
+	.dvsr_form-popup .btn {
+	  background-color: #4CAF50;
+	  color: white;
+	  padding: 16px 20px;
+	  border: none;
+	  cursor: pointer;
+	  width: 100%;
+	  margin-bottom:10px;
+	  opacity: 0.8;
+	}
+	.dvsr_form-popup .cancel {
+	  background-color: red;
+	  position:fixed;
+	  top:13.2%;
+	  width:2%;
+	  z-index:2;
+	  left:94.2%;
+	  height:1px;
+	  text-align:center;
+	  z-index:100;
+	}
+	.dvsr_form-popup .btn:hover, .open-button:hover {
+	  opacity: 1;
+	}
 	</style>
 	<body>
 		<div class="header">
@@ -267,79 +359,123 @@
           <span id="span5" onclick="showec()">Env. Condition</span>
 				</div>
 
-				<div class="container" id="data1">
-					<table  id="DSR_table" class="daily_status_record" onclick="sortDSR()" >
+				<div id="data1" style="position:relative;left:22%;width:78%;height:80%;background-color:#fff;border-left:2px solid black;overflow-x:hidden; overflow-y:scroll;">
+					<table  id="DSR_table" class="daily_status_record" onclick="sortDSR()" style="position:relative;width:100%;border-style:hidden;">
 					    <tr>
 					        <th colspan="3"> Daily Status Record </th>
 					    </tr>
 					</table>
+				<div class="no-doc" id="no-doc1">
+					<br><br>
+					<center><img src="statics/images/no_doc.jpg"/>
+					<p> Please Select Date, PatientID and CNAID </p></center>
+				</div>
 				</div>
 
-				<div class="container" id="data2" style="display:none">
-					<table id="VSR_table" class="vital_status_record" onclick="sortVSR()">
+				<div id="data2" style="display:none;position:relative;left:22%;width:78%;height:80%;background-color:#fff;border-left:2px solid black;overflow-x:hidden; overflow-y:scroll;">
+					<table id="VSR_table" class="vital_status_record" onclick="sortVSR()" style="position:relative;width:100%;border-style:hidden;">
 					    <tr>
 					        <th colspan="3"> Vital Status Record </th>
 					    </tr>
 					</table>
+					<div class="no-doc" id="no-doc2">
+						<br><br>
+						<center><img src="statics/images/no_doc.jpg"/>
+						<p> Please Select Date, PatientID and CNAID </p></center>
+					</div>
 				</div>
 
-				<div class="container" id="data3" style="display:none">
-					<table id="AI_table" class="a_i_status" onclick="sortAI()">
+				<div id="data3" style="display:none;position:relative;left:22%;width:78%;height:80%;background-color:#fff;border-left:2px solid black;overflow-x:hidden; overflow-y:scroll;">
+					<table id="AI_table" class="a_i_status" onclick="sortAI()" style="position:relative;width:100%;border-style:hidden;">
 					    <tr>
-					        <th colspan="3"> A.I. Status </th>
+					        <th colspan="3"> A.I. Status<input type = "button" onclick="viewMore()" value="view more" style="position:relative;left:38%;"></th>
 					    </tr>
 					</table>
-					<input type = "button" onclick="viewMore()" value="view more" style="position:absolute;right:20px; top:60px;">
+					<div class="no-doc" id="no-doc3">
+						<br><br>
+						<center><img src="statics/images/no_doc.jpg"/>
+						<p> Please Select Date, PatientID and CNAID </p></center>
+					</div>
 				</div>
 
-        <div class="container" id="data4" style="display:none">
-					<table id="SC_table" class="special_care" >
+				<div id="data4" style="display:none;position:relative;left:22%;width:78%;height:80%;background-color:#fff;border-left:2px solid black;overflow-x:hidden; overflow-y:scroll;">
+					<table id="SC_table" class="special_care" style="position:relative;width:100%;border-style:hidden;">
 					    <tr>
 					        <th colspan="3"> Special Care</th>
 					    </tr>
 					</table>
+					<div class="no-doc" id="no-doc4">
+						<br><br>
+						<center><img src="statics/images/no_doc.jpg"/>
+						<p> Please Select Date, PatientID and CNAID </p></center>
+					</div>
 				</div>
 
-        <div class="container" id="data5" style="display:none">
-					<table  id="Environmenttable" class="environment_table" onclick="sortENV()">
+				<div id="data5" style="display:none;position:relative;left:22%;width:78%;height:80%;background-color:#fff;border-left:2px solid black;overflow-x:hidden; overflow-y:scroll;">
+					<table  id="Environmenttable" class="environment_table" onclick="sortENV()" style="position:relative;width:100%;border-style:hidden;">
 					    <tr>
 					        <th colspan="3"> Environment Condition </th>
 					    </tr>
 					</table>
+					<div class="no-doc" id="no-doc5">
+						<br><br>
+						<center><img src="statics/images/no_doc.jpg"/>
+						<p> Please Select Date, PatientID and CNAID </p></center>
+					</div>
 				</div>
+
+
+				<div class="dvsr_form-popup" id="form" style="position:absolute;left:250px; top:100px;display:none;overflow-y:scroll;">
+				<div style="position:absolute; left:10px;top:18px;">
+				<table id = "heartRateRecord" style="border-style:hidden;" onclick="sortHRR()">
+				        <tr>
+				            <th colspan="3"> Heart Rate Record</th>
+				        </tr>
+				</table>
+				</div>
+				<div style="position:absolute; left:620px;top:18px;">
+				<table id="VisitRecord" style="border-style:hidden;">
+				  <tr>
+				      <th colspan="3" onclick="sortvisitrecord()"> Visit Record</th>
+				  </tr>
+				</table>
+				</div>
+				    <button type="button" class="btn cancel" onclick="close_form()"><p style="position:absolute; top:-6px;left:-10%;"> x </p></button>
+				</div>
+
+
+
+<div style="position:relative; top:-80%; left:0%; background-color:#ddd;width:22%; height:80%;">
+	<h2 id="current_year" style="position:relative;"></h2>
+	<h2 id='current_date' style="position:relative;"></h2>
+	<h2 id="current_month" style="position:relative;"></h2>
+	<h2 id="current_week" style="position:relative;"></h2>
+
+
+
+					<div class="status_record_date_option">
+					  <input type="date" id="bday">
+					<br><br>
+					</div>
 
 
 				<div class="status_record_option">
 				<select id="selectPAT" onclick = "clearBox()"  onchange = "selectPatient()" >
 				<option>Patient ID</option>
 				</select>
-				<br><br><br>
 				<select id="selectCNA" style="width:70px;">
 				    <option>CNA ID</option>
 				</select>
 				<br><br><br>
 				</div>
-
-
-				<h1 id='current_date'></h1>
-				<h1 id="current_month"></h1>
-				<h1 id="current_year"></h1>
-				<h1 id="current_week"></h1>
-
-				<!--view date button-->
-
-				<div class="status_record_date_option">
-				  <input type="date" id="bday">
 				<br><br>
-				</div>
 				<input class="status_record_display_button" type = "button" value="Display"  onclick = " display_button (this);"/>
 
 			</div>
+</div>
+</div>
 
 
-
-
-		</div>
 		<div id="expand" onclick="expand()" >Chat</div>
 		  <div id="im">
 			 <div id="cover" onclick="cancel()">

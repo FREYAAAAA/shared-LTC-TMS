@@ -59,6 +59,12 @@ fbPAT.once("value")
     }
     var count = 0;
     function display_button(nnn,room){
+      document.getElementById("no-doc1").style.display = "none";
+      document.getElementById("no-doc2").style.display = "none";
+      document.getElementById("no-doc3").style.display = "none";
+      document.getElementById("no-doc4").style.display = "none";
+      document.getElementById("no-doc5").style.display = "none";
+
         if(count%2 == 1){//  in order to exchange the text of button into "display" and"refresh"
             nnn .value= "Refresh";
             location.reload();//reload the page

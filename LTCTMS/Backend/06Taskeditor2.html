@@ -8,10 +8,11 @@
 		<link rel="icon" type="image/jpg" href="image\logo.jpg">
 		<link rel="stylesheet" type="text/css" href="statics/css/iconfont.css" />
 		<link rel="stylesheet" type="text/css" href="statics/css/style.css" />
-		<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-		<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Config.js'></script>
-		<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/chat.js'></script>
+		<script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
+		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+		<script type = 'text/javascript' src="\Users\kong\Documents\GitHub\shared-LTC-TMS\LTCTMS\Backend\vanillatree.js"></script>
+		<script type = 'text/javascript' src="\Users\kong\Documents\GitHub\shared-LTC-TMS\LTCTMS\Backend\vanillatree.min.js"></script>
+		<link href="vanillatree.css" rel="stylesheet">
 	</head>
 	<style>
 
@@ -260,12 +261,55 @@
 					<span id="span">Task Instruction</span>
 				</div>
 
-				<div class="container">
-					<textarea disabled style="width:93%;height:300px;">dvdsvds</textarea>
-					<button onclick = "aboutus_edit()" style="position:absolute; top:29%; left:85%; width:3.6%;">Edit</button>
-					<button  style="display: none;position:absolute; top:64.5%;left:85%;width:3.6%" id = "aboutus_button" onclick = "aboutus_submit()">OK</button>
+				<div style="position:relative;left:22%;width:78%;height:90%;background-color:#fff;border-left:2px solid black;overflow:scroll;">
+					<div id="showbox">
+					  <table style="border:hidden; width:89%;height:100%;opacity:1;">
+					    <tr>
+					        <th colspan="2" style="background-color:#aaa;">Task Name:<textarea id="Ttitle" row ="2" cols="65"></textarea> </th>
+					    </tr>
+					    <tr>
+					        <td style="text-align:center;"> <br>Category:
+					        <input name="category" id = "selectCat" list="CatOption">
+					        <datalist id="CatOption">
+
+					        </datalist>
+					        </td>
+					        <td style="text-align:center;">
+					        <br>Video URL:
+					        <input id="videoURL" type="text"/>
+					      </td>
+					      </tr>
+					    <tr>
+					        <td colspan="2" style="text-align:center;"><br>Outline:
+					        <textarea id="Outline" rows="6" cols="80"></textarea>
+					        </td>
+					    </tr>
+					    <tr>
+					        <td colspan="2" style="text-align:center;"><br>Note:
+					        <textarea id="Note" rows="6" cols="83"></textarea>
+									<br><br>
+					        <button onclick="TaskSubmit()">Save </button>
+					        <button id="createNewMainstep" onclick="onClick(clicks);">Add MainStep</button>
+					        <button onclick = "deleteT()"> Delete Task </button>
+									<br>
+					        <p id = 'deslist' style = 'display : none;'>There are <span id = "MstepCount"></span> Mainstep(s) in this Task.</p>
+					        </td>
+					    </tr>
+					</table>
+
+					</div>
 				</div>
 
+
+				<div style="position:relative; top:-90%; left:0%; background-color:#ddd;width:22%; height:90%;">
+					Category:
+					<select id="CategoryFilter" onchange = "filterCategory()">
+					<option> Select Category</option>
+					</select>
+					<button id="createNewTask" onclick='$("#showbox").html(task_html);' style="position:relative; top:395px;left:65%;">New Task</button>
+					<div id="treemenu2" class="treeview">
+					</div>
+				</div>
 			</div>
 
 
@@ -286,6 +330,10 @@
 		    </div>
 		    <div id="show"></div>
 		  </div>
+
+
+			<script type = 'text/javascript' src = '\Users\kong\Documents\GitHub\shared-LTC-TMS\LTCTMS\Backend\Config.js'></script>
+			<script type= 'text/javascript' src = '\Users\kong\Documents\GitHub\shared-LTC-TMS\LTCTMS\Backend\TaskEditorJS.js'></script>
 
 	</body>
 
