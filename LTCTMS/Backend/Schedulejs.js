@@ -1,8 +1,8 @@
 var btnLogout = document.getElementById('btnLogout')
-btnLogout.addEventListener('click', e => {
+/*btnLogout.addEventListener('click', e => {
   firebase.auth().signOut();
   window.location = 'Login.html';
-});
+});*/
 
 //Create new Announcement button
 function AddNewA(){
@@ -17,7 +17,7 @@ var rowIndex = 1;
 
 fbA.once('value',function(snapshot){
   snapshot.forEach(function(childSnapshot){
-      an[rowIndex] = childSnapshot.key
+    an[rowIndex] = childSnapshot.key
     var childData = childSnapshot.val();
     var button = document.createElement("button");
     var button2 = document.createElement("button");
@@ -143,7 +143,7 @@ document.getElementById('newCSBlock').style.display ='block';
 //Create new Working Schedule - Upload folder into firebase
 var uploader3 = document.getElementById('uploader3');
 var fileButton3 = document.getElementById('fileButton3');
-var submitfileButton3 = document.getElementById('btnSubmitCS')
+var submitfileButton3 = document.getElementById('btnSubmitCS');
 
 fileButton3.addEventListener('change', handleuploadfile3);
 submitfileButton3.addEventListener('click', handleuploadfileSubmit3);

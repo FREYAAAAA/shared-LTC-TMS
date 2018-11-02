@@ -12,9 +12,7 @@
 		<link rel="stylesheet" type="text/css" href="statics/css/style.css" />
 		<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
 		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-		<script type = 'text/javascript' src = 'Config.js'></script>
-		<script type = 'text/javascript' src = 'Schedulejs.js'></script>
-		<script type = 'text/javascript' src = 'chat.js'></script>
+
 	</head>
 	<style>
 
@@ -200,7 +198,7 @@
 			<div class="bar">
 				<div class="w1200">
 					<span class="l"><img src="image\Browser- logo final.png"><font>LTCTMS</font></span>
-					<span class="r"><a href="#"><i class="icon iconfont icon-dianyuan"></i>Logout</a></span>
+					<span id='btnLogout' class="r"><i class="icon iconfont icon-dianyuan"></i>Logout</span>
 				</div>
 			</div>
 			<div class="user-info">
@@ -291,10 +289,7 @@
 					        <th> <button id ="btnAdd" class="add_button" type="button" onclick="AddNewA()"><img src="image\add.png" height="15px" width="15px"/></button> </th>
 					    </tr>
 					  </thread>
-					  <tbody>
 
-
-					  </tbody>
 					</table>
 				</div>
 
@@ -336,6 +331,93 @@
 
 
 		</div>
+		<div id="newABlock">
+		  <div class="editForm_create_announcement">
+		    <h2><center>New Announcement</center></h2>
+		    <hr class="schedule_hr">
+		    &nbsp&nbsp Announcement Title:
+		    <input id="Atitle" type="text" placeholder="title.." /><br>
+		    &nbsp&nbsp Announcement:
+		    <textarea class="schedule_textarea" id="Announcement" type=text rows="4" cols="30" placeholder="Text Here..."></textarea>
+		    <br>
+		    <center><button id="btnSubmitE" onclick="createNewAnnouncement()">Submit</button> &nbsp&nbsp&nbsp&nbsp
+		    <button id="Ecancel" onclick="editCancel()">Cancel</button></center>
+		  </div>
+		</div>
+		</div>
+
+		<div id="editABlock">
+		  <div class="editForm_edit_announcement">
+		    <h2><center>Editing Announcement</center></h2>
+		    <hr class="schedule_hr">
+
+		    &nbsp&nbsp Announcement Title:
+		    <input id="AEtitle2" type="text" placeholder="title.." onkeydown="btnpopUp()"/><br>
+		    <br>
+		    &nbsp&nbsp Announcement:
+		    <textarea class="schedule_textarea" id="Amsg" onkeydown = "btnpopUp()"></textarea>
+		    <br>
+		    <center> <button id="Esave" onclick="editSave()">Save</button> &nbsp&nbsp&nbsp&nbsp
+		    <button id="Ecancel" onclick="editCancel()">Back</button> </center>
+		  </div>
+		</div>
+		</div>
+
+
+		<div id="newCSBlock">
+		  <div class="editForm_upload_file">
+		    <h2><center>New Center Schedule</center></h2>
+		    <hr class="schedule_hr">
+		    &nbsp&nbsp File title/description:
+		    <input id="fileTitle3" type=text></input>
+		    <br><br>
+		    &nbsp&nbsp Upload File:
+		    <input type="file" id="fileButton3" accept="image/*,application/pdf" />
+		    <progress value="0" max="100" id="uploader3">0%</progress>
+		    <br><br><br>
+		    &nbsp&nbsp&nbsp<button id="btnSubmitCS" >Submit</button> &nbsp&nbsp
+		    <button id="Ecancel" onclick="editCancel()">Cancel</button>
+		  </div>
+		</div>
+		</div>
+
+
+
+		<div id="newWSBlock">
+		  <div class="editForm_upload_file">
+		    <h2><center>New Working Schedule</center></h2>
+		    <hr class="schedule_hr">
+		    &nbsp&nbsp File title:
+		    <input id="fileTitle" type=text></input>
+		    <br><br>
+		    &nbsp&nbsp Upload File:
+		    <input type="file" id="fileButton" accept="image/*,application/pdf" />
+		    <progress value="0" max="100" id="uploader">0%</progress>
+		    <br><br><br>
+		    &nbsp&nbsp&nbsp <button id="btnSubmitWS" >Submit</button> &nbsp&nbsp
+		    <button id="Ecancel" onclick="editCancel()">Cancel</button>
+		  </div>
+		</div>
+		</div>
+
+
+		<div id="newWHBlock">
+		  <div class="editForm_upload_file">
+		    <h2><center>New Working Hour</center></h2>
+		    <hr class="schedule_hr">
+		    &nbsp&nbsp File title:
+		    <input id="fileTitle2" type=text></input>
+		    <br><br>
+		    &nbsp&nbsp Upload File:
+		    <input type="file" id="fileButton2" accept="image/*,application/pdf" />
+		    <progress value="0" max="100" id="uploader2">0%</progress>
+		    <br><br><br>
+		    &nbsp&nbsp&nbsp <button id="btnSubmitWH" >Submit</button> &nbsp&nbsp
+		    <button id="Ecancel" onclick="editCancel()">Cancel</button>
+		  </div>
+		</div>
+		</div>
+
 		<div id="expand" onclick="expand()" >Chat</div>
 		  <div id="im">
 			 <div id="cover" onclick="cancel()">
@@ -350,7 +432,9 @@
 		    </div>
 		    <div id="show"></div>
 		  </div>
-
+		 <script type = 'text/javascript' src = '/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/Config.js'></script>
+	  	<script type = 'text/javascript' src = '/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/Schedulejs.js'></script>
+	  	<script type = 'text/javascript' src = 'chat.js'></script>
 	</body>
 
 </html>
