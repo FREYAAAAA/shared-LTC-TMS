@@ -15,6 +15,7 @@ function aboutus_submit(){
     var text = $("#aboutus_text").val();
     document.getElementById("aboutus_text").disabled = true;
     document.getElementById("aboutus_button").style.display = "none";
+
     firebase.database().ref("CenterInformation/ContactInfo/Aboutus").set(text);
     firebase.database().ref("CenterInformation/ContactInfo/AboutusAndroid").set(text+"(end)");
     alert("Succesfully entered");
@@ -121,6 +122,7 @@ function upload(){
      var storageRef = firebase.storage().ref('Sponsor/'+file.name);
     storageRef.getDownloadURL().then(function (url) {
     firebase.database().ref("CenterInformation/"+"Sponsor/"+name+"/photo/").set(url);
+    firebase.database().ref("CenterInformation/"+"Sponsor/"+name+"/photoname/").set(file.name);
     alert("success");
     window.location.reload();
     });
@@ -178,18 +180,22 @@ fbSponsor.once("value")
 })
 
 function remove(sponsor){
-    console.log(sponsor);
-    console.log(sp[sponsor]);
+    var fbSP= firebase.database().ref("CenterInformation/"+"Sponsor/"+sp[sponsor]);
     var r = confirm("Are you sure you want to remove a sponsor?");
     if (r == true) {
-    firebase.database().ref("CenterInformation/"+"Sponsor/"+sp[sponsor]).remove();
-      alert("successfully removed!");
-      window.location.reload();
+        fbSP.child("/photoname").once('value').
+        then(function(snapshot){
+            var storageRef=firebase.storage().ref();
+            storageRef.child("Sponsor/"+snapshot.val()).delete().then(function(){
+               fbSP.remove();
+                 alert("successfully deleted!");
+                 window.location.reload();
+           });
+        });
     }
     else {
     }
 }
-
 
 function sponsor_delete(){
     for(var i=0; i<= index; i++){
@@ -197,7 +203,6 @@ function sponsor_delete(){
         document.getElementById("button_id["+i+"]").setAttribute("style","display:inline;");
     }
 }
-
 
 function showintroduction(){
   document.getElementById("data1").style.display = "block";

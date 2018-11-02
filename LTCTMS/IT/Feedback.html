@@ -196,13 +196,16 @@
             padding: 0px;
         }
         .liuyan{
-            margin-top: 50px;
+            margin: 10px;
             height: 100px;
             border: 1px solid #EEEEEE;
             background-color: #EEEEEE;
             box-shadow: 5px 5px 10px #EEEEEE;
             padding: 5px;
+			position: relative;
+			top:-40%;
 			width:300px;
+			display: block;
         }
         .information{
             margin-top: 50px;
@@ -218,7 +221,7 @@
         #nav>li>a{
             color: white;
         }
-        #user-fa{
+        #user-fa, .user-fa{
             display: inline-block;
             width: 36px;
             height: 36px;
@@ -331,7 +334,7 @@
 					<span id="span" >Staff Feedback</span>
 				</div>
 
-				<div class="container" >
+				<div id = "container" class="container" >
 					<div id='stafffeedback' style="display:block; position:relative; top: 18%; left:35%;width:58%; height:48%;overflow-y:scroll;  border: 5px solid rgba(255, 255, 255, .4);
 					  background-color:rgba(255, 255, 255, .8);">
 					    <table id = "CNA_Feedback" style="width:100%;border-style:hidden;">
@@ -346,14 +349,14 @@
 					    </table>
 					</div>
 						<!--usermessag-->
-					<div class="row">
-					   <div class="liuyan">
-						   <span id = "comment" style="font-size: 8px;padding-left:40px;"></span>
-						   <span id="user-fa" style="display:inline;"><i class="fa fa-user"></i></span>
-						   <div style="display:inline" id="user">
-							   <span href="#" id="usename" >ZengXiaoYa</span>
+					   <div class="liuyan" >
+						   <span id="user-fa" ><i class="fa fa-user"><img  class="user-fa" src="statics/images/user_face.jpg"/></i></span>
+						   <div  id="user">
+							  <span href="#" id="usename" >ZengXiaoYa</span>
+						  </div>
+						   <span  id ="comment" ></span>
 
-						   </div>
+
 						   <div id="usermessage">
 							   <div class="content">
 								   <input id="message" class="text-success" type="text">
@@ -364,7 +367,6 @@
 					   </div>
 					   <div id="information">
 					   </div>
-				   </div>
 
 				</div>
 
