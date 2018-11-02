@@ -13,9 +13,9 @@ body {
 .topnav {
     overflow: hidden;
     background-color: #78c869ff;
-    height:14%;
+    padding:0px;
+    height:100px;
     width:100%;
-    position:absolute;
 }
 
 .block {
@@ -26,7 +26,7 @@ body {
     cursor: pointer;
     text-align: center;
     font-size:20px;
-    width:100%;
+    width:170px;
     height:50px;
 }
 .thisblock {
@@ -36,7 +36,7 @@ body {
   cursor: pointer;
   text-align: center;
   font-size:20px;
-  width:100%;
+  width:199px;
   height:50px;
   background-color:#FFFAFA;
 }
@@ -48,9 +48,8 @@ body {
   padding: 0px 0px;
   background-color: ##78c869ff;
   border-style: hidden;
-  width:100%;
-  height:10%;
-
+  width:1250px;
+  height:10px;
 }
 .topth {
   padding:0px 0px;
@@ -71,15 +70,15 @@ body {
 }
 .logout_button {
     border-radius: 8px;
-    height:10%;
-    width:10%;
+    height:30px;
+    width:80px;
     padding:5px 5px;
     background-color:#aaa;
 }
 .nav_position {
   position: absolute;
-  top:7%;
-  left:9%;
+  top:45px;
+  right:0px;
 }
 .inside_nav_word {
   color:#3a6070;
@@ -163,6 +162,31 @@ table td {
   transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
 }
 /* login */
+#forgot{
+  width:100%;
+  height:100%;
+  opacity:.95;
+  top:0px;
+  left:0px;
+  display:none;
+  position:fixed;
+  background-color:#313131;
+  overflow:auto
+}
+.create_popup_forgetpass{
+  max-width:900px;
+  min-width:250px;
+  padding:10px 50px;
+  border:2px solid black;
+  border-radius:10px;
+  font-family:raleway;
+  background-color:#fff;
+  position:absolute;
+  top:40px;
+  left:25%;
+  width:800px;
+  height:650px;
+}
 
 /* stop login */
 /* status record */

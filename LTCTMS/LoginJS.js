@@ -1,65 +1,126 @@
-(function(){
-  // Initialize Firebase
-   var config = {
-     apiKey: "AIzaSyCnuAZzFvkT-FSRxB5Vk67JM6FU9wZLYMQ",
-     authDomain: "share-b7589.firebaseapp.com",
-     databaseURL: "https://share-b7589.firebaseio.com",
-     projectId: "share-b7589",
-     storageBucket: "share-b7589.appspot.com",
-     messagingSenderId: "323469467975"
-   };
-   firebase.initializeApp(config);
+//Login page contents
+var logincontact= firebase.database().ref("CenterInformation/ContactInfo/")
+logincontact.once('value')
+.then(function(snapshot){
+snapshot.forEach(function(childSnapshot){
+  var childKey = childSnapshot.key;
+  var childData = childSnapshot.val();
+  if (childSnapshot.key == "Aboutus"){
+    document.getElementById('loginaboutus').innerHTML=childSnapshot.val();
+  }
+  if (childSnapshot.key == "Name"){
+    document.getElementById('contactname').innerHTML=childSnapshot.val();
+  }
+  if (childSnapshot.key == "Email"){
+    document.getElementById('contactemail').innerHTML=childSnapshot.val();
+  }
+  if (childSnapshot.key == "Contact No"){
+    document.getElementById('contactno').innerHTML=childSnapshot.val();
+  }
+  if (childSnapshot.key == "Address"){
+    document.getElementById('contactaddress').innerHTML=childSnapshot.val();
+  }
+});
+});
 
-   var logincontact= firebase.database().ref("CenterInformation/ContactInfo/")
-   var contact= document.getElementById('contacttable');
+//Login event
+function LoginUser(){
+  var txtEmail = document.getElementById('txtEmail');
+  var txtPassword = document.getElementById('txtPassword');
+  var email = txtEmail.value;
+  console.log(txtEmail.value);
+  var pass = txtPassword.value;
+  const auth = firebase.auth();
+  const promise = auth.signInWithEmailAndPassword(email, pass);
+  promise.catch(function(error){
+    alert("Incorrect Email or Password!");
+  });
+}
 
-   logincontact.once('value')
-   .then(function(snapshot){
-     console.log(snapshot);
-   snapshot.forEach(function(childSnapshot){
-     var childKey = childSnapshot.key;
-     var childData = childSnapshot.val();
-     console.log("ff");
-     if (childSnapshot.key == "Name"){
-       var row = contact.insertRow(-1);
-       var cellName = row.insertCell(0);
-       cellName.appendChild(document.createTextNode(childSnapshot1.val()));
-     }
+//For checking whether you're loggedin or Loggedout
+firebase.auth().onAuthStateChanged(firebaseUser => {
+  if (firebaseUser){
+    console.log(firebaseUser);
+    alert('Logging in!');
+    /*firebase.auth().getRedirectResult().then(function(result){
+      var user = result.firebaseuser;
+      conole.log(user);
+      var operationType = result.operationType;
+    });*/
+    window.location.href = "Aboutus.html";
 
-   });
-   });
+  }
+  else {
+    console.log('not logged in');
 
-  //Get element from html
-  const txtEmail = document.getElementById('txtEmail');
-  const txtPassword = document.getElementById('txtPassword');
-  const btnLogin = document.getElementById('btnLogin');
-  const btnLogout = document.getElementById('btnLogout');
-  //console.log(btnLogin);
+  }
+});
 
-  //Login event
-  btnLogin.addEventListener('click', e =>{
-    const email = txtEmail.value;
-    const pass = txtPassword.value;
-    const auth = firebase.auth();
-    const promise = auth.signInWithEmailAndPassword(email, pass);
-    promise.catch(e => console.log(e.message));
+firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+  .then(function() {
+
+      // Existing and future Auth states are now persisted in the current
+      // session only. Closing the window would clear any existing state even
+      // if a user forgets to sign out.
+      // ...
+      // New sign-in will be persisted with session persistence.
+    return firebase.auth().signInWithEmailAndPassword(email, password);
+  })
+  .catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
   });
 
+function bigqr(x) {
+    x.style.height = "100px";
+    x.style.width = "100px";
+}
 
-  //Logout event
-  btnLogout.addEventListener('click', e => {
-    firebase.auth().signOut();
-  });
+function normalqr(x) {
+    x.style.height = "16px";
+    x.style.width = "16px";
+}
 
-  //For checking whether you're loggedin or Loggedout
-  firebase.auth().onAuthStateChanged(firebaseUser => {
-    if (firebaseUser){
-      console.log(firebaseUser);
-      window.location.href = "scheduletest.html";
-      btnLogout.classList.remove('hide');
+function forgetPass(){
+  var getEmail = document.getElementById('forgetP').value;
+  var position = document.getElementById('fposition').value;
+  var id = document.getElementById('fid').value;
+  if(position == "Director of Nursing" || position == "Director" || position == "DIR"){
+    var fbF = firebase.database().ref('DIR');
+    fbF.child(id).once("value", function(snapshot){
+      if(snapshot.exists()){
+        searchForEmail(fbF,id,getEmail);
+      }else{
+        alert("ID doesn't exist!");
+      }
+    });
+  }else if(position == "Chief Nursing Officer" || position == "CNO"){
+    var fbF = firebase.database().ref('CNO');
+    fbF.child(id).once("value", function(snapshot){
+      if(snapshot.exists()){
+        searchForEmail(fbF,id,getEmail);
+      }else{
+        alert("ID doesn't exist!");
+      }
+    });
+  }else{
+    alert("There is no such role/position capable to use this is system!");
+  }
+}
+
+function searchForEmail(fbF,id,getEmail){
+  fbF.child(id+'/Portfolio').once('value',function(snapshot){
+    var Email = snapshot.child('Email').val();
+    if(Email == getEmail){
+      firebase.auth().sendPasswordResetEmail(getEmail).then(function(){
+        alert("Please check your email to reset the password!");
+      }).catch(function(error){
+        alert("Failed to send Email!");
+      });
+    }else{
+      alert("Email doesn't Exist!");
     }
-    else {
-      console.log('not logged in');
-      btnLogout.classList.add('hide');
-    }
   });
+
+}

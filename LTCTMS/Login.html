@@ -5,10 +5,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,500" rel="stylesheet">
-<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
 <link rel="stylesheet" href="alldesign.css">
-<script type="text/javascript" src="\Users\ian50408\Documents\GitHub\shared-LTC-TMS\LTCTMS\Config.js"></script>
-<script type="text/javascript" src="\Users\ian50408\Documents\GitHub\shared-LTC-TMS\LTCTMS\Login.js"></script>
+<script type = 'text/javascript' src = "C:\inetpub\wwwroot\LTCTMS\Config.js"></script>
+<script type="text/javascript" src="C:\inetpub\wwwroot\LTCTMS\LoginJS.js"></script>
 </head>
 
 <body background="image\tree(2).jpg"/>
@@ -33,11 +33,14 @@
     <h2 style="font-size:30px;"><center> Login </center></h2>
     ___________________________________________
     <center>
+      <form onsubmit="LoginUser();return false">
        <label for="Email"><b style="position:absolute; top:35%; left:45%;font-size:20px;">Email</b></label>
-       <input style="position:absolute; top:45%; left:20%;width:60%;height:5%;" id="txtEmail" type="text" placeholder="Enter Email">
+       <input style="position:absolute; top:45%; left:20%;width:60%;height:5%;" id="txtEmail" type="text" placeholder="Enter Email" >
        <label for="Password"><b style="position:absolute; top:60%; left:40%; font-size:20px;">Password</b></label>
-       <input style="position:absolute; top:70%; left:20%; width:60%; height:5%;" id="txtPassword" type="password" placeholder="Enter Password"  >
-       <button  style="position:absolute; z-index:1; top:85%; left:40%; width:20%" id="btnLogin" style="margin-left:100px;" class= "btn btn-action" onclick="validate()">Login</button>
+       <input style="position:absolute; top:70%; left:20%; width:60%; height:5%;" id="txtPassword" type="password" placeholder="Enter Password" >
+       <input type="submit" value="Login" style="position:absolute; z-index:1; top:85%; left:40%; width:20%" id="btnLogin" style="margin-left:100px;" ></input>
+     </form>
+     <button id = "forgetPassword" onclick="document.getElementById('forgot').style.display = 'block'"> Forget Password </button>
      </center>
 </div>
 
@@ -89,6 +92,26 @@
       <td id="contactaddress" style="border-style:hidden;"></td>
     </tr>
   </table>
+</div>
+<div id="forgot">
+<div class = "create_popup_forgetpass>">
+<p>Please Enter Your Email:</p><br>
+<input type="text" id= "forgetP" placeholder="abc123@gmail.com"/>
+<br>
+<p>Please Enter Your role/position:</p><br>
+<input type="text" id= "fposition" placeholder="Role/Postion"/>
+<br>
+<p>Work ID: </p><br>
+<input type="text" id= "fid" placeholder="000001"/>
+<br>
+<input type="button" id= "fsubmit" value="Enter" onclick="forgetPass()"/>
+<input type="button" value="Back" onclick="document.getElementById('forgot').style.display = 'none'"/>
+</div>
+</div>
+
+
+
+</div>
 </div>
 </body>
 
