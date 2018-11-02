@@ -8,10 +8,8 @@
 		<link rel="icon" type="image/jpg" href="image\logo.jpg">
 		<link rel="stylesheet" type="text/css" href="statics/css/iconfont.css" />
 		<link rel="stylesheet" type="text/css" href="statics/css/style.css" />
-		<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-		<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Config.js'></script>
-		<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/chat.js'></script>
+		<script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
+		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 	</head>
 	<style>
 
@@ -175,6 +173,37 @@
 	border: none;
 	background: none;
 	}
+	.portfolio_display {
+	  position:absolute;
+	  top:150px;
+	  left:350px;
+	  width:1118px;
+	  height:400px;
+	  overflow-x: auto;
+	  overflow-y: auto;
+	  background-color:rgba(255, 255, 255, .8);
+	  border: 5px solid rgba(255, 255, 255, .4);
+	}
+	.portfolio_display_table {
+	  width:1100px;
+	  height:100px;
+	  border-style:hidden;
+	}
+	table, th, td
+	{
+			padding: 5px;
+			border: 1px solid black;
+			width:400px;
+			text-align: center;
+			word-wrap: break-word;
+	}
+	table th {
+		background-color: #B0C4DE;
+		color: #000;
+	}
+	table td {
+		text-shadow: 2px 2px #FFFFFF;
+	}
 	</style>
 	<body>
 		<div class="header">
@@ -257,17 +286,33 @@
 			</div>
 			<div class="right">
 				<div class="tap">
-					<span id="span">Staff</span>
-          <span id="span2">Patient</span>
+					<span onclick="showstaffportfolio()">Staff</span>
+          <span onclick="showpatientportfolio()">Patient</span>
 				</div>
 
-				<div class="container">
-					<textarea disabled style="width:93%;height:300px;">dvdsvds</textarea>
-					<button onclick = "aboutus_edit()" style="position:absolute; top:29%; left:85%; width:3.6%;">Edit</button>
-					<button  style="display: none;position:absolute; top:64.5%;left:85%;width:3.6%" id = "aboutus_button" onclick = "aboutus_submit()">OK</button>
+				<div id="data1">
+
+					<div class="portfolio_display">
+					<table class="portfolio_display_table">
+					    <tr>
+					        <th style="width:12%"> I.D. </th>
+					        <th style="width:16%"> Name </th>
+					        <th style="width:12%"> National ID </th>
+					        <th style="width:12%"> Nationality </th>
+					        <th style="width:3%"> Gender</th>
+					        <th style="width:15%"> Contact number</th>
+					        <th style="width:15%"> Email</th>
+					        <th style="width:6%"> Role</th>
+					        <th style="width:6%"> <button type="button" onclick = "addNewPortfolio()" class="add_button"><img src="image\add.png" height="15px" width="15px"/></button> </th>
+					    </tr>
+					    <tbody id = "briefPortfolio">
+					       <tr>
+					      </tr>
+					    </tbody>
+					</table>
 				</div>
 
-				<div class="container2" style="display:none">
+				<div id="data2" style="display:none">
 					<textarea disabled style="width:93%;height:300px;">dvdsvds</textarea>
 					<button onclick = "aboutus_edit()" style="position:absolute; top:29%; left:85%; width:3.6%;">Edit</button>
 					<button  style="display: none;position:absolute; top:64.5%;left:85%;width:3.6%" id = "aboutus_button" onclick = "aboutus_submit()">OK</button>
@@ -294,6 +339,8 @@
 		    <div id="show"></div>
 		  </div>
 
-	</body>
 
+			<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/Config.js'></script>
+			<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/PortfolioJS.js'></script>
+	</body>
 </html>
