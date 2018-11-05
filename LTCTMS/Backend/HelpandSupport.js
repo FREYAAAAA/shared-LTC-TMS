@@ -79,21 +79,6 @@ function CNAtableform(id,name,fbFeedback){
         });
     });
 }
-function view_feedback(){
-  document.getElementById("staffdisplay").style.display = "block";
-  document.getElementById("familydisplay").style.display = "block";
-}
-function view_family(){
-  console.log("f");
-  document.getElementById("familyfeedback").style.display = "block";
-  document.getElementById("stafffeedback").style.display = "none";
-}
-
-function view_stafffeedback(){
-  console.log("ff");
-  document.getElementById("stafffeedback").style.display = "block";
-  document.getElementById("familyfeedback").style.display = "none";
-}
 
 function bigqr(x) {
     x.style.height = "85px";
@@ -103,4 +88,14 @@ function bigqr(x) {
 function normalqr(x) {
     x.style.height = "64px";
     x.style.width = "64px";
+}
+function view_sfeedback() {
+  console.log("s");
+  document.getElementById("viewsfb").style.display = "block";
+  document.getElementById("viewpfb").style.display = "none";
+}
+
+function view_pfeedback() {
+  document.getElementById("viewsfb").style.display = "none";
+  document.getElementById("viewpfb").style.display = "block";
 }

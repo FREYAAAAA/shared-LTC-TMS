@@ -15,6 +15,9 @@
 //Add new Portfolio
 function addNewPortfolio(){
   document.getElementById('newPortfolioSeletion').style.display ='block';
+  document.getElementById('portfoliofilter').style.display ='none';
+  document.getElementById('form').style.display ='none';
+
 }
 
 function staffPortfolio(){
@@ -396,6 +399,8 @@ function viewP(){
 
   if(td == 'Patient'){
     document.getElementById('viewPatientPortfolio').style.display ='block';
+    document.getElementById('portfoliofilter').style.display ='none';
+    document.getElementById('form').style.display ='none';
     var id = $(this).closest('tr').children('td:first').text();
     var fbV = firebase.database().ref('Patient/'+ id+"/Portfolio");
     fbV.on('value', function(snapshot){
@@ -447,6 +452,8 @@ function viewP(){
   }else{
     console.log('123');
     document.getElementById('viewStaffPortfolio').style.display ='block';
+    document.getElementById('form').style.display ='none';
+    document.getElementById('portfoliofilter').style.display ='none';
     var id = $(this).closest('tr').children('td:first').text();
     console.log(id);
     if(td == "CNO"){
@@ -932,12 +939,22 @@ function readallP(snapshot){
       console.log(scope);
 }*/
 
-function showpatientportfolio(){
-  document.getElementById("data1").style.display = "block";
-  document.getElementById("data2").style.display = "none";
+
+function viewportfoliofilter(){
+    document.getElementById("form").style.display = "inline-block";
+    portport.setAttribute("style","top:-534px;")
 }
 
-function showstaffportfolio(){
-  document.getElementById("data1").style.display = "none";
-  document.getElementById("data2").style.display = "block";
+var portport = document.getElementById("shortportfolio");
+
+function closefilter(){
+  //portfilter.setAttribute("style","animation: portfolio_pop 2s;");
+  portfilter.setAttribute("style","display:none;")
+
+  portport.setAttribute("style","top:-130px;")
+
+  //  document.getElementById("shortportfolio").style.display = "inline-block";
+
 }
+
+var portfilter = document.getElementById("form");

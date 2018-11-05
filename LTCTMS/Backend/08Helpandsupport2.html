@@ -8,10 +8,10 @@
 		<link rel="icon" type="image/jpg" href="image\logo.jpg">
 		<link rel="stylesheet" type="text/css" href="statics/css/iconfont.css" />
 		<link rel="stylesheet" type="text/css" href="statics/css/style.css" />
-		<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-		<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Config.js'></script>
-		<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/chat.js'></script>
+		<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
+		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+		<script type = 'text/javascript' src = "\Users\kong\Documents\GitHub\shared-LTC-TMS\LTCTMS\Backend\Config.js"></script>
+		<script type = 'text/javascript' src = '\Users\kong\Documents\GitHub\shared-LTC-TMS\LTCTMS\Backend\HelpandSupport.js'></script>
 	</head>
 	<style>
 
@@ -177,6 +177,7 @@
 	}
 	</style>
 	<body>
+		<div style="height:920px;">
 		<div class="header">
 			<div class="bar">
 				<div class="w1200">
@@ -257,29 +258,72 @@
 			</div>
 			<div class="right">
 				<div class="tap">
-					<span id="span">Staff Feedback</span>
-          <span id="span2">Patient Feedback</span>
+					<span onlick="view_sfeedback()">Staff Feedback</span>
+          <span onlick="view_pfeedback()">Patient Feedback</span>
 				</div>
 
-				<div class="container">
-					<textarea disabled style="width:93%;height:300px;">dvdsvds</textarea>
-					<button onclick = "aboutus_edit()" style="position:absolute; top:29%; left:85%; width:3.6%;">Edit</button>
-					<button  style="display: none;position:absolute; top:64.5%;left:85%;width:3.6%" id = "aboutus_button" onclick = "aboutus_submit()">OK</button>
-				</div>
+				<div class="container" id="viewsfb">
+					    <table id = "CNA_Feedback" style="top:0%; left:0%;width:100%;border-style:hidden;text-align:center;position:relative;">
+					        <tr>
+					            <th colspan="3"> <h3><i>Staff Feedback</i></h3></th>
+					        </tr>
+					        <tr>
+					            <th style="width:20%"> <br> I.D <br><br></th>
+					            <th style="width:20%"> <br> Name <br><br></th>
+					            <th style="width:60%"> <br> Comment <br><br></th>
+					        </tr>
+					    </table>
+					</div>
 
-				<div class="container2" style="display:none">
-					<textarea disabled style="width:93%;height:300px;">dvdsvds</textarea>
-					<button onclick = "aboutus_edit()" style="position:absolute; top:29%; left:85%; width:3.6%;">Edit</button>
-					<button  style="display: none;position:absolute; top:64.5%;left:85%;width:3.6%" id = "aboutus_button" onclick = "aboutus_submit()">OK</button>
+				<div class="container" id="viewpfb">
+					    <table id = "Patient_Feedback" style="top:0%; left:0%;width:100%;border-style:hidden;text-align:center;position:relative;display:none;">
+					        <tr>
+					            <th colspan="3"> <h3><i>Patient Feedback</i></h3></th>
+					        </tr>
+					        <tr>
+					            <th style="width:20%"> <br> I.D <br><br></th>
+					            <th style="width:20%"> <br> Name <br><br></th>
+					            <th style="width:60%"> <br> Comment <br><br></th>
+					        </tr>
+					    </table>
+					</div>
 				</div>
 
 			</div>
 
+			<div style="position:relative; top:-5%; left:6%; height:280px; width:280px; border: 5px solid rgba(255, 255, 255, .4);background-color:rgba(122, 122, 122, .8);">
+			  <table style="border-style:hidden;height:100%; width:100%;">
+			    <tr>
+			      <td style="border-style:hidden;font-size:17px;text-align:Center;"> <h3>Tablet Version:</h3><br><br>
+			        <img onmouseover="bigqr(this)" onmouseleave="normalqr(this)" src="image\tabletqrcode.jpg" style="z-index:10;height:64px; width:64px;"> <br><br><a href="https://drive.google.com/open?id=1UPPpo7K8ikw-E_ujKuMvXCZg5418TMXX"> https://drive.google.com/open?id=1UPPpo7K8ikw-E_ujKuMvXCZg5418TMXX </td>
+			    </tr>
+			  </table>
+			</div>
 
 
 
-		</div>
-		<div id="expand" onclick="expand()" >Chat</div>
+			<div style=" position:relative; top: -250px; left:27.5%; width:900px;  border: 5px solid rgba(255, 255, 255, .4);background-color:white;height:165px;">
+			    <table id ="Contact_information" style="width:100%;border-style:hidden;">
+			        <tr>
+			            <th colspan="4"> <h3><i>Development Team Contact Information</i><br>_________________________________________________________________________________________________________</h3></th>
+			        </tr>
+			        <tr>
+			            <th style="width:20%"> <br> Name </th>
+			            <td style="width:25%"> <br> Gama Febrian Ahimsa </td>
+			            <th style="width:20%"> <br> Email Address </th>
+			            <td style="width:35%"> <br> gama_febrian@yahoo.com </td>
+			        </tr>
+			        <tr>
+			            <th> <br> Contact No </th>
+			            <td> <br> 123456789 </td>
+			            <th> <br> Address </th>
+			            <td> <br> 15 Guishan Road, Taoyuan City, Taiwan </td>
+			        </tr>
+			    </table>
+			</div>
+
+
+		<div id="expand" onclick="expand()" style="position:fixed;">Chat</div>
 		  <div id="im">
 			 <div id="cover" onclick="cancel()">
 
@@ -293,7 +337,7 @@
 		    </div>
 		    <div id="show"></div>
 		  </div>
-
+</div>
 	</body>
 
 </html>
