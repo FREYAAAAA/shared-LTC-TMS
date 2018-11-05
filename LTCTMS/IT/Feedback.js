@@ -1,4 +1,4 @@
-window.onload=function(){
+
     var fbFeedback = firebase.database().ref("Feedback/");
     var num = 0;
     fbFeedback.once("value")
@@ -8,7 +8,7 @@ window.onload=function(){
             match_id(id,fbFeedback);
        });
     });
-}
+
 function match_id(id,fbFeedback){
 
     if (id.charAt(0) == "3"){
@@ -125,8 +125,6 @@ function tableform(id,name,fbFeedback,picture){
                         div.appendChild(span3);
                         div.appendChild(span0);
 
-
-
                         div.appendChild(div2);
                         div2.appendChild(div3);
                         div2.appendChild(span4);
@@ -142,8 +140,8 @@ function tableform(id,name,fbFeedback,picture){
                         index++;
                     }
                     else{
-                        //var container1 = document.getElementById("container1");
-                        container.appendChild(div);
+                        var container1 = document.getElementById("container1");
+                        container1.appendChild(div);
                         div.appendChild(span);
                         span.appendChild(i);
                         i.appendChild(img);
@@ -170,7 +168,6 @@ function tableform(id,name,fbFeedback,picture){
 
                     }
                 }
-
             })
         })
     });
@@ -209,58 +206,48 @@ function sendMess(id,year,month,index,date,h,m,s,value){
     firebase.database().ref("Feedback/"+id+"/Reply/"+key+"/"+"/"+time).set(comment);
     document.getElementById("replyComment["+index+"]").innerHTML = comment;
     replyToggle(index);
-    sortingList(index);
+
     console.log(comment);
 
 }
 
+setTimeout(function(){
+    pat = document.getElementById("container");
+    staff = document.getElementById("container1");
+    sorting(pat);
+    sorting(staff)
+}, 3000);
+function sorting(table){
+  var  rows, switching, i, x, y, s, shouldSwitch, dir, switchcount = 0;
 
-function sortingList(index){
-  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-  table = document.getElementById("container");
   switching = true;
-   console.log(index);
   dir = "asc";
-  while (switching) {
-    switching = false;
-    for (i = 0; i < 5; i++) {
+  rows = table.getElementsByTagName("div");
+  console.log(rows.length);
 
-        rows = document.getElementById("liuyan["+i+"]");
+  while (switching) {
+
+    switching = false;
+    for (i = 0; i < rows.length-4; i=i+4) {
+        console.log(i);
         shouldSwitch = false;
-        console.log(rows);
-        x = rows.getElementsByTagName("span")[4];
-        var c = i+1;
-        var rows1 = document.getElementById("liuyan["+c+"]");
-        y = rows1.getElementsByTagName("span")[4];
-        console.log(rows1);
-        console.log(dir);
+
+        x = rows[i].getElementsByTagName("span")[4];
+        y = rows[i+4].getElementsByTagName("span")[4];
 
       if (dir == "asc") {
         if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
           shouldSwitch= true;
-          console.log("please stop");
-          break;
-        }
-      } else if (dir == "desc") {
-        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-          shouldSwitch = true;
-          console.log("please stop1");
-
+          console.log("jump out")
           break;
         }
       }
     }
-    break;
     if (shouldSwitch) {
-      rows.parentNode.insertBefore(rows1, rows);
+      rows[i].parentNode.insertBefore(rows[i+4], rows[i]);
       console.log("suc");
       switching = true;
       switchcount ++;
-    } else {
-      if (switchcount == 0 && dir == "asc") {
-        dir = "desc";
-        switching = true;
-      }
     }
   }
 }
