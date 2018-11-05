@@ -12,6 +12,8 @@
 		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 		<script type = 'text/javascript' src = "/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/Config.js"></script>
 		<script type = 'text/javascript' src = '/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/chat.js'></script>
+		<script type = 'text/javascript' src = '/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/IT/Policy.js'></script>
+
 	</head>
 	<style>
 	#expand{
@@ -251,7 +253,11 @@
 					<span id="span" >Policy Content</span>
 				</div>
 
-				<div class="container" >	</div>
+				<div class="container" >
+					<button id = "download" onclick = "download()">Download</button>
+					<input type="file"  id="select" accept="html/*">
+					<button  id = "upload" onclick = "upload()">Upload</button>
+					</div>
 
 
 

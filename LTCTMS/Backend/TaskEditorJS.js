@@ -159,11 +159,7 @@ function filterCategory(cat){
   if(document.getElementById('treemenu2').innerText != ""){
   $('.vtree').html(old_html);
   }
-  if(cat != null){
-      var ccat = document.getElementById(cat);
-      ccat.setAttribute("selected","selected")
-      document.getElementById('CategoryFilter').value = cat;
-  }
+
   var categoryname = document.getElementById('CategoryFilter').value;
   fbTask = fbCat.child(categoryname);
   fbTask.once('value')
@@ -584,7 +580,13 @@ function task_nextarrow(){
         sessionStorage.setItem("from","");
         console.log(cat);
         console.log(taskN);
-        filterCategory(cat);
+        filCatSelected(cat);
+        //filterCategory(cat);
 
         //tree.select(parentId);
     }
+function filCatSelected(cat){
+    var selected = document.getElementById(cat);
+    console.log(selected);
+    $('#selectCat').val(cat);
+}
