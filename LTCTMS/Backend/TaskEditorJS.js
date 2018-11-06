@@ -572,21 +572,19 @@ function task_nextarrow(){
     var from = sessionStorage.getItem("from");
     var cat = sessionStorage.getItem("category");
     var taskN = sessionStorage.getItem("taskname");
-    var old_html = $('.vtree').html();
-    console.log(cat);
-    console.log(taskN);
 
     if(from == 'Library.html') {
         sessionStorage.setItem("from","");
         console.log(cat);
         console.log(taskN);
-        filCatSelected(cat);
+        setTimeout(function(){
+            $('#CategoryFilter').val(cat);
+            filterCategory(cat);
+        }, 2000);
+        setTimeout(function(){
+            tree.select(taskN);
+        },3500);
         //filterCategory(cat);
 
         //tree.select(parentId);
     }
-function filCatSelected(cat){
-    var selected = document.getElementById(cat);
-    console.log(selected);
-    $('#selectCat').val(cat);
-}
