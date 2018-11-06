@@ -253,10 +253,10 @@ function TaskSubmit(){
     NoteAndroid : Note2,
     Category : selectCat
   }
+
   if(Ttitle == "" || Outline == ""){
     alert("Please enter title and outline")
-  }
-  else {
+}else {
   var updates = {};
   updates['TaskInstruction/'+ selectCat + '/' + Ttitle + '/Info' ] = Tdata;
   firebase.database().ref().update(updates);
@@ -264,7 +264,7 @@ function TaskSubmit(){
 }
 }
 
-//mainstep submission TODO: Fix the upload file
+
 var j = 1;
 let file;
 function handleuploadfile(e) {
@@ -290,12 +290,30 @@ function handleuploadfileSubmit(pid,cat,Mtitle,Mtitle2,videoURL,MstepNo,MD,MD2,u
           MDescriptionIOS : MD,
           MDescriptionAndroid : MD2,
           Step: MstepNo,
-          picurl: url
+          picurl: url,
+          picFilename: file.name
         };
-        updates['TaskInstruction/'+ cat + '/' + pid + '/' +'Step'+ MstepNo] = mdata;
-        firebase.database().ref().update(updates);
-        alert('Successfully Created a step');
-        document.getElementById('picture'+j).src = url;
+        var fbsearch = firebase.database().ref('TaskInstruction/'+cat).child(pid);
+        fbsearch.once('value', function(snapshot){
+                if(snapshot.hasChild('Step'+MstepNo)){
+                    var r = confirm('There is an existing data in Step:'+MstepNo+'!');
+                    if (r == true){
+                        updates['TaskInstruction/'+ cat + '/' + pid + '/' +'Step'+ MstepNo] = mdata;
+                        firebase.database().ref().update(updates);
+                        alert('Successfully Created a step');
+                    }
+                    else{
+                        alert('Please confirm the existing step data!');
+                    }
+                }
+                else{
+                    console.log('qqqq');
+                    updates['TaskInstruction/'+ cat + '/' + pid + '/' +'Step'+ MstepNo] = mdata;
+                    firebase.database().ref().update(updates);
+                    alert('Successfully Created a step');
+                }
+
+        });
       });
     }
   );
@@ -329,9 +347,29 @@ function MainstepSubmit(j){
       MDescriptionAndroid : MD2,
       Step: MstepNo
     };
-    updates['TaskInstruction/'+ cat + '/' + pid + '/' +'Step'+ MstepNo] = mdata;
-    firebase.database().ref().update(updates);
-    alert('Successfully Created a step');
+    var fbsearch = firebase.database().ref('TaskInstruction/'+cat).child(pid);
+    fbsearch.once('value', function(snapshot){
+        console.log(MstepNo+'12312312312');
+        console.log(snapshot.hasChild('Step'+MstepNo));
+            if(snapshot.hasChild('Step'+MstepNo)){
+                var r = confirm('There is an existing data in Step:'+MstepNo+'!');
+                if (r == true){
+                    updates['TaskInstruction/'+ cat + '/' + pid + '/' +'Step'+ MstepNo] = mdata;
+                    firebase.database().ref().update(updates);
+                    alert('Successfully Created a step');
+                }
+                else{
+                    alert('Please confirm the existing step data!');
+                }
+            }
+            else{
+                console.log('qqqq');
+                updates['TaskInstruction/'+ cat + '/' + pid + '/' +'Step'+ MstepNo] = mdata;
+                firebase.database().ref().update(updates);
+                alert('Successfully Created a step');
+            }
+
+    });
   }
 }
 
@@ -534,15 +572,23 @@ function deleteM(j){
   var Step = document.getElementById('MstepNo'+j).value;
   var fbM = firebase.database().ref('TaskInstruction/'+cat+'/'+task);
   var treeviewhtml = $('.vtree').html();
-  var r = confirm("are you sure of deleting this Mainstep?");
-  if (r==true){
-  fbM.child('Step'+ Step).remove();
-  alert("successfully deleting the MainStep!");
-  $('.vtree').html(treeviewhtml);
-  $('#Mtable'+j).remove();
-  }else{
+  fbM.child('Step'+Step+'/picFilename').once('value', function(snapshot){
+      if(snapshot.exists()){
+          var filename = snapshot.val();
+          var storageRef = firebase.storage().ref();
+          storageRef.child('Task/'+filename).delete()
+            .then(function(){
+                var r = confirm("are you sure of deleting this Mainstep?");
+                if (r==true){
+                fbM.child('Step'+ Step).remove();
+                alert("successfully deleting the MainStep!");
+                $('.vtree').html(treeviewhtml);
+                $('#Mtable'+j).remove();
+                }
+            })
+      }
+  });
 
-  }
 }
 
 //delete Task
