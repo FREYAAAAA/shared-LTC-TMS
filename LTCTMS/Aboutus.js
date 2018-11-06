@@ -1,6 +1,10 @@
 firebase.auth().onAuthStateChanged(function (firebaseUser){
 if(firebaseUser){
   console.log(firebaseUser);
+  var userid = firebaseUser.uid;
+  var displayName = firebaseUser.displayName;
+  console.log(displayName);
+  console.log(userid);
 }else{
   alert("You're Logged out now! Please Login again if you need to use this system!");
   window.location.href = "Login.html";

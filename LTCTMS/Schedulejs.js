@@ -1,3 +1,14 @@
+firebase.auth().onAuthStateChanged(function (firebaseUser){
+if(firebaseUser){
+  console.log(firebaseUser);
+  var userid = firebaseUser.uid;
+  console.log(userid);
+}else{
+  alert("You're Logged out now! Please Login again if you need to use this system!");
+  window.location.href = "Login.html";
+}
+});
+
 var btnLogout = document.getElementById('btnLogout')
 btnLogout.addEventListener('click', e => {
   firebase.auth().signOut();
@@ -10,33 +21,31 @@ function AddNewA(){
 }
 
 //Read firebase Announcements
-var an =[];
 var fbA = firebase.database().ref('Announcements');
 var Atable = document.getElementById('table')
 var rowIndex = 1;
 
 fbA.once('value',function(snapshot){
   snapshot.forEach(function(childSnapshot){
-      an[rowIndex] = childSnapshot.key
+    var childKey = childSnapshot.key;
     var childData = childSnapshot.val();
     var button = document.createElement("button");
     var button2 = document.createElement("button");
     button.innerHTML="Detail";
     button2.innerHTML="Delete";
+
     var row = Atable.insertRow(rowIndex);
-    //var cellId = row.insertCell(0)
-    var cellAnnouncement= row.insertCell(0);
-    var cellButton= row.insertCell(1)
-    var cellButton2= row.insertCell(2);
-    //cellId.appendChild(document.createTextNode(childKey));
+    var cellId = row.insertCell(0)
+    var cellAnnouncement= row.insertCell(1);
+    var cellButton= row.insertCell(2)
+    var cellButton2= row.insertCell(3);
+    cellId.appendChild(document.createTextNode(childKey));
     cellAnnouncement.appendChild(document.createTextNode(childData.ATitleIOS));
     cellButton.appendChild(button);
     cellButton2.appendChild(button2);
-    button.setAttribute("id","editA_id["+rowIndex+"]");
-    button.setAttribute("onclick","editA("+rowIndex+")");
-    button2.setAttribute("id","deleteA_id["+rowIndex+"]");
-    button2.setAttribute("onclick","deleteA("+rowIndex+")");
 
+    button.onclick = editA;
+    button2.onclick = deleteA;
     rowIndex = rowIndex + 1;
 
   });
@@ -69,10 +78,9 @@ function createNewAnnouncement(){
 }
 
 //Deleting Announcements
-function deleteA(rowIndex){
+function deleteA(){
   var fbB= firebase.database().ref('Announcements');
-
-  var Ukey = an[rowIndex];
+  var Ukey = $(this).closest('tr').children('td:first').text();
   console.log(Ukey);
   var r = confirm("Are you sure you want to delete an announcement?");
     if (r == true) {
@@ -85,9 +93,9 @@ function deleteA(rowIndex){
 }
 
 //View/Editing Announcement
-function editA(rowIndex){
+function editA(){
   document.getElementById('editABlock').style.display ='block';
-  var Ukey = an[rowIndex];
+  var Ukey = $(this).closest('tr').children('td:first').text();
   var fbB= firebase.database().ref('Announcements/'+Ukey);
   fbB.on('value', function(snapshot){
     var EAdata = snapshot.child('AnnouncementIOS').val();
@@ -95,13 +103,14 @@ function editA(rowIndex){
     document.getElementById('Amsg').value = EAdata;
     document.getElementById('AEtitle2').value = EAdata2;
   });
-
+  console.log(Ukey);
+  document.getElementById('announcement_id').innerHTML = Ukey;
 }
 
-function editSave(rowIndex){
+function editSave(){
   var editedData = $("#Amsg").val();
   var editedData2 = 'xasx' + editedData + 'xaex';
-  var akey = an[rowIndex];
+  var akey = document.getElementById('announcement_id').innerText;
   var title1= $('#AEtitle2').val();
   var title2= 'xtsx'+title1+'xtex';
   var wholeA ={
@@ -202,14 +211,12 @@ uploadtask3.on('state_changed',
 }
 
 //Display CS table
-var cs = [];
 var rowIndexCS = 1;
 var fbCS = firebase.database().ref('CenterSchedule')
 var WStable = document.getElementById('CStable');
 
 fbCS.once('value',function(snapshot){
 snapshot.forEach(function(childSnapshot){
-    cs[rowIndexCS] = childSnapshot.key;
   var childKey = childSnapshot.key;
   var childData = childSnapshot.val();
   var button = document.createElement("button");
@@ -219,31 +226,26 @@ snapshot.forEach(function(childSnapshot){
 
 
   var row = CStable.insertRow(rowIndexCS);
- // var cellId = row.insertCell(0)
-  var cellCSTitle = row.insertCell(0);
-  var cellButton = row.insertCell(1);
-  var cellButton2 = row.insertCell(2);
-  //cellId.appendChild(document.createTextNode(childKey));
+  var cellId = row.insertCell(0)
+  var cellCSTitle = row.insertCell(1);
+  var cellButton = row.insertCell(2);
+  var cellButton2 = row.insertCell(3);
+  cellId.appendChild(document.createTextNode(childKey));
   cellCSTitle.appendChild(document.createTextNode(childData.titleIOS));
   cellButton.appendChild(button);
   cellButton2.appendChild(button2);
-  button.setAttribute("id","download_id["+rowIndexCS+"]");
-  button.setAttribute("onclick","downloadCS("+rowIndexCS+")");
-  button2.setAttribute("id","deleteCS_id["+rowIndexCS+"]");
-  button2.setAttribute("onclick","deleteCS("+rowIndexCS+")");
-console.log(rowIndexCS);
- // button.onclick = downloadCS;
-  //button2.onclick = deleteCS;
+
+  button.onclick = downloadCS;
+  button2.onclick = deleteCS;
   rowIndexCS = rowIndexCS + 1;
 
 });
 });
 
 //CS deletion
-function deleteCS(rowIndexCS){
+function deleteCS(){
 var fbCS= firebase.database().ref('CenterSchedule');
-var Ukey = cs[rowIndexCS];
-//var Ukey = $(this).closest('tr').children('td:first').text();
+var Ukey = $(this).closest('tr').children('td:first').text();
 console.log(Ukey);
 var r = confirm("Are you sure you want to delete a center schedule?");
 if (r == true) {
@@ -256,11 +258,9 @@ else {
 }
 
 //CS download
-function downloadCS(rowIndexCS){
+function downloadCS(){
 var fbCS= firebase.database().ref('CenterSchedule');
-var Ukey = cs[rowIndexCS];
-console.log(rowIndexCS);
-//var Ukey = $(this).closest('tr').children('td:first').text();
+var Ukey = $(this).closest('tr').children('td:first').text();
 var url = fbCS.child(Ukey).child('url');
 let downloadURL;
 url.once("value").then(function(snapshot){
@@ -344,13 +344,12 @@ uploadtask.on('state_changed',
 
 //Display WS table
 var rowIndexWS = 1;
-var ws = [];
 var fbWS = firebase.database().ref('WorkingSchedule')
 var WStable = document.getElementById('WStable');
 
 fbWS.once('value',function(snapshot){
 snapshot.forEach(function(childSnapshot){
-  ws[rowIndexWS] = childSnapshot.key;
+  var childKey = childSnapshot.key;
   var childData = childSnapshot.val();
   var button = document.createElement("button");
   var button2 = document.createElement("button");
@@ -359,28 +358,25 @@ snapshot.forEach(function(childSnapshot){
 
 
   var row = WStable.insertRow(rowIndexWS);
-  //var cellId = row.insertCell(0)
-  var cellWSTitle = row.insertCell(0);
-  var cellButton = row.insertCell(1);
-  var cellButton2 = row.insertCell(2);
-  //cellId.appendChild(document.createTextNode(childKey));
+  var cellId = row.insertCell(0)
+  var cellWSTitle = row.insertCell(1);
+  var cellButton = row.insertCell(2);
+  var cellButton2 = row.insertCell(3);
+  cellId.appendChild(document.createTextNode(childKey));
   cellWSTitle.appendChild(document.createTextNode(childData.titleIOS));
   cellButton.appendChild(button);
   cellButton2.appendChild(button2);
-  button.setAttribute("id","downloadWS_id["+rowIndexWS+"]");
-  button.setAttribute("onclick","downloadWS("+rowIndexWS+")");
-  button2.setAttribute("id","deleteWS_id["+rowIndexWS+"]");
-  button2.setAttribute("onclick","deleteWS("+rowIndexWS+")");
 
+  button.onclick = downloadWS;
+  button2.onclick = deleteWS;
   rowIndexWS = rowIndexWS + 1;
 
 });
 });
 //WS deletion
-function deleteWS(rowIndexWS){
+function deleteWS(){
 var fbWS= firebase.database().ref('WorkingSchedule');
-//var Ukey = $(this).closest('tr').children('td:first').text();
-var Ukey = ws[rowIndexWS];
+var Ukey = $(this).closest('tr').children('td:first').text();
 console.log(Ukey);
 var r = confirm("Are you sure you want to delete a working schedule?");
 if (r == true) {
@@ -392,11 +388,9 @@ else {
 }
 }
 //WS download
-function downloadWS(rowIndexWS){
+function downloadWS(){
 var fbWS= firebase.database().ref('WorkingSchedule');
-console.log(rowIndexWS);
-//var Ukey = $(this).closest('tr').children('td:first').text();
-var Ukey = ws[rowIndexWS];
+var Ukey = $(this).closest('tr').children('td:first').text();
 var url = fbWS.child(Ukey).child('url');
 let downloadURL;
 url.once("value").then(function(snapshot){
@@ -484,14 +478,12 @@ uploadtask.on('state_changed',
 
 //Display all Working Hour
 var rowIndexWH = 1;
-var wh = [];
 var fbWH = firebase.database().ref('WorkingHourRecord')
 var tableWH = document.getElementById('tableWH');
 
 fbWH.once('value',function(snapshot){
 snapshot.forEach(function(childSnapshot){
-wh[rowIndexWH] = childSnapshot.key;
-  //var childKey = childSnapshot.key;
+  var childKey = childSnapshot.key;
   var childData = childSnapshot.val();
   var button = document.createElement("button");
   var button2 = document.createElement("button");
@@ -500,27 +492,25 @@ wh[rowIndexWH] = childSnapshot.key;
 
 
   var row = tableWH.insertRow(rowIndexWH);
- // var cellId = row.insertCell(0)
-  var cellWHTitle = row.insertCell(0);
-  var cellButton = row.insertCell(1);
-  var cellButton2 = row.insertCell(2);
-  //cellId.appendChild(document.createTextNode(childKey));
+  var cellId = row.insertCell(0)
+  var cellWHTitle = row.insertCell(1);
+  var cellButton = row.insertCell(2);
+  var cellButton2 = row.insertCell(3);
+  cellId.appendChild(document.createTextNode(childKey));
   cellWHTitle.appendChild(document.createTextNode(childData.titleIOS));
   cellButton.appendChild(button);
   cellButton2.appendChild(button2);
-  button.setAttribute("id","downloadWH_id["+rowIndexWH+"]");
-  button.setAttribute("onclick","downloadWH("+rowIndexWH+")");
-  button2.setAttribute("id","deleteWH_id["+rowIndexWH+"]");
-  button2.setAttribute("onclick","deleteWH("+rowIndexWH+")");
 
+  button.onclick = downloadWH;
+  button2.onclick = deleteWH;
   rowIndexWH = rowIndexWH + 1;
 });
 });
 
 //WH deletion
-function deleteWH(rowIndexWH){
+function deleteWH(){
 var fbWH= firebase.database().ref('WorkingHourRecord');
-var Ukey = wh[rowIndexWH];
+var Ukey = $(this).closest('tr').children('td:first').text();
 console.log(Ukey);
 var r = confirm("Are you sure you want to delete a working hour?");
 if (r == true) {
@@ -533,9 +523,9 @@ else {
 }
 
 //WH download
-function downloadWH(rowIndexWH){
+function downloadWH(){
 var fbWH= firebase.database().ref('WorkingHourRecord');
-var Ukey = wh[rowIndexWH];
+var Ukey = $(this).closest('tr').children('td:first').text();
 var url = fbWH.child(Ukey).child('url');
 let downloadURL;
 url.once("value").then(function(snapshot){

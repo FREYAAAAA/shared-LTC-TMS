@@ -443,6 +443,9 @@
     <tr>
        <td colspan="2">Brief Description:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="textarea" id="BriefDescription2" placeholder="Brief Description..." size="85"/></td>
     </tr>
+    <tr>
+      <td colspan="2">Picture filename:<p id="patientpicFilename"></p></td>
+    </tr>
   </table> <br>
     <center><button id ="btnSubmitPP" onclick="SubmitPPPP()"> Submit</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
     <button id ="btnPCancel" onclick="Cancel()">Cancel</button></center>
@@ -494,12 +497,21 @@
   </tr>
    <tr>
      <!-- should be image><-->
-       <td colspan="2">CV: <input type="textarea" id="staffCV2" placeholder="CV..." size="90" required/></td>
+       <td colspan="2">CV: <p id="staffCV2"></p></td>
 
    </tr>
    <tr>
      <!-- should be image -->
-       <td colspan="2">License: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="textarea" id="stafflicense2" placeholder="License" size="90" required/></td>
+       <td colspan="2">License: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<p id="stafflicense2"></p></td>
+
+   </tr>
+   <tr>
+
+     <td colspan = "2">
+        Picture filename:<p id = "staffpicfilename"></p><br>
+        CV filename:<p id = "staffcvfilename"></p><br>
+        License filename:<p id = "stafflicensefilename"></p><br>
+   </td>
 
    </tr>
 </table><br>
@@ -510,8 +522,21 @@
 </div>
 
 
-<script type = 'text/javascript' src = '/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/Config.js'></script>
-<script type = 'text/javascript' src = '/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/PortfolioJS.js'></script>
+<script type = 'text/javascript' src = "C:\inetpub\wwwroot\LTCTMS\Config.js"></script>
+<script type = 'module'>
+import * as admin from "/firebase-admin";
+//var admin = require("firebase-admin");
+import * as serviceAccount from "/inetpub/wwwroot/LTCTMS/share-b7589-firebase-adminsdk-9gtpk-8d7012282d.json";
+//var serviceAccount = require("C:\inetpub\wwwroot\LTCTMS\share-b7589-firebase-adminsdk-9gtpk-8d7012282d.json");
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://share-b7589.firebaseio.com"
+});
+
+
+</script>
+<script type="text/javascript" src="C:\inetpub\wwwroot\LTCTMS\PortfolioJS.js"></script>
+
 
 </body>
 

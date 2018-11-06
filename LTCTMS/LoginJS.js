@@ -42,11 +42,6 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
   if (firebaseUser){
     console.log(firebaseUser);
     alert('Logging in!');
-    /*firebase.auth().getRedirectResult().then(function(result){
-      var user = result.firebaseuser;
-      conole.log(user);
-      var operationType = result.operationType;
-    });*/
     window.location.href = "Aboutus.html";
 
   }
