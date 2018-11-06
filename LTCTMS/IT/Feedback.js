@@ -110,6 +110,8 @@ function tableform(id,name,fbFeedback,picture){
 
                   div2.setAttribute("id" ,"usermessage");
                   div3.setAttribute("class" ,"content");
+                  div3.setAttribute("id" ,"div3ID["+index+"]");
+
                   input.setAttribute("id", "message["+index+"]");
                   input.setAttribute("class", "text-success");
                   input.setAttribute("type", "text");
@@ -213,6 +215,7 @@ function replyToggle(index){
 }
 
 function sendMess(id,year,month,index,date,h,m,s,value,feedbackID){
+
   console.log(year,month,date);
     var today = new Date();
     var hour = today.getHours();
@@ -229,7 +232,18 @@ function sendMess(id,year,month,index,date,h,m,s,value,feedbackID){
 
     var lateDate =year+"-"+month+"-"+date;
 
-    console.log(repliedTime);
+
+    firebase.database().ref("Feedback/"+id+"/System/"+lateDate+"/"+feedbackID+"/Replied").remove();
+
+
+    var span5 = document.createElement("span");
+    var div3 = document.getElementById("div3ID["+index+"]");
+    span5.setAttribute("id","replyTime["+index+"]");
+    span5.setAttribute("class","replyTime");
+
+    div3.appendChild(span5);
+    document.getElementById("replyTime["+index+"]").innerHTML = repliedTime;
+
 
 
     var idre = "000001"; // Replyer's  ID
