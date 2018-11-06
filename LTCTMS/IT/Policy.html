@@ -10,14 +10,14 @@
 		<link rel="stylesheet" type="text/css" href="statics/css/style.css" />
 		<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
 		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-		<script type = 'text/javascript' src = "/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/Config.js"></script>
-		<script type = 'text/javascript' src = '/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/chat.js'></script>
-		<script type = 'text/javascript' src = '/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/IT/Policy.js'></script>
+		<script type = 'text/javascript' src = "/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/Config.js"></script>
+		<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/chat.js'></script>
+		<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/IT/Policy.js'></script>
 
 	</head>
 	<style>
 	#expand{
-	position:absolute;
+	position:fixed;
 	padding-top: 6px;
 	 top:95%;
 	 left:75%;
@@ -33,7 +33,7 @@
 		background: #336699;
 	}
 	#im{
-	  position:absolute;
+	  position:fixed;
 	  top:50%;
 	  left:58%;
 	  margin:0 auto;
@@ -192,7 +192,7 @@
 	  text-shadow: 2px 2px #FFFFFF;
 	}
 	</style>
-	<body>
+	<body style="height:850px;">
 		<div class="header">
 			<div class="bar">
 				<div class="w1200">
@@ -224,7 +224,7 @@
 					<li>
 						<a href="Policy.html"class="active" >
 							<i class="icon iconfont icon-pinglun"></i>
-							Policy
+							Contact Us
 						</a>
 					</li>
 
@@ -240,12 +240,6 @@
 							User Management
 						</a>
 					</li>
-					<li>
-						<a href="07E-portfolio2.html">
-							<i class="icon iconfont icon-jilu"></i>
-							E-Portfolio
-						</a>
-					</li>
 				</ul>
 			</div>
 			<div class="right">
@@ -253,13 +247,44 @@
 					<span id="span" >Policy Content</span>
 				</div>
 
-				<div class="container" >
-					<button id = "download" onclick = "download()">Download</button>
-					<input type="file"  id="select" accept="html/*">
-					<button  id = "upload" onclick = "upload()">Upload</button>
-					</div>
+				<div class="container" style="height:260px;">
+<div>
+	<iframe src="policy_content.html" style="position:relative;width:100%;height:250px;">
+	  <p>Policy</p>
+	</iframe>
+</div>
+</div>
+</div>
 
 
+<div class="right" style="position:relative;left:18.5%;top:30px;">
+	<div class="tap">
+		<span id="span" style="width:160px;">Development Team</span>
+	</div>
+
+	<div class="container" style="height:230px;">
+<div>
+	<p style="position:relative;font-size:10px;left:70%;z-index:3;top:10px;">*Please Contact Development Team for Further Assitance</p>
+		<table id ="Contact_information" style="position:relative;width:100%;height:100px;top:10px;">
+				<tr>
+						<th colspan="4"> <h3 style="padding:10px 10px;"><i>Development Team Contact Information</i></h3></th>
+				</tr>
+				<tr>
+						<th style="padding:6px 6px;">Name </th>
+						<td style="padding:6px 6px;">Gama Febrian Ahimsa </td>
+						<th style="padding:6px 6px;">Email Address </th>
+						<td style="padding:6px 6px;">gama_febrian@yahoo.com </td>
+				</tr>
+				<tr>
+						<th style="padding:6px 6px;">Contact No </th>
+						<td style="padding:6px 6px;">123456789 </td>
+						<th style="padding:6px 6px;">Address </th>
+						<td style="padding:6px 6px;">15 Guishan Road, Taoyuan City, Taiwan </td>
+				</tr>
+		</table>
+</div>
+</div>
+</div>
 
 
 
