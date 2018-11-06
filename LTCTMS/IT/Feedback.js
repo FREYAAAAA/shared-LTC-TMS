@@ -1,5 +1,5 @@
 
-    var fbFeedback = firebase.database().ref("Feedback/");
+    var fbFeedback = firebase.database().ref("Feedback1/");
     var num = 0;
     fbFeedback.once("value")
     .then(function(snapshot){
@@ -166,6 +166,7 @@ function tableform(id,name,fbFeedback,picture){
                         getReply(id,index,a[0],a[1],time[0],time1[0],time1[1],time1[2]);
                         console.log(index);
 
+                        index++;
                     }
                 }
             })
@@ -176,7 +177,7 @@ function tableform(id,name,fbFeedback,picture){
 function getReply(id,index,year,month,date,h,m,s){
     var key = year+"-"+month;
     var time = date+"-"+h+":"+m+":"+s;
-    var fbReply = firebase.database().ref("Feedback/"+id+"/Reply"+"/"+key+"/"+time);
+    var fbReply = firebase.database().ref("Feedback1/"+id+"/Reply"+"/"+key+"/"+time);
     fbReply.once('value').
     then(function(snapshot){
         document.getElementById("replyComment["+index+"]").innerHTML = snapshot.val();
@@ -188,6 +189,7 @@ function replyToggle(index){
         document.getElementById("message["+index+"]").style.display = "none";
         document.getElementById("reply["+index+"]").innerHTML = "Reply";
         document.getElementById("btn["+index+"]").style.display = "none";
+        console.log("skdfj");
 
     }
     else{
@@ -203,7 +205,7 @@ function sendMess(id,year,month,index,date,h,m,s,value){
     var time = date+"-"+h+":"+m+":"+s;
     var comment = document.getElementById("message["+index+"]").value;
 
-    firebase.database().ref("Feedback/"+id+"/Reply/"+key+"/"+"/"+time).set(comment);
+    firebase.database().ref("Feedback1/"+id+"/Reply/"+key+"/"+"/"+time).set(comment);
     document.getElementById("replyComment["+index+"]").innerHTML = comment;
     replyToggle(index);
 
@@ -250,4 +252,17 @@ function sorting(table){
       switchcount ++;
     }
   }
+}
+
+
+function showsf(){
+  document.getElementById("container").style.display = "block";
+  document.getElementById("container1").style.display = "none";
+}
+
+
+
+function showpf(){
+  document.getElementById("container").style.display = "none";
+  document.getElementById("container1").style.display = "block";
 }

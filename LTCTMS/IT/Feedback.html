@@ -195,6 +195,7 @@
             margin: 0px;
             padding: 0px;
         }
+
         .liuyan{
             margin: 10px;
             height: auto;
@@ -203,10 +204,12 @@
             box-shadow: 5px 5px 10px #EEEEEE;
             padding: 5px;
 			position: relative;
-			top:-40%;
-			width:100%;
+			top:0%;
+			width:91%;
 			display: block;
+			left:3%;
         }
+
         .information{
             margin-top: 50px;
             height: 500px;
@@ -223,7 +226,9 @@
 			color:#666666;
 			font-size: 7px;
 			position: absolute;
-			left:62%;
+			left:88%;
+			top:10%;
+			font-size:10px;
 
         }
         #nav>li>a{
@@ -262,6 +267,8 @@
         }
 		.text-success{
 			display: none;
+			width:800px;
+			height:30px;
 		}
         #message{
             width: 40%;
@@ -275,11 +282,13 @@
 			font-size: 6px;
 			color: blue;
 			display: inline;
+			font-size:8px;
 		}
         .btn-success{
-
-			top:20%;
-            display: none;
+					position:relative;
+					left:10px;
+          display: none;
+					width:50px;
         }
 
         .h4{
@@ -352,7 +361,8 @@
 			</div>
 			<div class="right">
 				<div class="tap">
-					<span id="span" >Staff Feedback</span>
+					<span onclick="showsf()">Staff Feedback</span>
+					<span onclick="showpf()">Patient Feedback</span>
 				</div>
 
 				<div id = "container" class="container" >
@@ -377,7 +387,7 @@
 				   -->
 
 				</div>
-				<div id = "container1" class="container" ></div>
+				<div id = "container1" class="container" style="display:none;"></div>
 
 
 		<div id="expand" onclick="expand()" >Chat</div>
