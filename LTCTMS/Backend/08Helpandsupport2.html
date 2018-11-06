@@ -10,11 +10,10 @@
 		<link rel="stylesheet" type="text/css" href="statics/css/style.css" />
 		<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
 		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-		<script type = 'text/javascript' src = "\Users\kong\Documents\GitHub\shared-LTC-TMS\LTCTMS\Backend\Config.js"></script>
-		<script type = 'text/javascript' src = '\Users\kong\Documents\GitHub\shared-LTC-TMS\LTCTMS\Backend\HelpandSupport.js'></script>
+		<script type = 'text/javascript' src = "\Users\Gama\Documents\GitHub\shared-LTC-TMS\LTCTMS\Backend\Config.js"></script>
+		<script type = 'text/javascript' src = '\Users\Gama\Documents\GitHub\shared-LTC-TMS\LTCTMS\Backend\HelpandSupport.js'></script>
 	</head>
 	<style>
-
 	#expand{
 	position:absolute;
 	padding-top: 6px;
@@ -175,6 +174,133 @@
 	border: none;
 	background: none;
 	}
+	table, th, td
+	{
+	    padding: 5px;
+	    border: 1px solid black;
+	    width:400px;
+	    text-align: center;
+	    word-wrap: break-word;
+	}
+	table th {
+	  background-color: #B0C4DE;
+	  color: #000;
+	}
+	table td {
+	  text-shadow: 2px 2px #FFFFFF;
+	}
+<!--usermessage-->
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .liuyan{
+            margin: 10px;
+            height: auto;
+            border: 1px solid #EEEEEE;
+            background-color: #EEEEEE;
+            box-shadow: 5px 5px 10px #EEEEEE;
+            padding: 5px;
+			position: relative;
+			top:0%;
+			width:91%;
+			display: block;
+			left:3%;
+        }
+
+        .information{
+            margin-top: 50px;
+            height: 500px;
+            border: 1px solid #EEEEEE;
+            background-color: #EEEEEE;
+            box-shadow: 5px 5px 10px #EEEEEE;
+            padding: 5px;
+        }
+        .navbar-default{
+            background-color: ghostwhite;
+        }
+		.time{
+			display: inline;
+			color:#666666;
+			font-size: 7px;
+			position: absolute;
+			left:88%;
+			top:10%;
+			font-size:10px;
+
+        }
+        #nav>li>a{
+            color: white;
+        }
+        #user-fa, .user-fa{
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            border: 1px solid #EEEEEE;
+            background-color: #EEEEEE;
+            box-shadow: 1px 1px 5px ;
+            border-radius: 18px;
+            text-align: center;
+        }
+        #user-fa>i{
+            font-size: 20px;
+            margin-top: 5px;
+        }
+        #user>a{
+            padding-top: 5px;
+            text-decoration: none;
+        }
+        .edit{
+            padding: 10px;
+            margin-top: 20px;
+            border-bottom: 1px solid  #C7254E;
+        }
+        .edit>a{
+            color: #000000;
+            margin: 2px;
+        }
+        .edit>a:hover{
+            color:#999999;
+            background-color: #D9EDF7;
+        }
+		.text-success{
+			display: none;
+			width:800px;
+			height:30px;
+		}
+        #message{
+            width: 40%;
+            height: 40px;
+			display: none;
+        }
+		.comment{
+			display: block;
+		}
+		.reply{
+			font-size: 6px;
+			color: blue;
+			display: inline;
+			font-size:8px;
+		}
+        .btn-success{
+					position:relative;
+					left:10px;
+          display: none;
+					width:50px;
+        }
+
+        .h4{
+            width: auto;
+            font-size: 25px;
+        }
+        .mess{
+            border: 1px solid #E4B9B9;
+            padding: 15px;
+            box-shadow: 2px 2px 15px #EEEEEE;
+            font-family: "微软雅黑";
+            font-size: medium;
+        }
 	</style>
 	<body>
 		<div style="height:920px;">
@@ -258,35 +384,15 @@
 			</div>
 			<div class="right">
 				<div class="tap">
-					<span onlick="view_sfeedback()">Staff Feedback</span>
-          <span onlick="view_pfeedback()">Patient Feedback</span>
+					<span onclick="showsf()">Staff Feedback</span>
+					<span onclick="showpf()">Patient Feedback</span>
 				</div>
 
-				<div class="container" id="viewsfb">
-					    <table id = "CNA_Feedback" style="top:0%; left:0%;width:100%;border-style:hidden;text-align:center;position:relative;">
-					        <tr>
-					            <th colspan="3"> <h3><i>Staff Feedback</i></h3></th>
-					        </tr>
-					        <tr>
-					            <th style="width:20%"> <br> I.D <br><br></th>
-					            <th style="width:20%"> <br> Name <br><br></th>
-					            <th style="width:60%"> <br> Comment <br><br></th>
-					        </tr>
-					    </table>
-					</div>
 
-				<div class="container" id="viewpfb">
-					    <table id = "Patient_Feedback" style="top:0%; left:0%;width:100%;border-style:hidden;text-align:center;position:relative;display:none;">
-					        <tr>
-					            <th colspan="3"> <h3><i>Patient Feedback</i></h3></th>
-					        </tr>
-					        <tr>
-					            <th style="width:20%"> <br> I.D <br><br></th>
-					            <th style="width:20%"> <br> Name <br><br></th>
-					            <th style="width:60%"> <br> Comment <br><br></th>
-					        </tr>
-					    </table>
-					</div>
+
+
+						<div class="container" id="container"></div>
+						<div class="container" id="container1"></div>
 				</div>
 
 			</div>
