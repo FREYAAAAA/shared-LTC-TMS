@@ -86,6 +86,8 @@ function tableform(id,name,fbFeedback,picture){
                   var span3 = document.createElement("span");
                   var span4 = document.createElement("span");
 
+                  var span5 = document.createElement("span");
+
                   var div2 = document.createElement('div');
                   var div3 = document.createElement('div');
                   var input = document.createElement("input");
@@ -118,6 +120,10 @@ function tableform(id,name,fbFeedback,picture){
                   button.setAttribute("id","btn["+index+"]");
                   button.setAttribute("class", "btn-success");
 
+                  span5.setAttribute("id","replyTime["+index+"]");
+                  span5.setAttribute("class","replyTime");
+
+
                   button.setAttribute("onclick", "sendMess("+id+","+a[0]+","+a[1]+","+index+","+a[2]+","+time[0]+","+time[1]+","+time[2]+","+value+","+feedbackID+")");
                   button.innerHTML= "Enter";
                   span3.innerHTML = "Reply";
@@ -140,6 +146,10 @@ function tableform(id,name,fbFeedback,picture){
                           div2.appendChild(span4);
                           div3.appendChild(input);
                           div3.appendChild(button);
+
+                              div3.appendChild(span5);
+
+
 
                           document.getElementById("time["+index+"]").innerHTML = m+"-"+t;
                           document.getElementById("photo["+index+"]").src = picture;
@@ -168,6 +178,11 @@ function tableform(id,name,fbFeedback,picture){
                           div3.appendChild(input);
                           div3.appendChild(button);
 
+                         div3.appendChild(span5);
+
+
+
+
                           document.getElementById("time["+index+"]").innerHTML = m+"-"+t;
                           document.getElementById("photo["+index+"]").src = picture;
                           document.getElementById("username["+index+"]").innerHTML = name +"  said:";
@@ -190,12 +205,16 @@ function tableform(id,name,fbFeedback,picture){
 
 }
 function getReply(id,index,year,month,date,h,m,s,feedbackID){
-    var date = year+"-"+month+"-"+date;
+    var lastDate = year+"-"+month+"-"+date;
     var time = h+":"+m+":"+s;
-    var fbReply = firebase.database().ref("Feedback/"+id+"/System"+"/"+date+"/"+feedbackID+"/Replied/");
+    var fbReply = firebase.database().ref("Feedback/"+id+"/System"+"/"+lastDate+"/"+feedbackID+"/Replied/");
     fbReply.once('value').
     then(function(snapshot){
-        document.getElementById("replyComment["+index+"]").innerHTML = snapshot.val();
+        snapshot.forEach(function(snapshot1){
+            document.getElementById("replyComment["+index+"]").innerHTML = snapshot1.val();
+            console.log(snapshot1.key);
+            document.getElementById("replyTime["+index+"]").innerHTML = snapshot1.key;
+        })
     })
 }
 
@@ -236,12 +255,10 @@ function sendMess(id,year,month,index,date,h,m,s,value,feedbackID){
     firebase.database().ref("Feedback/"+id+"/System/"+lateDate+"/"+feedbackID+"/Replied").remove();
 
 
-    var span5 = document.createElement("span");
-    var div3 = document.getElementById("div3ID["+index+"]");
-    span5.setAttribute("id","replyTime["+index+"]");
-    span5.setAttribute("class","replyTime");
 
-    div3.appendChild(span5);
+
+
+
     document.getElementById("replyTime["+index+"]").innerHTML = repliedTime;
 
 
