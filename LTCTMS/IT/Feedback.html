@@ -10,9 +10,9 @@
 		<link rel="stylesheet" type="text/css" href="statics/css/style.css" />
 		<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
 		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-		<script type = 'text/javascript' src = "/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/Config.js"></script>
-		<script type = 'text/javascript' src = '/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/IT/Feedback.js'></script>
-		<script type = 'text/javascript' src = '/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/chat.js'></script>
+		<script type = 'text/javascript' src = "/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/Config.js"></script>
+		<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/IT/Feedback.js'></script>
+		<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/chat.js'></script>
 	</head>
 	<style>
 	#expand{
@@ -279,12 +279,9 @@
 			display: block;
 		}
 		.replyTime{
-			display: inline;
-			color:#666666;
-			font-size: 7px;
-			position: absolute;
+			position:relative;
 			left:88%;
-			top:40%;
+			top:20px;
 			font-size:10px;
 
 		}
@@ -333,9 +330,6 @@
 							<span>UserID : tomandjerry</span>
 						</p>
 					</div>
-					<div class="user-modify">
-						<a href="#">Profile</a>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -365,11 +359,11 @@
 			</div>
 			<div class="right">
 				<div class="tap">
-					<span onclick="showsf()">Staff Feedback</span>
-					<span onclick="showpf()">Patient Feedback</span>
+					<span id="stafffeedbackspan" onclick="showsf()" style="opacity:1">Staff Feedback</span>
+					<span id="patientfeedbackspan" onclick="showpf()" style="opacity:.8">Patient Feedback</span>
 				</div>
 
-				<div id = "container" class="container" >
+				<div id = "container" class="container" style="overflow-y:scroll;" >
 
 						<!--usermessag  Please don't delete
 					   <div class="liuyan" >
@@ -391,7 +385,7 @@
 				   -->
 
 				</div>
-				<div id = "container1" class="container" style="display:none;"></div>
+				<div id = "container1" class="container" style="display:none;overflow-y:scroll;"></div>
 
 
 		<div id="expand" onclick="expand()" >Chat</div>

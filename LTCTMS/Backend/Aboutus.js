@@ -208,16 +208,25 @@ function showintroduction(){
   document.getElementById("data1").style.display = "block";
   document.getElementById("data2").style.display = "none";
   document.getElementById("data3").style.display = "none";
+  document.getElementById("introductionspan").style.opacity = "1";
+  document.getElementById("centerinfospan").style.opacity = ".8";
+  document.getElementById("sponsoredspan").style.opacity = ".8";
 }
 
 function showcenterinfo(){
   document.getElementById("data1").style.display = "none";
   document.getElementById("data2").style.display = "block";
   document.getElementById("data3").style.display = "none";
+  document.getElementById("introductionspan").style.opacity = ".8";
+  document.getElementById("centerinfospan").style.opacity = "1";
+  document.getElementById("sponsoredspan").style.opacity = ".8";
 }
 
 function showsponsored(){
   document.getElementById("data1").style.display = "none";
   document.getElementById("data2").style.display = "none";
   document.getElementById("data3").style.display = "block";
+  document.getElementById("introductionspan").style.opacity = ".8";
+  document.getElementById("centerinfospan").style.opacity = ".8";
+  document.getElementById("sponsoredspan").style.opacity = "1";
 }

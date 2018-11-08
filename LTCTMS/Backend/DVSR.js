@@ -655,6 +655,11 @@ function showdsr(){
   document.getElementById("data3").style.display = "none";
   document.getElementById("data4").style.display = "none";
   document.getElementById("data5").style.display = "none";
+  document.getElementById("dsrspan").style.opacity = "1";
+  document.getElementById("vsrspan").style.opacity = ".8";
+  document.getElementById("aisspan").style.opacity = ".8";
+  document.getElementById("scspan").style.opacity = ".8";
+  document.getElementById("ecspan").style.opacity = ".8";
 }
 function showvsr(){
   document.getElementById("data1").style.display = "none";
@@ -662,6 +667,11 @@ function showvsr(){
   document.getElementById("data3").style.display = "none";
   document.getElementById("data4").style.display = "none";
   document.getElementById("data5").style.display = "none";
+  document.getElementById("dsrspan").style.opacity = ".8";
+  document.getElementById("vsrspan").style.opacity = "1";
+  document.getElementById("aisspan").style.opacity = ".8";
+  document.getElementById("scspan").style.opacity = ".8";
+  document.getElementById("ecspan").style.opacity = ".8";
 }
 function showais(){
   document.getElementById("data1").style.display = "none";
@@ -669,6 +679,11 @@ function showais(){
   document.getElementById("data3").style.display = "block";
   document.getElementById("data4").style.display = "none";
   document.getElementById("data5").style.display = "none";
+  document.getElementById("dsrspan").style.opacity = ".8";
+  document.getElementById("vsrspan").style.opacity = ".8";
+  document.getElementById("aisspan").style.opacity = "1";
+  document.getElementById("scspan").style.opacity = ".8";
+  document.getElementById("ecspan").style.opacity = ".8";
 }
 function showsc(){
   document.getElementById("data1").style.display = "none";
@@ -676,6 +691,11 @@ function showsc(){
   document.getElementById("data3").style.display = "none";
   document.getElementById("data4").style.display = "block";
   document.getElementById("data5").style.display = "none";
+  document.getElementById("dsrspan").style.opacity = ".8";
+  document.getElementById("vsrspan").style.opacity = ".8";
+  document.getElementById("aisspan").style.opacity = ".8";
+  document.getElementById("scspan").style.opacity = "1";
+  document.getElementById("ecspan").style.opacity = ".8";
 }
 function showec(){
   document.getElementById("data1").style.display = "none";
@@ -683,4 +703,9 @@ function showec(){
   document.getElementById("data3").style.display = "none";
   document.getElementById("data4").style.display = "none";
   document.getElementById("data5").style.display = "block";
+  document.getElementById("dsrspan").style.opacity = ".8";
+  document.getElementById("vsrspan").style.opacity = ".8";
+  document.getElementById("aisspan").style.opacity = ".8";
+  document.getElementById("scspan").style.opacity = ".8";
+  document.getElementById("ecspan").style.opacity = "1";
 }

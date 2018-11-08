@@ -318,6 +318,8 @@ function sorting(table){
 function showsf(){
   document.getElementById("container").style.display = "block";
   document.getElementById("container1").style.display = "none";
+  document.getElementById("stafffeedbackspan").style.opacity = "1";
+  document.getElementById("patientfeedbackspan").style.opacity = ".8";
 }
 
 
@@ -325,4 +327,6 @@ function showsf(){
 function showpf(){
   document.getElementById("container").style.display = "none";
   document.getElementById("container1").style.display = "block";
+  document.getElementById("stafffeedbackspan").style.opacity = ".8";
+  document.getElementById("patientfeedbackspan").style.opacity = "1";
 }

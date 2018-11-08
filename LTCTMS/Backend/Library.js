@@ -786,9 +786,13 @@ function directTask(){
 function showassigntask(){
   document.getElementById("data1").style.display = "block";
   document.getElementById("data2").style.display = "none";
+  document.getElementById("assigntaskspan").style.opacity = "1";
+  document.getElementById("taskhistoryspan").style.opacity = ".8";
 }
 
 function showtaskhistory(){
   document.getElementById("data1").style.display = "none";
   document.getElementById("data2").style.display = "block";
+  document.getElementById("assigntaskspan").style.opacity = ".8";
+  document.getElementById("taskhistoryspan").style.opacity = "1";
 }

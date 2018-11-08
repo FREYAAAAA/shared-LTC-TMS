@@ -575,6 +575,10 @@ function showannouncement(){
   document.getElementById("data2").style.display = "none";
   document.getElementById("data3").style.display = "none";
   document.getElementById("data4").style.display = "none";
+  document.getElementById("announcementspan").style.opacity = "1";
+  document.getElementById("csspan").style.opacity = ".8";
+  document.getElementById("wsspan").style.opacity = ".8";
+  document.getElementById("whspan").style.opacity = ".8";
 }
 
 function showcs(){
@@ -582,16 +586,28 @@ function showcs(){
   document.getElementById("data2").style.display = "block";
   document.getElementById("data3").style.display = "none";
   document.getElementById("data4").style.display = "none";
+  document.getElementById("announcementspan").style.opacity = ".8";
+  document.getElementById("csspan").style.opacity = "1";
+  document.getElementById("wsspan").style.opacity = ".8";
+  document.getElementById("whspan").style.opacity = ".8";
 }
 function showws(){
   document.getElementById("data1").style.display = "none";
   document.getElementById("data2").style.display = "none";
   document.getElementById("data3").style.display = "block";
   document.getElementById("data4").style.display = "none";
+  document.getElementById("announcementspan").style.opacity = ".8";
+  document.getElementById("csspan").style.opacity = ".8";
+  document.getElementById("wsspan").style.opacity = "1";
+  document.getElementById("whspan").style.opacity = ".8";
 }
 function showwh(){
   document.getElementById("data1").style.display = "none";
   document.getElementById("data2").style.display = "none";
   document.getElementById("data3").style.display = "none";
   document.getElementById("data4").style.display = "block";
+  document.getElementById("announcementspan").style.opacity = ".8";
+  document.getElementById("csspan").style.opacity = ".8";
+  document.getElementById("wsspan").style.opacity = ".8";
+  document.getElementById("whspan").style.opacity = "1";
 }
