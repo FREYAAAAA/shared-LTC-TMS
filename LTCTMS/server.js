@@ -31,7 +31,11 @@ admin.auth().createUser({
 }).then(function(userRecord){
   console.log("user", userRecord.toJSON());
   var updates={};
-  updates['uAccount/']= userRecord.toJSON();
+  var userData=userRecord.toJSON();
+  console.log(userData);
+  var updatedList = JSON.parse(JSON.stringify(userData));
+  console.log(updatedList);
+  updates['uAccount/User']= updatedList;
   firebase.database().ref().update(updates);
 }).catch(function(error){
   console.log(error.message);
