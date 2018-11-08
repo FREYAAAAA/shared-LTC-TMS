@@ -109,8 +109,10 @@ function tableform(id,name,fbFeedback,picture){
                   span3.setAttribute("class", "reply");
                   span3.setAttribute("id","reply["+index+"]")
                   span4.setAttribute("id","replyComment["+index+"]");
+                  span4.setAttribute("class","replyComment");
 
                   div2.setAttribute("id" ,"usermessage");
+                  div2.setAttribute("class" ,"usermessage");
                   div3.setAttribute("class" ,"content");
                   div3.setAttribute("id" ,"div3ID["+index+"]");
 
@@ -147,7 +149,7 @@ function tableform(id,name,fbFeedback,picture){
                           div3.appendChild(input);
                           div3.appendChild(button);
 
-                              div3.appendChild(span5);
+                          div.appendChild(span5);
 
 
 
@@ -178,7 +180,7 @@ function tableform(id,name,fbFeedback,picture){
                           div3.appendChild(input);
                           div3.appendChild(button);
 
-                         div3.appendChild(span5);
+                         div.appendChild(span5);
 
 
 
