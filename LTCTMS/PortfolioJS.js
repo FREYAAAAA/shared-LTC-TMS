@@ -304,10 +304,10 @@ uploadtask.on('state_changed',
 }
 
 //Brief Portfolio Table
- var fbCNA = firebase.database().ref("CNA/");
- var fbPAT = firebase.database().ref("Patient/");
- var fbDIR = firebase.database().ref("DIR/");
- var fbCNO = firebase.database().ref("CNO/");
+var fbCNA = firebase.database().ref("CNA/");
+var fbPAT = firebase.database().ref("Patient/");
+var fbDIR = firebase.database().ref("DIR/");
+var fbCNO = firebase.database().ref("CNO/");
 var briefPortfolio = document.getElementById('briefPortfolio');
 var rowIndexBP = 1;
 portfolio_Table(fbCNO);

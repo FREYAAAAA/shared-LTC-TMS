@@ -43,11 +43,13 @@ exports.createUser= functions.database.ref('uAccount/{position}/{sid}').onCreate
     console.log(userData);
     var updatedList = JSON.parse(JSON.stringify(userData));
     console.log(updatedList);
-    updates['uAccount/'+childData.Position+'/Account']= updatedList;
-    return snapshot.ref().update(updates);
+    updates[childData.staffID]= updatedList;
+    return snapshot.ref.parent.parent.update(updates);
   }).catch(function(error){
     console.log(error.message);
   });
 });
+
+
 
 /**/
