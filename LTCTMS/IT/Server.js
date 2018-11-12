@@ -30,6 +30,7 @@ exports.createUser= functions.database.ref('uAccount/{position}/{sid}').onCreate
   var childData = snapshot.val();
 
   return admin.auth().createUser({
+      uid : id,
       email: childData.Email,
       password:childData.Password,
       displayName:childData.Name,
