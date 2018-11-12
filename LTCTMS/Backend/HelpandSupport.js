@@ -54,8 +54,8 @@ function match_id(id,fbFeedback){
 }
 var index = 0;
 function tableform(id,name,fbFeedback,picture){
-    fbFeedback.child(id+"/System/").once('value')
-    .then(function(childSnapshot2){//system
+    fbFeedback.child(id+"/Center/").once('value')
+    .then(function(childSnapshot2){//Center
         childSnapshot2.forEach(function(childSnapshot3 ){//0
             childSnapshot3.forEach(function(childSnapshot4){//Received
               childSnapshot4.forEach(function(childSnapshot5){
@@ -109,8 +109,10 @@ function tableform(id,name,fbFeedback,picture){
                   span3.setAttribute("class", "reply");
                   span3.setAttribute("id","reply["+index+"]")
                   span4.setAttribute("id","replyComment["+index+"]");
+                  span4.setAttribute("class","replyComment");
 
                   div2.setAttribute("id" ,"usermessage");
+                  div2.setAttribute("class" ,"usermessage");
                   div3.setAttribute("class" ,"content");
                   div3.setAttribute("id" ,"div3ID["+index+"]");
 
@@ -147,7 +149,7 @@ function tableform(id,name,fbFeedback,picture){
                           div3.appendChild(input);
                           div3.appendChild(button);
 
-                              div3.appendChild(span5);
+                          div.appendChild(span5);
 
 
 
@@ -178,7 +180,7 @@ function tableform(id,name,fbFeedback,picture){
                           div3.appendChild(input);
                           div3.appendChild(button);
 
-                         div3.appendChild(span5);
+                         div.appendChild(span5);
 
 
 
@@ -207,7 +209,7 @@ function tableform(id,name,fbFeedback,picture){
 function getReply(id,index,year,month,date,h,m,s,feedbackID){
     var lastDate = year+"-"+month+"-"+date;
     var time = h+":"+m+":"+s;
-    var fbReply = firebase.database().ref("Feedback/"+id+"/System"+"/"+lastDate+"/"+feedbackID+"/Replied/");
+    var fbReply = firebase.database().ref("Feedback/"+id+"/Center"+"/"+lastDate+"/"+feedbackID+"/Replied/");
     fbReply.once('value').
     then(function(snapshot){
         snapshot.forEach(function(snapshot1){
@@ -252,7 +254,7 @@ function sendMess(id,year,month,index,date,h,m,s,value,feedbackID){
     var lateDate =year+"-"+month+"-"+date;
 
 
-    firebase.database().ref("Feedback/"+id+"/System/"+lateDate+"/"+feedbackID+"/Replied").remove();
+    firebase.database().ref("Feedback/"+id+"/Center/"+lateDate+"/"+feedbackID+"/Replied").remove();
 
 
 
@@ -267,7 +269,7 @@ function sendMess(id,year,month,index,date,h,m,s,value,feedbackID){
     var comment = document.getElementById("message["+index+"]").value;
     console.log(comment);
 
-    firebase.database().ref("Feedback/"+id+"/System"+"/"+lateDate+"/"+feedbackID+"/Replied/"+repliedTime).set(comment);
+    firebase.database().ref("Feedback/"+id+"/Center"+"/"+lateDate+"/"+feedbackID+"/Replied/"+repliedTime).set(comment);
     document.getElementById("replyComment["+index+"]").innerHTML = comment;
     replyToggle(index);
 
