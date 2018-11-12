@@ -60,18 +60,34 @@ function tableform(id,name,fbFeedback,picture){
             childSnapshot3.forEach(function(childSnapshot4){//Received
               childSnapshot4.forEach(function(childSnapshot5){
                 childSnapshot5.forEach(function(childSnapshot6){
-                  console.log('====='+childSnapshot2.key);
-                  console.log('====='+childSnapshot3.key);
-                  console.log('====='+childSnapshot4.key);
-                  console.log('====='+childSnapshot5.key);
-                  console.log('====='+childSnapshot6.key);
-
 
                   var m = childSnapshot3.key;
                   var a = m.split("-");
+                  var m1 = m.split("-");
+                  if(m1[0]<10){
+                      m1[0] = "0"+m1[0];
+                  }
+                  if(m1[1]<10){
+                      m1[1] = "0"+m1[1];
+                  }
+                  if(m1[2]<10){
+                      m1[2] = "0"+m1[2];
+                  }
+                   m1 = m1[0]+"-"+m1[1]+"-"+m1[2];
                   var feedbackID = childSnapshot4.key;
                   var t = childSnapshot6.key;
                   var time = t.split(":");
+                  var tim1 = t.split(":");
+                  if(tim1[0]<10){
+                      tim1[0] = "0"+ tim1[0];
+                  }
+                  if(tim1[1]<10){
+                      tim1[1] = "0"+ tim1[1];
+                  }
+                  if(tim1[2]<10){
+                      tim1[2] = "0"+ tim1[2];
+                  }
+                  tim1 = tim1[0]+":"+tim1[1]+":"+tim1[2];
                   var value = childSnapshot6.val();
               //  document.getElementById("user-fa").src = "/images/user_info_bg.jpg";
                   var container = document.getElementById('container');
@@ -153,7 +169,7 @@ function tableform(id,name,fbFeedback,picture){
 
 
 
-                          document.getElementById("time["+index+"]").innerHTML = m+"-"+t;
+                          document.getElementById("time["+index+"]").innerHTML = m1+"-"+tim1;
                           document.getElementById("photo["+index+"]").src = picture;
                           document.getElementById("username["+index+"]").innerHTML = name +"  said:";
                           document.getElementById("comment["+index+"]").innerHTML = childSnapshot6.val();
@@ -185,7 +201,7 @@ function tableform(id,name,fbFeedback,picture){
 
 
 
-                          document.getElementById("time["+index+"]").innerHTML = m+"-"+t;
+                          document.getElementById("time["+index+"]").innerHTML = m1+"-"+tim1;
                           document.getElementById("photo["+index+"]").src = picture;
                           document.getElementById("username["+index+"]").innerHTML = name +"  said:";
                           document.getElementById("comment["+index+"]").innerHTML = childSnapshot6.val();
@@ -214,12 +230,12 @@ function getReply(id,index,year,month,date,h,m,s,feedbackID){
     then(function(snapshot){
         snapshot.forEach(function(snapshot1){
             var com = snapshot1.val();
-            com = com.replace (/[~]/g," ")
+            com = com.replace (/[~]/g," ");
             document.getElementById("replyComment["+index+"]").innerHTML = com;
             console.log(snapshot1.key);
 
             var tim = snapshot1.key;
-            tim = tim.replace (/[?]/g,"-")
+            tim = tim.replace (/[?]/g,"-");
             document.getElementById("replyTime["+index+"]").innerHTML = tim;
         })
     })
@@ -283,7 +299,7 @@ setTimeout(function(){
     staff = document.getElementById("container1");
     sorting(pat);
     sorting(staff)
-}, 2000);
+}, 3000);
 function sorting(table){
   var  rows, switching, i, x, y, s, shouldSwitch, dir, switchcount = 0;
 
@@ -296,14 +312,16 @@ function sorting(table){
 
     switching = false;
     for (i = 0; i < rows.length-4; i=i+4) {
-        console.log(i);
+
         shouldSwitch = false;
 
         x = rows[i].getElementsByTagName("span")[4];
         y = rows[i+4].getElementsByTagName("span")[4];
 
       if (dir == "asc") {
-        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+            console.log(x);
+            console.log(y);
           shouldSwitch= true;
           console.log("jump out")
           break;
