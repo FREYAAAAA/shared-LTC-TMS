@@ -337,3 +337,14 @@ function showpf(){
   document.getElementById("stafffeedbackspan").style.opacity = ".8";
   document.getElementById("patientfeedbackspan").style.opacity = "1";
 }
+
+function openmenu(){
+  if(document.getElementById("menu").style.display== "block"){
+    document.getElementById("menu").style.display = "none";
+    document.getElementById("openmenu").style.opacity = "1";
+  }
+  else{
+  document.getElementById("menu").style.display = "block";
+  document.getElementById("openmenu").style.opacity = ".6";
+}
+}

@@ -709,3 +709,14 @@ function showec(){
   document.getElementById("scspan").style.opacity = ".8";
   document.getElementById("ecspan").style.opacity = "1";
 }
+
+function openmenu(){
+  if(document.getElementById("menu").style.display== "block"){
+    document.getElementById("menu").style.display = "none";
+    document.getElementById("openmenu").style.opacity = "1";
+  }
+  else{
+  document.getElementById("menu").style.display = "block";
+  document.getElementById("openmenu").style.opacity = ".6";
+}
+}

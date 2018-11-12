@@ -211,16 +211,48 @@
 .forgotbutton:hover{
 	color:#2134E6;
 }
+.openmenu:hover{
+	opacity:.6;
+}
+.selected:hover{
+	background-color:#1591F0;
+}
+.selected-user:hover{
+	background-color:#E91414;
+}
 	</style>
 	<body style="overflow:hidden;">
 		<div class="header">
 			<div class="bar">
 				<div class="w1200">
 					<span class="l"><img style="position:relative; top:3px; width:45px;height:45px;" src="statics/images/v2ltctmslogo.png"><font style="text-align:center;position:relative; top:-10px;">Welcome To LTCTMS</font></span>
-					<i class="setting"><img style="filter:invert(100%); width:20px; height:20px;position:relative; left:700px; top:4px;" src="statics/images/settings.png"><p style="position:relative; left:725px; top:-50px;">Settings</p><img style="filter:invert(100%); width:10px; height:10px;position:relative; left:1105px; top:-98px;" src="statics/images/openmenu.png"></i>
+					<i class="setting"><img style="filter:invert(100%); width:20px; height:20px;position:relative; left:700px; top:4px;" src="statics/images/settings.png"><p style="position:relative; left:725px; top:-50px;">Settings</p><img onclick="openmenu()" id="openmenu" style="filter:invert(100%); width:10px; height:10px;position:relative; left:1105px; top:-98px;" class="openmenu" src="statics/images/openmenu.png"></i>
 				</div>
 			</div>
     </div>
+
+		<div id="menu" style="display:none;position:fixed;top:6%;left:74%;background-color:white;height:120px;width:200px;z-index:5;">
+			<table style="width:100%;">
+				<tr>
+					<td style="background-color:#ddd;"> Language </td>
+				</tr>
+				<tr>
+					<td class="selected"> &nbsp English </td>
+				</tr>
+				<tr>
+					<td class="selected"> &nbsp Chinese </td>
+				</tr>
+				<tr>
+					<td style="background-color:#ddd;"> Login as </td>
+				</tr>
+				<tr>
+					<td class="selected-user"> &nbsp <i class="icon iconfont icon-geren"></i> IT Admin </td>
+				</tr>
+			</table>
+		</div>
+
+
+
     <img src="statics/images/v2ltctmslogin.jpg" style="position:relative;width:600px;left:100px;opacity:.6;">
 		<!-- <a href="https://www.freepik.com/free-photos-vectors/people">People vector created by Rawpixel.com - Freepik.com</a> -->
       <div style="position:relative; width:350px; height:350px;;left:800px;top:-400px; background-color:#78c869ff;    border-radius: 25px;">
