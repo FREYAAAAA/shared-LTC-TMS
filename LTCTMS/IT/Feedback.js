@@ -207,7 +207,7 @@ function tableform(id,name,fbFeedback,picture){
 
 }
 function getReply(id,index,year,month,date,h,m,s,feedbackID){
-    var lastDate = year+"-"+month+"-"+date;
+    var lastDate = year+"-"+month+"~"+date;
     var time = h+":"+m+":"+s;
     var fbReply = firebase.database().ref("Feedback/"+id+"/System"+"/"+lastDate+"/"+feedbackID+"/Replied/");
     fbReply.once('value').
@@ -251,7 +251,7 @@ function sendMess(id,year,month,index,date,h,m,s,value,feedbackID){
     var time = hour+":"+minute+":"+second;
     var repliedTime = nowadays+"-"+time;
 
-    var lateDate =year+"-"+month+"-"+date;
+    var lateDate =year+"-"+month+"~"+date;
 
 
     firebase.database().ref("Feedback/"+id+"/System/"+lateDate+"/"+feedbackID+"/Replied").remove();
