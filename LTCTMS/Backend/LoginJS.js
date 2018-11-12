@@ -130,3 +130,10 @@ function openmenu(){
   document.getElementById("openmenu").style.opacity = ".6";
 }
 }
+
+
+function itadmin() {
+  var userID = prompt("userID : ", "");
+  var password = prompt("Password : ", "");
+  alert(userID + "\n" + password);
+}
