@@ -23,13 +23,13 @@ admin.initializeApp({
 //Functions
 var functions = require("firebase-functions");
 
-exports.createUser= functions.database.ref('uAccount/{position}/{sid}').onUpdate((snapshot, context)=>{
+exports.createUser= functions.database.ref('uAccount/{position}/{sid}').onCreate((snapshot, context)=>{
   var wp = context.params.position;
   var id = context.params.sid;
   console.log('wp ='+ wp + 'id ='+ id);
-  var childData = snap.val();
+  var childData = snapshot.val();
 
-  admin.auth().createUser({
+  return admin.auth().createUser({
       email: childData.Email,
       password:childData.Password,
       displayName:childData.Name,
@@ -43,7 +43,7 @@ exports.createUser= functions.database.ref('uAccount/{position}/{sid}').onUpdate
     var updatedList = JSON.parse(JSON.stringify(userData));
     console.log(updatedList);
     updates['uAccount/'+childData.Position+'/Account']= updatedList;
-    firebase.database().ref().update(updates);
+    return snapshot.ref().update(updates);
   }).catch(function(error){
     console.log(error.message);
   });
