@@ -10,9 +10,9 @@
 		<link rel="stylesheet" type="text/css" href="statics/css/style.css" />
 		<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
 		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-		<script type = 'text/javascript' src = "/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/Config.js"></script>
-		<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/IT/Feedback.js'></script>
-		<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/chat.js'></script>
+		<script type = 'text/javascript' src = "/Users/Gama/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/Config.js"></script>
+		<script type = 'text/javascript' src = '/Users/Gama/Documents/GitHub/shared-LTC-TMS/LTCTMS/IT/UserManagementJS.js'></script>
+		<script type = 'text/javascript' src = '/Users/Gama/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/chat.js'></script>
 	</head>
 	<style>
 	#expand{
@@ -190,6 +190,34 @@
 	table td {
 	  text-shadow: 2px 2px #FFFFFF;
 	}
+	#createNewAccountpop{
+	  width:100%;
+	  height:100%;
+	  opacity:.95;
+	  right:0;
+	  top:0;
+	  padding:40px, 60px;
+	  display:none;
+	  position:fixed;
+	  background-color:#313131;
+	  overflow:auto
+	}
+
+	.editformedit {
+	  max-width:900px;
+	  min-width:250px;
+	  padding:10px 50px;
+	  border:2px solid black;
+	  border-radius:10px;
+	  font-family:raleway;
+	  background-color:#fff;
+	  position:absolute;
+	  top:40px;
+	  left:25%;
+	  width:800px;
+	  height:790px;
+	}
+
 <!--usermessage-->
         *{
             margin: 0px;
@@ -321,7 +349,7 @@
 		<div class="header">
 			<div class="bar">
 				<div class="w1200">
-					<span class="l"><img style="position:relative; top:3px; width:45px;height:45px;" src="//Backend/statics/images/v2ltctmslogo.png"><font style="text-align:center;position:relative; top:-10px;">LTCTMS</font></span>
+					<span class="l"><img src="image\Browser- logo final.png"><font>LTCTMS</font></span>
 					<span class="r"><a href="#"><i class="icon iconfont icon-dianyuan"></i>Logout</a></span>
 				</div>
 			</div>
@@ -369,8 +397,32 @@
 					<span id="User Management" onclick="showpf()" style="opacity:.8">User Management</span>
 				</div>
 				<div class="container">
+					<input type='button' id="createAccount" onclick="document.getElementById('createNewAccountpop').style.display = 'block';" value = "Create New Account"/>
 				</div>
-
+				<div id="createNewAccountpop" style="display:none;">
+				  <div class="editformedit">
+						<form onsubmit="newAccount(); return false">
+				    <center><h2>New Account</h2></center>
+						Name:<br>
+						<input id='Name' type='text' placeholder='Name...' /><br>
+						Staff ID:<br>
+						<input id='SID' type='text' placeholder='ID...' /><br>
+						Email:<br>
+						<input id='Email' type='text' placeholder='Email....' /><br>
+						Default Password:<br>
+						<input id='password' type='password' placeholder='Give a Password...' /><br>
+						Work Position:<br>
+						<input id='position' type='select' list='pList'/>
+						<datalist id='pList'>
+							<option value="CNO"/>
+							<option value="Director"/>
+						</datalist><br>
+						<input type="Submit" value="Submit" />
+						<input type='button' value='Cancel' onclick="document.getElementById('createNewAccountpop').style.display='none';"/>
+					</form>
+				  </div>
+				</div>
+				</div>
 		<div id="expand" onclick="expand()" >Chat</div>
 		  <div id="im">
 			 <div id="cover" onclick="cancel()">
@@ -385,7 +437,7 @@
 		    </div>
 		    <div id="show"></div>
 		  </div>
-
+</div>
 	</body>
 
 </html>
