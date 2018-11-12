@@ -213,9 +213,14 @@ function getReply(id,index,year,month,date,h,m,s,feedbackID){
     fbReply.once('value').
     then(function(snapshot){
         snapshot.forEach(function(snapshot1){
-            document.getElementById("replyComment["+index+"]").innerHTML = snapshot1.val();
-            console.log(snapshot1.key);
-            document.getElementById("replyTime["+index+"]").innerHTML = snapshot1.key;
+          var com = snapshot1.val();
+          com = com.replace (/[~]/g," ")
+          document.getElementById("replyComment["+index+"]").innerHTML = com;
+          console.log(snapshot1.key);
+
+          var tim = snapshot1.key;
+          tim = tim.replace (/[?]/g,"-")
+          document.getElementById("replyTime["+index+"]").innerHTML = tim;
         })
     })
 }

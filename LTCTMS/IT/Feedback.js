@@ -55,7 +55,7 @@ function match_id(id,fbFeedback){
 var index = 0;
 function tableform(id,name,fbFeedback,picture){
     fbFeedback.child(id+"/System/").once('value')
-    .then(function(childSnapshot2){//system
+    .then(function(childSnapshot2){//System
         childSnapshot2.forEach(function(childSnapshot3 ){//0
             childSnapshot3.forEach(function(childSnapshot4){//Received
               childSnapshot4.forEach(function(childSnapshot5){
@@ -207,15 +207,20 @@ function tableform(id,name,fbFeedback,picture){
 
 }
 function getReply(id,index,year,month,date,h,m,s,feedbackID){
-    var lastDate = year+"-"+month+"~"+date;
+    var lastDate = year+"-"+month+"-"+date;
     var time = h+":"+m+":"+s;
     var fbReply = firebase.database().ref("Feedback/"+id+"/System"+"/"+lastDate+"/"+feedbackID+"/Replied/");
     fbReply.once('value').
     then(function(snapshot){
         snapshot.forEach(function(snapshot1){
-            document.getElementById("replyComment["+index+"]").innerHTML = snapshot1.val();
+            var com = snapshot1.val();
+            com = com.replace (/[~]/g," ")
+            document.getElementById("replyComment["+index+"]").innerHTML = com;
             console.log(snapshot1.key);
-            document.getElementById("replyTime["+index+"]").innerHTML = snapshot1.key;
+
+            var tim = snapshot1.key;
+            tim = tim.replace (/[?]/g,"-")
+            document.getElementById("replyTime["+index+"]").innerHTML = tim;
         })
     })
 }
@@ -249,27 +254,25 @@ function sendMess(id,year,month,index,date,h,m,s,value,feedbackID){
 
     var nowadays = nowYear +"-"+ mm+"-"+ dd;
     var time = hour+":"+minute+":"+second;
-    var repliedTime = nowadays+"-"+time;
-
-    var lateDate =year+"-"+month+"~"+date;
+    var repliedTime = nowadays+"?"+time;
+    var repliedTime1 = nowadays+"-"+time;
+    var lateDate =year+"-"+month+"-"+date;
 
 
     firebase.database().ref("Feedback/"+id+"/System/"+lateDate+"/"+feedbackID+"/Replied").remove();
 
 
-
-
-
-
-    document.getElementById("replyTime["+index+"]").innerHTML = repliedTime;
+    document.getElementById("replyTime["+index+"]").innerHTML = repliedTime1;
 
 
 
     var idre = "000001"; // Replyer's  ID
     var comment = document.getElementById("message["+index+"]").value;
     console.log(comment);
+    var comment1 = comment.replace(/[ ]/g, "~");
 
-    firebase.database().ref("Feedback/"+id+"/System"+"/"+lateDate+"/"+feedbackID+"/Replied/"+repliedTime).set(comment);
+    firebase.database().ref("Feedback/"+id+"/System"+"/"+lateDate+"/"+feedbackID+"/Replied/"+repliedTime).set(comment1);
+
     document.getElementById("replyComment["+index+"]").innerHTML = comment;
     replyToggle(index);
 

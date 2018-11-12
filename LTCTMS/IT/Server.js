@@ -20,7 +20,7 @@ admin.initializeApp({
 
 var functions = require("firebase-functions");
 
-exports.createUser= functions.database.ref('uAccount/{position}/{sid}').onUpdate((snapshot, context)=>{
+exports.createUser= functions.database.ref('uAccount/{position}/{sid}').onCreate((snapshot, context)=>{
   var wp = context.params.position;
   var id = context.params.sid;
   console.log('wp ='+ wp + 'id ='+ id);
