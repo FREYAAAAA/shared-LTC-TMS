@@ -65,10 +65,9 @@ exports.deleteUser=functions.database.ref('uAccount/{sid}')
 
 //Update Back end
 exports.updateUser=functions.database.ref('uAccount/{sid}')
-  .onUpdate((snap,context)=>{
-    var id = context.params.sid;
-    console.log('id ='+ id);
-    var childData = snap.val();
+  .onUpdate((change)=>{
+    
+    var childData = change.after.val();
     return admin.auth().updateUser(id,{
       email:childData.Email,
       displayName: childData.Name,
