@@ -203,6 +203,18 @@
 	  overflow:auto
 	}
 
+	#editAccountPop{
+		width:100%;
+		height:100%;
+		opacity:.95;
+		right:0;
+		top:0;
+		padding:40px, 60px;
+		display:none;
+		position:fixed;
+		background-color:#313131;
+		overflow:auto
+	}
 	.editformedit {
 	  max-width:900px;
 	  min-width:250px;
@@ -410,6 +422,8 @@
 							</tr>
 						</thread>
 						<tbody id='UserListBody'>
+							<tr>
+							</tr>
 						</tbody>
 					</table>
 				</div>
@@ -436,6 +450,25 @@
 						<input type='button' value='Cancel' onclick="document.getElementById('createNewAccountpop').style.display='none';"/>
 					</form>
 				  </div>
+				</div>
+
+				<div id ="editAccountPop" style = "display: none;">
+					<div class="editformedit">
+						<form onsubmit='editedUserAccount(); return false;'>
+							<center><h2>Edit Account</h2></center>
+							Name:<br>
+							<input id='NameE' type='text' /><br>
+							Staff ID:<br>
+							<input id='SIDE' type='text' /><br>
+							Email:<br>
+							<input id='EmailE' type='text' /><br>
+							Work Position:<br>
+							<input id='positionE' type='text' /><br>
+							<input type="Submit" value="Submit" />
+							<input type='button' value='Cancel' onclick="document.getElementById('editAccountPop').style.display='none';"/>
+						</form>
+
+					</div>
 				</div>
 				</div>
 		<div id="expand" onclick="expand()" >Chat</div>

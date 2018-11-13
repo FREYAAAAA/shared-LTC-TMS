@@ -54,7 +54,7 @@ exports.deleteUser=functions.database.ref('uAccount/{sid}')
   .onDelete((deleteshot,context)=>{
     var id = context.params.sid;
     console.log('id ='+ id);
-    var childData = snapshot.val();
+    var childData = deletetion.val();
     return admin.auth().deleteUser(id)
       .then(function(){
         console.log('Successfully deleted the target User');
@@ -64,7 +64,25 @@ exports.deleteUser=functions.database.ref('uAccount/{sid}')
   });
 
 //Update Back end
-/*exports.updateUser=functions.database.ref('uAccount/{sid}')
-  .onUpdate();
-
-*/
+exports.updateUser=functions.database.ref('uAccount/{sid}')
+  .onUpdate((editshot,context)=>{
+    var id = context.params.sid;
+    console.log('id ='+ id);
+    var childData = editshot.val();
+    return admin.auth().updateUser(id,{
+      email:childData.Email,
+      displayName: childData.Name,
+      uid:childData.sid
+    }).then(function(userRecord){
+      console.log("user", userRecord.toJSON());
+      var updates={};
+      var userData=userRecord.toJSON();
+      console.log(userData);
+      var updatedList = JSON.parse(JSON.stringify(userData));
+      console.log(updatedList);
+      updates['AuthenticationData']= updatedList;
+      return snapshot.ref.update(updates);
+    }).catch(function(error){
+      console.log(error.message);
+    });
+  });

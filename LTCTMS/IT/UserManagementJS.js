@@ -23,7 +23,7 @@ function newAccount(){
 
 //Delete account
 function deleteUserAccount(i){
-  var sid = document.getElementById('cellId['+i+']').innerText
+  var sid = document.getElementById('cellId['+i+']').innerHTML;
   var fbACCD = firebase.database().ref('uAccount').child(sid);
   var confirmation = confirm("Undoing is not available! Please make sure you would not need this account anymore!");
   if(confirmation == true){
@@ -34,29 +34,61 @@ function deleteUserAccount(i){
 
 //Edit account
 function editUserAccount(i){
-  var sid = document.getElementById('cellId['+i+']').innerText;
-  var fbACCE = var fbACCD = firebase.database().ref('uAccount').child(sid);
-  
-}
+  var sid = document.getElementById('cellId['+i+']').innerHTML;
+  var fbACCE= firebase.database().ref('uAccount').child(sid);
+  fbACCE.on('value', function(snapshot){
+    document.getElementById('editAccountPop').style.display = 'block';
+    var childData = snapshot.val();
+    var name = childData.Name;
+    var email = childData.Email;
+    var position = childData.Position;
 
+    document.getElementById('SIDE').value = sid;
+    document.getElementById('NameE').value = name;
+    document.getElementById('EmailE').value = email;
+    document.getElementById('positionE').value = position;
+  });
+
+
+}
+//Submit edited data
+function editedUserAccount(){
+  var sid = document.getElementById('SIDE').value;
+  var name= document.getElementById('NameE').value;
+  var email= document.getElementById('EmailE').value;
+  var position= document.getElementById('positionE').value;
+  var data={
+    Name : name,
+    Email: email,
+    Position : position,
+    StaffID : sid
+  }
+  updates={}
+  updates['uAccount/'+sid]=data;
+  firebase.database().ref().update(updates);
+}
 //Display UM table - UID, NAME, STATUS, EDIT button, DELETE button
 var rowIndex=0;
 var fbACC = firebase.database().ref('uAccount');
-tableNewRow(fbACC)
+
+window.onload = function(){
+  tableNewRow(fbACC);
+}
 
 function tableNewRow(fb){
-  var table = document.getElementById('UserListBody');
-  fb.once('value', function(snapshot){
+  var tablelist =document.getElementById('UserListBody');
+  console.log(tablelist);
+  fbACC.once('value', function(snapshot){
     snapshot.forEach(function(childSnapshot){
         var keyID = childSnapshot.key;
-        childSnapshot.forEach(function(childSnapshot2){
+        console.log('=====');
           var sid = keyID;
           var email = childSnapshot.child('Email').val();
           var name = childSnapshot.child('Name').val();
           var position = childSnapshot.child('Position').val();
-          var signIn = childSnapshot2.child('AuthenticationData/metadata/lastSignInTime').val();
+          var signIn = childSnapshot.child('AuthenticationData/metadata/lastSignInTime').val();
 
-          var row = table.insertRow(rowIndex);
+          var row = tablelist.insertRow(rowIndex);
           row.setAttribute("class","table-list-row");
           var cellSID = row.insertCell(0);
           var cellEmail = row.insertCell(1);
@@ -78,12 +110,13 @@ function tableNewRow(fb){
           cellDeleteBut.appendChild(buttonD);
 
           cellSID.setAttribute('id','cellId['+rowIndex+']');
+          buttonE.innerHTML ='Edit';
+          buttonD.innerHTML ='Delete';
           buttonE.setAttribute('onclick','editUserAccount('+rowIndex+')');
           buttonD.setAttribute('onclick','deleteUserAccount('+rowIndex+')');
 
           rowIndex = rowIndex + 1;
 
-        });
     });
 
   });
