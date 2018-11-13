@@ -23,16 +23,15 @@ admin.initializeApp({
 //Functions
 var functions = require("firebase-functions");
 
-exports.createUser= functions.database.ref('uAccount/{position}/{sid}').onCreate((snapshot, context)=>{
-  var wp = context.params.position;
+exports.createUser= functions.database.ref('uAccount/{sid}')
+  .onCreate((snapshot, context)=>{
   var id = context.params.sid;
-  console.log('wp ='+ wp + 'id ='+ id);
+  console.log( 'id ='+ id);
   var childData = snapshot.val();
 
   return admin.auth().createUser({
       uid : id,
       email: childData.Email,
-      password:childData.Password,
       displayName:childData.Name,
       disabled:false,
       emailVerified: true
@@ -43,13 +42,29 @@ exports.createUser= functions.database.ref('uAccount/{position}/{sid}').onCreate
     console.log(userData);
     var updatedList = JSON.parse(JSON.stringify(userData));
     console.log(updatedList);
-    updates[childData.staffID]= updatedList;
-    return snapshot.ref.parent.parent.update(updates);
+    updates['AuthenticationData']= updatedList;
+    return snapshot.ref.update(updates);
   }).catch(function(error){
     console.log(error.message);
   });
 });
 
+//Deletion Back end
+exports.deleteUser=functions.database.ref('uAccount/{sid}')
+  .onDelete((deleteshot,context)=>{
+    var id = context.params.sid;
+    console.log('id ='+ id);
+    var childData = snapshot.val();
+    return admin.auth().deleteUser(id)
+      .then(function(){
+        console.log('Successfully deleted the target User');
+      }).catch(function(error){
+        console.log(error.message);
+      });
+  });
 
+//Update Back end
+/*exports.updateUser=functions.database.ref('uAccount/{sid}')
+  .onUpdate();
 
-/**/
+*/
