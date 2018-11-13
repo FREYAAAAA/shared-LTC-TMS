@@ -298,6 +298,7 @@ function portfolio_Table(fb){
           childSnapshot.forEach(function(childSnapshot1){
               if(childSnapshot1.key == "Portfolio"){
                   var row = briefPortfolio.insertRow(rowIndexBP);
+                  console.log(briefPortfolio);
                   row.setAttribute("class","table-list-row");
                   var cellId = row.insertCell(0)
                   var cellName = row.insertCell(1);

@@ -133,7 +133,13 @@ function openmenu(){
 
 
 function itadmin() {
-  var userID = prompt("userID : ", "");
-  var password = prompt("Password : ", "");
-  alert(userID + "\n" + password);
+  document.getElementById("itadmin").style.display = "block";
+}
+
+function closeitadmin(){
+  document.getElementById("itadmin").style.display = "none";
+}
+
+function adminlogin(){
+  
 }

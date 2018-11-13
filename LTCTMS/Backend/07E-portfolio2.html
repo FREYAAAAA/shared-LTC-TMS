@@ -207,7 +207,7 @@
 	}
 	.portfolio_keyword_search {
 	  position:relative;
-		top:15px;
+		top:25px;
 		left:20px;
 	}
 	.portfolio_search_position {
@@ -422,6 +422,9 @@
 .logoutselected:hover{
 	background-color:#E91414;
 }
+.xfilter:hover{
+	color:red;
+}
 	</style>
 	<body>
 		<div class="header">
@@ -522,7 +525,7 @@
 
 
 	<div class="library_form" id="form">
-		<p style="position:relative; left:175px" onclick="closefilter()">X</p>
+		<button style="position:relative; left:175px; background-color:white; border-style:none;" onclick="closefilter()" class="xfilter">X</button>
 	<input type="text" name="search" placeholder="Search" id="searchInput"  class="portfolio_keyword_search">
 <div class="portfolio_search_position">
   <div class="portfolio_search_background">
@@ -995,12 +998,12 @@
 			 <div id="cover" onclick="cancel()">
 
 			  </div>
-		    <div id="input">
+				<div id="input">
 		      <div>
-		        <span>姓名：</span><input id="name"><br/>
-		        <span>內容：</span><input id="content">
+		        <span>Name：</span> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id="name"><br/>
+		        <span>Content：</span> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id="content">
 		      </div>
-		      <button id="btn">送出訊息</button>
+		      <button id="btn">Send</button>
 		    </div>
 		    <div id="show"></div>
 		  </div>
@@ -1008,5 +1011,6 @@
 
 			<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/Config.js'></script>
 			<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/PortfolioJS.js'></script>
+			<script type = 'text/javascript' src = 'chat.js'></script>
 	</body>
 </html>

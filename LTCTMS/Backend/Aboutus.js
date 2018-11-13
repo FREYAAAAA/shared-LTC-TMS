@@ -241,3 +241,7 @@ function openmenu(){
   document.getElementById("openmenu").style.opacity = ".6";
 }
 }
+
+function profile(){
+  document.getElementById("profile").style.display = "block";
+}
