@@ -182,6 +182,25 @@
 	.logoutselected:hover{
 		background-color:#E91414;
 	}
+	.openprofile:hover{
+		animation: bounce 1s;
+	}
+	@keyframes bounce {
+	0%, 20%, 60%, 100% {
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+	}
+
+	40% {
+		-webkit-transform: translateY(-5px);
+		transform: translateY(-5px);
+	}
+
+	80% {
+		-webkit-transform: translateY(-3px);
+		transform: translateY(-3px);
+	}
+}
 	</style>
 	<body>
 		<div class="header">
@@ -197,7 +216,7 @@
 						<img src="statics/images/user_face.jpg"/>
 					</div>
 					<div class="user-account">
-						<p class="tip">Good Afternoon &nbsp <img onclick="profile" src="statics/images/pencil.png"></p>
+						<p class="tip">Good Afternoon &nbsp <img class="openprofile" onclick="profile()" src="statics/images/pencil.png"></p>
 						<p class="account">
 							<span>Name : Tom</span>
 							<span>UserID : tomandjerry</span>
@@ -343,11 +362,13 @@
 		</div>
 
 
-<div id="profile" style="position:absolute; width:800px; height:350px; left:375px; top:40px;background-color:white; z-index:3;border-style:3px solid black;">
+<div id="profile" style="display:none;position:absolute; width:800px; height:350px; left:375px; top:40px;background-color:#EFFACA;border-style: solid;
+    border-width: 2px; z-index:3;">
 <div style="background-color:#E4EACD;position:relative;height:75px;">
 	<h2 style="position:relative; left:210px;top:20px;">Gama</h2>
 	<h3 style="position:relative; left:300px;top:-10px;color:gray;">	‒ Profile</h3>
-	<button style="position:relative; left:700px;top:-35px;width:80px;height:35px;background-color:#3B94FA;color:white;border-radius:10px;">Edit</button>
+	<button onclick="editprofile()" style="position:relative; left:620px;top:-35px;width:80px;height:35px;background-color:#3B94FA;color:white;border-radius:10px;">Edit</button>
+	<button onclick="closeprofile()" style="position:relative; left:620px;top:-35px;width:80px;height:35px;background-color:white;color:black;border-radius:10px;">Close</button>
 </div>
 <img style="position:relative; left:20px; top:-40px; width:150px; height:150px;"src="statics/images/user_face.jpg">
 <div style="position:relative; left:220px;top:-110px;">
@@ -360,6 +381,29 @@
 </div>
 </div>
 
+
+
+<div id="editprofile" style="display:none;position:absolute; width:800px; height:350px; left:375px; top:40px;background-color:#EFFACA; z-index:3;">
+<div style="background-color:#E4EACD;position:relative;height:75px;">
+	<h2 style="position:relative; left:210px;top:20px;">Gama</h2>
+	<h3 style="position:relative; left:300px;top:-10px;color:gray;">	‒ Profile</h3>
+	<button onclick="submitprofile()" style="position:relative; left:620px;top:-35px;width:80px;height:35px;background-color:#3B94FA;color:white;border-radius:10px;">OK</button>
+	<button onclick="closeprofile()" style="position:relative; left:620px;top:-35px;width:80px;height:35px;background-color:white;color:black;border-radius:10px;">Cancel</button>
+</div>
+<img style="position:relative; left:20px; top:-40px; width:150px; height:150px;"src="statics/images/user_face.jpg">
+<div style="position:relative; left:220px;top:-110px;">
+	<p>Position: <input type="text"></p><br>
+	<p>User ID: <input type="text"></p><br>
+	<p>Display Name: <input type="text"></p><br>
+	<p>Email Address: <input type="text"></p><br>
+	<p>Phone No: <input type="text"></p>
+	<p>
+</div>
+<div style="position:absolute;top:0px;left:0px;width:3px;height:350px;background-color:black;"></div>
+<div style="position:absolute;top:0px;left:800px;width:3px;height:350px;background-color:black;"></div>
+<div style="position:absolute;top:0px;left:0px;width:800px;height:3px;background-color:black;"></div>
+<div style="position:absolute;top:350px;left:0px;width:800px;height:3px;background-color:black;"></div>
+</div>
 
 
 		</div>
