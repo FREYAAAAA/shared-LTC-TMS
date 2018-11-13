@@ -10,9 +10,9 @@
 		<link rel="stylesheet" type="text/css" href="statics/css/style.css" />
 		<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
 		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-		<script type = 'text/javascript' src = "/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/Config.js"></script>
-		<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/IT/UserManagementJS.js'></script>
-		<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/chat.js'></script>
+		<script type = 'text/javascript' src = "/Users/Gama/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/Config.js"></script>
+		<script type = 'text/javascript' src = '/Users/Gama/Documents/GitHub/shared-LTC-TMS/LTCTMS/IT/UserManagementJS.js'></script>
+		<script type = 'text/javascript' src = '/Users/Gama/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/chat.js'></script>
 	</head>
 	<style>
 	#expand{
@@ -397,8 +397,23 @@
 					<span id="User Management" onclick="showpf()" style="opacity:.8">User Management</span>
 				</div>
 				<div class="container">
-					<input type='button' id="createAccount" onclick="document.getElementById('createNewAccountpop').style.display = 'block';" value = "Create New Account"/>
+
+					<table id="UserList">
+						<thread>
+							<tr>
+								<th style="width:12%">SID</th>
+								<th style="width:12%">EMAIL</th>
+								<th style="width:12%">NAME</th>
+								<th style="width:12%">ROLE</th>
+								<th style="width:12%">SIGN-IN</th>
+								<th colspan="2" style="width:22%"><input type='button' id="createAccount" onclick="document.getElementById('createNewAccountpop').style.display = 'block';" value = "Create New Account"/></th>
+							</tr>
+						</thread>
+						<tbody id='UserListBody'>
+						</tbody>
+					</table>
 				</div>
+					<!-- Create PopUp Use -->
 				<div id="createNewAccountpop" style="display:none;">
 				  <div class="editformedit">
 						<form onsubmit="newAccount(); return false">
@@ -428,6 +443,7 @@
 			 <div id="cover" onclick="cancel()">
 
 			  </div>
+
 		    <div id="input">
 		      <div>
 		        <span>Name：</span><input id="name"><br/>
@@ -437,7 +453,7 @@
 		    </div>
 		    <div id="show"></div>
 		  </div>
-</div>
+
 	</body>
 
 </html>
