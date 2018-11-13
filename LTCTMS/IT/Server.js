@@ -65,8 +65,10 @@ exports.deleteUser=functions.database.ref('uAccount/{sid}')
 
 //Update Back end
 exports.updateUser=functions.database.ref('uAccount/{sid}')
-  .onUpdate((change)=>{
-    
+  .onUpdate((change,context)=>{
+    var id = context.params.sid;
+    console.log('id ='+ id);
+
     var childData = change.after.val();
     return admin.auth().updateUser(id,{
       email:childData.Email,
@@ -80,7 +82,7 @@ exports.updateUser=functions.database.ref('uAccount/{sid}')
       var updatedList = JSON.parse(JSON.stringify(userData));
       console.log(updatedList);
       updates['AuthenticationData']= updatedList;
-      return snapshot.ref.update(updates);
+      return change.after.ref.update(updates);
     }).catch(function(error){
       console.log(error.message);
     });

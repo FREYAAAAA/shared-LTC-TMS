@@ -42,11 +42,14 @@ function editUserAccount(i){
     var name = childData.Name;
     var email = childData.Email;
     var position = childData.Position;
+    var pass = childData.password;
 
     document.getElementById('SIDE').value = sid;
     document.getElementById('NameE').value = name;
     document.getElementById('EmailE').value = email;
     document.getElementById('positionE').value = position;
+    document.getElementById('passE').value = pass;
+
   });
 
 
@@ -57,16 +60,19 @@ function editedUserAccount(){
   var name= document.getElementById('NameE').value;
   var email= document.getElementById('EmailE').value;
   var position= document.getElementById('positionE').value;
+  var pass= document.getElementById('passE').value;
   var data={
     Name : name,
     Email: email,
     Position : position,
-    StaffID : sid
+    StaffID : sid,
+    Password:pass
   }
   updates={}
   updates['uAccount/'+sid]=data;
   firebase.database().ref().update(updates);
 }
+
 //Display UM table - UID, NAME, STATUS, EDIT button, DELETE button
 var rowIndex=0;
 var fbACC = firebase.database().ref('uAccount');
