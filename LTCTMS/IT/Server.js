@@ -74,7 +74,9 @@ exports.updateUser=functions.database.ref('uAccount/{sid}')
       email:childData.Email,
       displayName: childData.Name,
       uid:childData.StaffID,
-      password:childData.Password
+      password:childData.Password,
+      disabled:false,
+      emailVerified: true
     }).then(function(userRecord){
       console.log("user", userRecord.toJSON());
       var updates={};
