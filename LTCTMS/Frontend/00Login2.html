@@ -10,8 +10,8 @@
 		<link rel="stylesheet" type="text/css" href="statics/css/style.css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,500" rel="stylesheet">
     <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
-    <script type = 'text/javascript' src = "\Users\Gama\Documents\GitHub\shared-LTC-TMS\LTCTMS\Frontend\Config.js"></script>
-    <script type="text/javascript" src="\Users\Gama\Documents\GitHub\shared-LTC-TMS\LTCTMS\Frontend\LoginJS.js"></script>
+    <script type = 'text/javascript' src = "\Users\kong\Documents\GitHub\shared-LTC-TMS\LTCTMS\Frontend\Config.js"></script>
+    <script type="text/javascript" src="\Users\kong\Documents\GitHub\shared-LTC-TMS\LTCTMS\Frontend\LoginJS.js"></script>
 	</head>
 	<style>
 
@@ -188,10 +188,10 @@
   }
   .create_popup_forgetpass{
     position:fixed;
-    width:30%;
-    height:50%;
-    left:35%;
-    top:20%;
+    width:420px;
+    height:375px;
+    left:550px;
+    top:100px;
     background-color:white;
     z-index:3;
   }
@@ -223,7 +223,7 @@
 	background-color:#E91414;
 }
 	</style>
-	<body style="overflow:hidden;">
+	<body style="height:100px;">
 		<div class="header">
 			<div class="bar">
 				<div class="w1200">
@@ -267,7 +267,7 @@
 		<!-- <a href="https://www.freepik.com/free-photos-vectors/people">People vector created by Rawpixel.com - Freepik.com</a> -->
       <div style="position:relative; width:350px; height:350px;;left:800px;top:-400px; background-color:#78c869ff;    border-radius: 25px;">
            <br> <h2 style="font-size:26px;"><center> Login </center></h2>
-          <font style="width:100%;">________________________________________________</font>
+          <div style="background-color:black; width:100%; height:0.5%;position:relative;top:20px;"></div>
           <center>
             <form onsubmit="LoginUser();return false">
              <label for="Email"><b style="position:relative; top:30px; left:0px;font-size:20px;">Email</b></label>
@@ -286,55 +286,62 @@
 
       <div id="forgot">
       <div class = "create_popup_forgetpass">
-      <h3 style="position:relative;left:30%;top:5%;">Forgot Password?</h3>
+      <h3 style="position:relative;left:130px;top:15px;">Forgot Password?</h3>
       <button onclick="document.getElementById('forgot').style.display = 'none'" class="closeforgotpassword">x</button>
       <br>
-      <p style="position:relative;left:30%;top:5%;">Please Enter Your Email:</p><br>
-      <input type="text" id= "forgetP" placeholder="abc123@gmail.com" style="position:relative;left:11%;top:5%;width:350px;"/>
+      <p style="position:relative;left:122px;top:15px;">Please Enter Your Email:</p><br>
+      <input type="text" id= "forgetP" placeholder="abc123@gmail.com" style="position:relative;left:35px;top:15px;width:345px;"/>
       <br><br>
-      <p style="position:relative;left:28.5%;top:5%;">Please Enter Your Position:</p><br>
-      <input type="text" id= "fposition" placeholder="Role/Postion" style="position:relative;left:34%;top:5%;width:150px;"/>
+      <p style="position:relative;left:115px;top:15px;">Please Enter Your Position:</p><br>
+      <input type="text" id= "fposition" placeholder="Role/Postion" style="position:relative;left:140px;top:15px;width:150px;"/>
       <br><br>
-      <p style="position:relative;left:29%;top:5%;">Please Enter Your Staff ID: </p><br>
-      <input type="text" id= "fid" placeholder="000001" style="position:relative;left:33.5%;top:5%;width:150px;"/>
+      <p style="position:relative;left:120px;top:15px;">Please Enter Your Staff ID: </p><br>
+      <input type="text" id= "fid" placeholder="000001" style="position:relative;left:140px;top:15px;width:150px;"/>
       <br><br>
-      <input type="button" id= "fsubmit" value="Enter" onclick="forgetPass()" style="position:relative;left:45%;top:5%;width:50px;"/>
+      <input type="button" id= "fsubmit" value="Enter" onclick="forgetPass()" style="position:relative;left:185px;top:15px;width:50px;"/>
       </div>
       </div>
 
-      <div>
+
         <font style="position:relative;top:-320px;left:50px;font-size:18px;">English Android
         </font>
-        <font style="position:relative;top:-320px;left:50px;font-size:12px;" class="link"><br><br> <a href="http://google.com"> https://drive.google.com/<br>open?id=1UPPpo7K8ikw-<br>E_ujKuMvXCZg5418TMXX
-        </font>
-      </div>
-
-      <div>
-        <font style="position:relative;top:-430px;left:420px;font-size:18px;">English IOS
-        </font>
-        <font style="position:relative;top:-430px;left:420px;font-size:12px;" class="link"> <br><br> <a href="http://google.com"> https://drive.google.com/<br>open?id=1UPPpo7K8ikw-<br>E_ujKuMvXCZg5418TMXX
-        </font>
-      </div>
+				<div style="width:200px;">
+        <font style="position:relative;top:-320px;left:50px;font-size:12px;" class="link"><br><br><a href="https://drive.google.com/open?id=1UPPpo7K8ikw-E_ujKuMvXCZg5418TMXX">https://drive.google.com/open?id=1UPPpo7K8ikw-E_ujKuMvXCZg5418TMXX</a>
+				</div>
+				</font>
 
 
-      <div>
-        <font style="position:relative;top:-540px;left:790px;font-size:18px;">Chinese Android
+        <font style="position:relative;top:-450px;left:420px;font-size:18px;">English IOS
         </font>
-        <font style="position:relative;top:-540px;left:790px;font-size:12px;" class="link"><br><br> <a href="http://google.com"> https://drive.google.com/<br>open?id=1UPPpo7K8ikw-<br>E_ujKuMvXCZg5418TMXX
-        </font>
-      </div>
+				<div style="width:200px;">
+        <font style="position:relative;top:-450px;left:420px;font-size:12px;" class="link"> <br><br> <a href="https://drive.google.com/open?id=1UPPpo7K8ikw-E_ujKuMvXCZg5418TMXX">https://drive.google.com/open?id=1UPPpo7K8ikw-E_ujKuMvXCZg5418TMXX</a>
+				</div>
+				</font>
 
 
-      <div>
-        <font style="position:relative;top:-650px;left:1160px;font-size:18px;">Chinese IOS
-        </font>
-        <font style="position:relative;top:-650px;left:1160px;font-size:12px;" class="link"><br><br> <a href="http://google.com"> https://drive.google.com/<br>open?id=1UPPpo7K8ikw-<br>E_ujKuMvXCZg5418TMXX
-        </font>
-      </div>
 
 
-      <div>
-        <table style="position:fixed; left:0%;width:100%; top:90%;height:10%; border-style:hidden;border-top:2px solid black;font-size:18px;">
+        <font style="position:relative;top:-582px;left:790px;font-size:18px;">Chinese Android
+        </font>
+				<div style="width:200px;">
+        <font style="position:relative;top:-585px;left:790px;font-size:12px;" class="link"><br><br> <a href="https://drive.google.com/open?id=1UPPpo7K8ikw-E_ujKuMvXCZg5418TMXX">https://drive.google.com/open?id=1UPPpo7K8ikw-E_ujKuMvXCZg5418TMXX</a>
+				</div>
+				</font>
+
+
+
+
+        <font style="position:relative;top:-710px;left:1160px;font-size:18px;">Chinese IOS
+        </font>
+				<div style="width:200px;">
+        <font style="position:relative;top:-710px;left:1160px;font-size:12px;" class="link"><br><br> <a href="https://drive.google.com/open?id=1UPPpo7K8ikw-E_ujKuMvXCZg5418TMXX">https://drive.google.com/open?id=1UPPpo7K8ikw-E_ujKuMvXCZg5418TMXX</a>
+				</div>
+				</font>
+
+
+
+      <div style="background-color:#f1f1f1;z-index:2;">
+        <table style="background-color:#f1f1f1;z-index:2;position:fixed; left:0%;width:100%; top:90%;height:10%; border-style:hidden;border-top:2px solid black;font-size:18px;">
           <tr>
             <td colspan="8" style="border-style:hidden;text-align:center;font-size:16px;"> <b>Center Contact Information </b></td>
           </tr>
