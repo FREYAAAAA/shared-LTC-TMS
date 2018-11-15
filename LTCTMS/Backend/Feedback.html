@@ -10,13 +10,13 @@
 		<link rel="stylesheet" type="text/css" href="statics/css/style.css" />
 		<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
 		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-		<script type = 'text/javascript' src = "/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/Config.js"></script>
-		<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/HelpandSupport.js'></script>
-		<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/chat.js'></script>
+		<script type = 'text/javascript' src = "/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Frontend/Config.js"></script>
+		<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/Feedback.js'></script>
+		<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Frontend/chat.js'></script>
 	</head>
 	<style>
 	#expand{
-	position:fixed;
+	position:absolute;
 	padding-top: 6px;
 	 top:95%;
 	 left:75%;
@@ -32,7 +32,7 @@
 		background: #336699;
 	}
 	#im{
-	  position:fixed;
+	  position:absolute;
 	  top:50%;
 	  left:58%;
 	  margin:0 auto;
@@ -54,7 +54,7 @@
 	 margin:0;
 	 padding:15px;
 	 box-sizing:border-box;
-	 background:#339933;
+	 background:#6699CC;
 	 color:#fff;
 	}
 	#input{
@@ -67,7 +67,7 @@
 	  margin:0;
 	  padding:15px;
 	  box-sizing:border-box;
-	  background:#339933;
+	  background:#6699CC;
 	  color:#000;
 	}
 
@@ -323,7 +323,7 @@
 					background-color:#E91414;
 				}
 	</style>
-	<body style="height:900px;">
+	<body>
 		<div class="header">
 			<div class="bar">
 				<div class="w1200">
@@ -350,51 +350,22 @@
 			<div class="left">
 				<ul>
 					<li>
-						<a href="01Aboutus2.html">
-							<i class="icon iconfont icon-lingdang"></i>
-							About Us
-						</a>
-					</li>
-					<li>
-						<a href="02Schedule2.html">
-							<i class="icon iconfont icon-fangzidichan"></i>
-							Schedule
-						</a>
-					</li>
-					<li>
-						<a href="03Memo2.html">
-							<i class="icon iconfont icon-wenda"></i>
-							Memo
-						</a>
-					</li>
-					<li>
-						<a href="04Statusrecord2.html">
-							<i class="icon iconfont icon-icon--"></i>
-							Status Record
-						</a>
-					</li>
-					<li>
-						<a href="05Library2.html">
+						<a href="Policy.html" >
 							<i class="icon iconfont icon-pinglun"></i>
-							Library
+							Contact Us
+						</a>
+					</li>
+
+					<li>
+						<a href="Feedback.html" class="active">
+							<i class="icon iconfont icon-wenda"></i>
+							Feedback
 						</a>
 					</li>
 					<li>
-						<a href="06Taskeditor2.html">
+						<a href="UserManagement.html">
 							<i class="icon iconfont icon-geren"></i>
-							Task Editor
-						</a>
-					</li>
-					<li>
-						<a href="07E-portfolio2.html">
-							<i class="icon iconfont icon-jilu"></i>
-							E-Portfolio
-						</a>
-					</li>
-					<li>
-						<a href="08Helpandsupport2.html" class="active">
-							<i class="icon iconfont icon-geren"></i>
-							Help and Support
+							User Management
 						</a>
 					</li>
 				</ul>
@@ -436,51 +407,20 @@
 
 				</div>
 				<div id = "container1" class="container" style="display:none;overflow-y:scroll;"></div>
-			</div>
-			<p style="font-weight:600;">Download Tablet Version</p>
-			<img style="position:relative;left:25px;top:20px;z-index:9;width:150px; height:150px;" src="aasd.png">
-			<p style="position:relative; top:30px;color:blue;"><a href="http://www.google.com">http://www.google.com</a></p>
-				<div class="right" style="position:relative;left:18.5%;top:-150px;">
-					<div class="tap">
-						<span id="span" style="width:160px;">Development Team</span>
-					</div>
-					<div class="container" style="height:230px;">
-				<div>
-					<p style="position:relative;font-size:10px;left:70%;z-index:3;top:10px;">*Please Contact Development Team for Further Assitance</p>
-						<table id ="Contact_information" style="position:relative;width:100%;height:100px;top:10px;">
-								<tr>
-										<th colspan="4"> <h3 style="padding:10px 10px;"><i>Development Team Contact Information</i></h3></th>
-								</tr>
-								<tr>
-										<th style="padding:6px 6px;">Name </th>
-										<td style="padding:6px 6px;">Gama Febrian Ahimsa </td>
-										<th style="padding:6px 6px;">Email Address </th>
-										<td style="padding:6px 6px;">gama_febrian@yahoo.com </td>
-								</tr>
-								<tr>
-										<th style="padding:6px 6px;">Contact No </th>
-										<td style="padding:6px 6px;">123456789 </td>
-										<th style="padding:6px 6px;">Address </th>
-										<td style="padding:6px 6px;">15 Guishan Road, Taoyuan City, Taiwan </td>
-								</tr>
-						</table>
-				</div>
-				</div>
 
-				</div>
 
 		<div id="expand" onclick="expand()" >Chat</div>
 		  <div id="im">
 			 <div id="cover" onclick="cancel()">
 
 			  </div>
-				<div id="input">
-		      <div>
-		        <span>Name：</span> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id="name"><br/>
-		        <span>Content：</span> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id="content">
-		      </div>
-		      <button id="btn">Send</button>
-		    </div>
+					<div id="input">
+			      <div>
+			        <span>Name：</span> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id="name"><br/>
+			        <span>Content：</span> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id="content">
+			      </div>
+			      <button id="btn">Send</button>
+			    </div>
 		    <div id="show"></div>
 		  </div>
 

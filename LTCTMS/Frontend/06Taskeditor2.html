@@ -10,8 +10,8 @@
 		<link rel="stylesheet" type="text/css" href="statics/css/style.css" />
 		<script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
 		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-		<script type = 'text/javascript' src="\Users\kong\Documents\GitHub\shared-LTC-TMS\LTCTMS\Backend\vanillatree.js"></script>
-		<script type = 'text/javascript' src="\Users\kong\Documents\GitHub\shared-LTC-TMS\LTCTMS\Backend\vanillatree.min.js"></script>
+		<script type = 'text/javascript' src="\Users\kong\Documents\GitHub\shared-LTC-TMS\LTCTMS\Frontend\vanillatree.js"></script>
+		<script type = 'text/javascript' src="\Users\kong\Documents\GitHub\shared-LTC-TMS\LTCTMS\Frontend\vanillatree.min.js"></script>
 		<link href="vanillatree.css" rel="stylesheet">
 	</head>
 	<style>
@@ -182,6 +182,25 @@
 	.logoutselected:hover{
 		background-color:#E91414;
 	}
+	.openprofile:hover{
+		animation: bounce 1s;
+	}
+	@keyframes bounce {
+	0%, 20%, 60%, 100% {
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+	}
+
+	40% {
+		-webkit-transform: translateY(-5px);
+		transform: translateY(-5px);
+	}
+
+	80% {
+		-webkit-transform: translateY(-3px);
+		transform: translateY(-3px);
+	}
+}
 	</style>
 	<body>
 		<div class="header">
@@ -197,8 +216,9 @@
 						<img src="statics/images/user_face.jpg"/>
 					</div>
 					<div class="user-account">
-						<p class="tip">Good Afternoon</p>
-						<p class="account">
+						<p class="tip" id="time"></p>
+						<img style="position:relative; left:130px;top:-25px;" class="openprofile" onclick="profile()" src="statics/images/pencil.png">
+						<p class="account" style="position:relative; top:-20px;">
 							<span>Name : Tom</span>
 							<span>UserID : tomandjerry</span>
 						</p>
