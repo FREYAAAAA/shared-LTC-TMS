@@ -71,10 +71,12 @@ exports.updateUser=functions.database.ref('uAccount/{sid}')
     console.log('id ='+ id);
     var bchildData = change.before.val();
     var childData = change.after.val();
-    if(childData.Email === bchildDataa.Email &&
-      childData.Name === bchildDataa.Name && c
-      hildData.StaffID === bchildDataa.StaffID &&
-      childData.Password === bchildDataa.Password){
+    if(childData.Email === bchildData.Email &&
+      childData.Name === bchildData.Name &&
+      hildData.StaffID === bchildData.StaffID &&
+      childData.Password === bchildData.Password){
+      console.log('it will not update data!');
+    }else{
       return admin.auth().updateUser(id,{
         email:childData.Email,
         displayName: childData.Name,
@@ -94,8 +96,7 @@ exports.updateUser=functions.database.ref('uAccount/{sid}')
       }).catch(function(error){
         console.log(error.message);
       });
-    }else{
-      console.log('it will not update data!');
+
     }
 
   });
