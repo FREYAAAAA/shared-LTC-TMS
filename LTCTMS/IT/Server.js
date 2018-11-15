@@ -66,27 +66,36 @@ exports.deleteUser=functions.database.ref('uAccount/{sid}')
 //Update Back end
 exports.updateUser=functions.database.ref('uAccount/{sid}')
   .onUpdate((change,context)=>{
+
     var id = context.params.sid;
     console.log('id ='+ id);
-
+    var bchildData = change.before.val();
     var childData = change.after.val();
-    return admin.auth().updateUser(id,{
-      email:childData.Email,
-      displayName: childData.Name,
-      uid:childData.StaffID,
-      password:childData.Password,
-      disabled:false,
-      emailVerified: true
-    }).then(function(userRecord){
-      console.log("user", userRecord.toJSON());
-      var updates={};
-      var userData=userRecord.toJSON();
-      console.log(userData);
-      var updatedList = JSON.parse(JSON.stringify(userData));
-      console.log(updatedList);
-      updates['AuthenticationData']= updatedList;
-      return change.after.ref.update(updates);
-    }).catch(function(error){
-      console.log(error.message);
-    });
+    if(childData.Email === bchildDataa.Email &&
+      childData.Name === bchildDataa.Name && c
+      hildData.StaffID === bchildDataa.StaffID &&
+      childData.Password === bchildDataa.Password){
+      return admin.auth().updateUser(id,{
+        email:childData.Email,
+        displayName: childData.Name,
+        uid:childData.StaffID,
+        password:childData.Password,
+        disabled:false,
+        emailVerified: true
+      }).then(function(userRecord){
+        console.log("user", userRecord.toJSON());
+        var updates={};
+        var userData=userRecord.toJSON();
+        console.log(userData);
+        var updatedList = JSON.parse(JSON.stringify(userData));
+        console.log(updatedList);
+        updates['AuthenticationData']= updatedList;
+        return change.after.ref.update(updates);
+      }).catch(function(error){
+        console.log(error.message);
+      });
+    }else{
+      console.log('it will not update data!');
+    }
+
   });
