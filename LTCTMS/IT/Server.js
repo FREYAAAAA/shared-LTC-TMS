@@ -73,7 +73,8 @@ exports.updateUser=functions.database.ref('uAccount/{sid}')
     return admin.auth().updateUser(id,{
       email:childData.Email,
       displayName: childData.Name,
-      uid:childData.sid
+      uid:childData.StaffID,
+      password:childData.Password
     }).then(function(userRecord){
       console.log("user", userRecord.toJSON());
       var updates={};
