@@ -76,7 +76,7 @@ exports.updateUser=functions.database.ref('uAccount/{sid}')
       childData.StaffID === bchildData.StaffID &&
       childData.Password === bchildData.Password){
       console.log('it will not update data!');
-      return null;
+      return null ;
     }else{
       return admin.auth().updateUser(id,{
         email:childData.Email,
