@@ -142,7 +142,7 @@ function tableform(id,name,fbFeedback,picture){
                   span5.setAttribute("class","replyTime");
 
 
-                  button.setAttribute("onclick", "sendMess("+id+","+a[0]+","+a[1]+","+index+","+a[2]+","+time[0]+","+time[1]+","+time[2]+","+value+","+feedbackID+")");
+                  button.setAttribute("onclick", "sendMess("+id+","+a[0]+","+a[1]+","+index+","+a[2]+","+time[0]+","+time[1]+","+time[2]+","+feedbackID+")");
                   button.innerHTML= "Enter";
                   span3.innerHTML = "Reply";
 
@@ -256,7 +256,7 @@ function replyToggle(index){
     }
 }
 
-function sendMess(id,year,month,index,date,h,m,s,value,feedbackID){
+function sendMess(id,year,month,index,date,h,m,s,feedbackID){
 
   console.log(year,month,date);
     var today = new Date();

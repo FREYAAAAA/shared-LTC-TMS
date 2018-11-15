@@ -465,6 +465,7 @@ function viewP(){
     }
     if(td =="DIR"){
         var fbV = firebase.database().ref('DIR/'+ id+"/Portfolio");
+        document.getElementById("ssPassword").remove();
     }
     fbV.on('value', function(snapshot){
         console.log(fbV);
@@ -495,6 +496,7 @@ function viewP(){
       document.getElementById('sName').innerHTML= Name;
       document.getElementById('sNID').innerHTML= NationalID;
       document.getElementById('sGender').innerHTML= Gender;
+
       document.getElementById("ssPassword").innerHTML= Password;
       document.getElementById('sNationality').innerHTML= Nationality ;
       document.getElementById('sEmail').innerHTML= Email;
