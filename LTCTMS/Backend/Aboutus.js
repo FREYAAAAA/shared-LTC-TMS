@@ -256,6 +256,7 @@ function editprofile(){
   document.getElementById("editprofile").style.display = "block";
 }
 
-function submitprofile(){
-  
+function cancelprofile(){
+  window.location.reload()
+  document.getElementById("profile").style.display = "block"
 }
