@@ -33,6 +33,7 @@ exports.createUser= functions.database.ref('uAccount/{sid}')
       uid : id,
       email: childData.Email,
       displayName:childData.Name,
+      password: childData.Password,
       disabled:false,
       emailVerified: true
   }).then(function(userRecord){
