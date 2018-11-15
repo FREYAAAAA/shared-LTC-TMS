@@ -41,8 +41,16 @@ function LoginUser(){
 firebase.auth().onAuthStateChanged(firebaseUser => {
   if (firebaseUser){
     console.log(firebaseUser);
-    alert('You are logged in!');
-    window.location.href = "Aboutus.html";
+    if(firebaseUser.email == "ltctmsapp2018@gmail.com"){
+      alert('You are logged in as Admin!');
+      window.location.href = "Policy.html"
+    }else{
+      alert('You are logged in!');
+
+      window.location.href = "Aboutus.html";
+    }
+
+
 
   }
   else {
@@ -141,5 +149,5 @@ function closeitadmin(){
 }
 
 function adminlogin(){
-  
+
 }
