@@ -36,6 +36,7 @@ function openmenu(){
 
 function profile(){
   document.getElementById("profile").style.display = "block";
+  displayProfile();
 }
 
 function closeprofile(){
@@ -44,16 +45,42 @@ function closeprofile(){
 }
 
 function editprofile(){
-  document.getElementById("profile").style.display = "none";
   document.getElementById("editprofile").style.display = "block";
+  document.getElementById('nameProfileE').value = document.getElementById('nameProfile').innerHTML;
+  document.getElementById('idProfileE').innerHTML= document.getElementById('idProfile').innerHTML;
+  document.getElementById('emailProfileE').value = document.getElementById('emailProfile').innerHTML;
+  document.getElementById("profile").style.display = "none";
 }
 
 function cancelprofile(){
-  window.location.reload()
+  document.getElementById("profile").style.display = "none";
+  document.getElementById("editprofile").style.display = "none";
+  document.getElementById("changePass").style.display = "none";
 }
 
 function submitprofile(){
-
+  var name=document.getElementById('nameProfileE').value;
+  var id =document.getElementById('idProfileE').value;
+  var email=document.getElementById('emailProfileE').value;
+  var contact=document.getElementById('contactProfileE').value;
+  firebase.auth().onAuthStateChanged(function(user){
+    if(user){
+      if(user.email != email){
+        user.updateEmail(email).then(function(){
+          alert("Email Changed!");
+        }).catch(function(error){
+          console.log(error.message);
+        });
+      }
+      user.updateProfile({
+        displayName:name
+      }).then(function(){
+        alert("Profile have been updated!");
+      }).catch(function(error){
+        console.log('Profile update Failed'+ error.message);
+      });
+    }
+  });
 }
 
 
@@ -75,4 +102,52 @@ window.onload=function(){
   if(time>="18:00:00" || time<"04:00:00"){
 document.getElementById("time").innerHTML = "Good Evening &nbsp ";
 }
+}
+
+function displayProfile(){
+  firebase.auth().onAuthStateChanged(function(user){
+    if(user){
+      var name = user.displayName;
+      var id = user.uid;
+      var email= user.email;;
+
+      document.getElementById('nameProfile').innerHTML=name;
+      document.getElementById('idProfile').innerHTML=id;
+      document.getElementById('emailProfile').innerHTML=email;
+    }
+  });
+}
+
+function changePassword(){
+  document.getElementById("changePass").style.display="block";
+
+}
+
+function submitNewPass(){
+  var newPass= document.getElementById('newPassword').value;
+  var cnewPass=document.getElementById('confirmnewPassword').value;
+  var oldPass = document.getElementById('oldPassword').value;
+  if (newPass==cnewPass){
+      var user = firebase.auth().currentUser;
+        var credentials = firebase.auth.EmailAuthProvider.credential(
+          user.email,
+          oldPass);
+        user.reauthenticateAndRetrieveDataWithCredential(credentials)
+        .then(function() {
+          user.updatePassword(newPass)
+          .then(function(){
+            firebase.database()
+            alert('Successfully Re-New Password!');
+            window.location.reload();
+          }).catch(function(error){
+            alert(error.message);
+          });
+        }).catch(function(error) {
+          alert('Failed to reauthenticate!');
+        });
+
+  }else{
+    alert("Your Password are not match!")
+  }
+
 }

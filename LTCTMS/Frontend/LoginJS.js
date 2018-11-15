@@ -43,7 +43,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
     console.log(firebaseUser);
     if(firebaseUser.email == "ltctmsapp2018@gmail.com"){
       alert('You are logged in as Admin!');
-      window.location.href = "//C:/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/Policy.html"
+      window.location.href = "//C:/Users/Gama/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/Policy.html"
     }else{
       alert('You are logged in!');
       window.location.href = "Aboutus.html";
