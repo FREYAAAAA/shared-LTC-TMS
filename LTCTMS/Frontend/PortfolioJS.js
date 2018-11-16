@@ -465,10 +465,9 @@ function viewP(){
     }
     if(td =="DIR"){
         var fbV = firebase.database().ref('DIR/'+ id+"/Portfolio");
-        document.getElementById("ssPassword").remove();
     }
     fbV.on('value', function(snapshot){
-        console.log(fbV);
+        console.log(fbV.path.pieces_[0]);
       var photo = snapshot.child('pictureurl').val();
       var id = snapshot.child('ID').val();
       var Name = snapshot.child('Name').val();
@@ -498,6 +497,12 @@ function viewP(){
       document.getElementById('sGender').innerHTML= Gender;
 
       document.getElementById("ssPassword").innerHTML= Password;
+      if(fbV.path.pieces_[0] =="DIR" ||fbV.path.pieces_[0] =="CNO" ){
+          document.getElementById("ssPassword").remove();
+          document.getElementById("ssP").remove();
+          var birthDate = document.getElementById("sInitialDate");
+          birthDate.setAttribute("colspan","4");
+      }
       document.getElementById('sNationality').innerHTML= Nationality ;
       document.getElementById('sEmail').innerHTML= Email;
       document.getElementById('sDOB').innerHTML= DOB;
@@ -620,6 +625,12 @@ console.log(position);
     document.getElementById('staffEContact2').value= EContact;
     document.getElementById('staffAddress2').value= AddressV ;
     document.getElementById('staffPassword2').value= pass;
+    if(fbV.path.pieces_[0] =="DIR" ||fbV.path.pieces_[0] =="CNO" ){
+        document.getElementById("staffPassword2").remove();
+        document.getElementById("ssP2").remove();
+        var birthDate2 = document.getElementById("ssBD2");
+        birthDate2.setAttribute("colspan","4");
+    }
     document.getElementById('staffCV2').innerHTML= CV;
     document.getElementById('staffPosition2').value = Position;
     document.getElementById('staffInitialDate2').value= InitialDate;
@@ -631,7 +642,6 @@ console.log(position);
     document.getElementById('staffcvfilename').innerHTML= cvfilename;
     document.getElementById('stafflicensefilename').innerHTML= licensefilename;
   });
-
 }
 
 //Updating patient portfolio
