@@ -12,6 +12,8 @@ if(firebaseUser){
     document.getElementById('displayProfileid').innerHTML=userid;
     document.getElementById('displayProfileposition').innerHTML=position;
     document.getElementById('Profilepic').src=pic;
+    document.getElementById('viewpic').src=pic;
+    document.getElementById('editpic').src=pic;
     Profilepic.setAttribute('value',pic);
   });
 }else{
@@ -63,6 +65,7 @@ function submitprofile(){
         displayName:name
       }).then(function(){
         alert("Profile have been updated!");
+        window.location.reload();
       }).catch(function(error){
         console.log('Profile update Failed'+ error.message);
       });
@@ -171,5 +174,29 @@ function uploadPicProfile(){
         });
       });
 
+
+}
+
+
+
+
+
+
+function bigImg(x) {
+    photoword.style.display = "inline";
+    Profilepic.style.position = "relative"
+    $("#Profilepic").css({ top: '-44px' });
+    $("#photoword").css("z-index", "2000");
+    $("#Profilepic").css("filter", "grayscale(100%)");
+    $("#Profilepic").css("filter", "blur(2px)");
+
+  }
+
+function normalImg(x) {
+    photoword.style.display = "none";
+    Profilepic.style.display = "inline";
+    Profilepic.style.position = "relative"
+    $("#Profilepic").css({ top: '0px' });
+    $("#Profilepic").css("filter", "grayscale(0%)");
 
 }
