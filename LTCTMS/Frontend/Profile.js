@@ -3,36 +3,18 @@ if(firebaseUser){
   console.log(firebaseUser);
   var userid = firebaseUser.uid;
   var displayName = firebaseUser.displayName;
-  console.log(displayName);
-  console.log(userid);
+  var fbP = firebase.database().ref('uAccount/'+userid).child('Position');
+  fbP.once('value',function(snapshot){
+    var position = snapshot.val();
+    document.getElementById('displayProfilename').innerHTML=displayName;
+    document.getElementById('displayProfileid').innerHTML=userid;
+    document.getElementById('displayProfileposition').innerHTML=position;
+  });
 }else{
   alert("You're Logged out now! Please Login again if you need to use this system!");
-  window.location.href = "//C:/Users/Gama/Documents/GitHub/shared-LTC-TMS/LTCTMS/Frontend/00Login2.html";
+  window.location.href = "00Login2.html";
 }
 });
-
-function Logout(){
-  firebase.auth().signOut();
-}
-
-var storageRef = firebase.storage().ref('Policy/policy.html');
-  storageRef.getDownloadURL().then(function (url) {
-  firebase.database().ref("Policy/P1/System Policy/").set(url);
-  document.getElementById("policy").src=url
-});
-
-function openmenu(){
-  if(document.getElementById("menu").style.display== "block"){
-    document.getElementById("menu").style.display = "none";
-    document.getElementById("openmenu").style.opacity = "1";
-  }
-  else{
-  document.getElementById("menu").style.display = "block";
-  document.getElementById("openmenu").style.opacity = ".6";
-}
-}
-
-
 
 function profile(){
   document.getElementById("profile").style.display = "block";
@@ -49,6 +31,8 @@ function editprofile(){
   document.getElementById('nameProfileE').value = document.getElementById('nameProfile').innerHTML;
   document.getElementById('idProfileE').innerHTML= document.getElementById('idProfile').innerHTML;
   document.getElementById('emailProfileE').value = document.getElementById('emailProfile').innerHTML;
+  document.getElementById('nameProfileTE').innerHTML = document.getElementById('nameProfileT').innerHTML;
+  document.getElementById('positionProfileE').innerHTML = document.getElementById('positionProfile').innerHTML;
   document.getElementById("profile").style.display = "none";
 }
 
@@ -60,9 +44,8 @@ function cancelprofile(){
 
 function submitprofile(){
   var name=document.getElementById('nameProfileE').value;
-  var id =document.getElementById('idProfileE').value;
+  var id =document.getElementById('idProfileE').innerHTML;
   var email=document.getElementById('emailProfileE').value;
-  var contact=document.getElementById('contactProfileE').value;
   firebase.auth().onAuthStateChanged(function(user){
     if(user){
       if(user.email != email){
@@ -83,37 +66,19 @@ function submitprofile(){
   });
 }
 
-
-var a = new Date();
-var hour = a.getHours();
-var minute = a.getMinutes();
-var second = a.getSeconds();
-
-var time = hour+":"+minute+":"+second;
- console.log(time);
-
-window.onload=function(){
-    if(time<"12:00:00" && time>="04:00:00"){
-    document.getElementById("time").innerHTML = "Good Morning &nbsp ";
-  }
-  if(time>="12:00:00" && time<"18:00:00"){
-  document.getElementById("time").innerHTML = "Good Afternoon &nbsp ";
-}
-  if(time>="18:00:00" || time<"04:00:00"){
-document.getElementById("time").innerHTML = "Good Evening &nbsp ";
-}
-}
-
 function displayProfile(){
   firebase.auth().onAuthStateChanged(function(user){
     if(user){
       var name = user.displayName;
       var id = user.uid;
       var email= user.email;;
-
+      var position = document.getElementById('displayProfileposition').innerHTML;
       document.getElementById('nameProfile').innerHTML=name;
+      document.getElementById('nameProfileT').innerHTML=name;
       document.getElementById('idProfile').innerHTML=id;
       document.getElementById('emailProfile').innerHTML=email;
+      document.getElementById('positionProfile').innerHTML=position;
+
     }
   });
 }
@@ -149,4 +114,30 @@ function submitNewPass(){
     alert("Your Password are not match!")
   }
 
+}
+
+var a = new Date();
+var hour = a.getHours();
+var minute = a.getMinutes();
+var second = a.getSeconds();
+
+var time = hour+":"+minute+":"+second;
+ console.log(time);
+
+window.onload=function(){
+    if(time<"12:00:00" && time>="04:00:00"){
+    document.getElementById("time").innerHTML = "Good Morning &nbsp ";
+  }
+  if(time>="12:00:00" && time<"18:00:00"){
+  document.getElementById("time").innerHTML = "Good Afternoon &nbsp ";
+}
+  if(time>="18:00:00" || time<"04:00:00"){
+document.getElementById("time").innerHTML = "Good Evening &nbsp ";
+}
+}
+
+function Logout(){
+  firebase.auth().signOut();
+  console.log('logout');
+  window.location.href = "Login.html";
 }

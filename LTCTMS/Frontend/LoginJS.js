@@ -46,7 +46,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
       window.location.href = "//C:/Users/Gama/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/Policy.html"
     }else{
       alert('You are logged in!');
-      window.location.href = "Aboutus.html";
+      window.location.href = "01Aboutus2.html";
     }
 
 
@@ -145,8 +145,4 @@ function itadmin() {
 
 function closeitadmin(){
   document.getElementById("itadmin").style.display = "none";
-}
-
-function adminlogin(){
-
 }
