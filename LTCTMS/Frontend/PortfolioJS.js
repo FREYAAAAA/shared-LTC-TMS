@@ -433,7 +433,8 @@ function viewP(){
       document.getElementById('NID').innerHTML= NationalID;
       document.getElementById('Gender').innerHTML= Gender;
       document.getElementById('Room').innerHTML= roomno;
-      document.getElementById('Password').innerHTML= Password;
+      document.getElementById('Password').innerHTML= "*****";
+
      // document.getElementById('CNAnameV').innerHTML= CNAname;
       //document.getElementById('CNAIDV').innerHTML= CNAID;
       document.getElementById('Nationality').innerHTML= Nationality ;
@@ -496,7 +497,7 @@ function viewP(){
       document.getElementById('sNID').innerHTML= NationalID;
       document.getElementById('sGender').innerHTML= Gender;
 
-      document.getElementById("ssPassword").innerHTML= Password;
+      document.getElementById("ssPassword").innerHTML= "*******";
       if(fbV.path.pieces_[0] =="DIR" ||fbV.path.pieces_[0] =="CNO" ){
           document.getElementById("ssPassword").remove();
           document.getElementById("ssP").remove();
@@ -702,7 +703,11 @@ function SubmitPPPP(){
   window.location.reload();
 
 }
-
+function keypresshandler(event){
+         var charCode = event.keyCode;
+         if ((charCode > 31 && charCode < 48)||(charCode > 57 && charCode < 65)||(charCode > 90  && charCode < 97)||(charCode>122))
+         return false;
+}
 function submitSP(){
   var pic = document.getElementById('PictureS').innerHTML;
   var id = document.getElementById('StaffID2').value;

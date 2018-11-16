@@ -645,7 +645,7 @@
 		   </tr>
 		   <tr>
 		       <td> Initial Date: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffInitialDate" placeholder="Enter Date" required/></td>
-		       <td> Password: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffPassword" placeholder="give a password" required/></td>
+		       <td> Password: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" onkeypress='return keypresshandler(event)' minlength="8" id="staffPassword" placeholder="give a password" required/></td>
 		   </tr>
 		   <tr>
 		       <td> Position: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffPosition" placeholder="Position" required/></td>
@@ -698,7 +698,7 @@
 		   </tr>
 		   <tr>
 		       <td> Room number: &nbsp&nbsp&nbsp&nbsp<input type="text" id="patientRoomNo" placeholder="101.." required/></td>
-		       <td> Password: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientPassword" placeholder="give a password" required/></td>
+		       <td> Password: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" onkeypress='return keypresshandler(event)' minlength="8"  id="patientPassword" placeholder="give a password" required/></td>
 		   </tr>
 		   <tr>
 		       <td> National ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientNID" placeholder="National ID" required/></td>
