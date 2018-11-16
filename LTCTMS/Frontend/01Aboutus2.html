@@ -216,11 +216,12 @@
 			<div class="user-info">
 				<div class="w1200">
 					<div class="user-headface">
-						<img src="statics/images/user_face.jpg"/>
+						<img id="Profilepic" onclick ="document.getElementById('newPic').click();" />
+						<input id="newPic" type='file' accept="image/*" onchange="uploadPicProfile()" required />
 					</div>
 					<div class="user-account">
 						<p class="tip" id="time"></p>
-						<img id="picChange" type="file" style="position:relative; left:130px;top:-25px;" class="openprofile" onclick="profile()" src="statics/images/pencil.png">
+						<img style="position:relative; left:130px;top:-25px;" class="openprofile" onclick="profile()" src="statics/images/pencil.png">
 						<p class="account" style="position:relative; top:-20px;">
 							<span>Name : <span id="displayProfilename"></span></span>
 							<span>UserID : <span id="displayProfileid"></span></span>
@@ -418,7 +419,6 @@
 
 </div>
 </div>
-
 
 
 		<div id="expand" onclick="expand()" >Chat</div>

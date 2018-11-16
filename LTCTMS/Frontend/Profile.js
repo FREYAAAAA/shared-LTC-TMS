@@ -3,19 +3,23 @@ if(firebaseUser){
   console.log(firebaseUser);
   var userid = firebaseUser.uid;
   var displayName = firebaseUser.displayName;
+  var pic = firebaseUser.photoURL;
+  console.log(pic);
   var fbP = firebase.database().ref('uAccount/'+userid).child('Position');
   fbP.once('value',function(snapshot){
     var position = snapshot.val();
     document.getElementById('displayProfilename').innerHTML=displayName;
     document.getElementById('displayProfileid').innerHTML=userid;
     document.getElementById('displayProfileposition').innerHTML=position;
+    document.getElementById('Profilepic').src=pic;
+    Profilepic.setAttribute('value',pic);
   });
 }else{
   alert("You're Logged out now! Please Login again if you need to use this system!");
   window.location.href = "00Login2.html";
 }
 });
-
+//console.log(document.getElementById('Profilepic').value);
 function profile(){
   document.getElementById("profile").style.display = "block";
   displayProfile();
@@ -139,5 +143,33 @@ document.getElementById("time").innerHTML = "Good Evening &nbsp ";
 function Logout(){
   firebase.auth().signOut();
   console.log('logout');
-  window.location.href = "Login.html";
+  window.location.href = "00Login02.html";
+}
+
+function uploadPicProfile(){
+  var file = $('#newPic').get(0).files[0];
+  var id = document.getElementById('displayProfileid').innerHTML
+  var storageRefProfile =firebase.storage().ref('Profile/'+id+'/'+file.name);
+  storageRefProfile.put(file).on('state_changed',
+      function(){
+
+      },function error(err){
+        console.log(err.message);
+      },
+      function complete(){
+        storageRefProfile.getDownloadURL().then(function(url){
+          var user = firebase.auth().currentUser;
+          console.log("==="+user.displayName);
+          user.updateProfile({
+            photoURL: url
+          }).then(function(){
+            alert('Successfully Renew the Profile Picture!');
+            window.location.reload();
+          }).catch(function(err){
+            alert('Failed to Renew! Error:'+ err.message);
+          });
+        });
+      });
+
+
 }
