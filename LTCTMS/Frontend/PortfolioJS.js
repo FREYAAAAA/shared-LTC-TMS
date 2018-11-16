@@ -1,16 +1,3 @@
-//firebase.auth().onAuthStateChanged(function (firebaseUser){
-//if(firebaseUser){
-//  console.log(firebaseUser);
-// var userid = firebaseUser.uid;
-//  console.log(userid);
-//}else{
-//  alert("You're Logged out now! Please Login again if you need to use this system!");
-//  window.location.href = "Login.html";
-//}
-//});
-
-
-
 
 //Add new Portfolio
 function addNewPortfolio(){
@@ -42,14 +29,14 @@ var staffCV = document.getElementById('staffCV');
 var staffLicense = document.getElementById('staffLicense');
 var btnSubmitP = document.getElementById('btnSubmitP')
 
-//btnPicture.addEventListener('change', handleuploadfile1);
-//staffLicense.addEventListener('change', handleuploadfile5);
+btnPicture.addEventListener('change', handleuploadfile1);
+staffLicense.addEventListener('change', handleuploadfile5);
 console.log(staffLicense);
-//staffCV.addEventListener('change', handleuploadfile3);
+staffCV.addEventListener('change', handleuploadfile3);
 console.log(staffCV);
 
 //btnLicense.addEventListener('change', handleuploadfile2);
-//btnSubmitP.addEventListener('click', handleuploadfileSubmit);
+btnSubmitP.addEventListener('click', handleuploadfileSubmit);
 let file1 = [];
 let file4 = [];
 let file3 = [];
@@ -181,9 +168,9 @@ var Uploader2 = document.getElementById('Uploader2');
 var btnPicture2 = document.getElementById('btnPicture2');
 var btnSubmitP2 = document.getElementById('btnSubmitP2')
 
-//btnPicture2.addEventListener('change', handleuploadfile6);
+btnPicture2.addEventListener('change', handleuploadfile6);
 //btnLicense.addEventListener('change', handleuploadfile2);
-//btnSubmitP2.addEventListener('click', handleuploadfileSubmit6);
+btnSubmitP2.addEventListener('click', handleuploadfileSubmit6);
 
 let file6 = [];
 
@@ -390,6 +377,16 @@ function portfolio_Table(fb){
     });
 }
 
+setTimeout(function(){
+  var role = document.getElementById('displayProfileposition').innerHTML;
+  console.log('ROLE='+role);
+  if(role == 'CNO'){
+    document.getElementById('btnEditPP').style.display='none';
+    document.getElementById('btnDeletePP').style.display='none';
+    document.getElementById('btnEditSP').style.display='none';
+    document.getElementById('btnDeleteSP').style.display='none';
+  }
+},2000);
 
 
 //view portfolio
@@ -397,7 +394,6 @@ function viewP(){
   var table = document.getElementById("briefPortfolio");
   var td = $(this).closest('tr').children('td:nth-last-child(2)').text();
   console.log(td);
-
   if(td == 'Patient'){
     document.getElementById('viewPatientPortfolio').style.display ='block';
     document.getElementById('portfoliofilter').style.display ='none';
