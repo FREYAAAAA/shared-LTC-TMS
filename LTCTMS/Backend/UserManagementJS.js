@@ -217,6 +217,7 @@ function tableBrowserLogging(fb){
 
 function historyBrowserLogging(n){
   var fb = firebase.database().ref('AccountStatus/Browser');
+<<<<<<< HEAD
   fb.once('value',function(snapshot){
     snapshot.forEach(function(childsnapshot){
       childSnapshot.forEach(function(loginShot){
@@ -281,5 +282,17 @@ function tableAppLogging(fb){
 
     });
   });
+=======
+
+
+}
+
+
+function viewbrowser(){
+
+}
+
+function viewapp(){
+>>>>>>> b90164c03b38a9593e1d7a182faa125dacbc1a26
 
 }
