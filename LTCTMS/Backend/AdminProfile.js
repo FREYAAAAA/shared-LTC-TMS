@@ -108,30 +108,6 @@ function submitNewPass(){
         .then(function() {
           user.updatePassword(newPass)
           .then(function(){
-            var today = new Date();
-            var currentYear = today.getFullYear();
-            var currentMonth = today.getMonth()+1;
-            var currentDay = today.getDate();
-
-            var currentHour = today.getHours();
-            var currentMinute = today.getMinutes();
-            var currentSecond = today.getSeconds();
-
-            if(currentHour < 10){
-              currentHour = '0' + currentHour
-            }
-            if(currentMinute < 10){
-              currentMinute = '0' + currentMinute
-            }
-            if(currentSecond < 10){
-              currentSecond = '0' + currentSecond
-            }
-
-            var fullDate = currentYear+'-'+currentMonth+'-'+currentDay;
-            var fullTime = currentHour+':'+currentMinute+':'+currentSecond;
-            var fullDateandTime = fullDate +'-'+ fullTime;
-            var passRenewal = oldPass +'~' + newPass;
-            firebase.database().ref('AccountStatus/'+ user.uid+'/ChangePasswordHistory/'+fullDateandTime).set(passRenewal);
 
             alert('Successfully Re-New Password!');
             window.location.reload();
@@ -171,32 +147,7 @@ document.getElementById("time").innerHTML = "Good Evening &nbsp ";
 }
 
 function Logout(){
-  var today = new Date();
-  var currentYear = today.getFullYear();
-  var currentMonth = today.getMonth()+1;
-  var currentDay = today.getDate();
-
-  var currentHour = today.getHours();
-  var currentMinute = today.getMinutes();
-  var currentSecond = today.getSeconds();
-
-  if(currentHour < 10){
-    currentHour = '0' + currentHour
-  }
-  if(currentMinute < 10){
-    currentMinute = '0' + currentMinute
-  }
-  if(currentSecond < 10){
-    currentSecond = '0' + currentSecond
-  }
-
-  var fullDate = currentYear+'-'+currentMonth+'-'+currentDay;
-  var fullTime = currentHour+':'+currentMinute+':'+currentSecond;
-
-  var user = firebase.auth().currentUser;
-  console.log("==="+user.uid)
-  firebase.database().ref('AccountStatus/'+user.uid+'/LogoutHistory/'+fullDate+'/'+ fullTime).set('True');
-
+  
   firebase.auth().signOut();
   console.log('logout');
   window.location.href = "00Login02.html";
