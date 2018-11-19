@@ -444,10 +444,10 @@
 
 				<div class="container">
 					<div class="memo_month_title">
-					  <table>
+					  <table style="position:absolute; top:-35%;left:20%;border-style:hidden;">
 					    <tr>
-							<button  onclick = "viewTable('last');" class="previous_memo_month"><img src="image\left-arrow.png" height="25px" width="30px" /></button>
-							<button  onclick = "viewTable('next')" class="next_memo_month"><img src="image\right-arrow.png" height="25px" width="30px"/></button>					   
+					    <td style="border-style:hidden;text-align:right;"><h1 id="fullName_Month" ></h1>
+					    <td style="border-style:hidden;text-align:left;"><h4 id="years"></h4>
 					    </tr>
 					  </table>
 					</div>
@@ -457,21 +457,21 @@
 					<h2 id="current_month" style="position:relative;"></h2>
 					<h2 id="current_week" style="position:relative;"></h2>
 
-					<div>
-					<ul class = "today_memo"  id="today_memo">
-					</ul>
 					</div>
 
-					<div style="position:relative; top:-100%; left:22%; width:0.3%; height:100%; background-color:#000;">
+					<div>
+						<ul class = "today_memo"  id="today_memo"></ul>
 					</div>
+
+					<div style="position:relative; top:-100%; left:22%; width:0.3%; height:100%; background-color:#000;"></div>
 					<table id = "memo_table" class="memo_display">
-					<tr>
-					    <th class="memo_table_head" style="width:10%;background-color:#ddd;">Date</th>
-					    <th class="memo_table_head" style="width:70%;background-color:#ddd;">Content</th>
-					    <th class="memo_table_head" style="width:10%;background-color:#ddd;"> Edit</th>
-					    <th class="memo_table_head" style="width:10%;background-color:#ddd;">Delete </th>
-					</tr>
-					<tbody id = "context_table"></tbody>
+						<tr>
+						    <th class="memo_table_head" style="width:10%;background-color:#ddd;">Date</th>
+						    <th class="memo_table_head" style="width:70%;background-color:#ddd;">Content</th>
+						    <th class="memo_table_head" style="width:10%;background-color:#ddd;"> Edit</th>
+						    <th class="memo_table_head" style="width:10%;background-color:#ddd;">Delete </th>
+						</tr>
+						<tbody id = "context_table"></tbody>
 					</table>
 
 					<div class="memo_form-popup" id="form">
@@ -482,14 +482,9 @@
 					    <button type="button" class="btn cancel" onclick="close_form()">Close</button>
 					</div>
 					<button class ="add_memo_button"  onclick = "popup_form()">Add Memo</button>
+					<button  onclick = "viewTable('last');" class="previous_memo_month"><img src="image\left-arrow.png" height="25px" width="30px" /></button>
+					<button  onclick = "viewTable('next')" class="next_memo_month"><img src="image\right-arrow.png" height="25px" width="30px"/></button>
 
-					<script>
-					    document.getElementById("fullName_Month").innerHTML = Month[mm_index];
-					    document.getElementById('current_date').innerHTML = dd;
-					    document.getElementById("current_month").innerHTML = month[mm_index];
-					    document.getElementById("current_week").innerHTML = weekday[wk_index];
-					    document.getElementById("current_year").innerHTML = year;
-					</script>
 				</div>
 
 			</div>
@@ -547,8 +542,6 @@
 
 	</div>
 	</div>
-
-
 
 		</div>
 		<div id="expand" onclick="expand()" >Chat</div>

@@ -1,238 +1,240 @@
-<!DOCTYPE html>
-<html>
-  <head>
-      <meta charset="utf-8">
-      <title>Firebase Web Test</title>
-      <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-      <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-    </head>
-<body>
-    <h1 id="bigOne"> </h1>
+// displaying the current date
+// go to the next year //
+    var today = new Date();
+    var dd = today.getDate();
+    var mm_index = today.getMonth(); //January is 0!
+    var year = today.getFullYear();
+    var weekday =  ["Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    var month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    var Month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+     var wk_index = today.getDay();
+     var d = dd;
 
-  <table >
-    <thread>
-    <tr>
-    <!--  <td>Key</td> -->
-      <td>Name</td>
-      <td>ID</td>
-    </tr>
-    </tread>
-    <tbody id='table'>
+     var mm = mm_index+1; // to make the month correct; For example: January is 0 , so add 1;
+     // in order to have same format with "bday". orignal is 2018-9-13
+     if(mm_index<9){
+         var mm = "0"+mm;
+     }
+     var nowadays = year +"-"+ mm+"-"+ dd; // 2018-09-13
+     if (dd<10){
+         dd = "0"+dd;
+     }
 
-    </tbody>
-  </table>
 
-  for(var c=0; c<=cnoindex; c++){
-      console.log("asbviabvdsob")
+     var date = mm_index+1;
+     console.log(date);
 
-        if ( username == cnousername[c] && password == cnopassword[c]){
-        alert ("Login successfully!");
-        window.location = "Aboutus.html";
+     var year_m = year+"-"+date;
+     console.log(year_m);
+     var a = new Date();
+     var hour = a.getHours();
+     var minute = a.getMinutes();
+     var second = a.getSeconds();
+     if(second<10){
+         second = "0"+second;
+     }
+     if(hour<10){
+         hour = "0"+hour;
+     }
+     if(minute<10){
+         minute = "0"+minute;
+     }
+    var time = hour+":"+minute+":"+second;
+     console.log(time);
 
+
+function popup_form(){
+    document.getElementById("memo_text").value = "";
+    document.getElementById("selected_date").value = year+"-"+mm+"-"+dd;
+    console.log(year+"-"+mm+"-"+dd);
+    document.getElementById("form").style.display = "block";
+}
+function close_form(){
+    document.getElementById("form").style.display = "none";
+}
+
+function submit(){
+    var text = $("#memo_text").val();
+    var ymd = $("#selected_date").val()
+    var a = ymd.split("-");
+    if(a[1]<10){
+        a[1] = a[1].replace('0', '');
+    }
+
+    year_m = a[0]+"-"+a[1];
+    dd = a[2];
+
+    if(text == ""){
+      alert ("Please enter data");
+    }
+    else {
+      var r = confirm("Are you sure you want to enter this data?");
+      if (r == true) {
+        firebase.database().ref("MEMO/"+year_m+"/"+dd+"-"+time).set(text);
+        close_form();
+        location.reload();
+      }
+      else {
+      }
+  }
+}
+
+window.onload=function(){
+    document.getElementById("years").innerHTML = year;
+
+    var fbMemo = firebase.database().ref("MEMO/"+year_m);
+
+    fbMemo.once("value")
+    .then(function(snapshot){
+        var array = [];
+        var array_val = [];
+        var index = 0;
+        snapshot.forEach(function(childSnapshot){
+            var childKey = childSnapshot.key;
+            var childData = childSnapshot.val();
+
+            array.push(childKey);
+            var arr = childKey.split("-");
+            if(arr[0]==dd){
+                var ul = document.getElementById("today_memo");
+                  var li = document.createElement("li");
+                  li.appendChild(document.createTextNode(childData));
+                  ul.appendChild(li);
             }
-    }
-
-
-<form>
-<div>
-<input id='TA' type='text'  placeholder='Name' name='event'> </input>
-<input id='TA1' type='text'  placeholder='ID' name='event'> </input>
-<button id=btnSubmitE onclick="TableTest()">Submit</button>
-</div>
-</form>
-
-
-<br><br><br>
-<progress value="0" max="100" id="uploader">0%</progress>
-<br>
-<input type="file" value ="upload" id="fileButton"/>
-<button id = submitfileButton>Submit</button>
-<button id='download'> Downlaod</button>
-
-<script src="https://www.gstatic.com/firebasejs/5.4.0/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyCZSYudtrbWzpAg8_i6RDVi6n-LoNwmGnU",
-    authDomain: "ltctms-18e9b.firebaseapp.com",
-    databaseURL: "https://ltctms-18e9b.firebaseio.com",
-    projectId: "ltctms-18e9b",
-    storageBucket: "ltctms-18e9b.appspot.com",
-    messagingSenderId: "553898554827"
-  };
-  firebase.initializeApp(config);
-
-  //  var bigOne = document.getElementById('bigOne');
-  //  var dbRef = firebase.database().ref().child('User');
-  //  dbRef.on('value', snap=>bigOne.innerText = snap.val());
-
-    //Reading data from DB to a table (take note on child_added, changed, removed)
-    var test = firebase.database().ref('Browser').child('Member');
-    var table = document.getElementById("table");
-   test.on("child_added", snap =>{
-      var name = snap.child("Name").val();
-      var id = snap.child("ID").val();
-    //  var key = snap.child("Key").val();
-
-      $("#table").append("<tr><td>"+ name +"</td><td>" + id + "</td><td><button class='btndel' id='btndel'>Delete</button></td></tr>")
-  });
-  /*  var rowno=1;
-    test.once('value', function(snapshot){
-      snapshot.forEach(function(childSnapshot){
-        var childKey = childSnapshot.key;
-        var childData = childSnapshot.val();
-
-        var tablerow = table.insertRow(rowno);
-        var name = row.insertCell(0);
-        var id = row.insert(1);
-        var delbutton = row.insertCell(2).outerHTML="<tr id='row"+rowno+"'><td><button id='btndelete'>Del</button></td></tr>";
-
-        name.appendChild(document.createTextNode(childData.name));
-        id.appendChild(document.createTextNode(childData.id));
-        rowno = rowno + 1;
-      });
-    });*/
-
-
-//pushing function -> store data to firebase's database
-
-  /*var btnSubmitE = document.getElementById('btnSubmitE');
-  btnSubmitE.addEventListener('click', e => {
-    var fb = firebase.database().ref("Browser").child('Member');
-    var data = $('#TA').val();
-    var dataI = $('#TA1').val();
-
-    fb.push({
-      "Name": data,
-      "ID" : dataI,
-    });
-  });*/
-  var btnSubmitE = document.getElementById('btnSubmitE');
-  btnSubmitE.addEventListener('click', e => {
-    var fb = firebase.database().ref("Browser").child('Member');
-    var data = document.getElementById('TA').value;
-    var dataI = document.getElementById('TA1').value;
-    //var key = fb.push().key;
-
-  /*  var testing={
-      Key : key,
-      Name : data,
-      ID : dataI
-    }*/
-
-  //  var updates = {};
-  //  updates['Browser/Member/'+key] =testing;
-  //  firebase.database().ref().update(updates);
-    fb.child("123123").set({
-      Name : data,
-      ID : dataI
-    });
-    alert('the user was created successfully');
-
-    window.location.reload();
-  });
-/*  function created(){
-    test.on('child_added', snapshot => this.Member.push({...snapshot.val(), Key:snapshot.key}));
-    test.on('child_removed',snapshot =>{
-      const deleteUser = this.Member.find(Member => Member.key === snapshot.key);
-      const index = this.Member.indexOf(delete_row);
-      this.Member.splice(index,3);
-    });
-
-  }*/
-
-//TODO:Delete function
-/*  var btnDelete = document.getElementById('btndel');
-  btnDelete.addEventListener('click', e =>{
-    var UniqueKey = $row.data('Key');
-    test.child(UniqueKey).remove();
-
-    alert('removed');
-    window.location.reload();
-  });*/
-
-/*var del=firebase.database().ref("Browser").child('Member');
-$("#table").on('click', '.btndel', function(e){
-  var $row = $(this).closest('tr');
-  var rowId = $row.data('Key');
-  del.child(rowId).remove();
-
-});*/
-
-/*function delete_row(Member){
-  test.child(Member.key).remove();
-}*/
-
-var uploader = document.getElementById('uploader');
-var fileButton = document.getElementById('fileButton');
-var submitfileButton = document.getElementById('submitfileButton')
-var downloadButton = document.getElementById('download');
-
-var fileRef = firebase.storage().ref('Test/gamer-wallpaper5.jpg');
-
-downloadButton.addEventListener('click', function(){
-  fileRef.getDownloadURL().then(function(url){
-    console.log("Success");
-    console.log(url);
-  });
-});
-
-
-fileButton.addEventListener('change', handleuploadfile);
-submitfileButton.addEventListener('click', handleuploadfileSubmit);
-
-let file;
-
-function handleuploadfile(e) {
-   file=e.target.files[0];
-}
-
-function handleuploadfileSubmit(e) {
-
-  var storageRef=firebase.storage().ref('Test/'+file.name);
-  var uploadtask = storageRef.put(file);
-
-  uploadtask.on('state_changed',
-
-    function progress(snapshot){
-      var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-      uploader.value = percentage;
-    },
-
-    function error(err){
-      console.log("failed");
-    },
-
-    function complete(){
-      console.log('Successful');
-       var postKey = firebase.database().ref('Posts/').push().key;
-       storageRef.getDownloadURL().then(function(url){
-         console.log("Success");
-         console.log(url);
-         var updates = {};
-         var postData={
-         url : url,
-         id : postKey
-       };
-       updates['Posts/' + postKey] = postData;
-       firebase.database().ref().update(updates);
-
-       });
-
-
-    }
-  );
+            var row = memo_table.insertRow(1);
+            var celldate = row.insertCell(0);
+            var celleventDate = row.insertCell(1);
+            celldate.appendChild(document.createTextNode(arr[0]));
+            celleventDate.appendChild(document.createTextNode(childData));
+        })
+    })
 }
 
 
 
+function lastMonth(){
+    document.getElementById("memo_table").innerHTML = "";
+    var title = memo_table.insertRow(0);
+    title.insertCell(0).innerHTML = "Date";
+    title.insertCell(1).innerHTML = "Content";
+    var a = year_m.split("-");
+    a[1] = a[1]-1;
+    if(a[1]== 0){
+        a[1] = 12;
+        a[0] = a[0]-1;
+    }
+    console.log(a[0]);
+    year_m = a[0]+"-"+a[1];
+    console.log(year_m);
+    document.getElementById("fullName_Month").innerHTML = Month[a[1]-1];
+    document.getElementById("years").innerHTML = a[0];
+
+    var fbMemo = firebase.database().ref("MEMO/"+year_m);
+    fbMemo.once("value")
+    .then(function(snapshot){
+        var array = [];
+        var array_val = [];
+        var index = 0;
+        snapshot.forEach(function(childSnapshot){
+            var childKey = childSnapshot.key;
+            var childData = childSnapshot.val();
+            array.push(childKey);
+            var arr = childKey.split("-");
+            var row = memo_table.insertRow(1);
+            var celldate = row.insertCell(0);
+            var celleventDate = row.insertCell(1);
+            celldate.appendChild(document.createTextNode(arr[0]));
+            celleventDate.appendChild(document.createTextNode(childData));
+        })
+    })
+}
+function nextMonth(){
+    document.getElementById("memo_table").innerHTML = "";//clear previous table's data before next data come inside.
+    var title = memo_table.insertRow(0);
+    title.insertCell(0).innerHTML = "Date";
+    title.insertCell(1).innerHTML = "Content";
+    var a = year_m.split("-");
+    a[1] =  parseInt(a[1]) +1;
+    if(a[1]==13){
+    a[1] = 1;
+    a[0] = parseInt(a[0]) +1;
+    }
+    console.log(a[0]);
+    year_m = a[0]+"-"+a[1];
+    console.log(a[1]);
+    document.getElementById("fullName_Month").innerHTML = Month[a[1]-1];
+    document.getElementById("years").innerHTML = a[0];
+    var fbMemo = firebase.database().ref("MEMO/"+year_m);
+    fbMemo.once("value")
+    .then(function(snapshot){
+        var array = [];
+        var array_val = [];
+        var index = 0;
+        snapshot.forEach(function(childSnapshot){
+            var childKey = childSnapshot.key;
+            var childData = childSnapshot.val();
+            array.push(childKey);
+            var arr = childKey.split("-");
+            var row = memo_table.insertRow(1);
+            var celldate = row.insertCell(0);
+            var celleventDate = row.insertCell(1);
+            celldate.appendChild(document.createTextNode(arr[0]));
+            celleventDate.appendChild(document.createTextNode(childData));
+        })
+    })
+}
+
+function openmenu(){
+  if(document.getElementById("menu").style.display== "block"){
+    document.getElementById("menu").style.display = "none";
+    document.getElementById("openmenu").style.opacity = "1";
+  }
+  else{
+  document.getElementById("menu").style.display = "block";
+  document.getElementById("openmenu").style.opacity = ".6";
+}
+}
 
 
+function profile(){
+  document.getElementById("profile").style.display = "block";
+}
+
+function closeprofile(){
+  document.getElementById("profile").style.display = "none";
+  document.getElementById("editprofile").style.display = "none";
+}
+
+function editprofile(){
+  document.getElementById("profile").style.display = "none";
+  document.getElementById("editprofile").style.display = "block";
+}
+
+function cancelprofile(){
+  window.location.reload()
+}
+
+function submitprofile(){
+
+}
 
 
+var a = new Date();
+var hour = a.getHours();
+var minute = a.getMinutes();
+var second = a.getSeconds();
 
-</script>
+var time = hour+":"+minute+":"+second;
+ console.log(time);
 
-
-
-</body>
+window.onload=function(){
+    if(time<"12:00:00" && time>="04:00:00"){
+    document.getElementById("time").innerHTML = "Good Morning &nbsp ";
+  }
+  if(time>="12:00:00" && time<"18:00:00"){
+  document.getElementById("time").innerHTML = "Good Afternoon &nbsp ";
+}
+  if(time>="18:00:00" || time<"04:00:00"){
+document.getElementById("time").innerHTML = "Good Evening &nbsp ";
+}
+}

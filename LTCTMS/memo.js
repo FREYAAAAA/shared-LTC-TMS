@@ -93,6 +93,7 @@ window.onload=function(){
     document.getElementById("current_week").innerHTML = weekday[wk_index];
     document.getElementById("current_year").innerHTML = year;
     viewTable();
+    console.log("ksldjf");
 }
 
 function viewTable(value){

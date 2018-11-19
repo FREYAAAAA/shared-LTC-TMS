@@ -1,7 +1,3 @@
-
-
-// displaying the current date
-// go to the next year //
     var today = new Date();
     var dd = today.getDate();
     var mm_index = today.getMonth(); //January is 0!
@@ -79,6 +75,7 @@ function submit(){
 
 
 function viewTable(value){
+    console.log("value");
     document.getElementById("years").innerHTML = year;
     var a = year_m.split("-");
 
@@ -279,23 +276,23 @@ var minute = a.getMinutes();
 var second = a.getSeconds();
 
 var time = hour+":"+minute+":"+second;
- console.log(time);
-
 window.onload=function(){
-  console.log("fjlskdfj");
+    console.log("time");
     if(time<"12:00:00" && time>="04:00:00"){
-    document.getElementById("time").innerHTML = "Good Morning &nbsp ";
-  }
-  if(time>="12:00:00" && time<"18:00:00"){
-  document.getElementById("time").innerHTML = "Good Afternoon &nbsp ";
+        document.getElementById("time").innerHTML = "Good Morning &nbsp ";
+      }
+      if(time>="12:00:00" && time<"18:00:00"){
+          document.getElementById("time").innerHTML = "Good Afternoon &nbsp ";
+        }
+      if(time>="18:00:00" || time<"04:00:00"){
+          document.getElementById("time").innerHTML = "Good Evening &nbsp ";
+        }
 }
-  if(time>="18:00:00" || time<"04:00:00"){
-document.getElementById("time").innerHTML = "Good Evening &nbsp ";
-}
-document.getElementById("fullName_Month").innerHTML = Month[mm_index];
-document.getElementById('current_date').innerHTML = dd;
-document.getElementById("current_month").innerHTML = month[mm_index];
-document.getElementById("current_week").innerHTML = weekday[wk_index];
-document.getElementById("current_year").innerHTML = year;
-viewTable();
-}
+$(document).ready(function() {
+    document.getElementById("fullName_Month").innerHTML = Month[mm_index];
+    document.getElementById('current_date').innerHTML = dd;
+    document.getElementById("current_month").innerHTML = month[mm_index];
+    document.getElementById("current_week").innerHTML = weekday[wk_index];
+    document.getElementById("current_year").innerHTML = year;
+    viewTable();
+});

@@ -10,8 +10,8 @@
 <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
 <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script type = 'text/javascript' src = "/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Config.js"></script>
-<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/memo.js'></script>
+<script type = 'text/javascript' src = "/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Config.js"></script>
+<script type = 'text/javascript' src = '/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/memo.js'></script>
 </head>
 <body background="image\bg.jpg">
 
@@ -78,13 +78,10 @@
     <button type="button" class="btn cancel" onclick="close_form()">Close</button>
 </div>
 <button class ="add_memo_button"  onclick = "popup_form()">Add Memo</button>
-
-
 <button  onclick = "lastMonth()" class="previous_memo_month"><img src="image\left-arrow.png" height="25px" width="30px" /></button>
 <button  onclick = "nextMonth()" class="next_memo_month"><img src="image\right-arrow.png" height="25px" width="30px"/></button>
 <div>
-<ul class = "today_memo"  id="today_memo">
-</ul>
+    <ul class = "today_memo"  id="today_memo"></ul>
 </div>
 <script>
     document.getElementById("fullName_Month").innerHTML = Month[mm_index];
