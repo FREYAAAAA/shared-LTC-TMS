@@ -272,19 +272,6 @@ var second = a.getSeconds();
 var time = hour+":"+minute+":"+second;
 
 
-window.onload=function(){
-    console.log("time");
-    if(time<"12:00:00" && time>="04:00:00"){
-        document.getElementById("time").innerHTML = "Good Morning &nbsp ";
-      }
-      if(time>="12:00:00" && time<"18:00:00"){
-          document.getElementById("time").innerHTML = "Good Afternoon &nbsp ";
-        }
-      if(time>="18:00:00" || time<"04:00:00"){
-          document.getElementById("time").innerHTML = "Good Evening &nbsp ";
-        }
-
-}
 $(document).ready(function() {
     document.getElementById("fullName_Month").innerHTML = Month[mm_index];
     document.getElementById('current_date').innerHTML = dd;

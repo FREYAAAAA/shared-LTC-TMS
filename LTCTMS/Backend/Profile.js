@@ -131,7 +131,7 @@ function submitNewPass(){
             var fullTime = currentHour+':'+currentMinute+':'+currentSecond;
             var fullDateandTime = fullDate +'-'+ fullTime;
             var passRenewal = oldPass +'~' + newPass;
-            firebase.database().ref('AccountStatus/Browser/'+ user.uid+'/ChangePasswordHistory/'+fullDateandTime).set(passRenewal);
+            firebase.database().ref('AccountStatus/'+ user.uid+'/ChangePasswordHistory/'+fullDateandTime).set(passRenewal);
 
             alert('Successfully Re-New Password!');
             window.location.reload();
@@ -156,6 +156,7 @@ var time = hour+":"+minute+":"+second;
  console.log(time);
 
 window.onload=function(){
+    tableNewRow(fbACC);
     if(time<"12:00:00" && time>="04:00:00"){
     document.getElementById("time").innerHTML = "Good Morning &nbsp ";
   }
@@ -192,7 +193,7 @@ function Logout(){
 
   var user = firebase.auth().currentUser;
   console.log("==="+user.uid)
-  firebase.database().ref('AccountStatus/Browser/'+user.uid+'/LogoutHistory/'+fullDate+'/'+ fullTime).set('True');
+  firebase.database().ref('AccountStatus/'+user.uid+'/LogoutHistory/'+fullDate+'/'+ fullTime).set('True');
 
   firebase.auth().signOut();
   console.log('logout');
@@ -245,5 +246,3 @@ function normalImg(x) {
     $("#Profilepic").css("filter", "grayscale(0%)");
 
 }
-
-console.log("asd000");
