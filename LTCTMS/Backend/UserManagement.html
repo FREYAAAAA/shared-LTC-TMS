@@ -438,8 +438,8 @@
 			<div class="right">
 				<div class="tap">
 					<span id="User Management" onclick="showusermanagement()">User Management</span>
-					<span id="LoginTime" onclick="showlogintime()" style="opacity:.8">Login Record</span>
-					<span id="LogoutTime" onclick="showlogouttime()" style="opacity:.8">Logout Record</span>
+					<span id="LoginTime" onclick="showlogintime()" style="opacity:.8">Browser Account</span>
+					<span id="LogoutTime" onclick="showlogouttime()" style="opacity:.8">App Account</span>
 					<span id="ChangePassword" onclick="showchangepassword()" style="opacity:.8">Password History</span>
 				</div>
 
@@ -470,32 +470,18 @@
 					</table>
 				</div>
 				<div class="container" id="data2" style="display:none;position:relative;">
-					<table id="browserloginrecord" style="position:relative;left:50px;top:-8px;border-style:hidden;">
-						<tr><td colspan="3" style="border-style:hidden;"><p style="opacity:.8;"><h3 style="color:#B53232;">Browser</h3> Login Record	</p></td></tr>
-						<thread>
-							<tr>
-								<th style="width:16%">Date</th>
-								<th style="width:16%">Time</th>
-								<th style="width:16%">ID</th>
-							</tr>
-						</thread>
-						<tbody id='browserloginrecordbody'>
-							<tr>
-							</tr>
-						</tbody>
-					</table>
-
-						<table id="apploginrecord" style="position:relative;left:528px;top:-112px;border-style:hidden;">
-							<tr><td colspan="4" style="border-style:hidden;"><p style="opacity:.8;"><h3 style="color:#B53232;">App</h3> Login Record	</p></td></tr>
+					<p style="position:relative;left:270px;font-size:18px;font-weight:bold;color:#B53232;top:8px;">Latest Login</p>
+					<p style="position:relative;left:590px;top:-16px;font-size:18px;font-weight:bold;color:#B53232;">Latest Logout</p>
+						<table id="browseraccount" style="width:100%;border-style:hidden;position:relative;top:-10px;">
 							<thread>
 								<tr>
-									<th style="width:12%">Type</th>
-									<th style="width:12%">Date</th>
-									<th style="width:12%">Time</th>
 									<th style="width:12%">ID</th>
+									<th style="width:24%">Time</th>
+									<th style="width:24%">Time</th>
+									<th style="width:12%">History</th>
 								</tr>
 							</thread>
-							<tbody id='apploginrecordbody'>
+							<tbody id='browseraccountbody'>
 								<tr>
 								</tr>
 							</tbody>
@@ -503,31 +489,18 @@
 				</div>
 
 				<div class="container" id="data3" style="display:none;position:relative;">
-					<table id="browserlogoutrecord" style="position:relative;left:50px;top:-8px;border-style:hidden;">
-						<tr><td colspan="3" style="border-style:hidden;"><p style="opacity:.8;"><h3 style="color:#B53232;">Browser</h3> Logout Record	</p></td></tr>
-						<thread>
-							<tr>
-								<th style="width:16%">Date</th>
-								<th style="width:16%">Time</th>
-								<th style="width:16%">ID</th>
-							</tr>
-						</thread>
-						<tbody id='browserloginrecordbody'>
-							<tr>
-							</tr>
-						</tbody>
-					</table>
-
-						<table id="applogoutrecord" style="position:relative;left:528px;top:-112px;border-style:hidden;">
-							<tr><td colspan="3" style="border-style:hidden;"><p style="opacity:.8;"><h3 style="color:#B53232;">App</h3> Logout Record	</p></td></tr>
+					<p style="position:relative;left:270px;font-size:18px;font-weight:bold;color:#B53232;top:8px;">Latest Login</p>
+					<p style="position:relative;left:590px;top:-16px;font-size:18px;font-weight:bold;color:#B53232;">Latest Logout</p>
+						<table id="appaccount" style="width:100%;border-style:hidden;position:relative;top:-10px;">
 							<thread>
 								<tr>
-									<th style="width:16%">Date</th>
-									<th style="width:16%">Time</th>
-									<th style="width:16%">ID</th>
+									<th style="width:12%">ID</th>
+									<th style="width:24%">Time</th>
+									<th style="width:24%">Time</th>
+									<th style="width:12%">History</th>
 								</tr>
 							</thread>
-							<tbody id='apploginrecordbody'>
+							<tbody id='appaccountbody'>
 								<tr>
 								</tr>
 							</tbody>
