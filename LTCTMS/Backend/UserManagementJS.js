@@ -217,6 +217,15 @@ function tableBrowserLogging(fb){
 
 function historyBrowserLogging(n){
   var fb = firebase.database().ref('AccountStatus/Browser');
-  
+
+
+}
+
+
+function viewbrowser(){
+
+}
+
+function viewapp(){
 
 }
