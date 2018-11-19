@@ -5,10 +5,7 @@ function newAccount(){
   var email = document.getElementById('Email').value;
   var pass = document.getElementById('password').value;
   var position = document.getElementById('position').value;
-  //var fb = firebase.database().ref(position+'/'+sid).child('Porfolio');
-  //fb.on("value", function(snapshot){
-  //  snapshot.val();
-  //});
+
   var data = {
     Name : name,
     Email: email,
@@ -77,9 +74,9 @@ function editedUserAccount(){
 var rowIndex=0;
 var fbACC = firebase.database().ref('uAccount');
 
-window.onload = function(){
-  tableNewRow(fbACC);
-}
+//window.onload = function(){
+//  tableNewRow(fbACC);
+//}
 
 function tableNewRow(fb){
   var tablelist =document.getElementById('UserListBody');
