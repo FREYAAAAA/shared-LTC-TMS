@@ -74,10 +74,6 @@ function editedUserAccount(){
 var rowIndex=0;
 var fbACC = firebase.database().ref('uAccount');
 
-//window.onload = function(){
-//  tableNewRow(fbACC);
-//}
-
 function tableNewRow(fb){
   var tablelist =document.getElementById('UserListBody');
   console.log(tablelist);
@@ -89,6 +85,7 @@ function tableNewRow(fb){
           var email = childSnapshot.child('Email').val();
           var name = childSnapshot.child('Name').val();
           var position = childSnapshot.child('Position').val();
+          //Requried For Later Version
           var signIn = childSnapshot.child('AuthenticationData/metadata/lastSignInTime').val();
 
           var row = tablelist.insertRow(rowIndex);
@@ -125,7 +122,6 @@ function tableNewRow(fb){
   });
 
 }
-
 
 function showusermanagement(){
   document.getElementById("data1").style.display = "block";
@@ -181,4 +177,9 @@ function openmenu(){
   document.getElementById("menu").style.display = "block";
   document.getElementById("openmenu").style.opacity = ".6";
 }
+}
+
+function tableLogging(){
+  var tablelist =document.getElementById('browseraccountbody');
+  
 }

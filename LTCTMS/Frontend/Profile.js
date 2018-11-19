@@ -131,7 +131,7 @@ function submitNewPass(){
             var fullTime = currentHour+':'+currentMinute+':'+currentSecond;
             var fullDateandTime = fullDate +'-'+ fullTime;
             var passRenewal = oldPass +'~' + newPass;
-            firebase.database().ref('AccountStatus/'+ user.uid+'/ChangePasswordHistory/'+fullDateandTime).set(passRenewal);
+            firebase.database().ref('AccountStatus/Browser/'+ user.uid+'/ChangePasswordHistory/'+fullDateandTime).set(passRenewal);
 
             alert('Successfully Re-New Password!');
             window.location.reload();
@@ -193,7 +193,7 @@ function Logout(){
 
   var user = firebase.auth().currentUser;
   console.log("==="+user.uid)
-  firebase.database().ref('AccountStatus/'+user.uid+'/LogoutHistory/'+fullDate+'/'+ fullTime).set('True');
+  firebase.database().ref('AccountStatus/Browser/'+user.uid+'/LogoutHistory/'+fullDate+'/'+ fullTime).set('True');
 
   firebase.auth().signOut();
   console.log('logout');

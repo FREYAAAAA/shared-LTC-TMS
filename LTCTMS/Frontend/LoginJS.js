@@ -152,7 +152,7 @@ function sendEmail(id,getEmail){
     var fullTime = currentHour+':'+currentMinute+':'+currentSecond;
     var fullDateandTime = fullDate +'-'+ fullTime;
 
-    firebase.database().ref('AccountStatus/'+ id +'/ChangePasswordHistory/'+fullDateandTime).set('Password Reset Through Email');
+    firebase.database().ref('AccountStatus/Browser/'+ id +'/ChangePasswordHistory/'+fullDateandTime).set('Password Reset Through Email');
     alert("Please check your email to reset the password!");
     window.location.reload();
     }).catch(function(error){
