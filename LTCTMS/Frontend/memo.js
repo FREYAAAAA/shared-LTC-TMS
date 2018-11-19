@@ -241,28 +241,6 @@ function openmenu(){
 }
 
 
-function profile(){
-  document.getElementById("profile").style.display = "block";
-}
-
-function closeprofile(){
-  document.getElementById("profile").style.display = "none";
-  document.getElementById("editprofile").style.display = "none";
-}
-
-function editprofile(){
-  document.getElementById("profile").style.display = "none";
-  document.getElementById("editprofile").style.display = "block";
-}
-
-function cancelprofile(){
-  window.location.reload()
-}
-
-function submitprofile(){
-
-}
-
 
 var a = new Date();
 var hour = a.getHours();
