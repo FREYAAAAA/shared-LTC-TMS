@@ -157,9 +157,7 @@ fbCS.once("value")
     .then(function(mdelete){
         mdelete.forEach(function(deletememo){
             var memekey=deletememo.key;
-            console.log(memekey);
             var memodata= deletememo.val();
-            console.log(memodata);
             var content = document.getElementById('content_id['+num+']').innerHTML;
                 if (memodata == content ){
                     var r = confirm("Are you sure you want to delete a memo ?");
@@ -169,7 +167,6 @@ fbCS.once("value")
                         window.location.reload();
                     }
                 }
-
     })
 })
 }
@@ -177,22 +174,24 @@ fbCS.once("value")
 function editha(num){
     var Fbe= firebase.database().ref('MEMO/'+year_m);
     var path1 = 'MEMO/'+year_m;
-    document.getElementById('edited_date').value = nowadays;
+    console.log(nowadays);
+
     Fbe.once('value')
     .then(function(medit){
         medit.forEach(function(editmemo){
             var editmemekey = editmemo.key;
             var editmemodata = editmemo.val();
-            console.log(editmemodata);
             var content = document.getElementById('content_id['+num+']').innerHTML;
-            console.log(content);
             sessionStorage.setItem("key",editmemekey);
             sessionStorage.setItem("path", path1);
 
             if (editmemodata==content){
+            console.log(year_m);
+            var thatDate = year_m+
              document.getElementById('edit_form').style.display="block";
              document.getElementById('memoedited').value=content;
-             //Fbe.child(editmemekey).remove();
+             document.getElementById('edited_date').value = nowadays;
+
          }
 
 
@@ -205,10 +204,7 @@ function editha(num){
      var text = $("#memoedited").val();
      var ymd = $("#edited_date").val();
      var fb = sessionStorage.getItem('path');
-     console.log('fsdafsdfasdfdsf   '+ fb );
      var key = sessionStorage.getItem('key');
-     console.log('fsdafsdfasdfdsf   '+key);
-     console.log(text);
      var a = ymd.split("-");
      if(a[1]<10){
          a[1] = a[1].replace('0', '');
