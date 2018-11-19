@@ -10,10 +10,10 @@
 		<link rel="stylesheet" type="text/css" href="statics/css/style.css" />
 		<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
 		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-		<script type = 'text/javascript' src = "/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Frontend/Config.js"></script>
-		<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/UserManagementJS.js'></script>
-		<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Frontend/chat.js'></script>
-		<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/Profile.js'></script>
+		<script type = 'text/javascript' src = "/Users/Gama/Documents/GitHub/shared-LTC-TMS/LTCTMS/Frontend/Config.js"></script>
+		<script type = 'text/javascript' src = '/Users/Gama/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/UserManagementJS.js'></script>
+		<script type = 'text/javascript' src = '/Users/Gama/Documents/GitHub/shared-LTC-TMS/LTCTMS/Frontend/chat.js'></script>
+		<script type = 'text/javascript' src = '/Users/Gama/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/Profile.js'></script>
 	</head>
 	<style>
 	#expand{
@@ -615,9 +615,9 @@
 		</div>
 		</div>
 
-<div style="display:none;background-color:#ABBC8D;position:absolute;top:15%;left:20%;width:60%;height:5%;">
-	<h2 id="browsername" style="position:relative;left:3%;">Browser ‒ ID : 110001</h2>
-	<p style="position:relative;left:895px;top:-27px;font-size:20px;" class="closerecord">X</p>
+<div id = "browsaccountname" style="display:none;background-color:#ABBC8D;position:absolute;top:15%;left:20%;width:60%;height:5%;">
+	<h2 id="browsername" style="position:relative;left:3%;"></h2>
+	<p style="position:relative;left:895px;top:-27px;font-size:20px;" class="closerecord" onclick= "closeHistory()">X</p>
 </div>
 <div id="viewbacchistory" style="display:none;position:absolute;top:20%;left:20%;background-color:#ddd;width:60%;height:60%;">
 	<div style="position:absolute;overflow-y:scroll;overflow-x:hidden;width:50%;height:100%;">
@@ -644,19 +644,18 @@
 </div>
 </div>
 
-<div style="display:none;background-color:#ABBC8D;position:absolute;top:15%;left:20%;width:60%;height:5%;">
-	<h2 id="browsername" style="position:relative;left:3%;">App ‒ ID : 330001</h2>
-	<p style="position:relative;left:895px;top:-27px;font-size:20px;" class="closerecord">X</p>
+<div id="appaccountname" style="display:none;background-color:#ABBC8D;position:absolute;top:15%;left:20%;width:60%;height:5%;">
+	<h2 id="appname" style="position:relative;left:3%;"></h2>
+	<p style="position:relative;left:895px;top:-27px;font-size:20px;" class="closerecord" onclick="closeHistory()">X</p>
 </div>
-<div id="viewbacchistory" style="display:none;position:absolute;top:20%;left:20%;background-color:#ddd;width:60%;height:60%;">
+<div id="viewapphistory" style="display:none;position:absolute;top:20%;left:20%;background-color:#ddd;width:60%;height:60%;">
 	<div style="position:absolute;overflow-y:scroll;overflow-x:hidden;width:50%;height:100%;">
 		<p style="font-weight:bold;position:relative;left:38%;top:10px;">Login Record</p>
 		<table style="border-style:hidden;position:relative;left:25px;top:18px;">
 		<thead>
-		<th style="width:25%">Type </th>
-		<th style="width:75%">Date & Time </th>
+		<th style="width:100%">Date & Time </th>
 	</thead>
-		<tbody id="viewbrowserloginbody">
+		<tbody id="viewapploginbody">
 			<tr></tr>
 		</tbody>
 	</table>
@@ -667,7 +666,7 @@
 		<thead>
 		<th style="width:100%">Date & Time </th>
 	</thead>
-		<tbody id="viewbrowserlogoutbody">
+		<tbody id="viewapplogoutbody">
 			<tr></tr>
 		</tbody>
 	</table>

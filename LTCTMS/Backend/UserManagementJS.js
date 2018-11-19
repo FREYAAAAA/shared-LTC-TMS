@@ -204,9 +204,9 @@ function tableBrowserLogging(fb){
       cellLatestLogout.appendChild(document.createTextNode(latestLogout));
       cellViewBut.appendChild(buttonV);
 
-      cellID.setAttribute('id','cellId['+rowIndex2+']');
+      cellID.setAttribute('id','cellId2['+rowIndex2+']');
       buttonV.innerHTML ='View';
-      //buttonV.setAttribute('onclick','editUserAccount('+rowIndex+')');
+      buttonV.setAttribute('onclick','historyBrowserLogging('+rowIndex2+')');
 
       rowIndex2 = rowIndex2 + 1;
 
@@ -215,34 +215,58 @@ function tableBrowserLogging(fb){
 
 }
 
-function historyBrowserLogging(n){
-  var fb = firebase.database().ref('AccountStatus/Browser');
-<<<<<<< HEAD
-  fb.once('value',function(snapshot){
-    snapshot.forEach(function(childsnapshot){
-      childSnapshot.forEach(function(loginShot){
-        if(loginShot.key == 'LoginHistory'){
-          loginShot.forEach(function(loginShot2){
-            var date = loginShot2.key;
-            loginShot2.forEach(function(loginShot3){
-              var time = loginShot3.key;
-              var dateandtime = date + '-' + time;
-              //table in
-            });
-          });
-        }
-        if(logShot.key == 'LoginHistory'){
-          logoutShot.forEach(function(logoutShot2){
-            var date = logoutShot2.key;
-            logoutShot2.forEach(function(logoutShot3){
-              var time = logoutShot3.key;
-              var dateandtime = date + '-' + time;
-              //table in
-            });
-          });
-        }
-      });
+function closeHistory(){
+  document.getElementById('browsaccountname').style.display='none';
+  document.getElementById('viewbacchistory').style.display='none';
+  document.getElementById('appaccountname').style.display='none';
+  document.getElementById('viewapphistory').style.display='none';
 
+}
+
+
+
+function historyBrowserLogging(n){
+  var hisrow = 0;
+  var hisrowout = 0;
+  document.getElementById('browsaccountname').style.display='block';
+  document.getElementById('viewbacchistory').style.display='block';
+  document.getElementById('viewbrowserloginbody').innerHTML='';
+  document.getElementById('viewbrowserlogoutbody').innerHTML='';
+  document.getElementById('browsername').innerHTML = document.getElementById('cellId2['+n+']').innerHTML;
+  var id = document.getElementById('browsername').innerHTML ;
+  var fb = firebase.database().ref('AccountStatus/Browser/'+id);
+  fb.once('value',function(snapshot){
+    snapshot.forEach(function(logShot){
+          if(logShot.key == 'LoginHistory'){
+            logShot.forEach(function(loginShot){
+              var date = loginShot.key;
+              loginShot.forEach(function(loginShot2){
+                var time = loginShot2.key;
+                var dateandtime = date + '-' + time;
+                var tablelogin = document.getElementById('viewbrowserloginbody');
+                //table for login
+                var rowLogin = tablelogin.insertRow(hisrow);
+                var cellHistory = rowLogin.insertCell(0);
+                cellHistory.appendChild(document.createTextNode(dateandtime));
+                hisrow = hisrow + 1;
+              });
+            });
+          }
+          if(logShot.key == 'LogoutHistory'){
+            logShot.forEach(function(logoutShot){
+              var date = logoutShot.key;
+              logoutShot.forEach(function(logoutShot2){
+                var time = logoutShot2.key;
+                var dateandtime2 = date + '-' + time;
+                var tablelogout = document.getElementById('viewbrowserlogoutbody');
+                //table in
+                var rowLogout = tablelogout.insertRow(hisrowout);
+                var cellHistory2 = rowLogout.insertCell(0);
+                cellHistory2.appendChild(document.createTextNode(dateandtime2));
+                hisrowout = hisrowout + 1;
+              });
+            });
+          }
     });
 
   });
@@ -274,25 +298,61 @@ function tableAppLogging(fb){
       cellLatestLogout.appendChild(document.createTextNode(latestLogout));
       cellViewBut.appendChild(buttonV);
 
-      cellID.setAttribute('id','cellId['+rowIndex2+']');
+      cellID.setAttribute('id','cellIdApp['+rowIndex3+']');
       buttonV.innerHTML ='View';
-      //buttonV.setAttribute('onclick','editUserAccount('+rowIndex+')');
+      buttonV.setAttribute('onclick','historyAppLogging('+rowIndex3+')');
 
       rowIndex3 = rowIndex3 + 1;
 
     });
   });
-=======
-
 
 }
 
+function historyAppLogging(n){
+  var rowin = 0;
+  var rowout = 0;
+  document.getElementById('appaccountname').style.display='block';
+  document.getElementById('viewapphistory').style.display='block';
+  document.getElementById('viewapploginbody').innerHTML='';
+  document.getElementById('viewapplogoutbody').innerHTML='';
+  document.getElementById('appname').innerHTML = document.getElementById('cellIdApp['+n+']').innerHTML;
+  var id = document.getElementById('appname').innerHTML ;
+  var fb = firebase.database().ref('AccountStatus/App/'+id);
+  fb.once('value',function(snapshot){
+    snapshot.forEach(function(logShot){
+          if(logShot.key == 'LoginHistory'){
+            logShot.forEach(function(loginShot){
+              var date = loginShot.key;
+              loginShot.forEach(function(loginShot2){
+                var time = loginShot2.key;
+                var dateandtime = date + '-' + time;
+                var tablelogin = document.getElementById('viewapploginbody');
+                //table for login
+                var rowLogin = tablelogin.insertRow(rowin);
+                var cellHistory = rowLogin.insertCell(0);
+                cellHistory.appendChild(document.createTextNode(dateandtime));
+                rowin = rowin + 1;
+              });
+            });
+          }
+          if(logShot.key == 'LogoutHistory'){
+            logShot.forEach(function(logoutShot){
+              var date = logoutShot.key;
+              logoutShot.forEach(function(logoutShot2){
+                var time = logoutShot2.key;
+                var dateandtime2 = date + '-' + time;
+                var tablelogout = document.getElementById('viewapplogoutbody');
+                //table in
+                var rowLogout = tablelogout.insertRow(rowout);
+                var cellHistory2 = rowLogout.insertCell(0);
+                cellHistory2.appendChild(document.createTextNode(dateandtime2));
+                rowout = rowout + 1;
+              });
+            });
+          }
+    });
 
-function viewbrowser(){
-
-}
-
-function viewapp(){
->>>>>>> b90164c03b38a9593e1d7a182faa125dacbc1a26
+  });
 
 }
