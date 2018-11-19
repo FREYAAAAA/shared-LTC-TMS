@@ -111,7 +111,7 @@ function submitNewPass(){
             var today = new Date();
             var currentYear = today.getFullYear();
             var currentMonth = today.getMonth()+1;
-            var currentDay = today.getDay();
+            var currentDay = today.getDate();
 
             var currentHour = today.getHours();
             var currentMinute = today.getMinutes();
@@ -157,6 +157,7 @@ var time = hour+":"+minute+":"+second;
 
 window.onload=function(){
     tableNewRow(fbACC);
+    tableBrowserLogging(fbStatus);
     if(time<"12:00:00" && time>="04:00:00"){
     document.getElementById("time").innerHTML = "Good Morning &nbsp ";
   }
@@ -172,7 +173,7 @@ function Logout(){
   var today = new Date();
   var currentYear = today.getFullYear();
   var currentMonth = today.getMonth()+1;
-  var currentDay = today.getDay();
+  var currentDay = today.getDate();
 
   var currentHour = today.getHours();
   var currentMinute = today.getMinutes();

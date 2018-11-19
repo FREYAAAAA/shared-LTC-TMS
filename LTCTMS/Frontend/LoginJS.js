@@ -47,7 +47,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
       var today = new Date();
       var currentYear = today.getFullYear();
       var currentMonth = today.getMonth()+1;
-      var currentDay = today.getDay();
+      var currentDay = today.getDate();
 
       var currentHour = today.getHours();
       var currentMinute = today.getMinutes();
@@ -65,8 +65,10 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
 
       var fullDate = currentYear+'-'+currentMonth+'-'+currentDay;
       var fullTime = currentHour+':'+currentMinute+':'+currentSecond;
+      var fullDateandTime = fullDate +'-'+ fullTime;
 
-      firebase.database().ref('AccountStatus/'+firebaseUser.uid+'/LoginHistory/'+fullDate+'/'+ fullTime).set('True');
+      firebase.database().ref('AccountStatus/Browser/'+firebaseUser.uid+'/LoginHistory/'+fullDate+'/'+ fullTime).set('True');
+      firebase.database().ref('AccountStatus/Browser/'+firebaseUser.uid+'/LatestLogin').set(fullDateandTime);
       alert('You are logged in!');
       window.location.href = "01Aboutus2.html";
     }
@@ -132,7 +134,7 @@ function sendEmail(id,getEmail){
     var today = new Date();
     var currentYear = today.getFullYear();
     var currentMonth = today.getMonth()+1;
-    var currentDay = today.getDay();
+    var currentDay = today.getDate();
 
     var currentHour = today.getHours();
     var currentMinute = today.getMinutes();

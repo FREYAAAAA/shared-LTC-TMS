@@ -111,7 +111,7 @@ function submitNewPass(){
             var today = new Date();
             var currentYear = today.getFullYear();
             var currentMonth = today.getMonth()+1;
-            var currentDay = today.getDay();
+            var currentDay = today.getDate();
 
             var currentHour = today.getHours();
             var currentMinute = today.getMinutes();
@@ -171,7 +171,7 @@ function Logout(){
   var today = new Date();
   var currentYear = today.getFullYear();
   var currentMonth = today.getMonth()+1;
-  var currentDay = today.getDay();
+  var currentDay = today.getDate();
 
   var currentHour = today.getHours();
   var currentMinute = today.getMinutes();
@@ -189,11 +189,11 @@ function Logout(){
 
   var fullDate = currentYear+'-'+currentMonth+'-'+currentDay;
   var fullTime = currentHour+':'+currentMinute+':'+currentSecond;
-
+  var fullDateandTime = fullDate +'-'+ fullTime;
   var user = firebase.auth().currentUser;
   console.log("==="+user.uid)
   firebase.database().ref('AccountStatus/Browser/'+user.uid+'/LogoutHistory/'+fullDate+'/'+ fullTime).set('True');
-
+    firebase.database().ref('AccountStatus/Browser/'+user.uid+'/LatestLogout').set(fullDateandTime);
   firebase.auth().signOut();
   console.log('logout');
   window.location.href = "00Login02.html";

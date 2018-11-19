@@ -179,7 +179,44 @@ function openmenu(){
 }
 }
 
-function tableLogging(){
+var fbStatus = firebase.database().ref('AccountStatus/Browser');
+var rowIndex2 = 0;
+function tableBrowserLogging(fb){
   var tablelist =document.getElementById('browseraccountbody');
+  fb.once("value",function(snapshot){
+    snapshot.forEach(function(childSnapshot){
+      var id = childSnapshot.key;
+      var latestLogin = childSnapshot.child('LatestLogin').val();
+      var latestLogout = childSnapshot.child('LatestLogout').val();
+
+      var row = tablelist.insertRow(rowIndex2);
+      row.setAttribute("class","table-list-row");
+      var cellID = row.insertCell(0);
+      var cellLatestLogin = row.insertCell(1);
+      var cellLatestLogout = row.insertCell(2);
+      var cellViewBut = row.insertCell(3);
+
+      var buttonV = document.createElement('button');
+
+
+      cellID.appendChild(document.createTextNode(id));
+      cellLatestLogin.appendChild(document.createTextNode(latestLogin));
+      cellLatestLogout.appendChild(document.createTextNode(latestLogout));
+      cellViewBut.appendChild(buttonV);
+
+      cellID.setAttribute('id','cellId['+rowIndex2+']');
+      buttonV.innerHTML ='View';
+      //buttonV.setAttribute('onclick','editUserAccount('+rowIndex+')');
+
+      rowIndex = rowIndex + 1;
+
+    });
+  });
+
+}
+
+function historyBrowserLogging(n){
+  var fb = firebase.database().ref('AccountStatus/Browser');
   
+
 }
