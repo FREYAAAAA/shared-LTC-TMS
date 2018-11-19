@@ -64,29 +64,12 @@ function tableform(id,name,fbFeedback,picture){
                   var m = childSnapshot3.key;
                   var a = m.split("-");
                   var m1 = m.split("-");
-                  if(m1[0]<10){
-                      m1[0] = "0"+m1[0];
-                  }
-                  if(m1[1]<10){
-                      m1[1] = "0"+m1[1];
-                  }
-                  if(m1[2]<10){
-                      m1[2] = "0"+m1[2];
-                  }
+
                    m1 = m1[0]+"-"+m1[1]+"-"+m1[2];
                   var feedbackID = childSnapshot4.key;
                   var t = childSnapshot6.key;
                   var time = t.split(":");
                   var tim1 = t.split(":");
-                  if(tim1[0]<10){
-                      tim1[0] = "0"+ tim1[0];
-                  }
-                  if(tim1[1]<10){
-                      tim1[1] = "0"+ tim1[1];
-                  }
-                  if(tim1[2]<10){
-                      tim1[2] = "0"+ tim1[2];
-                  }
                   tim1 = tim1[0]+":"+tim1[1]+":"+tim1[2];
                   var value = childSnapshot6.val();
               //  document.getElementById("user-fa").src = "/images/user_info_bg.jpg";
