@@ -128,3 +128,60 @@ function tableNewRow(fb){
   });
 
 }
+
+
+function showusermanagement(){
+  document.getElementById("data1").style.display = "block";
+  document.getElementById("data2").style.display = "none";
+  document.getElementById("data3").style.display = "none";
+  document.getElementById("data4").style.opacity = "none";
+  document.getElementById("User Management").style.opacity = "1";
+  document.getElementById("LoginTime").style.opacity = ".8";
+  document.getElementById("LogoutTime").style.opacity = ".8";
+  document.getElementById("ChangePassword").style.opacity = ".8";
+}
+
+function showlogintime(){
+  document.getElementById("data1").style.display = "none";
+  document.getElementById("data2").style.display = "block";
+  document.getElementById("data3").style.display = "none";
+  document.getElementById("data4").style.opacity = "none";
+  document.getElementById("User Management").style.opacity = ".8";
+  document.getElementById("LoginTime").style.opacity = "1";
+  document.getElementById("LogoutTime").style.opacity = ".8";
+  document.getElementById("ChangePassword").style.opacity = ".8";
+}
+
+function showlogouttime(){
+  document.getElementById("data1").style.display = "none";
+  document.getElementById("data2").style.display = "none";
+  document.getElementById("data3").style.display = "block";
+  document.getElementById("data4").style.opacity = "none";
+  document.getElementById("User Management").style.opacity = ".8";
+  document.getElementById("LoginTime").style.opacity = ".8";
+  document.getElementById("LogoutTime").style.opacity = "1";
+  document.getElementById("ChangePassword").style.opacity = ".8";
+}
+
+function showchangepassword(){
+  document.getElementById("data1").style.display = "none";
+  document.getElementById("data2").style.display = "none";
+  document.getElementById("data3").style.display = "none";
+  document.getElementById("data4").style.opacity = "block";
+  document.getElementById("User Management").style.opacity = ".8";
+  document.getElementById("LoginTime").style.opacity = ".8";
+  document.getElementById("LogoutTime").style.opacity = ".8";
+  document.getElementById("ChangePassword").style.opacity = "1";
+}
+
+
+function openmenu(){
+  if(document.getElementById("menu").style.display== "block"){
+    document.getElementById("menu").style.display = "none";
+    document.getElementById("openmenu").style.opacity = "1";
+  }
+  else{
+  document.getElementById("menu").style.display = "block";
+  document.getElementById("openmenu").style.opacity = ".6";
+}
+}
