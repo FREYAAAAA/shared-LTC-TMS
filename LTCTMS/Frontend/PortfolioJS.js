@@ -270,14 +270,15 @@ uploadtask.on('state_changed',
  var fbCNO = firebase.database().ref("CNO/");
 var briefPortfolio = document.getElementById('briefPortfolio');
 var rowIndexBP = 1;
+var arr = [];
+var arr1 = [];
+var arr2 = [];
+var index = 0;
+var i = 0;
 portfolio_Table(fbCNO);
 portfolio_Table(fbDIR);
 portfolio_Table(fbCNA);
 portfolio_Table(fbPAT);
-var arr = [];
-var arr1 = [];
-var index = 0;
-var i = 0;
 function portfolio_Table(fb){
     fb.once('value',function(snapshot){
 
@@ -306,17 +307,30 @@ function portfolio_Table(fb){
                       var childData = childSnapshot2.val();
                       button.innerHTML="View";
                       if(childKey == "patientRoomNo"){
+
                         arr.push(childData); // add the childkey into array, push is add
                          console.log(arr[i]); // to show the key on the console
                          var y = document.getElementById("filterRoomNo");
                          var option = document.createElement("option");
-                        option.text= arr[i];
-                         y.add(option);
-                         console.log(i);
+                         var x = 0;
+                         for(var c = 0; c < i; c++){
+                           if(arr[c] == arr[i]){
+                             x = 1;
+                             console.log('ttt');
+                             break;
+                           }
+                         }
+                         if(x==0){
+                           option.text= arr[c];
+                            y.add(option);
+                            console.log(i);
+                         }
                          i=i+1;
-                      }
+
+                    }
                       if(childKey == "Name"){
                           cellName.appendChild(document.createTextNode(childData));
+                          console.log(childData);
                       }
                       if(childKey == "NationalID"){
                           cellNationalID.appendChild(document.createTextNode(childData));
@@ -329,20 +343,18 @@ function portfolio_Table(fb){
                            var y = document.getElementById("filterNationality");
                            var option = document.createElement("option");
                            var x = 0;
-                           for(var c = 0; c <= index; c++){
+                           for(var c = 0; c < index; c++){
                              if(arr1[c] == arr1[index]){
                                x = 1;
                                break;
                              }
                            }
-                           if(x = 0){
+                           if(x==0){
                              option.text= arr1[c];
                               y.add(option);
                               console.log(index);
-                              index=index+1;
-
                            }
-
+                           index=index+1;
 
                       }
                       if(childKey =="Gender"){
@@ -810,11 +822,16 @@ $(document).ready(function(){
 
 //Room number filter
 function filterRoomNo() {
-    this.value = "Patient"
-    positionF = this.value;
-    updateTable();
+
     var table = document.getElementById("briefPortfolio");
     var selectedroom = document.getElementById('filterRoomNo').value;
+    if(selectedroom !="all"){
+        document.getElementById("filterPosition").value ="Patient";
+    }
+    else{
+        document.getElementById("filterPosition").value ="all";
+    }
+
     var fbPR = firebase.database().ref('Patient/');
     var tr = table.getElementsByTagName("tr");
     fbPR.once('value',function(snapshot){
@@ -900,6 +917,9 @@ function updateTable(){
 }
 
 $('#filterPosition').on('change', function() {
+    if(positionF !="patient"){
+        document.getElementById("filterRoomNo").value ="all";
+    }
   positionF = this.value;
   updateTable();
 });
