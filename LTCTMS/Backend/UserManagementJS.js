@@ -208,7 +208,7 @@ function tableBrowserLogging(fb){
       buttonV.innerHTML ='View';
       //buttonV.setAttribute('onclick','editUserAccount('+rowIndex+')');
 
-      rowIndex = rowIndex + 1;
+      rowIndex2 = rowIndex2 + 1;
 
     });
   });
@@ -217,6 +217,69 @@ function tableBrowserLogging(fb){
 
 function historyBrowserLogging(n){
   var fb = firebase.database().ref('AccountStatus/Browser');
-  
+  fb.once('value',function(snapshot){
+    snapshot.forEach(function(childsnapshot){
+      childSnapshot.forEach(function(loginShot){
+        if(loginShot.key == 'LoginHistory'){
+          loginShot.forEach(function(loginShot2){
+            var date = loginShot2.key;
+            loginShot2.forEach(function(loginShot3){
+              var time = loginShot3.key;
+              var dateandtime = date + '-' + time;
+              //table in
+            });
+          });
+        }
+        if(logShot.key == 'LoginHistory'){
+          logoutShot.forEach(function(logoutShot2){
+            var date = logoutShot2.key;
+            logoutShot2.forEach(function(logoutShot3){
+              var time = logoutShot3.key;
+              var dateandtime = date + '-' + time;
+              //table in
+            });
+          });
+        }
+      });
+
+    });
+
+  });
+
+}
+
+var fbStatus2 = firebase.database().ref('AccountStatus/App');
+var rowIndex3 = 0;
+function tableAppLogging(fb){
+  var tablelist =document.getElementById('appaccountbody');
+  fb.once("value",function(snapshot){
+    snapshot.forEach(function(childSnapshot){
+      var id = childSnapshot.key;
+      var latestLogin = childSnapshot.child('LatestLogin').val();
+      var latestLogout = childSnapshot.child('LatestLogout').val();
+
+      var row = tablelist.insertRow(rowIndex3);
+      row.setAttribute("class","table-list-row");
+      var cellID = row.insertCell(0);
+      var cellLatestLogin = row.insertCell(1);
+      var cellLatestLogout = row.insertCell(2);
+      var cellViewBut = row.insertCell(3);
+
+      var buttonV = document.createElement('button');
+
+
+      cellID.appendChild(document.createTextNode(id));
+      cellLatestLogin.appendChild(document.createTextNode(latestLogin));
+      cellLatestLogout.appendChild(document.createTextNode(latestLogout));
+      cellViewBut.appendChild(buttonV);
+
+      cellID.setAttribute('id','cellId['+rowIndex2+']');
+      buttonV.innerHTML ='View';
+      //buttonV.setAttribute('onclick','editUserAccount('+rowIndex+')');
+
+      rowIndex3 = rowIndex3 + 1;
+
+    });
+  });
 
 }
