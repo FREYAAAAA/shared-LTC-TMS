@@ -20,10 +20,7 @@
 
 
      var date = mm_index+1;
-     console.log(date);
-
      var year_m = year+"-"+date;
-     console.log(year_m);
      var a = new Date();
      var hour = a.getHours();
      var minute = a.getMinutes();
@@ -52,6 +49,7 @@ function close_form(){
 }
 
 function submit(){
+    var userID = document.getElementById("displayProfileid").innerHTML;
     var text = $("#memo_text").val();
     var ymd = $("#selected_date").val();
     var a = ymd.split("-");
@@ -66,7 +64,7 @@ function submit(){
     else {
       var r = confirm("Are you sure you want to enter this data?");
       if (r == true) {
-        firebase.database().ref("MEMO/"+year_m+"/"+dd+"-"+time).set(text);
+        firebase.database().ref("MEMO/"+userID+"/"+year_m+"/"+dd+"-"+time).set(text);
         close_form();
         location.reload();
       }
@@ -74,8 +72,9 @@ function submit(){
 }
 
 
+
 function viewTable(value){
-    console.log("value");
+    var userID = document.getElementById("displayProfileid").innerHTML;
     document.getElementById("years").innerHTML = year;
     var a = year_m.split("-");
 
@@ -103,7 +102,7 @@ function viewTable(value){
     document.getElementById("fullName_Month").innerHTML = Month[a[1]-1];
 
 
-    var fbMemo = firebase.database().ref("MEMO/"+year_m);
+    var fbMemo = firebase.database().ref("MEMO/"+userID+"/"+year_m);
 
     fbMemo.once("value")
     .then(function(snapshot){
@@ -152,28 +151,30 @@ function viewTable(value){
 }
 
 function deleteha(num){
-var fbCS= firebase.database().ref('MEMO/'+year_m);
-fbCS.once("value")
-    .then(function(mdelete){
-        mdelete.forEach(function(deletememo){
-            var memekey=deletememo.key;
-            var memodata= deletememo.val();
-            var content = document.getElementById('content_id['+num+']').innerHTML;
-                if (memodata == content ){
-                    var r = confirm("Are you sure you want to delete a memo ?");
-                    if(r == true){
-                       fbCS.child(memekey).remove();
-                    alert("successfully deleted!");
-                        window.location.reload();
+    var userID = document.getElementById("displayProfileid").innerHTML;
+    var fbCS= firebase.database().ref('MEMO/'+userID+"/"+year_m);
+    fbCS.once("value")
+        .then(function(mdelete){
+            mdelete.forEach(function(deletememo){
+                var memekey=deletememo.key;
+                var memodata= deletememo.val();
+                var content = document.getElementById('content_id['+num+']').innerHTML;
+                    if (memodata == content ){
+                        var r = confirm("Are you sure you want to delete a memo ?");
+                        if(r == true){
+                           fbCS.child(memekey).remove();
+                        alert("successfully deleted!");
+                            window.location.reload();
+                        }
                     }
-                }
+        })
     })
-})
 }
 
 function editha(num){
-    var Fbe= firebase.database().ref('MEMO/'+year_m);
-    var path1 = 'MEMO/'+year_m;
+    var userID = document.getElementById("displayProfileid").innerHTML;
+    var Fbe= firebase.database().ref('MEMO/'+userID+"/"+year_m);
+    var path1 = 'MEMO/'+userID+"/"+year_m;
     console.log(nowadays);
 
     Fbe.once('value')
@@ -184,23 +185,21 @@ function editha(num){
             var content = document.getElementById('content_id['+num+']').innerHTML;
             sessionStorage.setItem("key",editmemekey);
             sessionStorage.setItem("path", path1);
-
             if (editmemodata==content){
-            console.log(year_m);
-            var thatDate = year_m+
-             document.getElementById('edit_form').style.display="block";
-             document.getElementById('memoedited').value=content;
-             document.getElementById('edited_date').value = nowadays;
-
-         }
-
-
-    })
-})
-}
+                console.log(year_m);
+                var timeKey = editmemekey.split("-");
+                var editDate = year_m+"-"+timeKey[0];
+                 document.getElementById('edit_form').style.display="block";
+                 document.getElementById('memoedited').value=content;
+                 document.getElementById('edited_date').value = editDate;
+             }
+         })
+     })
+ }
 
 
  function esubmit(){
+     var userID = document.getElementById("displayProfileid").innerHTML;
      var text = $("#memoedited").val();
      var ymd = $("#edited_date").val();
      var fb = sessionStorage.getItem('path');
@@ -220,13 +219,12 @@ function editha(num){
        var r = confirm("Are you sure you want to enter this data?");
        if (r == true) {
          firebase.database().ref(fb).child(key).remove();
-         firebase.database().ref("MEMO/"+year_m+"/"+dd+"-"+time).set(text);
+         firebase.database().ref("MEMO/"+userID+"/"+year_m+"/"+dd+"-"+time).set(text);
          close_form();
          location.reload();
        }
    }
 }
-
 function closeform(){
     document.getElementById("edit_form").style.display="none";
 }
@@ -272,6 +270,8 @@ var minute = a.getMinutes();
 var second = a.getSeconds();
 
 var time = hour+":"+minute+":"+second;
+
+
 window.onload=function(){
     console.log("time");
     if(time<"12:00:00" && time>="04:00:00"){
@@ -283,6 +283,7 @@ window.onload=function(){
       if(time>="18:00:00" || time<"04:00:00"){
           document.getElementById("time").innerHTML = "Good Evening &nbsp ";
         }
+
 }
 $(document).ready(function() {
     document.getElementById("fullName_Month").innerHTML = Month[mm_index];
@@ -290,5 +291,10 @@ $(document).ready(function() {
     document.getElementById("current_month").innerHTML = month[mm_index];
     document.getElementById("current_week").innerHTML = weekday[wk_index];
     document.getElementById("current_year").innerHTML = year;
-    viewTable();
+    var userID = document.getElementById("displayProfileid").innerHTML;
+
+
 });
+setTimeout(function(){
+    viewTable();
+}, 2000);
