@@ -6,7 +6,6 @@ snapshot.forEach(function(childSnapshot){
   var childKey = childSnapshot.key;
   var childData = childSnapshot.val();
   if (childSnapshot.key == "Aboutus"){
-  //  document.getElementById('loginaboutus').innerHTML=childSnapshot.val();
   }
   if (childSnapshot.key == "Name"){
     document.getElementById('contactname').innerHTML=childSnapshot.val();
@@ -45,16 +44,35 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
       alert('You are logged in as Admin!');
       window.location.href = "//C:/Users/Gama/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/Policy.html"
     }else{
+      var today = new Date();
+      var currentYear = today.getFullYear();
+      var currentMonth = today.getMonth()+1;
+      var currentDay = today.getDay();
+
+      var currentHour = today.getHours();
+      var currentMinute = today.getMinutes();
+      var currentSecond = today.getSeconds();
+
+      if(currentHour < 10){
+        currentHour = '0' + currentHour
+      }
+      if(currentMinute < 10){
+        currentMinute = '0' + currentMinute
+      }
+      if(currentSecond < 10){
+        currentSecond = '0' + currentSecond
+      }
+
+      var fullDate = currentYear+'-'+currentMonth+'-'+currentDay;
+      var fullTime = currentHour+':'+currentMinute+':'+currentSecond;
+
+      firebase.database().ref('AccountStatus/'+firebaseUser.uid+'/LoginHistory/'+fullDate+'/'+ fullTime).set('True');
       alert('You are logged in!');
       window.location.href = "01Aboutus2.html";
     }
-
-
-
   }
   else {
     console.log('Please login!');
-
   }
 });
 
@@ -88,43 +106,58 @@ function forgetPass(){
   var getEmail = document.getElementById('forgetP').value;
   var position = document.getElementById('fposition').value;
   var id = document.getElementById('fid').value;
-  if(position == "Director of Nursing" || position == "Director" || position == "DIR"){
-    var fbF = firebase.database().ref('DIR');
-    fbF.child(id).once("value", function(snapshot){
-      if(snapshot.exists()){
-        searchForEmail(fbF,id,getEmail);
-      }else{
-        alert("ID doesn't exist!");
-      }
-    });
-  }else if(position == "Chief Nursing Officer" || position == "CNO"){
-    var fbF = firebase.database().ref('CNO');
-    fbF.child(id).once("value", function(snapshot){
-      if(snapshot.exists()){
-        searchForEmail(fbF,id,getEmail);
-      }else{
-        alert("ID doesn't exist!");
-      }
-    });
-  }else{
-    alert("There is no such role/position capable to use this is system!");
-  }
-}
 
-function searchForEmail(fbF,id,getEmail){
-  fbF.child(id+'/Portfolio').once('value',function(snapshot){
-    var Email = snapshot.child('Email').val();
-    if(Email == getEmail){
-      firebase.auth().sendPasswordResetEmail(getEmail).then(function(){
-        alert("Please check your email to reset the password!");
-      }).catch(function(error){
-        alert("Failed to send Email!");
-      });
+  var fbF = firebase.database().ref('uAccount');
+  fbF.child(id).once("value", function(snapshot){
+    if(snapshot.exists()){
+        if(snapshot.child('Email').val() == getEmail){
+          if(position == "Director of Nursing" || position == "Director" || position == "DIR"){
+            sendEmail(id,getEmail);
+          }else if(position == "Chief Nursing Officer" || position == "CNO"){
+            sendEmail(id,getEmail);
+          }else{
+            alert("Position doesn't exist!");
+          }
+        }else{
+          alert("Email doesn't exist!");
+        }
     }else{
-      alert("Email doesn't Exist!");
+      alert("ID doesn't exist!");
     }
   });
+}
 
+function sendEmail(id,getEmail){
+  firebase.auth().sendPasswordResetEmail(getEmail).then(function(){
+    var today = new Date();
+    var currentYear = today.getFullYear();
+    var currentMonth = today.getMonth()+1;
+    var currentDay = today.getDay();
+
+    var currentHour = today.getHours();
+    var currentMinute = today.getMinutes();
+    var currentSecond = today.getSeconds();
+
+    if(currentHour < 10){
+      currentHour = '0' + currentHour
+      }
+    if(currentMinute < 10){
+      currentMinute = '0' + currentMinute
+    }
+    if(currentSecond < 10){
+      currentSecond = '0' + currentSecond
+    }
+
+    var fullDate = currentYear+'-'+currentMonth+'-'+currentDay;
+    var fullTime = currentHour+':'+currentMinute+':'+currentSecond;
+    var fullDateandTime = fullDate +'-'+ fullTime;
+
+    firebase.database().ref('AccountStatus/'+ id +'/ChangePasswordHistory/'+fullDateandTime).set('Password Reset Through Email');
+    alert("Please check your email to reset the password!");
+    window.location.reload();
+    }).catch(function(error){
+    alert("Failed to send Email!");
+    });
 }
 
 function openmenu(){
