@@ -324,25 +324,17 @@ function portfolio_Table(fb){
                       if(childKey == "Nationality"){
                           cellNationality.appendChild(document.createTextNode(childData));
                           row.setAttribute('data-nationality', childData);
-                          arr1.push(childData); // add the childkey into array, push is add
-
+                          arr1.push(childData);
+                          console.log(childData);
                            var y = document.getElementById("filterNationality");
                            var option = document.createElement("option");
                            var x = 0;
-                           console.log(x);
-
                            for(var c = 0; c <= index; c++){
                              if(arr1[c] == arr1[index]){
                                x = 1;
-                               console.log(arr1[index]);
-                               console.log(index);
-                               console.log(c);
-
                                break;
                              }
                            }
-                           console.log(x);
-
                            if(x = 0){
                              option.text= arr1[c];
                               y.add(option);
@@ -818,6 +810,9 @@ $(document).ready(function(){
 
 //Room number filter
 function filterRoomNo() {
+    this.value = "Patient"
+    positionF = this.value;
+    updateTable();
     var table = document.getElementById("briefPortfolio");
     var selectedroom = document.getElementById('filterRoomNo').value;
     var fbPR = firebase.database().ref('Patient/');
@@ -856,8 +851,8 @@ function filterRoomNo() {
           })
       });
   });
-  for( var i = 0; i < tr.length ; i++){// other position display "none"
-      var td = tr[i].getElementsByTagName("td")[0];//row i cell number 4
+  for( var i = 0; i < tr.length ; i++){
+      var td = tr[i].getElementsByTagName("td")[0];
       if(td){
         console.log(td);
         if(tr[i].style.display ==''){
@@ -867,7 +862,7 @@ function filterRoomNo() {
   }
   if("all" == selectedroom){
       for( var i = 0; i < tr.length ; i++){
-          var td = tr[i].getElementsByTagName("td")[0];//row i cell number 4
+          var td = tr[i].getElementsByTagName("td")[0];
           if(td){
                   tr[i].style.display = "";
 
@@ -892,10 +887,7 @@ function updateTable(){
       result = result && genderF === self.data('gender');
     }
 
-    if (idnroomF && (idnroomF != 'all')) {
-        result = result && idnroomF === self.data('idroom');
 
-      }
   /*  if (idnroomF && (idnroomF != 'all')) {
       result = result && idnroomF === self.data('idroom');
       console.log('idroom = '+self.data('idroom'));
