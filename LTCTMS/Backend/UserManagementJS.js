@@ -86,7 +86,7 @@ function tableNewRow(fb){
           var name = childSnapshot.child('Name').val();
           var position = childSnapshot.child('Position').val();
           //Requried For Later Version
-          var signIn = childSnapshot.child('AuthenticationData/metadata/lastSignInTime').val();
+          //var signIn = childSnapshot.child('AuthenticationData/metadata/lastSignInTime').val();
 
           var row = tablelist.insertRow(rowIndex);
           row.setAttribute("class","table-list-row");
@@ -94,9 +94,8 @@ function tableNewRow(fb){
           var cellEmail = row.insertCell(1);
           var cellName = row.insertCell(2);
           var cellRole = row.insertCell(3);
-          var cellStatus = row.insertCell(4);
-          var cellEditBut = row.insertCell(5);
-          var cellDeleteBut = row.insertCell(6);
+          var cellEditBut = row.insertCell(4);
+          var cellDeleteBut = row.insertCell(5);
 
           var buttonE = document.createElement('button');
           var buttonD = document.createElement('button');
