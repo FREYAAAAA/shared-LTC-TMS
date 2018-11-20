@@ -16,6 +16,7 @@ function newAccount(){
   var updates={}
   updates['uAccount/'+ sid]=data;
   firebase.database().ref().update(updates);
+  location.reload();
 }
 
 //Delete account
@@ -26,6 +27,7 @@ function deleteUserAccount(i){
   if(confirmation == true){
     fbACCD.remove();
     alert("successfully removed the account!");
+    location.reload();
   }
 }
 
@@ -39,7 +41,7 @@ function editUserAccount(i){
     var name = childData.Name;
     var email = childData.Email;
     var position = childData.Position;
-    var pass = childData.password;
+    var pass = childData.Password;
 
     document.getElementById('SIDE').value = sid;
     document.getElementById('NameE').value = name;
@@ -68,6 +70,7 @@ function editedUserAccount(){
   updates={}
   updates['uAccount/'+sid]=data;
   firebase.database().ref().update(updates);
+  location.reload();
 }
 
 //Display UM table - UID, NAME, STATUS, EDIT button, DELETE button
@@ -104,7 +107,6 @@ function tableNewRow(fb){
           cellEmail.appendChild(document.createTextNode(email));
           cellName.appendChild(document.createTextNode(name));
           cellRole.appendChild(document.createTextNode(position));
-          cellStatus.appendChild(document.createTextNode(signIn));
           cellEditBut.appendChild(buttonE);
           cellDeleteBut.appendChild(buttonD);
 

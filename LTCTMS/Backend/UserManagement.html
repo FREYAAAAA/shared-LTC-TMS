@@ -3,6 +3,13 @@
 <html>
 
 	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script>
+		$(document).ready(function(){
+			$('content1212').load("policy.html");
+			console.log("asd");
+		})
+		</script>
 		<meta charset="UTF-8">
 		<title>LTCTMS</title>
 		<link rel="icon" type="image/jpg" href="image\logo.jpg">
@@ -10,10 +17,10 @@
 		<link rel="stylesheet" type="text/css" href="statics/css/style.css" />
 		<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
 		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-		<script type = 'text/javascript' src = "/Users/Gama/Documents/GitHub/shared-LTC-TMS/LTCTMS/Frontend/Config.js"></script>
-		<script type = 'text/javascript' src = '/Users/Gama/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/UserManagementJS.js'></script>
-		<script type = 'text/javascript' src = '/Users/Gama/Documents/GitHub/shared-LTC-TMS/LTCTMS/Frontend/chat.js'></script>
-		<script type = 'text/javascript' src = '/Users/Gama/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/AdminProfileUM.js'></script>
+		<script type = 'text/javascript' src = "/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Frontend/Config.js"></script>
+		<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/UserManagementJS.js'></script>
+		<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Frontend/chat.js'></script>
+		<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/AdminProfileUM.js'></script>
 	</head>
 	<style>
 	#expand{
@@ -189,7 +196,7 @@
 	  color: #000;
 	}
 	table td {
-	  text-shadow: 2px 2px #FFFFFF;
+	  text-shadow: 2px 2px #F0F0EF;
 	}
 	#createNewAccountpop{
 	  width:100%;
@@ -217,7 +224,7 @@
 		overflow:auto
 	}
 	.editformedit {
-	  max-width:900px;
+	  max-width:400px;
 	  min-width:250px;
 	  padding:10px 50px;
 	  border:2px solid black;
@@ -225,10 +232,10 @@
 	  font-family:raleway;
 	  background-color:#fff;
 	  position:absolute;
-	  top:40px;
-	  left:25%;
-	  width:800px;
-	  height:790px;
+	  top:100px;
+	  left:40%;
+	  width:400px;
+	  height:500px;
 	}
 
 <!--usermessage-->
@@ -389,6 +396,8 @@
 }
 	</style>
 	<body>
+		<div id="content1212"></div>
+
 		<div class="header">
 			<div class="bar">
 				<div class="w1200">
@@ -454,16 +463,17 @@
 							<p class="logoutselected">&nbsp<i class="icon iconfont icon-dianyuan" style="margin-right:5px;"></i>Logout</p>
 				</div>
 
-				<div class="container" id="data1" style="position:relative;">
-					<table id="UserList">
+
+
+				<div class="container" id="data1" style="position:relative;width:100%;">
+					<table id="UserList" style="width:100%;border-style:hidden;">
 						<thread>
 							<tr>
-								<th style="width:15%">Staff ID</th>
-								<th style="width:20%">EMAIL</th>
-								<th style="width:20%">NAME</th>
-								<th style="width:10%">ROLE</th>
-								<th style="width:15%">SIGN-IN</th>
-								<th colspan="2" style="width:20%"><input type='button' id="createAccount" onclick="document.getElementById('createNewAccountpop').style.display = 'block';" value = "Create Account"/></th>
+								<th style="width:20%;border-bottom:hidden;">Staff ID</th>
+								<th style="width:25%;border-bottom:hidden;">EMAIL</th>
+								<th style="width:25%;border-bottom:hidden;">NAME</th>
+								<th style="width:15%;border-bottom:hidden;">ROLE</th>
+								<th colspan="2" style="width:15%;border-bottom:hidden;"><input type='button' id="createAccount" onclick="document.getElementById('createNewAccountpop').style.display = 'block';" value = "Create Account"/></th>
 							</tr>
 						</thread>
 						<tbody id='UserListBody'>
@@ -516,46 +526,52 @@
 
 
 					<!-- Create PopUp Use -->
-				<div id="createNewAccountpop" style="display:none;">
-				  <div class="editformedit">
-						<form onsubmit="newAccount(); return false">
-				    <center><h2>New Account</h2></center>
-						Name:<br>
-						<input id='Name' type='text' placeholder='Name...' /><br>
-						Staff ID:<br>
-						<input id='SID' type='text' placeholder='ID...' /><br>
-						Email:<br>
-						<input id='Email' type='text' placeholder='Email....' /><br>
-						Default Password:<br>
-						<input id='password' type='password' placeholder='Give a Password...' /><br>
-						Work Position:<br>
-						<input id='position' type='select' list='pList'/>
-						<datalist id='pList'>
-							<option value="CNO"/>
-							<option value="Director"/>
-						</datalist><br>
-						<input type="Submit" value="Submit" />
-						<input type='button' value='Cancel' onclick="document.getElementById('createNewAccountpop').style.display='none';"/>
-					</form>
-				  </div>
-				</div>
+					<div id="createNewAccountpop" style="display:none;">
+									  <div class="editformedit">
+											<div style="position:relative;width:396px; top:-10px; height:10%; left:-50px; background-color:#42A8F6;">
+											<form onsubmit="newAccount(); return false">
+									    <h3 style="position:relative;top:10px;left:10px;color:white;">Create a new browser account</h3>
+											<p  style="position:relative;left:380px;top:-28px;font-size:20px;color:white;" class="closerecord" onclick="document.getElementById('createNewAccountpop').style.display='none';"/>x</p>
+											</div>
+											<br><br>
+											<p style="position:relative;left:-40px;">Display Name:</p>
+											<input style="position:relative;top:-20px;left:110px;width:200px;" id='Name' type='text' placeholder='Name...' /><br>
+											<p style="position:relative;left:-40px;">Staff ID:</p>
+											<input style="position:relative;top:-20px;left:110px;width:200px;" id='SID' type='text' placeholder='ID...' /><br>
+											<p style="position:relative;left:-40px;">Email Address:</p>
+											<input style="position:relative;top:-20px;left:110px;width:200px;" id='Email' type='text' placeholder='Email....' /><br>
+											<p style="position:relative;left:-40px;">Default Password:</p>
+											<input style="position:relative;top:-20px;left:110px;width:200px;" id='password' type='password' placeholder='Give a Password...' /><br>
+											<p style="position:relative;left:-40px;">Work Position:</p>
+											<input style="position:relative;top:-20px;left:110px;width:200px;" id='position' type='select' list='pList'/>
+											<datalist id='pList'>
+												<option value="CNO"/>
+												<option value="Director"/>
+											</datalist><br><br>
+											<input style="position:relative;left:115px;width:80px;height:30px;border-radius:10px;border-style:hidden;background-color:#69B4ED;color:white;" type="Submit" value="Submit" />
+										</form>
+									  </div>
+									</div>
 
 				<div id ="editAccountPop" style = "display: none;">
 					<div class="editformedit">
+						<div style="position:relative;width:396px; top:-10px; height:10%; left:-50px; background-color:#E92020;">
 						<form onsubmit='editedUserAccount(); return false;'>
-							<center><h2>Edit Account</h2></center>
-							Name:<br>
-							<input id='NameE' type='text' /><br>
-							Staff ID:<br>
-							<input id='SIDE' type='text' /><br>
-							Email:<br>
-							<input id='EmailE' type='text' /><br>
-							Default Password:<br>
-							<input id='passE' type='text' /><br>
-							Work Position:<br>
-							<input id='positionE' type='text' /><br>
-							<input type="Submit" value="Submit" />
-							<input type='button' value='Cancel' onclick="document.getElementById('editAccountPop').style.display='none';"/>
+							<h3 style="position:relative;top:10px;left:30px;color:white;">Edit account</h3>
+							<p style="position:relative;left:380px;top:-28px;font-size:20px;color:white;" class="closerecord" onclick="document.getElementById('editAccountPop').style.display='none';"/>x</p>
+						</div>
+						<br><br>
+							<p style="position:relative;left:-40px;">Display Name:</p>
+							<input style="position:relative;top:-20px;left:110px;width:200px;" id='NameE' type='text' /><br>
+							<p style="position:relative;left:-40px;">Staff ID:</p>
+							<input style="position:relative;top:-20px;left:110px;width:200px;" id='SIDE' type='text' /><br>
+							<p style="position:relative;left:-40px;">Email Address:</p>
+							<input style="position:relative;top:-20px;left:110px;width:200px;" id='EmailE' type='text' /><br>
+							<p style="position:relative;left:-40px;">Default Password:</p>
+							<input style="position:relative;top:-20px;left:110px;width:200px;" id='passE' type='text' /><br>
+							<p style="position:relative;left:-40px;">Work Position:</p>
+							<input style="position:relative;top:-20px;left:110px;width:200px;" id='positionE' type='text' /><br><br>
+							<input style="position:relative;left:115px;width:80px;height:30px;border-radius:10px;border-style:hidden;background-color:#E92020;color:white;" type="Submit" value="Submit" />
 						</form>
 					</div>
 				</div>
@@ -584,7 +600,8 @@
 
 
 
-				<div id="editprofile" style="display:none;position:absolute; width:800px; height:350px; left:375px; top:40px;background-color:#EFFACA; z-index:3;">
+				<div id="editprofile" style="display:none;position:absolute; width:800px; height:350px; left:375px; top:40px;background-color:#EFFACA; z-index:3;border-style: solid;
+						border-width: 2px;">
 				<div style="background-color:#E4EACD;position:relative;height:75px;">
 					<h2 id="nameProfileTE"style="position:relative; left:210px;top:20px;"></h2>
 					<h3 style="position:relative; left:300px;top:-10px;color:gray;">	‒ Profile</h3>
@@ -600,7 +617,8 @@
 
 				</div>
 				</div>
-		<div id="changePass" style="display:none;position:absolute; width:800px; height:350px; left:375px; top:40px;background-color:#EFFACA; z-index:3;">
+		<div id="changePass" style="display:none;position:absolute; width:800px; height:350px; left:375px; top:40px;background-color:#EFFACA; z-index:3;border-style: solid;
+				border-width: 2px;">
 			<div style="background-color:#E4EACD;position:relative;height:75px;">
 			<h2 style="position:relative; left:210px;top:20px;">Changing Password</h2>
 			<button onclick="submitNewPass()" style="position:relative; left:620px;top:-15px;width:80px;height:35px;background-color:#3B94FA;color:white;border-radius:10px;">OK</button>
@@ -614,13 +632,16 @@
 		</div>
 		</div>
 
-<div id = "browsaccountname" style="display:none;background-color:#ABBC8D;position:absolute;top:14%;left:5%;width:90%;height:6%;">
-	<h2 style="position:relative;left:3%;top:6px;">Browser - ID : </h2>
-	<h3 id="browsername" style="position:relative;left:17%;top:-22px;"></h3>
-	<p style="position:relative;left:98%;top:-48px;font-size:20px;" class="closerecord" onclick= "closeHistory()">X</p>
+<div id = "browsaccountname" style="display:none;background-color:#336699;position:absolute;top:14%;left:5%;width:90%;height:6%;border-style: solid;
+		border-width: 2px;border-bottom:hidden;">
+	<h2 style="position:relative;left:3%;top:6px;color:white;">Browser - ID : </h2>
+	<h3 id="browsername" style="position:relative;left:17%;top:-22px;color:white;"></h3>
+	<p style="position:relative;left:98%;top:-48px;font-size:20px;color:white;" class="closerecord" onclick= "closeHistory()">X</p>
 </div>
-<div id="viewbacchistory" style="display:none;position:absolute;top:20%;left:5%;background-color:#ddd;width:90%;height:60%;">
-	<div style="position:absolute;overflow-y:scroll;overflow-x:hidden;width:33.3%;height:100%;">
+<div id="viewbacchistory" style="display:none;position:absolute;top:20%;left:5%;background-color:#F0F0EF;width:90%;height:60%;border-style: solid;
+		border-width: 2px;border-top:hidden;">
+	<div style="position:absolute;overflow-y:auto;overflow-x:hidden;width:33.3%;height:100%;border-style: solid;
+			border-width: 1px;border-left:hidden;border-bottom:hidden;border-top:hidden;">
 		<p style="font-weight:bold;position:relative;left:38%;top:10px;">Login Record</p>
 		<table style="border-style:hidden;position:relative;left:25px;top:18px;">
 		<thead>
@@ -631,7 +652,8 @@
 		</tbody>
 	</table>
 	</div>
-	<div style="overflow-y:scroll;overflow-x:hidden;width:33.3%;position:absolute;height:100%;top:0px;left:33.3%;">
+	<div style="overflow-y:auto;overflow-x:hidden;width:33.3%;position:absolute;height:100%;top:0px;left:33.3%;border-style: solid;
+			border-width: 1px;border-left:hidden;border-bottom:hidden;border-top:hidden;">
 		<p style="font-weight:bold;position:relative;left:35%;top:10px;">Logout Record</p>
 	<table style="border-style:hidden;position:relative;left:25px;top:20px;">
 		<thead>
@@ -642,7 +664,7 @@
 		</tbody>
 	</table>
 </div>
-<div style="overflow-y:scroll;overflow-x:hidden;width:33.3%;position:absolute;height:100%;top:0px;left:66.6%;">
+<div style="overflow-y:auto;overflow-x:hidden;width:33.3%;position:absolute;height:100%;top:0px;left:66.6%;">
 	<p style="font-weight:bold;position:relative;left:35%;top:10px;">Password History</p>
 <table style="border-style:hidden;position:relative;left:25px;top:20px;">
 	<thead>
@@ -658,13 +680,16 @@
 
 
 
-<div id="appaccountname" style="display:none;background-color:#ABBC8D;position:absolute;top:14%;left:5%;width:90%;height:6%;">
-	<h2 style="position:relative;left:3%;top:6px;">App - ID : </h2>
-	<h3 id="appname" style="position:relative;left:13%;top:-22px;"></h3>
-	<p style="position:relative;left:98%;top:-48px;font-size:20px;" class="closerecord" onclick= "closeHistory()">X</p>
+<div id="appaccountname" style="display:none;background-color:#336699;position:absolute;top:14%;left:5%;width:90%;height:6%;border-style: solid;
+		border-width: 2px;border-bottom:hidden;">
+	<h2 style="position:relative;left:3%;top:6px;color:white;">App - ID : </h2>
+	<h3 id="appname" style="position:relative;left:13%;top:-22px;color:white;"></h3>
+	<p style="position:relative;left:98%;top:-48px;font-size:20px;color:white;" class="closerecord" onclick= "closeHistory()">X</p>
 </div>
-<div id="viewapphistory" style="display:none;position:absolute;top:20%;left:5%;background-color:#ddd;width:90%;height:60%;">
-	<div style="position:absolute;overflow-y:scroll;overflow-x:hidden;width:33.3%;height:100%;">
+<div id="viewapphistory" style="display:none;position:absolute;top:20%;left:5%;background-color:#F0F0EF;width:90%;height:60%;border-style: solid;
+		border-width: 2px;border-top:hidden;">
+	<div style="position:absolute;overflow-y:auto;overflow-x:hidden;width:33.3%;height:100%;border-style: solid;
+			border-width: 1px;border-left:hidden;border-bottom:hidden;border-top:hidden;">
 		<p style="font-weight:bold;position:relative;left:38%;top:10px;">Login Record</p>
 		<table style="border-style:hidden;position:relative;left:25px;top:18px;">
 		<thead>
@@ -675,7 +700,8 @@
 		</tbody>
 	</table>
 	</div>
-	<div style="overflow-y:scroll;overflow-x:hidden;width:33.3%;position:absolute;height:100%;top:0px;left:33.3%;">
+	<div style="overflow-y:auto;overflow-x:hidden;width:33.3%;position:absolute;height:100%;top:0px;left:33.3%;border-style: solid;
+			border-width: 1px;border-left:hidden;border-bottom:hidden;border-top:hidden;">
 		<p style="font-weight:bold;position:relative;left:35%;top:10px;">Logout Record</p>
 	<table style="border-style:hidden;position:relative;left:25px;top:20px;">
 		<thead>
@@ -686,7 +712,7 @@
 		</tbody>
 	</table>
 </div>
-<div style="overflow-y:scroll;overflow-x:hidden;width:33.3%;position:absolute;height:100%;top:0px;left:66.6%;">
+<div style="overflow-y:auto;overflow-x:hidden;width:33.3%;position:absolute;height:100%;top:0px;left:66.6%;">
 	<p style="font-weight:bold;position:relative;left:35%;top:10px;">Password History</p>
 <table style="border-style:hidden;position:relative;left:25px;top:20px;">
 	<thead>
