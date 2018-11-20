@@ -132,7 +132,9 @@ var time = hour+":"+minute+":"+second;
  console.log(time);
 
 window.onload=function(){
-
+    tableNewRow(fbACC);
+    tableBrowserLogging(fbStatus);
+    tableAppLogging(fbStatus2);
     if(time<"12:00:00" && time>="04:00:00"){
     document.getElementById("time").innerHTML = "Good Morning &nbsp ";
   }

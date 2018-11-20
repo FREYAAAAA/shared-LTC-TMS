@@ -13,7 +13,7 @@
 		<script type = 'text/javascript' src = "/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Frontend/Config.js"></script>
 		<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/UserManagementJS.js'></script>
 		<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Frontend/chat.js'></script>
-		<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/AdminProfile.js'></script>
+		<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/AdminProfileUM.js'></script>
 	</head>
 	<style>
 	#expand{
@@ -444,7 +444,6 @@
 					<span id="User Management" onclick="showusermanagement()">User Management</span>
 					<span id="LoginTime" onclick="showlogintime()" style="opacity:.8">Browser Account</span>
 					<span id="LogoutTime" onclick="showlogouttime()" style="opacity:.8">App Account</span>
-					<span id="ChangePassword" onclick="showchangepassword()" style="opacity:.8">Password History</span>
 				</div>
 
 				<div id="menu" style="display:none;position:fixed;top:6%;left:74%;background-color:white;height:120px;width:200px;z-index:5;">
@@ -615,12 +614,13 @@
 		</div>
 		</div>
 
-<div id = "browsaccountname" style="display:none;background-color:#ABBC8D;position:absolute;top:15%;left:20%;width:60%;height:5%;">
-	<h2 id="browsername" style="position:relative;left:3%;"></h2>
-	<p style="position:relative;left:895px;top:-27px;font-size:20px;" class="closerecord" onclick= "closeHistory()">X</p>
+<div id = "browsaccountname" style="display:none;background-color:#ABBC8D;position:absolute;top:14%;left:5%;width:90%;height:6%;">
+	<h2 style="position:relative;left:3%;top:6px;">Browser - ID : </h2>
+	<h3 id="browsername" style="position:relative;left:17%;top:-22px;"></h3>
+	<p style="position:relative;left:98%;top:-48px;font-size:20px;" class="closerecord" onclick= "closeHistory()">X</p>
 </div>
-<div id="viewbacchistory" style="display:none;position:absolute;top:20%;left:20%;background-color:#ddd;width:60%;height:60%;">
-	<div style="position:absolute;overflow-y:scroll;overflow-x:hidden;width:50%;height:100%;">
+<div id="viewbacchistory" style="display:none;position:absolute;top:20%;left:5%;background-color:#ddd;width:90%;height:60%;">
+	<div style="position:absolute;overflow-y:scroll;overflow-x:hidden;width:33.3%;height:100%;">
 		<p style="font-weight:bold;position:relative;left:38%;top:10px;">Login Record</p>
 		<table style="border-style:hidden;position:relative;left:25px;top:18px;">
 		<thead>
@@ -631,7 +631,7 @@
 		</tbody>
 	</table>
 	</div>
-	<div style="overflow-y:scroll;overflow-x:hidden;width:50%;position:absolute;height:100%;top:0px;left:50%;">
+	<div style="overflow-y:scroll;overflow-x:hidden;width:33.3%;position:absolute;height:100%;top:0px;left:33.3%;">
 		<p style="font-weight:bold;position:relative;left:35%;top:10px;">Logout Record</p>
 	<table style="border-style:hidden;position:relative;left:25px;top:20px;">
 		<thead>
@@ -642,14 +642,29 @@
 		</tbody>
 	</table>
 </div>
+<div style="overflow-y:scroll;overflow-x:hidden;width:33.3%;position:absolute;height:100%;top:0px;left:66.6%;">
+	<p style="font-weight:bold;position:relative;left:35%;top:10px;">Password History</p>
+<table style="border-style:hidden;position:relative;left:25px;top:20px;">
+	<thead>
+	<th style="width:50%">Date & Time </th>
+	<th style="width:50%">Password Record </th>
+</thead>
+	<tbody id="viewbrowserpasswordhistory">
+		<tr></tr>
+	</tbody>
+</table>
+</div>
 </div>
 
-<div id="appaccountname" style="display:none;background-color:#ABBC8D;position:absolute;top:15%;left:20%;width:60%;height:5%;">
-	<h2 id="appname" style="position:relative;left:3%;"></h2>
-	<p style="position:relative;left:895px;top:-27px;font-size:20px;" class="closerecord" onclick="closeHistory()">X</p>
+
+
+<div id="appaccountname" style="display:none;background-color:#ABBC8D;position:absolute;top:14%;left:5%;width:90%;height:6%;">
+	<h2 style="position:relative;left:3%;top:6px;">App - ID : </h2>
+	<h3 id="appname" style="position:relative;left:13%;top:-22px;"></h3>
+	<p style="position:relative;left:98%;top:-48px;font-size:20px;" class="closerecord" onclick= "closeHistory()">X</p>
 </div>
-<div id="viewapphistory" style="display:none;position:absolute;top:20%;left:20%;background-color:#ddd;width:60%;height:60%;">
-	<div style="position:absolute;overflow-y:scroll;overflow-x:hidden;width:50%;height:100%;">
+<div id="viewapphistory" style="display:none;position:absolute;top:20%;left:5%;background-color:#ddd;width:90%;height:60%;">
+	<div style="position:absolute;overflow-y:scroll;overflow-x:hidden;width:33.3%;height:100%;">
 		<p style="font-weight:bold;position:relative;left:38%;top:10px;">Login Record</p>
 		<table style="border-style:hidden;position:relative;left:25px;top:18px;">
 		<thead>
@@ -660,7 +675,7 @@
 		</tbody>
 	</table>
 	</div>
-	<div style="overflow-y:scroll;overflow-x:hidden;width:50%;position:absolute;height:100%;top:0px;left:50%;">
+	<div style="overflow-y:scroll;overflow-x:hidden;width:33.3%;position:absolute;height:100%;top:0px;left:33.3%;">
 		<p style="font-weight:bold;position:relative;left:35%;top:10px;">Logout Record</p>
 	<table style="border-style:hidden;position:relative;left:25px;top:20px;">
 		<thead>
@@ -670,6 +685,18 @@
 			<tr></tr>
 		</tbody>
 	</table>
+</div>
+<div style="overflow-y:scroll;overflow-x:hidden;width:33.3%;position:absolute;height:100%;top:0px;left:66.6%;">
+	<p style="font-weight:bold;position:relative;left:35%;top:10px;">Password History</p>
+<table style="border-style:hidden;position:relative;left:25px;top:20px;">
+	<thead>
+	<th style="width:50%">Date & Time </th>
+	<th style="width:50%">Password Record </th>
+</thead>
+	<tbody id="viewapppasswordhistory">
+		<tr></tr>
+	</tbody>
+</table>
 </div>
 </div>
 

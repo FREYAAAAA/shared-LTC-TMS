@@ -92,17 +92,6 @@ var second = a.getSeconds();
 var time = hour+":"+minute+":"+second;
  console.log(time);
 
-window.onload=function(){
-    if(time<"12:00:00" && time>="04:00:00"){
-    document.getElementById("time").innerHTML = "Good Morning &nbsp ";
-  }
-  if(time>="12:00:00" && time<"18:00:00"){
-  document.getElementById("time").innerHTML = "Good Afternoon &nbsp ";
-}
-  if(time>="18:00:00" || time<"04:00:00"){
-document.getElementById("time").innerHTML = "Good Evening &nbsp ";
-}
-}
 
 function displayProfile(){
   firebase.auth().onAuthStateChanged(function(user){
