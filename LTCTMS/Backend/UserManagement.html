@@ -10,10 +10,10 @@
 		<link rel="stylesheet" type="text/css" href="statics/css/style.css" />
 		<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
 		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-		<script type = 'text/javascript' src = "/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Frontend/Config.js"></script>
-		<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/UserManagementJS.js'></script>
-		<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Frontend/chat.js'></script>
-		<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/AdminProfileUM.js'></script>
+		<script type = 'text/javascript' src = "/Users/Gama/Documents/GitHub/shared-LTC-TMS/LTCTMS/Frontend/Config.js"></script>
+		<script type = 'text/javascript' src = '/Users/Gama/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/UserManagementJS.js'></script>
+		<script type = 'text/javascript' src = '/Users/Gama/Documents/GitHub/shared-LTC-TMS/LTCTMS/Frontend/chat.js'></script>
+		<script type = 'text/javascript' src = '/Users/Gama/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/AdminProfileUM.js'></script>
 	</head>
 	<style>
 	#expand{
@@ -624,7 +624,7 @@
 		<p style="font-weight:bold;position:relative;left:38%;top:10px;">Login Record</p>
 		<table style="border-style:hidden;position:relative;left:25px;top:18px;">
 		<thead>
-		<th style="width:100%">Date & Time </th>
+		<th style="width:100%" onclick="sortDateandTime('viewbrowserloginbody')">Date & Time </th>
 	</thead>
 		<tbody id="viewbrowserloginbody">
 			<tr></tr>
@@ -635,7 +635,7 @@
 		<p style="font-weight:bold;position:relative;left:35%;top:10px;">Logout Record</p>
 	<table style="border-style:hidden;position:relative;left:25px;top:20px;">
 		<thead>
-		<th style="width:100%">Date & Time </th>
+		<th style="width:100%" onclick="sortDateandTime('viewbrowserlogoutbody')">Date & Time </th>
 	</thead>
 		<tbody id="viewbrowserlogoutbody">
 			<tr></tr>
@@ -646,7 +646,7 @@
 	<p style="font-weight:bold;position:relative;left:35%;top:10px;">Password History</p>
 <table style="border-style:hidden;position:relative;left:25px;top:20px;">
 	<thead>
-	<th style="width:50%">Date & Time </th>
+	<th style="width:50%" onclick="sortDateandTime('viewbrowserpasswordhistory')">Date & Time </th>
 	<th style="width:50%">Password Record </th>
 </thead>
 	<tbody id="viewbrowserpasswordhistory">
@@ -668,7 +668,7 @@
 		<p style="font-weight:bold;position:relative;left:38%;top:10px;">Login Record</p>
 		<table style="border-style:hidden;position:relative;left:25px;top:18px;">
 		<thead>
-		<th style="width:100%">Date & Time </th>
+		<th style="width:100%" onclick="sortDateandTime('viewapploginbody')">Date & Time </th>
 	</thead>
 		<tbody id="viewapploginbody">
 			<tr></tr>
@@ -679,7 +679,7 @@
 		<p style="font-weight:bold;position:relative;left:35%;top:10px;">Logout Record</p>
 	<table style="border-style:hidden;position:relative;left:25px;top:20px;">
 		<thead>
-		<th style="width:100%">Date & Time </th>
+		<th style="width:100%" onclick="sortDateandTime('viewapplogoutbody')">Date & Time </th>
 	</thead>
 		<tbody id="viewapplogoutbody">
 			<tr></tr>
@@ -690,7 +690,7 @@
 	<p style="font-weight:bold;position:relative;left:35%;top:10px;">Password History</p>
 <table style="border-style:hidden;position:relative;left:25px;top:20px;">
 	<thead>
-	<th style="width:50%">Date & Time </th>
+	<th style="width:50%" onclick="sortDateandTime('viewapppasswordhistory')">Date & Time </th>
 	<th style="width:50%">Password Record </th>
 </thead>
 	<tbody id="viewapppasswordhistory">

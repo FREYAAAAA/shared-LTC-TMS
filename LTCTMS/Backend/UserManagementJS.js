@@ -127,44 +127,36 @@ function showusermanagement(){
   document.getElementById("data1").style.display = "block";
   document.getElementById("data2").style.display = "none";
   document.getElementById("data3").style.display = "none";
-  document.getElementById("data4").style.opacity = "none";
   document.getElementById("User Management").style.opacity = "1";
   document.getElementById("LoginTime").style.opacity = ".8";
   document.getElementById("LogoutTime").style.opacity = ".8";
-  document.getElementById("ChangePassword").style.opacity = ".8";
 }
 
 function showlogintime(){
   document.getElementById("data1").style.display = "none";
   document.getElementById("data2").style.display = "block";
   document.getElementById("data3").style.display = "none";
-  document.getElementById("data4").style.opacity = "none";
   document.getElementById("User Management").style.opacity = ".8";
   document.getElementById("LoginTime").style.opacity = "1";
   document.getElementById("LogoutTime").style.opacity = ".8";
-  document.getElementById("ChangePassword").style.opacity = ".8";
 }
 
 function showlogouttime(){
   document.getElementById("data1").style.display = "none";
   document.getElementById("data2").style.display = "none";
   document.getElementById("data3").style.display = "block";
-  document.getElementById("data4").style.opacity = "none";
   document.getElementById("User Management").style.opacity = ".8";
   document.getElementById("LoginTime").style.opacity = ".8";
   document.getElementById("LogoutTime").style.opacity = "1";
-  document.getElementById("ChangePassword").style.opacity = ".8";
 }
 
 function showchangepassword(){
   document.getElementById("data1").style.display = "none";
   document.getElementById("data2").style.display = "none";
   document.getElementById("data3").style.display = "none";
-  document.getElementById("data4").style.opacity = "block";
   document.getElementById("User Management").style.opacity = ".8";
   document.getElementById("LoginTime").style.opacity = ".8";
   document.getElementById("LogoutTime").style.opacity = ".8";
-  document.getElementById("ChangePassword").style.opacity = "1";
 }
 
 
@@ -228,10 +220,12 @@ function closeHistory(){
 function historyBrowserLogging(n){
   var hisrow = 0;
   var hisrowout = 0;
+  var rowP = 0;
   document.getElementById('browsaccountname').style.display='block';
   document.getElementById('viewbacchistory').style.display='block';
   document.getElementById('viewbrowserloginbody').innerHTML='';
   document.getElementById('viewbrowserlogoutbody').innerHTML='';
+  document.getElementById('viewbrowserpasswordhistory').innerHTML='';
   document.getElementById('browsername').innerHTML = document.getElementById('cellId2['+n+']').innerHTML;
   var id = document.getElementById('browsername').innerHTML ;
   var fb = firebase.database().ref('AccountStatus/Browser/'+id);
@@ -265,6 +259,21 @@ function historyBrowserLogging(n){
                 cellHistory2.appendChild(document.createTextNode(dateandtime2));
                 hisrowout = hisrowout + 1;
               });
+            });
+          }
+          if(logShot.key == 'ChangePasswordHistory'){
+            logShot.forEach(function(passShot){
+              var datetime = passShot.key;
+              var passwordChangeR = passShot.val();
+              var tablePass= document.getElementById('viewbrowserpasswordhistory');
+              //table in
+              var rowPassC = tablePass.insertRow(rowP);
+              var cellHistory3 = rowPassC.insertCell(0);
+              var cellChangePass = rowPassC.insertCell(1);
+              cellHistory3.appendChild(document.createTextNode(datetime));
+              cellChangePass.appendChild(document.createTextNode(passwordChangeR));
+              rowP = rowP + 1;
+
             });
           }
     });
@@ -312,10 +321,12 @@ function tableAppLogging(fb){
 function historyAppLogging(n){
   var rowin = 0;
   var rowout = 0;
+  var rowPass = 0;
   document.getElementById('appaccountname').style.display='block';
   document.getElementById('viewapphistory').style.display='block';
   document.getElementById('viewapploginbody').innerHTML='';
   document.getElementById('viewapplogoutbody').innerHTML='';
+  document.getElementById('viewapppasswordhistory').innerHTML='';
   document.getElementById('appname').innerHTML = document.getElementById('cellIdApp['+n+']').innerHTML;
   var id = document.getElementById('appname').innerHTML ;
   var fb = firebase.database().ref('AccountStatus/App/'+id);
@@ -351,8 +362,78 @@ function historyAppLogging(n){
               });
             });
           }
+          if(logShot.key == 'ChangePasswordHistory'){
+            logShot.forEach(function(passShot){
+              var datetime2 = passShot.key;
+              var passwordChangeR2 = passShot.val();
+              var tablePass2= document.getElementById('viewapppasswordhistory');
+              //table in
+              var rowPassC2 = tablePass2.insertRow(rowPass);
+              var cellHistory3 = rowPassC2.insertCell(0);
+              var cellChangePass2 = rowPassC2.insertCell(1);
+              cellHistory3.appendChild(document.createTextNode(datetime2));
+              cellChangePass2.appendChild(document.createTextNode(passwordChangeR2));
+              rowPass = rowPass + 1;
+
+            });
+          }
     });
 
   });
 
+}
+
+function sortDateandTime(n){
+  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  table = document.getElementById(n);
+  switching = true;
+  //Set the sorting direction to ascending:
+  dir = "asc";
+  /*Make a loop that will continue until
+  no switching has been done:*/
+  while (switching) {
+    //start by saying: no switching is done:
+    switching = false;
+    rows = table.rows;
+    /*Loop through all table rows (except the
+    first, which contains table headers):*/
+    for (i = 0; i < (rows.length - 1); i++) {
+      //start by saying there should be no switching:
+      shouldSwitch = false;
+      /*Get the two elements you want to compare,
+      one from current row and one from the next:*/
+      x = rows[i].getElementsByTagName("TD")[0];
+      y = rows[i + 1].getElementsByTagName("TD")[0];
+      /*check if the two rows should switch place,
+      based on the direction, asc or desc:*/
+      if (dir == "asc") {
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          //if so, mark as a switch and break the loop:
+          shouldSwitch= true;
+          break;
+        }
+      } else if (dir == "desc") {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          //if so, mark as a switch and break the loop:
+          shouldSwitch = true;
+          break;
+        }
+      }
+    }
+    if (shouldSwitch) {
+      /*If a switch has been marked, make the switch
+      and mark that a switch has been done:*/
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      //Each time a switch is done, increase this count by 1:
+      switchcount ++;
+    } else {
+      /*If no switching has been done AND the direction is "asc",
+      set the direction to "desc" and run the while loop again.*/
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
 }

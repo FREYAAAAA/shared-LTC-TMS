@@ -55,9 +55,10 @@ exports.deleteUser=functions.database.ref('uAccount/{sid}')
   .onDelete((deleteshot,context)=>{
     var id = context.params.sid;
     console.log('id ='+ id);
-    var childData = deletetion.val();
+    var childData = deleteshot.val();
     return admin.auth().deleteUser(id)
       .then(function(){
+        return firebase.database().ref('AccountStatus/'+id).remove();
         console.log('Successfully deleted the target User');
       }).catch(function(error){
         console.log(error.message);
