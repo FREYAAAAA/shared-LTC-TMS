@@ -229,3 +229,16 @@ function normalImg(x) {
 }
 
 console.log("asd000");
+
+
+window.onload=function(){
+    if(time123<"12:00:00" && time123>="04:00:00"){
+    document.getElementById("time123").innerHTML = "Good Morning &nbsp ";
+  }
+  if(time123>="12:00:00" && time123<"18:00:00"){
+  document.getElementById("time123").innerHTML = "Good Afternoon &nbsp ";
+}
+  if(time123>="18:00:00" || time123<"04:00:00"){
+document.getElementById("time123").innerHTML = "Good Evening &nbsp ";
+}
+}
