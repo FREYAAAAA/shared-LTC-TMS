@@ -490,7 +490,7 @@
 		    <textarea class="schedule_textarea" id="Announcement" type=text rows="4" cols="30" placeholder="Text Here..."></textarea>
 		    <br>
 		    <center><button id="btnSubmitE" onclick="createNewAnnouncement()" style="cursor:pointer;">Submit</button> &nbsp&nbsp&nbsp&nbsp
-		    <button id="Ecancel" onclick="editCancel()" style="cursor:pointer;">Cancel</button></center>
+		    <button id="Ecancel" onclick="document.getElementById('newABlock').style.display='none';" style="cursor:pointer;">Cancel</button></center>
 		  </div>
 		</div>
 		</div>
@@ -506,8 +506,8 @@
 		    &nbsp&nbsp Announcement:
 		    <textarea class="schedule_textarea" id="Amsg" onkeydown = "btnpopUp()"></textarea>
 		    <br>
-		    <center> <button id="Esave" onclick="editSave()" style="cursor:pointer;">Save</button> &nbsp&nbsp&nbsp&nbsp
-		    <button id="Ecancel" onclick="editCancel()" style="cursor:pointer;">Back</button> </center>
+		    <center> <button id="Esave" onclick="editSave()" style="cursor:pointer;display:none;">Save</button> &nbsp&nbsp&nbsp&nbsp
+		    <button id="Ecancel" onclick="document.getElementById('editABlock').style.display='none';" style="cursor:pointer;">Back</button> </center>
 		  </div>
 		</div>
 		</div>
@@ -525,7 +525,7 @@
 		    <progress value="0" max="100" id="uploader3">0%</progress>
 		    <br><br><br>
 		    &nbsp&nbsp&nbsp<button id="btnSubmitCS" style="cursor:pointer;">Submit</button> &nbsp&nbsp
-		    <button id="Ecancel" onclick="editCancel()" style="cursor:pointer;">Cancel</button>
+		    <button id="Ecancel" onclick="document.getElementById('newCSBlock').style.display='none';" style="cursor:pointer;">Cancel</button>
 		  </div>
 		</div>
 		</div>
@@ -544,7 +544,7 @@
 		    <progress value="0" max="100" id="uploader">0%</progress>
 		    <br><br><br>
 		    &nbsp&nbsp&nbsp <button id="btnSubmitWS" style="cursor:pointer;">Submit</button> &nbsp&nbsp
-		    <button id="Ecancel" onclick="editCancel()" style="cursor:pointer;">Cancel</button>
+		    <button id="Ecancel" onclick="document.getElementById('newWSBlock').style.display='none';" style="cursor:pointer;">Cancel</button>
 		  </div>
 		</div>
 		</div>
@@ -562,7 +562,7 @@
 		    <progress value="0" max="100" id="uploader2">0%</progress>
 		    <br><br><br>
 		    &nbsp&nbsp&nbsp <button id="btnSubmitWH" style="cursor:pointer;">Submit</button> &nbsp&nbsp
-		    <button id="Ecancel" onclick="editCancel()" style="cursor:pointer;">Cancel</button>
+		    <button id="Ecancel" onclick="document.getElementById('newWHBlock').style.display = 'none';" style="cursor:pointer;">Cancel</button>
 		  </div>
 		</div>
 		</div>

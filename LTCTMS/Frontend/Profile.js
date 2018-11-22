@@ -228,7 +228,6 @@ function normalImg(x) {
 
 }
 
-console.log("asd000");
 
 
 window.onload=function(){

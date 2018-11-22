@@ -123,17 +123,9 @@ else {
 }
 
 function btnpopUp(){
-  document.getElementById('Esave').style.display = "block";
+  document.getElementById('Esave').style.display = "inline";
 
 }
-
- function editCancel(){
-  window.location.reload();
-}
-
-
-
-
 
 //Center Schedule
 function AddNewCS(){
@@ -622,27 +614,4 @@ function openmenu(){
   document.getElementById("menu").style.display = "block";
   document.getElementById("openmenu").style.opacity = ".6";
 }
-}
-
-
-function profile(){
-  document.getElementById("profile").style.display = "block";
-}
-
-function closeprofile(){
-  document.getElementById("profile").style.display = "none";
-  document.getElementById("editprofile").style.display = "none";
-}
-
-function editprofile(){
-  document.getElementById("profile").style.display = "none";
-  document.getElementById("editprofile").style.display = "block";
-}
-
-function cancelprofile(){
-  window.location.reload()
-}
-
-function submitprofile(){
-
 }
