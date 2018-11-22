@@ -199,11 +199,20 @@ function remove(sponsor){
 }
 
 function sponsor_delete(){
-    for(var i=0; i<= index; i++){
-        console.log("button_id["+i+"]");
-        document.getElementById("button_id["+i+"]").setAttribute("style","display:inline;");
+    if(document.getElementById("button_id[1]").style.display =="inline"){
+      for(var i=0; i< index; i++){
+        document.getElementById("button_id["+i+"]").style.display = "none";
+
+    }
+  }
+    else{
+      for(var i=0; i< index; i++){
+          console.log("button_id["+i+"]");
+        document.getElementById("button_id["+i+"]").style.display = "inline";
     }
 }
+}
+
 
 function showintroduction(){
   document.getElementById("data1").style.display = "block";
