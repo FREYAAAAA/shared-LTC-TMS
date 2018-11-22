@@ -111,17 +111,7 @@ function upload_logo(){
 
 }
 var file;
-window.onload=function(){
-    var fileButton = document.getElementById('fileButton');
-    fileButton.addEventListener("change",function(e){
-       file= e.target.files[0];
-       console.log(file.name);
 
-       //create storage ref to the firebase storage
-      firebase.storage().ref('Sponsor/').child(file.name).put(file);
-
-       });
-   }
 
 function upload(){
     var text = $("#url_text").val();
