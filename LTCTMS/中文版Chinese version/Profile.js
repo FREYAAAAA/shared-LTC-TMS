@@ -133,13 +133,13 @@ var time = hour+":"+minute+":"+second;
 
 window.onload=function(){
     if(time<"12:00:00" && time>="04:00:00"){
-    document.getElementById("time").innerHTML = "Good Morning &nbsp ";
+    document.getElementById("time").innerHTML = "早安 &nbsp ";
   }
   if(time>="12:00:00" && time<"18:00:00"){
-  document.getElementById("time").innerHTML = "Good Afternoon &nbsp ";
+  document.getElementById("time").innerHTML = "午安 &nbsp ";
 }
   if(time>="18:00:00" || time<"04:00:00"){
-document.getElementById("time").innerHTML = "Good Evening &nbsp ";
+document.getElementById("time").innerHTML = "晚安 &nbsp ";
 }
 }
 

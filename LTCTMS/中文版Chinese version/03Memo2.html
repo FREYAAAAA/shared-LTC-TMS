@@ -11,10 +11,11 @@
 		<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
 		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-		<script type = 'text/javascript' src = 'memo.js'></script>
 		<script type = 'text/javascript' src = 'Config.js'></script>
 		<script type = 'text/javascript' src = 'chat.js'></script>
 		<script type = 'text/javascript' src = 'Profile.js'></script>
+		<script type = 'text/javascript' src = 'memo.js'></script>
+
 	</head>
 	<style>
 
@@ -247,6 +248,7 @@
 	  width:150px;
 	  height:40px;
 	  font-size: 20px;
+		cursor:pointer;
 	}
 	.add_memo_button:hover {
 	  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.5), 0 17px 50px 0 rgba(0,0,0,0.5);
@@ -304,10 +306,13 @@
 	}
 	.previous_memo_month {
 	  position:relative;
-	  left:-40%;
+	  left:15%;
 	  background-color: #B0C4DE;
 	  border:hidden;
 	  transition: transform .2s;
+		top:-1060px;
+		z-index:3;
+		cursor:pointer;
 	}
 	.previous_memo_month:hover {
 	  transform: scale(1.3);
@@ -315,22 +320,27 @@
 
 	.next_memo_month {
 	  position:relative;
-	  left:40%;
+	  left:70%;
 	  background-color: #B0C4DE;
 	  border:hidden;
 	  transition: transform .2s;
+		top:-1060px;
+		cursor:pointer;
 	}
 	.next_memo_month:hover {
 	  transform: scale(1.3);
 	}
 	.selected:hover{
 		background-color:#1591F0;
+		cursor:pointer;
 	}
 	.logoutselected:hover{
 		background-color:#E91414;
+		cursor:pointer;
 	}
 	.openprofile:hover{
 		animation: bounce 1s;
+		cursor:pointer;
 	}
 	@keyframes bounce {
 	0%, 20%, 60%, 100% {
@@ -354,23 +364,23 @@
 			<div class="bar">
 				<div class="w1200">
 					<span class="l"><img style="position:relative; top:3px; width:45px;height:45px;" src="statics/images/v2ltctmslogo.png"><font style="text-align:center;position:relative; top:-10px;">LTCTMS</font></span>
-					<i class="setting"><img style="filter:invert(100%); width:20px; height:20px;position:relative; left:835px; top:4px;" src="statics/images/settings.png"><p style="position:relative; left:860px; top:-50px;">設定</p><img onclick="openmenu()" id="openmenu" style="filter:invert(100%); width:10px; height:10px;position:relative; left:1105px; top:-98px;" class="openmenu" src="statics/images/openmenu.png"></i>
+					<i class="setting"><img style="filter:invert(100%); width:20px; height:20px;position:relative; left:835px; top:4px;" src="statics/images/settings.png"><p style="position:relative; left:860px; top:-50px;">Settings</p><img onclick="openmenu()" id="openmenu" style="filter:invert(100%); width:10px; height:10px;position:relative; left:1105px; top:-98px;cursor:pointer;" class="openmenu" src="statics/images/openmenu.png"></i>
 				</div>
 			</div>
 			<div class="user-info">
 				<div class="w1200">
 					<div class="user-headface" onmouseover="bigImg(this)" onmouseout="normalImg(this)">
 						<img src="statics/images/edit.png" id="photoword" style="position:relative;top:20px;left:20px;text-align:center;display:none;width:40px;height:40px;" onclick ="document.getElementById('newPic').click();">
-						<img id="Profilepic" onclick ="document.getElementById('newPic').click();" />
+						<img style="cursor:pointer;" id="Profilepic" onclick ="document.getElementById('newPic').click();" />
 						<input id="newPic" type='file' accept="image/*" onchange="uploadPicProfile()" required  style="display:none;"/>
 					</div>
 					<div class="user-account">
 						<p class="tip" id="time"></p>
-						<img style="position:relative; left:140px;top:-25px;" class="openprofile" onclick="profile()" src="statics/images/pencil.png">
+						<img style="position:relative; left:60px;top:-25px;" class="openprofile" onclick="profile()" src="statics/images/pencil.png">
 						<p class="account" style="position:relative; top:-20px;">
-							<span>名字 : <span id="displayProfilename"></span></span>
-							<span>使用者識別碼 : <span id="displayProfileid"></span></span>
-							<span>職位 : <span id="displayProfileposition"></span></span>
+							<span>Name : <span id="displayProfilename"></span></span>
+							<span>UserID : <span id="displayProfileid"></span></span>
+							<span>Role : <span id="displayProfileposition"></span></span>
 						</p>
 					</div>
 				</div>
@@ -380,74 +390,74 @@
 			<div class="left">
 				<ul>
 					<li>
-						<a href="01Aboutus2.html" class="active">
+						<a href="01Aboutus2.html">
 							<i class="icon iconfont icon-lingdang"></i>
-							關於我們
+							About Us
 						</a>
 					</li>
 					<li>
 						<a href="02Schedule2.html">
 							<i class="icon iconfont icon-fangzidichan"></i>
-							重要事項
+							Schedule
 						</a>
 					</li>
 					<li>
-						<a href="03Memo2.html">
+						<a href="03Memo2.html" class="active">
 							<i class="icon iconfont icon-wenda"></i>
-							備忘錄
+							Memo
 						</a>
 					</li>
 					<li>
 						<a href="04Statusrecord2.html">
 							<i class="icon iconfont icon-icon--"></i>
-							狀態紀錄
+							Status Record
 						</a>
 					</li>
 					<li>
 						<a href="05Library2.html">
 							<i class="icon iconfont icon-pinglun"></i>
-							資料庫
+							Library
 						</a>
 					</li>
 					<li>
 						<a href="06Taskeditor2.html">
 							<i class="icon iconfont icon-geren"></i>
-							作業編輯
+							Task Editor
 						</a>
 					</li>
 					<li>
 						<a href="07E-portfolio2.html">
 							<i class="icon iconfont icon-jilu"></i>
-							人員檔案
+							E-Portfolio
 						</a>
 					</li>
 					<li>
 						<a href="08Helpandsupport2.html">
 							<i class="icon iconfont icon-geren"></i>
-							聯絡我們
+							Help and Support
 						</a>
 					</li>
 				</ul>
 			</div>
 			<div class="right">
 				<div class="tap">
-					<span>備忘錄</span>
+					<span>Memo</span>
 				</div>
 
 				<div id="menu" style="display:none;position:fixed;top:6%;left:74%;background-color:white;height:120px;width:200px;z-index:5;">
-							<div style="position:relative;left:1%;top:2%;background-color:#ddd;width:98%;margin-bottom:5px;">語言</div>
+							<div style="position:relative;left:1%;top:2%;background-color:#ddd;width:98%;margin-bottom:5px;">Language</div>
 							<p class="selected" style="margin-top:3px;margin-bottom:3px;">&nbsp English<br></p>
-							<p class="selected" style="margin-top:3px;margin-bottom:3px;">&nbsp 中文<br></p>
+							<p class="selected" style="margin-top:3px;margin-bottom:3px;">&nbsp Chinese<br></p>
 							----------------------------
-							<p class="logoutselected">&nbsp<i class="icon iconfont icon-dianyuan" style="margin-right:5px;"></i>登出</p>
+							<p class="logoutselected" onclick = "Logout()">&nbsp<i class="icon iconfont icon-dianyuan" style="margin-right:5px;"></i>Logout</p>
 				</div>
 
 				<div class="container">
 					<div class="memo_month_title">
-					  <table>
+					  <table style="position:absolute; top:-25%;left:30%;border-style:hidden;margin-bottom:0px;">
 					    <tr>
-							<button  onclick = "viewTable('last');" class="previous_memo_month"><img src="image\left-arrow.png" height="25px" width="30px" /></button>
-							<button  onclick = "viewTable('next')" class="next_memo_month"><img src="image\right-arrow.png" height="25px" width="30px"/></button>
+					    <td style="border-style:hidden;text-align:right;"><h1 id="fullName_Month" ></h1>
+					    <td style="border-style:hidden;text-align:left;"><h4 id="years"></h4>
 					    </tr>
 					  </table>
 					</div>
@@ -456,40 +466,45 @@
 					<h2 id='current_date' style="position:relative;"></h2>
 					<h2 id="current_month" style="position:relative;"></h2>
 					<h2 id="current_week" style="position:relative;"></h2>
-
 					<div>
-					<ul class = "today_memo"  id="today_memo">
-					</ul>
+						<ul class = "today_memo"  id="today_memo"></ul>
 					</div>
 
-					<div style="position:relative; top:-100%; left:22%; width:0.3%; height:100%; background-color:#000;">
-					</div>
+					<div style="position:relative; top:-100%; left:22%; width:0.3%; height:100%; background-color:#000;"></div>
 					<table id = "memo_table" class="memo_display">
-					<tr>
-					    <th class="memo_table_head" style="width:10%;background-color:#ddd;">日期</th>
-					    <th class="memo_table_head" style="width:70%;background-color:#ddd;">內容</th>
-					    <th class="memo_table_head" style="width:10%;background-color:#ddd;">編輯</th>
-					    <th class="memo_table_head" style="width:10%;background-color:#ddd;">刪除</th>
-					</tr>
-					<tbody id = "context_table"></tbody>
+						<tr>
+						    <th class="memo_table_head" style="width:15%;background-color:#ddd;text-align:center;">Date</th>
+						    <th class="memo_table_head" style="width:65%;background-color:#ddd;text-align:center;">Content</th>
+						    <th class="memo_table_head" style="width:15%;background-color:#ddd;text-align:center;">Edit</th>
+						    <th class="memo_table_head" style="width:15%;background-color:#ddd;text-align:center;">Delete </th>
+						</tr>
+						<tbody id = "context_table" style="text-align:center;"></tbody>
 					</table>
 
 					<div class="memo_form-popup" id="form">
-					    <h2>新備忘錄</h2>
+					    <h2>New Memo</h2>
 					    <input type ="date"  id = "selected_date"/>
 					    <textarea id ="memo_text" rows="8" cols="40" ></textarea>
-					    <button onclick ="submit()" type="button" class="btn" >提交</button>
-					    <button type="button" class="btn cancel" onclick="close_form()">關閉</button>
+					    <button onclick ="submit()" type="button" class="btn" >Submit</button>
+					    <button type="button" class="btn cancel" onclick="close_form()">Close</button>
 					</div>
-					<button class ="add_memo_button"  onclick = "popup_form()">新增備忘錄</button>
 
-					<script>
-					    document.getElementById("fullName_Month").innerHTML = Month[mm_index];
-					    document.getElementById('current_date').innerHTML = dd;
-					    document.getElementById("current_month").innerHTML = month[mm_index];
-					    document.getElementById("current_week").innerHTML = weekday[wk_index];
-					    document.getElementById("current_year").innerHTML = year;
-					</script>
+					<div class="memo_form-popup" id="edit_form" style="left:58%;">
+						<h2>Edit Memo</h2>
+						<input type ="date"  id = "edited_date"/>
+						<textarea id ="memoedited" rows="8" cols="40" ></textarea>
+						<button onclick ="esubmit()" type="button" class="btn" >Submit</button>
+						<button type="button" class="btn cancel" onclick="closeform()">Close</button>
+					</div>
+
+					<button class ="add_memo_button"  onclick = "popup_form()">Add Memo</button>
+					<button  onclick = "viewTable('last');" class="previous_memo_month"><img src="image\left-arrow.png" height="25px" width="30px" /></button>
+					<button  onclick = "viewTable('next')" class="next_memo_month"><img src="image\right-arrow.png" height="25px" width="30px"/></button>
+
+
+					</div>
+
+
 				</div>
 
 			</div>
@@ -499,69 +514,68 @@
 			<div id="profile" style="display:none;position:absolute; width:800px; height:350px; left:375px; top:40px;background-color:#EFFACA;border-style: solid;
 					border-width: 2px; z-index:3;">
 			<div style="background-color:#E4EACD;position:relative;height:75px;">
-				<h2  id="nameProfileT" style="position:relative; left:210px;top:20px;"><h3 style="position:relative;color:gray;">	‒ Profile</h3></h2>
+				<h2  id="nameProfileT" style="position:relative; left:210px;top:20px;"><h3 style="position:relative;color:gray;left:300px;top:-10px;">	‒ Profile</h3></h2>
 
 
-				<button onclick="editprofile()" style="position:relative; left:620px;top:-35px;width:80px;height:35px;background-color:#3B94FA;color:white;border-radius:10px;">編輯</button>
-				<button onclick="closeprofile()" style="position:relative; left:620px;top:-35px;width:80px;height:35px;background-color:white;color:black;border-radius:10px;">關閉</button>
-				<button onclick="changePassword()" style="position:relative; left:520px;top:20px;width:100px;height:45px;background-color:#3B94FA;color:white;border-radius:10px;">更改密碼</button>
+				<button onclick="editprofile()" style="position:relative; left:620px;top:-35px;width:80px;height:35px;background-color:#3B94FA;color:white;border-radius:10px;cursor:pointer;">Edit</button>
+				<button onclick="closeprofile()" style="position:relative; left:620px;top:-35px;width:80px;height:35px;background-color:white;color:black;border-radius:10px;cursor:pointer;">Close</button>
+				<button onclick="changePassword()" style="position:relative; left:520px;top:20px;width:100px;height:45px;background-color:#3B94FA;color:white;border-radius:10px;cursor:pointer;">Change Password</button>
 
 			</div>
 			<img style="position:relative; left:20px; top:-40px; width:150px; height:150px;" id="viewpic">
 			<div style="position:relative; left:220px;top:-110px;">
-				<p>職位: &nbsp<span id = "positionProfile"></span> </p><br>
-				<p>使用者識別碼: &nbsp <span id = "idProfile"></span></p><br>
-				<p>名字: &nbsp <span id = "nameProfile"></span></p><br>
-				<p>電子信箱: &nbsp <span id = "emailProfile"></p><br>
+				<p>Position: &nbsp<span id = "positionProfile"></span> </p><br>
+				<p>User ID: &nbsp <span id = "idProfile"></span></p><br>
+				<p>Display Name: &nbsp <span id = "nameProfile"></span></p><br>
+				<p>Email Address: &nbsp <span id = "emailProfile"></p><br>
 			</div>
 			</div>
 
 
 
-			<div id="editprofile" style="display:none;position:absolute; width:800px; height:350px; left:375px; top:40px;background-color:#EFFACA; z-index:3;">
+			<div id="editprofile" style="display:none;position:absolute; width:800px; height:350px; left:375px; top:40px;background-color:#EFFACA; z-index:3;border-style: solid;
+					border-width: 2px;">
 			<div style="background-color:#E4EACD;position:relative;height:75px;">
 				<h2 id="nameProfileTE"style="position:relative; left:210px;top:20px;"></h2>
 				<h3 style="position:relative; left:300px;top:-10px;color:gray;">	‒ Profile</h3>
-				<button onclick="submitprofile()" style="position:relative; left:620px;top:-35px;width:80px;height:35px;background-color:#3B94FA;color:white;border-radius:10px;">完成</button>
-				<button onclick="cancelprofile()" style="position:relative; left:620px;top:-35px;width:80px;height:35px;background-color:white;color:black;border-radius:10px;">取消</button>
+				<button onclick="submitprofile()" style="position:relative; left:620px;top:-35px;width:80px;height:35px;background-color:#3B94FA;color:white;border-radius:10px;cursor:pointer;">OK</button>
+				<button onclick="cancelprofile()" style="position:relative; left:620px;top:-35px;width:80px;height:35px;background-color:white;color:black;border-radius:10px;cursor:pointer;">Cancel</button>
 			</div>
 			<img style="position:relative; left:20px; top:-40px; width:150px; height:150px;" id="editpic">
 			<div style="position:relative; left:220px;top:-110px;">
-				<p>職位: &nbsp <span id = positionProfileE> </span> </p><br>
-				<p >使用者識別碼: &nbsp <span id = "idProfileE"> </span>  </p><br>
-				<p>名字: <input type="text" id = "nameProfileE" style="width:200px;"></p><br>
-				<p>電子信箱: <input type="text" id = "emailProfileE" style="width:300px;"></p><br>
+				<p>Position: &nbsp <span id = positionProfileE> </span> </p><br>
+				<p >User ID: &nbsp <span id = "idProfileE"> </span>  </p><br>
+				<p>Display Name: <input type="text" id = "nameProfileE" style="width:200px;"></p><br>
+				<p>Email Address: <input type="text" id = "emailProfileE" style="width:300px;"></p><br>
 
 			</div>
 			</div>
 	<div id="changePass" style="display:none;position:absolute; width:800px; height:350px; left:375px; top:40px;background-color:#EFFACA; z-index:3;">
 		<div style="background-color:#E4EACD;position:relative;height:75px;">
-		<h2 style="position:relative; left:210px;top:20px;">更改密碼</h2>
-		<button onclick="submitNewPass()" style="position:relative; left:620px;top:-15px;width:80px;height:35px;background-color:#3B94FA;color:white;border-radius:10px;">完成</button>
-		<button onclick="cancelprofile()" style="position:relative; left:620px;top:-15px;width:80px;height:35px;background-color:white;color:black;border-radius:10px;">取消</button>
+		<h2 style="position:relative; left:210px;top:20px;">Changing Password</h2>
+		<button onclick="submitNewPass()" style="position:relative; left:620px;top:-15px;width:80px;height:35px;background-color:#3B94FA;color:white;border-radius:10px;cursor:pointer;">OK</button>
+		<button onclick="cancelprofile()" style="position:relative; left:620px;top:-15px;width:80px;height:35px;background-color:white;color:black;border-radius:10px;cursor:pointer;">Cancel</button>
 	</div>
 	<div style="position:relative; left:220px;top:110px;">
-		<p>舊密碼: <input type="password" id = "oldPassword"></p><br>
-		<p>新密碼: <input type="password" id = "newPassword"></p><br>
-		<p>確認密碼: <input type="password" id = "confirmnewPassword"></p><br>
+		<p>Current Password: <input type="password" id = "oldPassword"></p><br>
+		<p>New Password: <input type="password" id = "newPassword"></p><br>
+		<p>Confirm Password: <input type="password" id = "confirmnewPassword"></p><br>
 
 	</div>
 	</div>
-
-
 
 		</div>
-		<div id="expand" onclick="expand()" >聊天室</div>
+		<div id="expand" onclick="expand()" >Chat</div>
 		  <div id="im">
 			 <div id="cover" onclick="cancel()">
 
 			  </div>
 				<div id="input">
 		      <div>
-		        <span>名字：</span> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id="name"><br/>
-		        <span>內容：</span> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id="content">
+		        <span>Name：</span> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id="name"><br/>
+		        <span>Content：</span> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id="content">
 		      </div>
-		      <button id="btn">傳送</button>
+		      <button id="btn">Send</button>
 		    </div>
 		    <div id="show"></div>
 		  </div>

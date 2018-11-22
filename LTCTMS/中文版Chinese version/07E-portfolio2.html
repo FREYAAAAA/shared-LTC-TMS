@@ -450,7 +450,7 @@
 			<div class="bar">
 				<div class="w1200">
 					<span class="l"><img style="position:relative; top:3px; width:45px;height:45px;" src="statics/images/v2ltctmslogo.png"><font style="text-align:center;position:relative; top:-10px;">LTCTMS</font></span>
-					<i class="setting"><img style="filter:invert(100%); width:20px; height:20px;position:relative; left:835px; top:4px;" src="statics/images/settings.png"><p style="position:relative; left:860px; top:-50px;">設定</p><img onclick="openmenu()" id="openmenu" style="filter:invert(100%); width:10px; height:10px;position:relative; left:1105px; top:-98px;" class="openmenu" src="statics/images/openmenu.png"></i>
+					<i class="setting"><img style="filter:invert(100%); width:20px; height:20px;position:relative; left:850px; top:4px;" src="statics/images/settings.png"><p style="position:relative; left:880px; top:-50px;">設定</p><img onclick="openmenu()" id="openmenu" style="filter:invert(100%); width:10px; height:10px;position:relative; left:1105px; top:-98px;" class="openmenu" src="statics/images/openmenu.png"></i>
 				</div>
 			</div>
 			<div class="user-info">
@@ -462,7 +462,7 @@
 					</div>
 					<div class="user-account">
 						<p class="tip" id="time"></p>
-						<img style="position:relative; left:140px;top:-25px;" class="openprofile" onclick="profile()" src="statics/images/pencil.png">
+						<img style="position:relative; left:60px;top:-25px;" class="openprofile" onclick="profile()" src="statics/images/pencil.png">
 						<p class="account" style="position:relative; top:-20px;">
 							<span>名字 : <span id="displayProfilename"></span></span>
 							<span>使用者識別碼 : <span id="displayProfileid"></span></span>
@@ -476,7 +476,7 @@
 			<div class="left">
 				<ul>
 					<li>
-						<a href="01Aboutus2.html" class="active">
+						<a href="01Aboutus2.html" >
 							<i class="icon iconfont icon-lingdang"></i>
 							關於我們
 						</a>
@@ -512,7 +512,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="07E-portfolio2.html">
+						<a href="07E-portfolio2.html" class="active">
 							<i class="icon iconfont icon-jilu"></i>
 							人員檔案
 						</a>
@@ -535,7 +535,7 @@
 							<p class="selected" style="margin-top:3px;margin-bottom:3px;">&nbsp English<br></p>
 							<p class="selected" style="margin-top:3px;margin-bottom:3px;">&nbsp 中文<br></p>
 							----------------------------
-							<p class="logoutselected">&nbsp<i class="icon iconfont icon-dianyuan" style="margin-right:5px;"></i>登出</p>
+							<p class="logoutselected" onclick="Logout()">&nbsp<i class="icon iconfont icon-dianyuan" style="margin-right:5px;"></i>登出</p>
 				</div>
 
 <div class="container">
@@ -553,7 +553,7 @@
 <div class="portfolio_search_position">
   <div class="portfolio_search_background">
   <div class="portfolio_search_word">
-    <h3> : </h3>
+    <h3> Position: </h3>
   </div>
   </div>
 
@@ -1021,7 +1021,7 @@
 		<div id="profile" style="display:none;position:absolute; width:800px; height:350px; left:375px; top:40px;background-color:#EFFACA;border-style: solid;
 				border-width: 2px; z-index:3;">
 		<div style="background-color:#E4EACD;position:relative;height:75px;">
-			<h2  id="nameProfileT" style="position:relative; left:210px;top:20px;"><h3 style="position:relative;color:gray;">	‒ Profile</h3></h2>
+			<h2  id="nameProfileT" style="position:relative; left:210px;top:20px;"><h3 style="position:relative;color:gray;left:300px;top:-10px;">	‒ Profile</h3></h2>
 
 
 			<button onclick="editprofile()" style="position:relative; left:620px;top:-35px;width:80px;height:35px;background-color:#3B94FA;color:white;border-radius:10px;">編輯</button>
@@ -1087,8 +1087,8 @@
 		  </div>
 
 
-			<script type = 'text/javascript' src = '/Users/Gama/Documents/GitHub/shared-LTC-TMS/LTCTMS/中文版Chinese version/Config.js'></script>
-			<script type = 'text/javascript' src = '/Users/Gama/Documents/GitHub/shared-LTC-TMS/LTCTMS/中文版Chinese version/PortfolioJS.js'></script>
+			<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/中文版Chinese version/Config.js'></script>
+			<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/中文版Chinese version/PortfolioJS.js'></script>
 			<script type = 'text/javascript' src = 'chat.js'></script>
 			<script type = 'text/javascript' src = 'Profile.js'></script>
 	</body>
