@@ -234,16 +234,16 @@ var hour = a.getHours();
 var minute = a.getMinutes();
 var second = a.getSeconds();
 
-var time = hour+":"+minute+":"+second;
+var time123 = hour+":"+minute+":"+second;
 
 window.onload=function(){
-    if(time<"12:00:00" && time>="04:00:00"){
+    if(time123<"12:00:00" && time123>="04:00:00"){
     document.getElementById("time123").innerHTML = "Good Morning &nbsp ";
   }
-  if(time>="12:00:00" && time<"18:00:00"){
+  if(time123>="12:00:00" && time123<"18:00:00"){
   document.getElementById("time123").innerHTML = "Good Afternoon &nbsp ";
 }
-  if(time>="18:00:00" || time<"04:00:00"){
+  if(time123>="18:00:00" || time123<"04:00:00"){
 document.getElementById("time123").innerHTML = "Good Evening &nbsp ";
 }
 }

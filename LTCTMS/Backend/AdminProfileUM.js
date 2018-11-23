@@ -128,21 +128,21 @@ var hour = a.getHours();
 var minute = a.getMinutes();
 var second = a.getSeconds();
 
-var time = hour+":"+minute+":"+second;
- console.log(time);
+var time123 = hour+":"+minute+":"+second;
+ console.log(time123);
 
 window.onload=function(){
     tableNewRow(fbACC);
     tableBrowserLogging(fbStatus);
     tableAppLogging(fbStatus2);
-    if(time<"12:00:00" && time>="04:00:00"){
-    document.getElementById("time").innerHTML = "Good Morning &nbsp ";
+    if(time123<"12:00:00" && time123>="04:00:00"){
+    document.getElementById("time123").innerHTML = "Good Morning &nbsp ";
   }
-  if(time>="12:00:00" && time<"18:00:00"){
-  document.getElementById("time").innerHTML = "Good Afternoon &nbsp ";
+  if(time123>="12:00:00" && time123<"18:00:00"){
+  document.getElementById("time123").innerHTML = "Good Afternoon &nbsp ";
 }
-  if(time>="18:00:00" || time<"04:00:00"){
-document.getElementById("time").innerHTML = "Good Evening &nbsp ";
+  if(time123>="18:00:00" || time123<"04:00:00"){
+document.getElementById("time123").innerHTML = "Good Evening &nbsp ";
 }
 }
 
