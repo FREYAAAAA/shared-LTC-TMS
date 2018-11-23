@@ -229,15 +229,21 @@ function normalImg(x) {
 }
 
 
+var a = new Date();
+var hour = a.getHours();
+var minute = a.getMinutes();
+var second = a.getSeconds();
+
+var time = hour+":"+minute+":"+second;
 
 window.onload=function(){
-    if(time123<"12:00:00" && time123>="04:00:00"){
+    if(time<"12:00:00" && time>="04:00:00"){
     document.getElementById("time123").innerHTML = "Good Morning &nbsp ";
   }
-  if(time123>="12:00:00" && time123<"18:00:00"){
+  if(time>="12:00:00" && time<"18:00:00"){
   document.getElementById("time123").innerHTML = "Good Afternoon &nbsp ";
 }
-  if(time123>="18:00:00" || time123<"04:00:00"){
+  if(time>="18:00:00" || time<"04:00:00"){
 document.getElementById("time123").innerHTML = "Good Evening &nbsp ";
 }
 }

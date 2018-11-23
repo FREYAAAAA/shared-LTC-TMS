@@ -148,7 +148,7 @@ function Logout(){
 
   firebase.auth().signOut();
   console.log('logout');
-  window.location.href = "00Login02.html";
+
 }
 
 function uploadPicProfile(){
