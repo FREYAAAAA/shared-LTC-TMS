@@ -375,7 +375,7 @@
 						<input id="newPic" type='file' accept="image/*" onchange="uploadPicProfile()" required  style="display:none;"/>
 					</div>
 					<div class="user-account">
-						<p class="tip" id="time"></p>
+						<p class="tip" id="time123"></p>
 						<img style="position:relative; left:140px;top:-25px;" class="openprofile" onclick="profile()" src="statics/images/pencil.png">
 						<p class="account" style="position:relative; top:-20px;">
 							<span>Name : <span id="displayProfilename"></span></span>
@@ -447,7 +447,7 @@
 				<div id="menu" style="display:none;position:fixed;top:6%;left:74%;background-color:white;height:120px;width:200px;z-index:5;">
 							<div style="position:relative;left:1%;top:2%;background-color:#ddd;width:98%;margin-bottom:5px;">Language</div>
 							<p class="selected" style="margin-top:3px;margin-bottom:3px;">&nbsp English<br></p>
-							<p class="selected" style="margin-top:3px;margin-bottom:3px;">&nbsp Chinese<br></p>
+							<p class="selected" style="margin-top:3px;margin-bottom:3px;" onclick="window.location.href='file:///C:/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/%E4%B8%AD%E6%96%87%E7%89%88Chinese%20version/03Memo2.html'">&nbsp Chinese<br></p>
 							----------------------------
 							<p class="logoutselected" onclick = "Logout()">&nbsp<i class="icon iconfont icon-dianyuan" style="margin-right:5px;"></i>Logout</p>
 				</div>
@@ -498,8 +498,8 @@
 					</div>
 
 					<button class ="add_memo_button"  onclick = "popup_form()">Add Memo</button>
-					<button  onclick = "viewTable('last');" class="previous_memo_month"><img src="image\left-arrow.png" height="25px" width="30px" /></button>
-					<button  onclick = "viewTable('next')" class="next_memo_month"><img src="image\right-arrow.png" height="25px" width="30px"/></button>
+					<button  onclick = "viewTable('last');" class="previous_memo_month"><img src="statics\images\left-arrow.png" height="25px" width="30px" /></button>
+					<button  onclick = "viewTable('next')" class="next_memo_month"><img src="statics\images\right-arrow.png" height="25px" width="30px"/></button>
 
 
 					</div>
@@ -514,12 +514,12 @@
 			<div id="profile" style="display:none;position:absolute; width:800px; height:350px; left:375px; top:40px;background-color:#EFFACA;border-style: solid;
 					border-width: 2px; z-index:3;">
 			<div style="background-color:#E4EACD;position:relative;height:75px;">
-				<h2  id="nameProfileT" style="position:relative; left:210px;top:20px;"><h3 style="position:relative;color:gray;left:300px;top:-10px;">	‒ Profile</h3></h2>
+				<h2  id="nameProfileT" style="position:relative; left:210px;top:20px;"><h3 style="position:relative;color:gray;left:300px;top:-10px;">	</h3></h2>
 
 
-				<button onclick="editprofile()" style="position:relative; left:620px;top:-35px;width:80px;height:35px;background-color:#3B94FA;color:white;border-radius:10px;cursor:pointer;">Edit</button>
-				<button onclick="closeprofile()" style="position:relative; left:620px;top:-35px;width:80px;height:35px;background-color:white;color:black;border-radius:10px;cursor:pointer;">Close</button>
-				<button onclick="changePassword()" style="position:relative; left:520px;top:20px;width:100px;height:45px;background-color:#3B94FA;color:white;border-radius:10px;cursor:pointer;">Change Password</button>
+				<button onclick="editprofile()" style="position:relative; left:620px;top:-15px;width:80px;height:35px;background-color:#3B94FA;color:white;border-radius:10px;cursor:pointer;">Edit</button>
+				<button onclick="closeprofile()" style="position:relative; left:620px;top:-15px;width:80px;height:35px;background-color:white;color:black;border-radius:10px;cursor:pointer;">Close</button>
+				<button onclick="changePassword()" style="position:relative; left:520px;top:45px;width:100px;height:45px;background-color:#3B94FA;color:white;border-radius:10px;cursor:pointer;">Change Password</button>
 
 			</div>
 			<img style="position:relative; left:20px; top:-40px; width:150px; height:150px;" id="viewpic">
@@ -537,9 +537,9 @@
 					border-width: 2px;">
 			<div style="background-color:#E4EACD;position:relative;height:75px;">
 				<h2 id="nameProfileTE"style="position:relative; left:210px;top:20px;"></h2>
-				<h3 style="position:relative; left:300px;top:-10px;color:gray;">	‒ Profile</h3>
-				<button onclick="submitprofile()" style="position:relative; left:620px;top:-35px;width:80px;height:35px;background-color:#3B94FA;color:white;border-radius:10px;cursor:pointer;">OK</button>
-				<button onclick="cancelprofile()" style="position:relative; left:620px;top:-35px;width:80px;height:35px;background-color:white;color:black;border-radius:10px;cursor:pointer;">Cancel</button>
+				<h3 style="position:relative; left:300px;top:-10px;color:gray;">	</h3>
+				<button onclick="submitprofile()" style="position:relative; left:620px;top:-15px;width:80px;height:35px;background-color:#3B94FA;color:white;border-radius:10px;cursor:pointer;">OK</button>
+				<button onclick="cancelprofile()" style="position:relative; left:620px;top:-15px;width:80px;height:35px;background-color:white;color:black;border-radius:10px;cursor:pointer;">Cancel</button>
 			</div>
 			<img style="position:relative; left:20px; top:-40px; width:150px; height:150px;" id="editpic">
 			<div style="position:relative; left:220px;top:-110px;">

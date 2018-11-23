@@ -311,6 +311,25 @@ window.onload=function(){
      }
     var nowadays = year +"-"+ mm+"-"+ dd; // 2018-09-13
     document.getElementById("bday").value = nowadays;
+    var a = new Date();
+    var hour = a.getHours();
+    var minute = a.getMinutes();
+    var second = a.getSeconds();
+
+    var time = hour+":"+minute+":"+second;
+     console.log(time);
+
+
+        if(time<"12:00:00" && time>="04:00:00"){
+        document.getElementById("time").innerHTML = "Good Morning &nbsp ";
+      }
+      if(time>="12:00:00" && time<"18:00:00"){
+      document.getElementById("time").innerHTML = "Good Afternoon &nbsp ";
+    }
+      if(time>="18:00:00" || time<"04:00:00"){
+    document.getElementById("time").innerHTML = "Good Evening &nbsp ";
+    }
+    
 
 }
 

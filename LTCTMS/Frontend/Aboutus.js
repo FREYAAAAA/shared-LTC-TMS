@@ -99,7 +99,8 @@ function upload_logo(){
 
 }
 var file;
-window.onload=function(){
+setTimeout(function(){
+  console.log('1111');
     var fileButton = document.getElementById('fileButton');
     fileButton.addEventListener("change",function(e){
        file= e.target.files[0];
@@ -109,7 +110,7 @@ window.onload=function(){
       firebase.storage().ref('Sponsor/').child(file.name).put(file);
 
        });
-   }
+   },3000);
 
 function upload(){
     var text = $("#url_text").val();
@@ -198,11 +199,20 @@ function remove(sponsor){
 }
 
 function sponsor_delete(){
-    for(var i=0; i<= index; i++){
-        console.log("button_id["+i+"]");
-        document.getElementById("button_id["+i+"]").setAttribute("style","display:inline;");
+    if(document.getElementById("button_id[1]").style.display =="inline"){
+      for(var i=0; i< index; i++){
+        document.getElementById("button_id["+i+"]").style.display = "none";
+
+    }
+  }
+    else{
+      for(var i=0; i< index; i++){
+          console.log("button_id["+i+"]");
+        document.getElementById("button_id["+i+"]").style.display = "inline";
     }
 }
+}
+
 
 function showintroduction(){
   document.getElementById("data1").style.display = "block";

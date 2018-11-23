@@ -147,25 +147,7 @@ function submitNewPass(){
 
 }
 
-var a = new Date();
-var hour = a.getHours();
-var minute = a.getMinutes();
-var second = a.getSeconds();
 
-var time = hour+":"+minute+":"+second;
- console.log(time);
-
-window.onload=function(){
-    if(time<"12:00:00" && time>="04:00:00"){
-    document.getElementById("time").innerHTML = "Good Morning &nbsp ";
-  }
-  if(time>="12:00:00" && time<"18:00:00"){
-  document.getElementById("time").innerHTML = "Good Afternoon &nbsp ";
-}
-  if(time>="18:00:00" || time<"04:00:00"){
-document.getElementById("time").innerHTML = "Good Evening &nbsp ";
-}
-}
 
 function Logout(){
   var today = new Date();
@@ -246,4 +228,16 @@ function normalImg(x) {
 
 }
 
-console.log("asd000");
+
+
+window.onload=function(){
+    if(time123<"12:00:00" && time123>="04:00:00"){
+    document.getElementById("time123").innerHTML = "Good Morning &nbsp ";
+  }
+  if(time123>="12:00:00" && time123<"18:00:00"){
+  document.getElementById("time123").innerHTML = "Good Afternoon &nbsp ";
+}
+  if(time123>="18:00:00" || time123<"04:00:00"){
+document.getElementById("time123").innerHTML = "Good Evening &nbsp ";
+}
+}

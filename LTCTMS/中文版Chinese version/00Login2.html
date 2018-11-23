@@ -10,8 +10,8 @@
 		<link rel="stylesheet" type="text/css" href="statics/css/style.css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,500" rel="stylesheet">
     <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
-    <script type = 'text/javascript' src = "/Users/tungchen/Documents/GitHub/shared-LTC-TMS/LTCTMS/中文版Chinese version/Config.js"></script>
-    <script type="text/javascript" src="/Users/tungchen/Documents/GitHub/shared-LTC-TMS/LTCTMS/中文版Chinese version/LoginJS.js"></script>
+    <script type = 'text/javascript' src = "/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/中文版Chinese version/Config.js"></script>
+    <script type="text/javascript" src="/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/中文版Chinese version/LoginJS.js"></script>
 	</head>
 	<style>
 
@@ -228,7 +228,7 @@
 			<div class="bar">
 				<div class="w1200">
 					<span class="l"><img style="position:relative; top:3px; width:45px;height:45px;" src="statics/images/v2ltctmslogo.png"><font style="text-align:center;position:relative; top:-10px;">歡迎進入LTCTMS</font></span>
-					<i class="setting"><img style="filter:invert(100%); width:20px; height:20px;position:relative; left:700px; top:4px;" src="statics/images/settings.png"><p style="position:relative; left:725px; top:-50px;">設定</p><img onclick="openmenu()" id="openmenu" style="filter:invert(100%); width:10px; height:10px;position:relative; left:1105px; top:-98px;" class="openmenu" src="statics/images/openmenu.png"></i>
+					<i class="setting"><img style="filter:invert(100%); width:20px; height:20px;position:relative; left:770px; top:4px;" src="statics/images/settings.png"><p style="position:relative; left:800px; top:-50px;">設定</p><img onclick="openmenu()" id="openmenu" style="filter:invert(100%); width:10px; height:10px;position:relative; left:1105px; top:-98px;cursor:pointer;" class="openmenu" src="statics/images/openmenu.png"></i>
 				</div>
 			</div>
     </div>
@@ -240,10 +240,10 @@
 					<td style="background-color:#ddd;"> 語言 </td>
 				</tr>
 				<tr>
-					<td class="selected"> &nbsp English </td>
+					<td class="selected" style="cursor:pointer;" onclick="window.location.href='file:///C:/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Frontend/00Login2.html'"> &nbsp English </td>
 				</tr>
 				<tr>
-					<td class="selected"> &nbsp 中文 </td>
+					<td class="selected" style="cursor:pointer;"> &nbsp 中文 </td>
 				</tr>
 			</table>
 		</div>
@@ -265,16 +265,16 @@
              <br>
              <input style="position:relative; top:90px; left:0px; width:250px; height:5%;" id="txtPassword" type="password" placeholder="請輸入密碼" >
              <br>
-             <input type="submit" value="登入" style="position:relative; top:110px; left:0px; width:20%" id="btnLogin" style="margin-left:100px;" ></input>
+             <input type="submit" value="登入" style="position:relative; top:110px; left:0px; cursor:pointer;width:20%" id="btnLogin" style="margin-left:100px;" ></input>
            </form>
-           <button id = "forgetPassword" onclick="document.getElementById('forgot').style.display = 'block'" style="position:relative;top:120px;border-style:none;background-color:#78c869ff;"> <font class="forgotbutton"><u>忘記密碼？</u></font> </button>
+           <button id = "forgetPassword" onclick="document.getElementById('forgot').style.display = 'block'" style="position:relative;top:120px;border-style:none;background-color:#78c869ff;"> <font class="forgotbutton" style="cursor:pointer;"><u>忘記密碼？</u></font> </button>
            </center>
       </div>
 
       <div id="forgot">
       <div class = "create_popup_forgetpass">
       <h3 style="position:relative;left:130px;top:15px;">忘記密碼？</h3>
-      <button onclick="document.getElementById('forgot').style.display = 'none'" class="closeforgotpassword">x</button>
+      <button onclick="document.getElementById('forgot').style.display = 'none'" class="closeforgotpassword" style="cursor:pointer;">x</button>
       <br>
       <p style="position:relative;left:122px;top:15px;">請輸入你的信箱：</p><br>
       <input type="text" id= "forgetP" placeholder="abc123@gmail.com" style="position:relative;left:35px;top:15px;width:345px;"/>
@@ -285,7 +285,7 @@
       <p style="position:relative;left:120px;top:15px;">請輸入員工辨識碼： </p><br>
       <input type="text" id= "fid" placeholder="000001" style="position:relative;left:140px;top:15px;width:150px;"/>
       <br><br>
-      <input type="button" id= "fsubmit" value="輸入" onclick="forgetPass()" style="position:relative;left:185px;top:15px;width:50px;"/>
+      <input type="button" id= "fsubmit" value="輸入" onclick="forgetPass()" style="cursor:pointer;position:relative;left:185px;top:15px;width:50px;"/>
       </div>
       </div>
 
