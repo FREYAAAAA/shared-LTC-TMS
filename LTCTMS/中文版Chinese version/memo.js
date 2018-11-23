@@ -2,9 +2,9 @@ var today = new Date();
 var dd = today.getDate();
 var mm_index = today.getMonth(); //January is 0!
 var year = today.getFullYear();
-var weekday =  ["Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-var month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-var Month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var weekday =  ["星期天","星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+var month = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
+var Month = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
  var wk_index = today.getDay();
  var d = dd;
 
@@ -59,10 +59,10 @@ if(a[1]<10){
 year_m = a[0]+"-"+a[1];
 dd = a[2];
 if(text == ""){
-  alert ("Please enter data");
+  alert ("請輸入資料");
 }
 else {
-  var r = confirm("Are you sure you want to enter this data?");
+  var r = confirm("確定要輸入此資訊嗎?");
   if (r == true) {
     firebase.database().ref("MEMO/"+userID+"/"+year_m+"/"+dd+"-"+time).set(text);
     close_form();
@@ -116,8 +116,8 @@ fbMemo.once("value")
         var button = document.createElement("button");
         var button2 = document.createElement("button");
         array.push(childKey);
-        button2.innerHTML="Delete";
-        button.innerHTML="Edit";
+        button2.innerHTML="刪除";
+        button.innerHTML="編輯";
         var arr = childKey.split("-");
         if(value==null){
             if(arr[0]==dd){
@@ -160,10 +160,10 @@ fbCS.once("value")
             var memodata= deletememo.val();
             var content = document.getElementById('content_id['+num+']').innerHTML;
                 if (memodata == content ){
-                    var r = confirm("Are you sure you want to delete a memo ?");
+                    var r = confirm("確定要刪除此備忘錄嗎 ?");
                     if(r == true){
                        fbCS.child(memekey).remove();
-                    alert("successfully deleted!");
+                    alert("刪除成功!");
                         window.location.reload();
                     }
                 }
@@ -213,10 +213,10 @@ function esubmit(){
  dd = a[2];
 
  if(text == ""){
-   alert ("Please enter data");
+   alert ("請輸入資料");
  }
  else {
-   var r = confirm("Are you sure you want to enter this data?");
+   var r = confirm("確定要輸入此資料嗎?");
    if (r == true) {
      firebase.database().ref(fb).child(key).remove();
      firebase.database().ref("MEMO/"+userID+"/"+year_m+"/"+dd+"-"+time).set(text);
