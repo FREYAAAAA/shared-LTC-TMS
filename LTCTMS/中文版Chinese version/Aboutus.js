@@ -18,7 +18,7 @@ function aboutus_submit(){
 
     firebase.database().ref("CenterInformation/ContactInfo/Aboutus").set(text);
     firebase.database().ref("CenterInformation/ContactInfo/AboutusAndroid").set(text+"(end)");
-    alert("Succesfully entered");
+    alert("輸入成功");
 
 }
 

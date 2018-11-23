@@ -255,7 +255,7 @@ function TaskSubmit(){
   }
 
   if(Ttitle == "" || Outline == ""){
-    alert("請輸入概述跟標題")
+    alert("請輸入簡介跟標題")
 }else {
   var updates = {};
   updates['TaskInstruction/'+ selectCat + '/' + Ttitle + '/Info' ] = Tdata;

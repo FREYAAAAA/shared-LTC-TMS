@@ -54,8 +54,8 @@ function match_id(id,fbFeedback){
 }
 var index = 0;
 function tableform(id,name,fbFeedback,picture){
-    fbFeedback.child(id+"/Center/").once('value')
-    .then(function(childSnapshot2){//Center
+    fbFeedback.child(id+"/System/").once('value')
+    .then(function(childSnapshot2){//System
         childSnapshot2.forEach(function(childSnapshot3 ){//0
             childSnapshot3.forEach(function(childSnapshot4){//Received
               childSnapshot4.forEach(function(childSnapshot5){
@@ -64,29 +64,13 @@ function tableform(id,name,fbFeedback,picture){
                   var m = childSnapshot3.key;
                   var a = m.split("-");
                   var m1 = m.split("-");
-                  if(m1[0]<10){
-                      m1[0] = "0"+m1[0];
-                  }
-                  if(m1[1]<10){
-                      m1[1] = "0"+m1[1];
-                  }
-                  if(m1[2]<10){
-                      m1[2] = "0"+m1[2];
-                  }
+
                    m1 = m1[0]+"-"+m1[1]+"-"+m1[2];
                   var feedbackID = childSnapshot4.key;
                   var t = childSnapshot6.key;
                   var time = t.split(":");
                   var tim1 = t.split(":");
-                  if(tim1[0]<10){
-                      tim1[0] = "0"+ tim1[0];
-                  }
-                  if(tim1[1]<10){
-                      tim1[1] = "0"+ tim1[1];
-                  }
-                  if(tim1[2]<10){
-                      tim1[2] = "0"+ tim1[2];
-                  }
+
                   tim1 = tim1[0]+":"+tim1[1]+":"+tim1[2];
                   var value = childSnapshot6.val();
               //  document.getElementById("user-fa").src = "/images/user_info_bg.jpg";
@@ -171,7 +155,7 @@ function tableform(id,name,fbFeedback,picture){
 
                           document.getElementById("time["+index+"]").innerHTML = m1+"-"+tim1;
                           document.getElementById("photo["+index+"]").src = picture;
-                          document.getElementById("username["+index+"]").innerHTML = name +"  said:";
+                          document.getElementById("username["+index+"]").innerHTML = name +"  說:";
                           document.getElementById("comment["+index+"]").innerHTML = childSnapshot6.val();
                           getReply(id,index,a[0],a[1],a[2],time[0],time[1],time[2],feedbackID);
                           console.log(index);
@@ -203,7 +187,7 @@ function tableform(id,name,fbFeedback,picture){
 
                           document.getElementById("time["+index+"]").innerHTML = m1+"-"+tim1;
                           document.getElementById("photo["+index+"]").src = picture;
-                          document.getElementById("username["+index+"]").innerHTML = name +"  said:";
+                          document.getElementById("username["+index+"]").innerHTML = name +"  說:";
                           document.getElementById("comment["+index+"]").innerHTML = childSnapshot6.val();
 
                           getReply(id,index,a[0],a[1],a[2],time[0],time[1],time[2],feedbackID);
@@ -225,7 +209,7 @@ function tableform(id,name,fbFeedback,picture){
 function getReply(id,index,year,month,date,h,m,s,feedbackID){
     var lastDate = year+"-"+month+"-"+date;
     var time = h+":"+m+":"+s;
-    var fbReply = firebase.database().ref("Feedback/"+id+"/Center"+"/"+lastDate+"/"+feedbackID+"/Replied/");
+    var fbReply = firebase.database().ref("Feedback/"+id+"/System"+"/"+lastDate+"/"+feedbackID+"/Replied/");
     fbReply.once('value').
     then(function(snapshot){
         snapshot.forEach(function(snapshot1){
@@ -244,14 +228,14 @@ function getReply(id,index,year,month,date,h,m,s,feedbackID){
 function replyToggle(index){
     if(document.getElementById("message["+index+"]").style.display =="inline"){
         document.getElementById("message["+index+"]").style.display = "none";
-        document.getElementById("reply["+index+"]").innerHTML = "回覆";
+        document.getElementById("reply["+index+"]").innerHTML = "Reply";
         document.getElementById("btn["+index+"]").style.display = "none";
         console.log("skdfj");
 
     }
     else{
         document.getElementById("message["+index+"]").style.display = "inline";
-        document.getElementById("reply["+index+"]").innerHTML = "收回";
+        document.getElementById("reply["+index+"]").innerHTML = "Collapse";
         document.getElementById("btn["+index+"]").style.display = "inline";
     }
 }
@@ -275,7 +259,7 @@ function sendMess(id,year,month,index,date,h,m,s,feedbackID){
     var lateDate =year+"-"+month+"-"+date;
 
 
-    firebase.database().ref("Feedback/"+id+"/Center/"+lateDate+"/"+feedbackID+"/Replied").remove();
+    firebase.database().ref("Feedback/"+id+"/System/"+lateDate+"/"+feedbackID+"/Replied").remove();
 
 
     document.getElementById("replyTime["+index+"]").innerHTML = repliedTime1;
@@ -287,7 +271,7 @@ function sendMess(id,year,month,index,date,h,m,s,feedbackID){
     console.log(comment);
     var comment1 = comment.replace(/[ ]/g, "~");
 
-    firebase.database().ref("Feedback/"+id+"/Center"+"/"+lateDate+"/"+feedbackID+"/Replied/"+repliedTime).set(comment1);
+    firebase.database().ref("Feedback/"+id+"/System"+"/"+lateDate+"/"+feedbackID+"/Replied/"+repliedTime).set(comment1);
 
     document.getElementById("replyComment["+index+"]").innerHTML = comment;
     replyToggle(index);
@@ -336,6 +320,7 @@ function sorting(table){
     }
   }
 }
+
 
 function showsf(){
   document.getElementById("container").style.display = "block";

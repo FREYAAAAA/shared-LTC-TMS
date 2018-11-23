@@ -1,12 +1,10 @@
-// displaying the current date
-// go to the next year //
     var today = new Date();
     var dd = today.getDate();
     var mm_index = today.getMonth(); //January is 0!
     var year = today.getFullYear();
-    var weekday =  ["Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    var month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    var Month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    var weekday =  ["星期日","星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+    var month = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
+    var Month = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
      var wk_index = today.getDay();
      var d = dd;
 
@@ -22,14 +20,12 @@
 
 
      var date = mm_index+1;
-     console.log(date);
-
      var year_m = year+"-"+date;
-     console.log(year_m);
      var a = new Date();
      var hour = a.getHours();
      var minute = a.getMinutes();
      var second = a.getSeconds();
+     var num = 0;
      if(second<10){
          second = "0"+second;
      }
@@ -46,7 +42,6 @@
 function popup_form(){
     document.getElementById("memo_text").value = "";
     document.getElementById("selected_date").value = year+"-"+mm+"-"+dd;
-    console.log(year+"-"+mm+"-"+dd);
     document.getElementById("form").style.display = "block";
 }
 function close_form(){
@@ -54,134 +49,184 @@ function close_form(){
 }
 
 function submit(){
+    var userID = document.getElementById("displayProfileid").innerHTML;
     var text = $("#memo_text").val();
-    var ymd = $("#selected_date").val()
+    var ymd = $("#selected_date").val();
     var a = ymd.split("-");
     if(a[1]<10){
         a[1] = a[1].replace('0', '');
     }
-
     year_m = a[0]+"-"+a[1];
     dd = a[2];
-
     if(text == ""){
       alert ("請輸入資料");
     }
     else {
-      var r = confirm("你確定你要輸入新資料嗎?");
+      var r = confirm("你確定要輸入此資料嗎?");
       if (r == true) {
-        firebase.database().ref("MEMO/"+year_m+"/"+dd+"-"+time).set(text);
+        firebase.database().ref("MEMO/"+userID+"/"+year_m+"/"+dd+"-"+time).set(text);
         close_form();
         location.reload();
-      }
-      else {
       }
   }
 }
 
-window.onload=function(){
+
+
+function viewTable(value){
+    var userID = document.getElementById("displayProfileid").innerHTML;
     document.getElementById("years").innerHTML = year;
+    var a = year_m.split("-");
 
-    var fbMemo = firebase.database().ref("MEMO/"+year_m);
+    if(value == "last"){
+        a[1] = a[1]-1;
+        if(a[1]== 0){
+            a[1] = 12;
+            a[0] = a[0]-1;
+        }
+        year_m = a[0]+"-"+a[1];
+        document.getElementById("context_table").innerHTML = "";
+
+    }
+    if(value == "next"){
+        a[1] =  parseInt(a[1]) +1;
+        if(a[1]==13){
+        a[1] = 1;
+        a[0] = parseInt(a[0]) +1;
+        }
+        year_m = a[0]+"-"+a[1];
+        document.getElementById("context_table").innerHTML = "";
+    }
+
+    document.getElementById("years").innerHTML = a[0];
+    document.getElementById("fullName_Month").innerHTML = Month[a[1]-1];
+
+
+    var fbMemo = firebase.database().ref("MEMO/"+userID+"/"+year_m);
 
     fbMemo.once("value")
     .then(function(snapshot){
         var array = [];
         var array_val = [];
         var index = 0;
+
         snapshot.forEach(function(childSnapshot){
             var childKey = childSnapshot.key;
             var childData = childSnapshot.val();
-
+            var button = document.createElement("button");
+            var button2 = document.createElement("button");
             array.push(childKey);
+            button2.innerHTML="刪除";
+            button.innerHTML="編輯";
             var arr = childKey.split("-");
-            if(arr[0]==dd){
-                var ul = document.getElementById("today_memo");
-                  var li = document.createElement("li");
-                  li.appendChild(document.createTextNode(childData));
-                  ul.appendChild(li);
+            if(value==null){
+                if(arr[0]==dd){
+                    var ul = document.getElementById("today_memo");
+                      var li = document.createElement("li");
+                      li.appendChild(document.createTextNode(childData));
+                      ul.appendChild(li);
+                }
             }
-            var row = memo_table.insertRow(1);
+
+            var contextTable = document.getElementById("context_table");
+            var row = contextTable.insertRow(0);
             var celldate = row.insertCell(0);
             var celleventDate = row.insertCell(1);
+            var cellButton = row.insertCell(2);
+            var cellButton2 = row.insertCell(3)
+
+
+            celleventDate.setAttribute("id","content_id["+num+"]");
+            cellButton2.setAttribute("onclick","deleteha("+num+")");
+            cellButton.setAttribute("onclick","editha("+num+")");
+            num++;
             celldate.appendChild(document.createTextNode(arr[0]));
             celleventDate.appendChild(document.createTextNode(childData));
+            cellButton2.appendChild(button2);
+            cellButton.appendChild(button);
+
+        })
+    })
+
+}
+
+function deleteha(num){
+    var userID = document.getElementById("displayProfileid").innerHTML;
+    var fbCS= firebase.database().ref('MEMO/'+userID+"/"+year_m);
+    fbCS.once("value")
+        .then(function(mdelete){
+            mdelete.forEach(function(deletememo){
+                var memekey=deletememo.key;
+                var memodata= deletememo.val();
+                var content = document.getElementById('content_id['+num+']').innerHTML;
+                    if (memodata == content ){
+                        var r = confirm("確定要刪除此備忘錄嗎 ?");
+                        if(r == true){
+                           fbCS.child(memekey).remove();
+                        alert("刪除成功!");
+                            window.location.reload();
+                        }
+                    }
         })
     })
 }
 
+function editha(num){
+    var userID = document.getElementById("displayProfileid").innerHTML;
+    var Fbe= firebase.database().ref('MEMO/'+userID+"/"+year_m);
+    var path1 = 'MEMO/'+userID+"/"+year_m;
+    console.log(nowadays);
+
+    Fbe.once('value')
+    .then(function(medit){
+        medit.forEach(function(editmemo){
+            var editmemekey = editmemo.key;
+            var editmemodata = editmemo.val();
+            var content = document.getElementById('content_id['+num+']').innerHTML;
+            sessionStorage.setItem("key",editmemekey);
+            sessionStorage.setItem("path", path1);
+            if (editmemodata==content){
+                console.log(year_m);
+                var timeKey = editmemekey.split("-");
+                var editDate = year_m+"-"+timeKey[0];
+                 document.getElementById('edit_form').style.display="block";
+                 document.getElementById('memoedited').value=content;
+                 document.getElementById('edited_date').value = editDate;
+             }
+         })
+     })
+ }
 
 
-function lastMonth(){
-    document.getElementById("memo_table").innerHTML = "";
-    var title = memo_table.insertRow(0);
-    title.insertCell(0).innerHTML = "日期";
-    title.insertCell(1).innerHTML = "內容";
-    var a = year_m.split("-");
-    a[1] = a[1]-1;
-    if(a[1]== 0){
-        a[1] = 12;
-        a[0] = a[0]-1;
-    }
-    console.log(a[0]);
-    year_m = a[0]+"-"+a[1];
-    console.log(year_m);
-    document.getElementById("fullName_Month").innerHTML = Month[a[1]-1];
-    document.getElementById("years").innerHTML = a[0];
+ function esubmit(){
+     var userID = document.getElementById("displayProfileid").innerHTML;
+     var text = $("#memoedited").val();
+     var ymd = $("#edited_date").val();
+     var fb = sessionStorage.getItem('path');
+     var key = sessionStorage.getItem('key');
+     var a = ymd.split("-");
+     if(a[1]<10){
+         a[1] = a[1].replace('0', '');
+     }
 
-    var fbMemo = firebase.database().ref("MEMO/"+year_m);
-    fbMemo.once("value")
-    .then(function(snapshot){
-        var array = [];
-        var array_val = [];
-        var index = 0;
-        snapshot.forEach(function(childSnapshot){
-            var childKey = childSnapshot.key;
-            var childData = childSnapshot.val();
-            array.push(childKey);
-            var arr = childKey.split("-");
-            var row = memo_table.insertRow(1);
-            var celldate = row.insertCell(0);
-            var celleventDate = row.insertCell(1);
-            celldate.appendChild(document.createTextNode(arr[0]));
-            celleventDate.appendChild(document.createTextNode(childData));
-        })
-    })
+     year_m = a[0]+"-"+a[1];
+     dd = a[2];
+
+     if(text == ""){
+       alert ("請輸入資料");
+     }
+     else {
+       var r = confirm("你確定要輸入此資料嗎?");
+       if (r == true) {
+         firebase.database().ref(fb).child(key).remove();
+         firebase.database().ref("MEMO/"+userID+"/"+year_m+"/"+dd+"-"+time).set(text);
+         close_form();
+         location.reload();
+       }
+   }
 }
-function nextMonth(){
-    document.getElementById("memo_table").innerHTML = "";//clear previous table's data before next data come inside.
-    var title = memo_table.insertRow(0);
-    title.insertCell(0).innerHTML = "日期";
-    title.insertCell(1).innerHTML = "內容";
-    var a = year_m.split("-");
-    a[1] =  parseInt(a[1]) +1;
-    if(a[1]==13){
-    a[1] = 1;
-    a[0] = parseInt(a[0]) +1;
-    }
-    console.log(a[0]);
-    year_m = a[0]+"-"+a[1];
-    console.log(a[1]);
-    document.getElementById("fullName_Month").innerHTML = Month[a[1]-1];
-    document.getElementById("years").innerHTML = a[0];
-    var fbMemo = firebase.database().ref("MEMO/"+year_m);
-    fbMemo.once("value")
-    .then(function(snapshot){
-        var array = [];
-        var array_val = [];
-        var index = 0;
-        snapshot.forEach(function(childSnapshot){
-            var childKey = childSnapshot.key;
-            var childData = childSnapshot.val();
-            array.push(childKey);
-            var arr = childKey.split("-");
-            var row = memo_table.insertRow(1);
-            var celldate = row.insertCell(0);
-            var celleventDate = row.insertCell(1);
-            celldate.appendChild(document.createTextNode(arr[0]));
-            celleventDate.appendChild(document.createTextNode(childData));
-        })
-    })
+function closeform(){
+    document.getElementById("edit_form").style.display="none";
 }
 
 function openmenu(){
@@ -196,28 +241,6 @@ function openmenu(){
 }
 
 
-function profile(){
-  document.getElementById("profile").style.display = "block";
-}
-
-function closeprofile(){
-  document.getElementById("profile").style.display = "none";
-  document.getElementById("editprofile").style.display = "none";
-}
-
-function editprofile(){
-  document.getElementById("profile").style.display = "none";
-  document.getElementById("editprofile").style.display = "block";
-}
-
-function cancelprofile(){
-  window.location.reload()
-}
-
-function submitprofile(){
-
-}
-
 
 var a = new Date();
 var hour = a.getHours();
@@ -225,16 +248,18 @@ var minute = a.getMinutes();
 var second = a.getSeconds();
 
 var time = hour+":"+minute+":"+second;
- console.log(time);
 
-window.onload=function(){
-    if(time<"12:00:00" && time>="04:00:00"){
-    document.getElementById("time").innerHTML = "早安 &nbsp ";
-  }
-  if(time>="12:00:00" && time<"18:00:00"){
-  document.getElementById("time").innerHTML = "午安 &nbsp ";
-}
-  if(time>="18:00:00" || time<"04:00:00"){
-document.getElementById("time").innerHTML = "晚安 &nbsp ";
-}
-}
+
+$(document).ready(function() {
+    document.getElementById("fullName_Month").innerHTML = Month[mm_index];
+    document.getElementById('current_date').innerHTML = dd;
+    document.getElementById("current_month").innerHTML = month[mm_index];
+    document.getElementById("current_week").innerHTML = weekday[wk_index];
+    document.getElementById("current_year").innerHTML = year;
+    var userID = document.getElementById("displayProfileid").innerHTML;
+
+
+});
+setTimeout(function(){
+    viewTable();
+}, 2000);

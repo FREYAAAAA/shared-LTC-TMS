@@ -17,8 +17,8 @@ if(firebaseUser){
     Profilepic.setAttribute('value',pic);
   });
 }else{
-  alert("你已登出，請重新登入!");
-  window.location.href = "00Login2.html";
+  alert("你已登出!請再重新登入一次！");
+  window.location.href = "//Users/Gama/Documents/GitHub/shared-LTC-TMS/LTCTMS/Frontend/00Login2.html";
 }
 });
 //console.log(document.getElementById('Profilepic').value);
@@ -56,7 +56,7 @@ function submitprofile(){
     if(user){
       if(user.email != email){
         user.updateEmail(email).then(function(){
-          alert("電子信箱已更改!");
+          alert("信箱已更改!");
         }).catch(function(error){
           console.log(error.message);
         });
@@ -64,10 +64,10 @@ function submitprofile(){
       user.updateProfile({
         displayName:name
       }).then(function(){
-        alert("個人檔案已更新!");
+        alert("個人檔案已重新上傳!");
         window.location.reload();
       }).catch(function(error){
-        console.log('個人檔案更新失敗'+ error.message);
+        console.log('個人檔案上傳失敗'+ error.message);
       });
     }
   });
@@ -101,24 +101,24 @@ function submitNewPass(){
   var oldPass = document.getElementById('oldPassword').value;
   if (newPass==cnewPass){
       var user = firebase.auth().currentUser;
-        var credentials = firebase.auth.EmailAuthProvider.credential(
-          user.email,
-          oldPass);
+      var credentials = firebase.auth.EmailAuthProvider.credential(
+        user.email,
+        oldPass);
         user.reauthenticateAndRetrieveDataWithCredential(credentials)
         .then(function() {
           user.updatePassword(newPass)
           .then(function(){
-            firebase.database()
-            alert('更新密碼成功!');
+
+            alert('成功更改密碼!');
             window.location.reload();
           }).catch(function(error){
             alert(error.message);
           });
         }).catch(function(error) {
-          alert('重新認證失敗!');
+          alert('重新驗證失敗!');
         });
   }else{
-    alert("你的密碼不匹配!")
+    alert("密碼無法匹配!")
   }
 
 }
@@ -132,18 +132,22 @@ var time = hour+":"+minute+":"+second;
  console.log(time);
 
 window.onload=function(){
+    tableNewRow(fbACC);
+    tableBrowserLogging(fbStatus);
+    tableAppLogging(fbStatus2);
     if(time<"12:00:00" && time>="04:00:00"){
-    document.getElementById("time").innerHTML = "Good Morning &nbsp ";
+    document.getElementById("time").innerHTML = "早安 &nbsp ";
   }
   if(time>="12:00:00" && time<"18:00:00"){
-  document.getElementById("time").innerHTML = "Good Afternoon &nbsp ";
+  document.getElementById("time").innerHTML = "午安 &nbsp ";
 }
   if(time>="18:00:00" || time<"04:00:00"){
-document.getElementById("time").innerHTML = "Good Evening &nbsp ";
+document.getElementById("time").innerHTML = "晚安 &nbsp ";
 }
 }
 
 function Logout(){
+
   firebase.auth().signOut();
   console.log('logout');
   window.location.href = "00Login02.html";
@@ -166,21 +170,16 @@ function uploadPicProfile(){
           user.updateProfile({
             photoURL: url
           }).then(function(){
-            alert('更新個人檔案照片成功!');
+            alert('成功地更改個人檔案照片!');
             window.location.reload();
           }).catch(function(err){
-            alert('更新失敗！ 錯誤:'+ err.message);
+            alert('更改失敗! 錯誤:'+ err.message);
           });
         });
       });
 
 
 }
-
-
-
-
-
 
 function bigImg(x) {
     photoword.style.display = "inline";

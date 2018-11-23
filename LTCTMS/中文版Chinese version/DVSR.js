@@ -66,10 +66,10 @@ fbPAT.once("value")
       document.getElementById("no-doc5").style.display = "none";
 
         if(count%2 == 1){//  in order to exchange the text of button into "display" and"refresh"
-            nnn .value= "Refresh";
+            nnn .value= "重新整理";
             location.reload();//reload the page
             }
-        nnn.value = "Refresh";
+        nnn.value = "重新整理";
         count = count + 1;
         var selected_id = document.getElementById("selectPAT").value;// get the patient's ID
         var selected_CNA = document.getElementById("selectCNA").value
