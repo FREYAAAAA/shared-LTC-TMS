@@ -158,7 +158,6 @@ function tableform(id,name,fbFeedback,picture){
                           document.getElementById("username["+index+"]").innerHTML = name +"  said:";
                           document.getElementById("comment["+index+"]").innerHTML = childSnapshot6.val();
                           getReply(id,index,a[0],a[1],a[2],time[0],time[1],time[2],feedbackID);
-                          console.log(index);
                           index++;
                       }
                       else{
@@ -191,7 +190,6 @@ function tableform(id,name,fbFeedback,picture){
                           document.getElementById("comment["+index+"]").innerHTML = childSnapshot6.val();
 
                           getReply(id,index,a[0],a[1],a[2],time[0],time[1],time[2],feedbackID);
-                          console.log(index);
 
                           index++;
                       }
@@ -216,7 +214,6 @@ function getReply(id,index,year,month,date,h,m,s,feedbackID){
             var com = snapshot1.val();
             com = com.replace (/[~]/g," ");
             document.getElementById("replyComment["+index+"]").innerHTML = com;
-            console.log(snapshot1.key);
 
             var tim = snapshot1.key;
             tim = tim.replace (/[?]/g,"-");
@@ -230,7 +227,6 @@ function replyToggle(index){
         document.getElementById("message["+index+"]").style.display = "none";
         document.getElementById("reply["+index+"]").innerHTML = "Reply";
         document.getElementById("btn["+index+"]").style.display = "none";
-        console.log("skdfj");
 
     }
     else{
@@ -242,7 +238,6 @@ function replyToggle(index){
 
 function sendMess(id,year,month,index,date,h,m,s,feedbackID){
 
-  console.log(year,month,date);
     var today = new Date();
     var hour = today.getHours();
     var minute = today.getMinutes();
@@ -268,7 +263,6 @@ function sendMess(id,year,month,index,date,h,m,s,feedbackID){
 
     var idre = "000001"; // Replyer's  ID
     var comment = document.getElementById("message["+index+"]").value;
-    console.log(comment);
     var comment1 = comment.replace(/[ ]/g, "~");
 
     firebase.database().ref("Feedback/"+id+"/System"+"/"+lateDate+"/"+feedbackID+"/Replied/"+repliedTime).set(comment1);
@@ -290,7 +284,7 @@ function sorting(table){
   switching = true;
   dir = "asc";
   rows = table.getElementsByTagName("div");
-  console.log(rows.length);
+
 
   while (switching) {
 
@@ -304,17 +298,14 @@ function sorting(table){
 
       if (dir == "asc") {
         if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-            console.log(x);
-            console.log(y);
+
           shouldSwitch= true;
-          console.log("jump out")
           break;
         }
       }
     }
     if (shouldSwitch) {
       rows[i].parentNode.insertBefore(rows[i+4], rows[i]);
-      console.log("suc");
       switching = true;
       switchcount ++;
     }
@@ -379,7 +370,6 @@ var minute = a.getMinutes();
 var second = a.getSeconds();
 
 var time = hour+":"+minute+":"+second;
- console.log(time);
 
 window.onload=function(){
     if(time<"12:00:00" && time>="04:00:00"){
