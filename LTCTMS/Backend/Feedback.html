@@ -10,10 +10,10 @@
 		<link rel="stylesheet" type="text/css" href="statics/css/style.css" />
 		<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
 		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-		<script type = 'text/javascript' src = "/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Frontend/Config.js"></script>
-		<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/Feedback.js'></script>
-		<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Frontend/chat.js'></script>
-		<script type = 'text/javascript' src = '/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/AdminProfile.js'></script>
+		<script type = 'text/javascript' src = "/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Frontend/Config.js"></script>
+		<script type = 'text/javascript' src = '/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/Feedback.js'></script>
+		<script type = 'text/javascript' src = '/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Frontend/chat.js'></script>
+		<script type = 'text/javascript' src = '/Users/ian50408/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/AdminProfile.js'></script>
 	</head>
 	<style>
 	#expand{
@@ -32,19 +32,33 @@
 	#expand:hover{
 		background: #336699;
 	}
-	#im{
+	#leftList{
+	position:absolute;
+  	  top:50%;
+  	  right:45%;
+  	  margin:0 auto;
+  	  width:15%;
+  	  max-width:600px;
+  	  height:50%;
+  	  box-sizing:border-box;
+  	  background:blue;
+  	  display: none;
+	}
+	#leftList ul {width: 100%;height: 50px;line-height: 50px;color: #336699;font-size: 20px;}
+	#leftList ul :hover{border-left: 3px solid #336699;background: #f3f7ed;color: #336699;}
+	#leftList  ul.active{border-left: 3px solid #336699;background: #f3f7ed;color: #336699;}
+
+	#im1, #im0{
 	  position:absolute;
 	  top:50%;
-	  left:58%;
+	  right:0%;
 	  margin:0 auto;
 	  width:45%;
 	  max-width:600px;
 	  height:50%;
 	  box-sizing:border-box;
 	  background:rgba(0,0,0,0.3);
-	  display: none;
-
-	}
+  	}
 	#cover{
 	position:absolute;
 	 z-index:2;
@@ -58,7 +72,7 @@
 	 background:#6699CC;
 	 color:#fff;
 	}
-	#input{
+	#input0, #input1{
 	  position:absolute;
 	  z-index:2;
 	  height:90px;
@@ -72,31 +86,29 @@
 	  color:#000;
 	}
 
-
-
-	#input input, #input span{
+	#input0 input, #input0 span,#input1 input, #input1 span{
 	  display:inline-block;
 	  margin:5px 0;
 	}
 
-	#input input{
+	#input0 input, #input1 input{
 	  width:75%;
 	  border:none;
 	  padding:5px;
 	}
 
-	#input span{
+	#input0 span,#input1 span{
 	  width:10%;
 	  min-width:50px;
 	  color:#fff;
 	}
 
-	#input div{
+	#input0 div,#input1 div{
 	  width:80%;
 	  float:left;
 	}
 
-	#input button{
+	#input0 button,#input1 button{
 	  float:right;
 	  height:90%;
 	  width:20%;
@@ -108,7 +120,7 @@
 	  color:#fff;
 	}
 
-	#show{
+	#show0, #show1{
 	  position:absolute;
 	  top:0;
 	  left:0;
@@ -121,30 +133,31 @@
 	  box-sizing:border-box;
 	}
 
-	#show>div{
+	#show0>div,#show1>div{
 	  position:relative;
 	  margin:0 0 20px 0;
 	  clear:both;
 	  height:40px;
 	}
 
-	#show>div>div{
+	#show0>div>div, #show1>div>div{
 	  display:inline-block;
 	}
 
-	#show .time{
-	  position:absolute;
-	  top:-2px;
-	  font-size:10px;
-	  color:#777;
-	}
 
-	#show .name{
+
+	#show0 .name, #show1 .name{
 	  color:#fff;
 	  vertical-align:middle;
 	}
+	#show0 .fillter, #show1 .fillter{
+	display:block;
+	box-sizing: border-box;
+     width: 100%;
+     border: 5px solid red;
+	}
 
-	#show .content{
+	#show0 .content, #show1 .content{
 	  background:rgba(255,255,255,.8);
 	  padding:10px;
 	  margin-top:15px;
@@ -152,7 +165,7 @@
 	  border-radius:5px;
 	  vertical-align:middle;
 	}
-	#show .contentI{
+	#show0 .contentI, #show1 .contentI{
 	  background:#6699CC;
 	  padding:10px;
 	  margin-top:15px;
@@ -161,14 +174,14 @@
 	  vertical-align:middle;
 	}
 
-	#show::-webkit-scrollbar {
+	#show0::-webkit-scrollbarm, #show1::-webkit-scrollbar {
 	  width:5px;
 	}
-	#show::-webkit-scrollbar-track {
+	#show0::-webkit-scrollbar-track,#show1::-webkit-scrollbar-track {
 	  background:rgba(255,255,255,.1);
 	  border-radius: 5px;
 	}
-	#show::-webkit-scrollbar-thumb {
+	#show0::-webkit-scrollbar-thumb,	#show1::-webkit-scrollbar-thumb {
 	  background:rgba(255,255,255,.2);
 	  border-radius: 2px;
 	}
@@ -363,7 +376,7 @@
 						<input id="newPic" type='file' accept="image/*" onchange="uploadPicProfile()" required  style="display:none;"/>
 					</div>
 					<div class="user-account">
-						<p class="tip" id="time123"></p>
+						<p class="tip" id="time"></p>
 						<img style="position:relative; left:140px;top:-25px;cursor:pointer;" class="openprofile" onclick="profile()" src="statics/images/pencil.png">
 						<p class="account" style="position:relative; top:-20px;">
 							<span>Name : <span id="displayProfilename"></span></span>
@@ -401,13 +414,13 @@
 			<div class="right">
 				<div class="tap">
 					<span id="stafffeedbackspan" onclick="showsf()" style="opacity:1;cursor:pointer;">Staff Feedback</span>
-					<span id="patientfeedbackspan" onclick="showpf()" style="opacity:.8;cursor:pointer;">Family Feedback</span>
+					<span id="patientfeedbackspan" onclick="showpf()" style="opacity:.8;cursor:pointer;">Patient Feedback</span>
 				</div>
 
 				<div id="menu" style="display:none;position:fixed;top:6%;left:74%;background-color:white;height:120px;width:200px;z-index:5;">
 							<div style="position:relative;left:1%;top:2%;background-color:#ddd;width:98%;margin-bottom:5px;">Language</div>
 							<p class="selected" style="margin-top:3px;margin-bottom:3px;cursor:pointer;">&nbsp English<br></p>
-							<p class="selected" style="margin-top:3px;margin-bottom:3px;cursor:pointer;" onclick="window.location.href='C:\Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/中文版admin/Feedback.html'">&nbsp 中文<br></p>
+							<p class="selected" style="margin-top:3px;margin-bottom:3px;cursor:pointer;">&nbsp Chinese<br></p>
 							----------------------------
 							<p class="logoutselected" onclick="Logout()">&nbsp<i class="icon iconfont icon-dianyuan" style="margin-right:5px;"></i>Logout</p>
 				</div>
@@ -440,12 +453,12 @@
 				<div id="profile" style="display:none;position:absolute; width:800px; height:350px; left:375px; top:40px;background-color:#EFFACA;border-style: solid;
 						border-width: 2px; z-index:3;">
 				<div style="background-color:#E4EACD;position:relative;height:75px;">
-					<h2  id="nameProfileT" style="position:relative; left:210px;top:20px;"><h3 style="position:relative;color:gray;">	</h3></h2>
+					<h2  id="nameProfileT" style="position:relative; left:210px;top:20px;"><h3 style="position:relative;color:gray;">	‒ Profile</h3></h2>
 
 
-					<button onclick="editprofile()" style="position:relative; left:620px;top:-15px;width:80px;height:35px;background-color:#3B94FA;color:white;border-radius:10px;cursor:pointer;">Edit</button>
-					<button onclick="closeprofile()" style="position:relative; left:620px;top:-15px;width:80px;height:35px;background-color:white;color:black;border-radius:10px;cursor:pointer;">Close</button>
-					<button onclick="changePassword()" style="position:relative; left:520px;top:45px;width:100px;height:45px;background-color:#3B94FA;color:white;border-radius:10px;cursor:pointer;">Change Password</button>
+					<button onclick="editprofile()" style="position:relative; left:620px;top:-35px;width:80px;height:35px;background-color:#3B94FA;color:white;border-radius:10px;cursor:pointer;">Edit</button>
+					<button onclick="closeprofile()" style="position:relative; left:620px;top:-35px;width:80px;height:35px;background-color:white;color:black;border-radius:10px;cursor:pointer;">Close</button>
+					<button onclick="changePassword()" style="position:relative; left:520px;top:20px;width:100px;height:45px;background-color:#3B94FA;color:white;border-radius:10px;cursor:pointer;">Change Password</button>
 
 				</div>
 				<img style="position:relative; left:20px; top:-40px; width:150px; height:150px;" id="viewpic">
@@ -462,9 +475,9 @@
 				<div id="editprofile" style="display:none;position:absolute; width:800px; height:350px; left:375px; top:40px;background-color:#EFFACA; z-index:3;">
 				<div style="background-color:#E4EACD;position:relative;height:75px;">
 					<h2 id="nameProfileTE"style="position:relative; left:210px;top:20px;"></h2>
-					<h3 style="position:relative; left:300px;top:-10px;color:gray;">	</h3>
-					<button onclick="submitprofile()" style="position:relative; left:620px;top:-15px;width:80px;height:35px;background-color:#3B94FA;color:white;border-radius:10px;cursor:pointer;">OK</button>
-					<button onclick="cancelprofile()" style="position:relative; left:620px;top:-15px;width:80px;height:35px;background-color:white;color:black;border-radius:10px;cursor:pointer;">Cancel</button>
+					<h3 style="position:relative; left:300px;top:-10px;color:gray;">	‒ Profile</h3>
+					<button onclick="submitprofile()" style="position:relative; left:620px;top:-35px;width:80px;height:35px;background-color:#3B94FA;color:white;border-radius:10px;cursor:pointer;">OK</button>
+					<button onclick="cancelprofile()" style="position:relative; left:620px;top:-35px;width:80px;height:35px;background-color:white;color:black;border-radius:10px;cursor:pointer;">Cancel</button>
 				</div>
 				<img style="position:relative; left:20px; top:-40px; width:150px; height:150px;" id="editpic">
 				<div style="position:relative; left:220px;top:-110px;">
@@ -491,19 +504,20 @@
 
 
 		<div id="expand" onclick="expand()" >Chat</div>
-		  <div id="im">
-			 <div id="cover" onclick="cancel()">
 
-			  </div>
-					<div id="input">
-			      <div>
-			        <span  style ="display:inline;" id = "name"></span>
-			       <input  id="content">
-			      </div>
-			      <button id="btn">Send</button>
-			    </div>
-		    <div id="show"></div>
-		  </div>
+		<div id= "leftList">
+			<ul>
+				<li id= "chatAll" onclick="displayChat('0')">ALL People</li>
+				<li id = "chatPart" onclick="displayChat('1')">Only Director and CNO</li>
+			</ul>
+		</div>
+
+
+
+
+
+
+
 
 	</body>
 
