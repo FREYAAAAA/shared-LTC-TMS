@@ -128,18 +128,18 @@ var hour = a.getHours();
 var minute = a.getMinutes();
 var second = a.getSeconds();
 
-var time = hour+":"+minute+":"+second;
- console.log(time);
+var time123 = hour+":"+minute+":"+second;
+ console.log(time123);
 
 window.onload=function(){
-    if(time<"12:00:00" && time>="04:00:00"){
-    document.getElementById("time").innerHTML = "早安 &nbsp ";
+    if(time123<"12:00:00" && time123>="04:00:00"){
+    document.getElementById("time123").innerHTML = "早安 &nbsp ";
   }
-  if(time>="12:00:00" && time<"18:00:00"){
-  document.getElementById("time").innerHTML = "午安 &nbsp ";
+  if(time123>="12:00:00" && time123<"18:00:00"){
+  document.getElementById("time123").innerHTML = "午安 &nbsp ";
 }
-  if(time>="18:00:00" || time<"04:00:00"){
-document.getElementById("time").innerHTML = "晚安 &nbsp ";
+  if(time123>="18:00:00" || time123<"04:00:00"){
+document.getElementById("time123").innerHTML = "晚安 &nbsp ";
 }
 }
 
