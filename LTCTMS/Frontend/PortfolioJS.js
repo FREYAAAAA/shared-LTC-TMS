@@ -996,3 +996,11 @@ function openmenu(){
   document.getElementById("openmenu").style.opacity = ".6";
 }
 }
+
+
+function pass123(){
+var work123  = document.getElementById("staffPosition").value;
+  if(work123 == "CNA"){
+    document.getElementById("passtable").style.display= "block";
+  }
+}

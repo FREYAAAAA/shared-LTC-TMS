@@ -253,7 +253,7 @@
 	  top:60px;
 	  left:25%;
 	  width:960px;
-	  height:600px;
+	  height:650px;
 	}
 	.editformcreatepatient {
 	  max-width:900px;
@@ -641,20 +641,27 @@
 		    <br><center><h2>Staff Portfolio</h2></center><br>
 		    <table class="portfolio_table">
 		   <tr>
-		       <td rowspan="2"> Insert Photo: <br><br><input  id="btnPicture" type="file" accept="image/*" required/> </td>
-		       <td> Staff ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="StaffID" placeholder="Staff ID" required/></td>
+		       <td rowspan="3"> Insert Photo: <br><br><input  id="btnPicture" type="file" accept="image/*" required/> </td>
+					 <td> <p style="position:relative;left:-50px;display:inline;">Position:</p>
+					<select style="position:relative;display:inline;left:20px;" id="staffPosition" onchange="pass123()" required>
+						<option value="">Please Select</option>
+    		 		<option value="DIR">Director</option>
+    				<option value="CNO">CNO</option>
+						<option value="CNA">CNA</option>
+					</select>
+				<tr>
+						<td> Staff ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="StaffID" placeholder="Staff ID" required/></td>
 		   </tr>
 		   <tr>
 		       <td>Name: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffName" placeholder="Name" required/></td>
 		   </tr>
 		   <tr>
-		       <td> Initial Date: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffInitialDate" placeholder="Enter Date" required/></td>
-		       <td> Password: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffPassword" placeholder="give a password" required/></td>
+		       <td colspan="2" id="passtable" style="display:none;"> Password: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffPassword" placeholder="give a password" /></td>
 		   </tr>
 		   <tr>
-		       <td> Position: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffPosition" placeholder="Position" required/></td>
 		       <td> Date of Birth: &nbsp&nbsp&nbsp&nbsp<input type="text" id="staffDOB" placeholder="yyyy/mm/dd" required/></td>
-		   </tr>
+					 <td> Initial Date: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffInitialDate" placeholder="Enter Date" required/></td>
+			 </tr>
 		   <tr>
 		       <td> National ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffNID" placeholder="National ID" required/></td>
 		       <td> Nationality: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffNationality" placeholder="Nationality" required/></td>
