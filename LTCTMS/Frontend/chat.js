@@ -1,5 +1,104 @@
-var firebase;
+function displayChat(i){
+    var chatall = document.getElementById("chatAll");
+    var chatpart = document.getElementById("chatPart");
+    console.log(i);
 
+
+    if (i==0){
+        chatall.classList.add('active');
+        if (chatpart.classList.contains('active')) {
+          chatpart.classList.remove('active');
+        }
+        ////////////
+        if(document.getElementById('im'+i)== null){
+            if (document.getElementById('im1')!= null){
+                document.getElementById('im1').style.display = 'none';
+            }
+            chatForm(i);
+        }
+        else{
+            document.getElementById('im'+i).style.display  = 'block';
+            if(document.getElementById('im1')!= null){
+                document.getElementById('im1').style.display  = 'none';
+            }
+        }
+    }else if(i == 1){
+        chatpart.classList.add('active');
+        if (chatall.classList.contains('active')) {
+          chatall.classList.remove('active');
+        }
+        ////////////
+        if(document.getElementById('im'+i)== null){
+            if (document.getElementById('im0') != null){
+                document.getElementById('im0').style.display  = 'none';
+            }
+            chatForm(i);
+        }
+        else{
+            document.getElementById('im'+i).style.display  = 'block';
+            document.getElementById('im0').style.display  = 'none';
+        }
+    }
+}
+function chatForm(i){
+
+
+    var body = document.getElementsByTagName('body')[0];
+    var div1 =document.createElement('div');
+    var div2 = document.createElement('div');
+    var div3 = document.createElement('div');
+    var div4 = document.createElement('div');
+    var div5 = document.createElement('div');
+    var span = document.createElement('span');
+    var input = document.createElement('input');
+    var button = document.createElement('button');
+
+    div1.setAttribute('id','im'+i);
+    div2.setAttribute('id','cover');
+    div2.setAttribute('onclick','cancel('+i+')');
+    input.setAttribute('id', 'content'+i);
+    button.setAttribute('id','btn'+i);
+    span.setAttribute('id', 'name'+i);
+    span.setAttribute('style', 'display:inline;');
+    div3.setAttribute('id','input'+i);
+    div5.setAttribute('id','show'+i);
+
+    body.appendChild(div1);
+    div1.appendChild(div2);
+    div1.appendChild(div3);
+    div3.appendChild(div4)
+    div4.appendChild(span);
+    div4.appendChild(input);
+    div3.appendChild(button);
+    div1.appendChild(div5);
+
+    var $show = $('#show'+i);
+    var ms = new Date().getTime();
+    var $btn = $('#btn'+i);
+    var $content = $('#content'+i);
+    var database;
+    var userName = firebase.auth().currentUser.displayName;
+    button.innerHTML= "Send";
+    document.getElementById("name"+i).innerHTML = userName;
+    document.getElementById("name"+i).value = userName;
+
+    if(i ==0){
+        database = 'Chat/All';
+    }else{
+        database = "Chat/Part";
+    }
+    $btn.click(function(){
+        write(ms,database,$content,userName);
+    })
+    $content.on('keydown', function(e){
+      if(e.keyCode == 13){
+        write(ms,database,$content,userName);
+      }
+    });
+
+    callChatData(database,$show,userName,$content,$btn,ms);
+
+}
 
 function callChatData(database,$show,userName,$btn,$content,ms){
     var database = firebase.database().ref(database);
@@ -106,132 +205,43 @@ function callChatData(database,$show,userName,$btn,$content,ms){
 
 
 function cancel(){
-    document.getElementById("im").style.display = "none";
+    if(document.getElementById("im0").style.display == "none"){
+        document.getElementById("im1").style.display = "none";
+    }
+    else{
+        document.getElementById("im0").style.display = "none";
+
+    }
+    document.getElementById("leftList").style.display = "none";
 }
+
 function expand(){
     document.getElementById("leftList").style.display = "block";
+    displayChat(0);
 }
 
-function displayChat(i){
-    if (i==0){
-        if(document.getElementById('im'+i)== null){
-            if (document.getElementById('im1')!= null){
-                document.getElementById('im1').style.display = 'none';
-            }
-            chatForm(i);
-        }else{
-            document.getElementById('im'+i).style.display  = 'block';
-            document.getElementById('im1').style.display  = 'none';
-        }
-    }else if(i == 1){
-        if(document.getElementById('im'+i)== null){
-            if (document.getElementById('im0') != null){
-                document.getElementById('im0').style.display  = 'none';
-            }
-            chatForm(i);
-        }
-        else{
-            document.getElementById('im'+i).style.display  = 'block';
-            document.getElementById('im0').style.display  = 'none';
-        }
+function write(ms,database,$content,userName){
+    var database = firebase.database().ref(database);
+    var date = new Date();
+    var h = date.getHours();
+    var m = date.getMinutes();
+    var s = date.getSeconds();
+    if(h<10){
+    h = '0'+h;
     }
-}
-
-
-
-function chatForm(i){
-    var body = document.getElementsByTagName('body')[0];
-    var div1 =document.createElement('div');
-    var div2 = document.createElement('div');
-    var div3 = document.createElement('div');
-    var div4 = document.createElement('div');
-    var div5 = document.createElement('div');
-
-    var span = document.createElement('span');
-    var input = document.createElement('input');
-    //var button = document.createElement('button');
-
-    div1.setAttribute('id','im'+i);
-    //chatDiv.setAttribute('style','position:absolute;top:50%;right:0%;margin:0 auto;width:45%;max-width:600px;height:50%;box-sizing:border-box;background:rgba(0,0,0,0.3);');
-    //chatinnerDiv.setAttribute('id', 'cover');
-    div2.setAttribute('id','cover');
-    div2.setAttribute('onclick','cancel('+i+')');
-
-    input.setAttribute('id', 'content'+i);
-
-    //button.setAttribute('id','btn'+i);
-//    button.setAttribute("onclick","enter();");
-
-
-    //button.setAttribute('value','btn'+i);
-
-    span.setAttribute('id', 'name'+i);
-    span.setAttribute('style', 'display:inline;');
-
-    div3.setAttribute('id','input'+i);
-    //chatinnerDiv.setAttribute('style','position:absolute;z-index:2;height:90px;width:100%;left:0;bottom:0;margin:0;padding:15px;box-sizing:border-box;background:#6699CC;color:#000;')
-
-    div5.setAttribute('id','show'+i);
-
-
-    body.appendChild(div1);
-    div1.appendChild(div2);
-    div1.appendChild(div3);
-    div3.appendChild(div4)
-/////////////////////////////////////////////////////////
-    div4.appendChild(span);
-    div4.appendChild(input);
-    //div3.appendChild(button);
-    div1.appendChild(div5);
-    var $show = $('#show'+i),
-    ms = new Date().getTime(),
-    $btn = $('#btn'+i);
-    $content = $('#content'+i);
-    var database;
-    var userName = firebase.auth().currentUser.displayName;
-    console.log(userName);
-    document.getElementById("name"+i).innerHTML = userName;
-    document.getElementById("name"+i).value = userName;
-    if(i ==0){
-        database = 'Chat/All';
-    }else{
-        database = "Chat/Part";
+    if(m<10){
+    m = '0' + m;
     }
-    //button.setAttribute("onclick","write("+ms+","+database+","+$content+","+userName+")");
-    $content.on('keydown', function(e){
-      if(e.keyCode == 13){
-        write(ms,database,$content,userName);
-      }
-    });
-
-    callChatData(database,$show,userName,$content,$btn,ms);
-
+    if(s<10){
+    s = '0' + s;
+    }
+    var now = h+':'+m+':'+s;
+    var postData = {
+    name:userName,
+    content:$content.val(),
+    time:now,
+    id:'id'+ms
+    };
+    database.push(postData);
+    $content.val('');
 }
-
-         function write(ms,database,$content,userName){
-             console.log($content.val());
-                 var database = firebase.database().ref(database);
-           var date = new Date();
-           var h = date.getHours();
-           var m = date.getMinutes();
-           var s = date.getSeconds();
-           if(h<10){
-             h = '0'+h;
-           }
-           if(m<10){
-             m = '0' + m;
-           }
-           if(s<10){
-             s = '0' + s;
-           }
-           var now = h+':'+m+':'+s;
-            var postData = {
-             name:userName,
-             content:$content.val(),
-             time:now,
-             id:'id'+ms
-           };
-           database.push(postData);
-           $content.val('');
-           console.log(database.path.pieces_[1]);
-         }
