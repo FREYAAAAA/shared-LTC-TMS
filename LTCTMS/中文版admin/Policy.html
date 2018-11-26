@@ -7,6 +7,7 @@
 		<link rel="icon" type="image/jpg" href="image\logo.jpg">
 		<link rel="stylesheet" type="text/css" href="statics/css/iconfont.css" />
 		<link rel="stylesheet" type="text/css" href="statics/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="statics/css/chat.css" />
 		<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
 		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 		<script type = 'text/javascript' src = "/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Frontend/Config.js"></script>
@@ -16,166 +17,7 @@
 
 	</head>
 	<style>
-	#expand{
-	position:fixed;
-	padding-top: 6px;
-	 top:95%;
-	 left:75%;
-	 width:15%;
-	font-family: "Times New Roman", Times, serif;
-	 height:5%;
-	 box-sizing:border-box;
-	 background:#6699CC;
-	text-align: center;
 
-	}
-	#expand:hover{
-		background: #336699;
-	}
-	#im{
-	  position:fixed;
-	  top:50%;
-	  left:58%;
-	  margin:0 auto;
-	  width:45%;
-	  max-width:600px;
-	  height:50%;
-	  box-sizing:border-box;
-	  background:rgba(0,0,0,0.3);
-	  display: none;
-
-	}
-	#cover{
-	position:absolute;
-	 z-index:2;
-	 height:30px;
-	 width:100%;
-	 left:0;
-	 bottom:40;
-	 margin:0;
-	 padding:15px;
-	 box-sizing:border-box;
-	 background:#6699CC;
-	 color:#fff;
-	}
-	#input{
-	  position:absolute;
-	  z-index:2;
-	  height:90px;
-	  width:100%;
-	  left:0;
-	  bottom:0;
-	  margin:0;
-	  padding:15px;
-	  box-sizing:border-box;
-	  background:#6699CC;
-	  color:#000;
-	}
-
-
-
-	#input input, #input span{
-	  display:inline-block;
-	  margin:5px 0;
-	}
-
-	#input input{
-	  width:75%;
-	  border:none;
-	  padding:5px;
-	}
-
-	#input span{
-	  width:10%;
-	  min-width:50px;
-	  color:#fff;
-	}
-
-	#input div{
-	  width:80%;
-	  float:left;
-	}
-
-	#input button{
-	  float:right;
-	  height:90%;
-	  width:20%;
-	  margin:5px 0;
-	  border:none;
-	  padding:0;
-	  background:#369;
-	  font-size:16px;
-	  color:#fff;
-	}
-
-	#show{
-	  position:absolute;
-	  top:0;
-	  left:0;
-	  z-index:1;
-	  width:100%;
-	  height:calc(100% - 90px);
-	  overflow-y:scroll;
-	  padding:20px;
-	  box-sizing:border-box;
-	}
-
-	#show>div{
-	  position:relative;
-	  margin:0 0 20px 0;
-	  clear:both;
-	  height:40px;
-	}
-
-	#show>div>div{
-	  display:inline-block;
-	}
-
-	#show .time{
-	  position:absolute;
-	  top:-2px;
-	  font-size:10px;
-	  color:#777;
-	}
-
-	#show .name{
-	  color:#fff;
-	  vertical-align:middle;
-	}
-
-	#show .content{
-	  background:rgba(255,255,255,.8);
-	  padding:10px;
-	  margin-top:15px;
-	  margin-left:10px;
-	  border-radius:5px;
-	  vertical-align:middle;
-	}
-	#show .contentI{
-	  background:#6699CC;
-	  padding:10px;
-	  margin-top:15px;
-	  margin-left:10px;
-	  border-radius:5px;
-	  vertical-align:middle;
-	}
-
-	#show::-webkit-scrollbar {
-	  width:5px;
-	}
-	#show::-webkit-scrollbar-track {
-	  background:rgba(255,255,255,.1);
-	  border-radius: 5px;
-	}
-	#show::-webkit-scrollbar-thumb {
-	  background:rgba(255,255,255,.2);
-	  border-radius: 2px;
-	}
-	#cover button{
-	padding: 0;
-	border: none;
-	background: none;
-	}
 	table, th, td
 	{
 	    padding: 5px;
@@ -218,7 +60,7 @@
 	}
 }
 	</style>
-	<body style="height:850px;">
+	<body style="height:750px;">
 		<div class="header">
 			<div class="bar">
 				<div class="w1200">
@@ -324,19 +166,12 @@
 
 
 		<div id="expand" onclick="expand()" >聊天室</div>
-		  <div id="im">
-			 <div id="cover" onclick="cancel()">
-
-			  </div>
-				<div id="input">
-		      <div>
-		        <span>名字：</span> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id="name"><br/>
-		        <span>內容：</span> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input id="content">
-		      </div>
-		      <button id="btn">發送</button>
-		    </div>
-		    <div id="show"></div>
-		  </div>
+		<div id= "leftList">
+			<ul>
+				<li id= "chatAll" onclick="displayChat('0')">Center & System</li>
+				<li id = "chatPart" onclick="displayChat('1')">Center</li>
+			</ul>
+		</div>
 
 			<div id="profile" style="display:none;position:absolute; width:800px; height:350px; left:375px; top:40px;background-color:#EFFACA;border-style: solid;
 					border-width: 2px; z-index:3;">

@@ -18,7 +18,7 @@ if(firebaseUser){
   });
 }else{
   alert("你已登出！請再登入一次！");
-  window.location.href = "//Users/Gama/Documents/GitHub/shared-LTC-TMS/LTCTMS/Frontend/00Login2.html";
+  window.location.href = "//Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Frontend/00Login2.html";
 }
 });
 //console.log(document.getElementById('Profilepic').value);
@@ -148,7 +148,7 @@ function Logout(){
 
   firebase.auth().signOut();
   console.log('logout');
-  window.location.href = "00Login02.html";
+  
 }
 
 function uploadPicProfile(){
