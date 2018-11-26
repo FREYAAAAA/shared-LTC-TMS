@@ -169,11 +169,11 @@ box-sizing: border-box;
   border-radius: 2px;
 }
 #cover button{
-border-radius: 5px;
-position: relative;
-top:-15px;
-left:410px;
-margin-right: 20px;
+     border-radius: 5px;
+     position: relative;
+     top:-15px;
+     left:410px;
+     margin-right: 20px;
 padding: 0;
 background: none;
 border: none;
