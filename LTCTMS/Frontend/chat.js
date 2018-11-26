@@ -138,7 +138,7 @@ function callChatData(database,$show,userName,$btn,$content,ms){
       });
       $show.find(' .timeI').css({
         'display':'inline',
-        'color':'#777',
+        'color':'#CCCCCC',
         'margin-left':'90%',
         'width':'100%',
         'font-size':'6px',
@@ -167,7 +167,7 @@ function callChatData(database,$show,userName,$btn,$content,ms){
           'position':'relative',
           'left':'20px',
           'display':'inline',
-          'color':'#777',
+          'color':'#CCCCCC',
           'margin-right':'90%',
           'width':'100%',
           'font-size':'6px',
@@ -177,9 +177,17 @@ function callChatData(database,$show,userName,$btn,$content,ms){
 
     });
     database.limitToLast(1).on('value', function(snapshot) {
-      for(var i in snapshot.val()){
-          $show.append('<div class="'+snapshot.val()[i].id+'"><div class="nameI">'+snapshot.val()[i].name+':</div><div class="contentI">'+snapshot.val()[i].content+' </div><div class="timeI">'+snapshot.val()[i].time+'</div>');
-      }
+        if(snapshot.node_.children_.root_.value.children_.root_.value.value_==userName){
+            for(var i in snapshot.val()){
+                $show.append('<div class="'+snapshot.val()[i].id+'"><div class="nameI">'+snapshot.val()[i].name+':</div><div class="contentI">'+snapshot.val()[i].content+' </div><div class="timeI">'+snapshot.val()[i].time+'</div>');
+            }
+        }
+        else{
+            for(var i in snapshot.val()){
+                $show.append('<div class="'+snapshot.val()[i].id+'"><div class="name">'+snapshot.val()[i].name+':</div><div class="content">'+snapshot.val()[i].content+' </div><div class="time">'+snapshot.val()[i].time+'</div>');
+            }
+        }
+
 
       $show.find('.id'+ms+' .nameI').css({
           'text-align':'right',
@@ -200,8 +208,37 @@ function callChatData(database,$show,userName,$btn,$content,ms){
       });
       $show.find('.id'+ms+' .timeI').css({
           'display':'inline',
-          'color':'#777',
+          'color':'#CCCCCC',
           'margin-left':'90%',
+          'width':'100%',
+          'font-size':'6px',
+      });
+      $show.find(' .name').css({
+          'text-align':'left',
+         'display':'block',
+         'padding-right':'80%',
+         'padding-top':'10px',
+         'padding-bottom':'0px',
+         'width':'100%',
+        'display':'block',
+        'float':'left',
+
+      });
+      $show.find(' .content').css({
+          'display':'block',
+          'margin-left':'10px',
+          'margin-top':'0px',
+          'float':'left',
+         'padding-top':'6px',
+       'word-wrap':'break-word',
+      });
+      $show.find(' .time').css({
+          'float':'left',
+          'position':'relative',
+          'left':'20px',
+          'display':'inline',
+          'color':'#CCCCCC',
+          'margin-right':'90%',
           'width':'100%',
           'font-size':'6px',
       });

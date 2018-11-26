@@ -30,3 +30,10 @@ a{text-decoration: none;}
 .main .right .container{width: 100%;height: 400px;overflow: hidden;background: #fff;}
 .main .right .container .no-doc{width: 100%;height: 350px;text-align: center;color: #999;font-size:13px;}
 .main .right .container .no-doc img{padding-top: 80px;}
+
+
+.selected:hover{background-color:#62ab00;}
+.logoutselected:hover{background-color:#E91414;	cursor:pointer;}
+.logoutselected{border-top-style: inset;}
+.xfilter:hover{color:red;}
+.openprofile:hover{animation: bounce 1s;}

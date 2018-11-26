@@ -390,6 +390,9 @@ setTimeout(function(){
     document.getElementById('btnEditSP').style.display='none';
     document.getElementById('btnDeleteSP').style.display='none';
   }
+  if(role =="Director"){
+     document.getElementById("newPortfolio").style.display = "block";
+  }
 },2000);
 
 
