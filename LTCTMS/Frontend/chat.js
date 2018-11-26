@@ -9,7 +9,6 @@ function displayChat(i){
         if (chatpart.classList.contains('active')) {
           chatpart.classList.remove('active');
         }
-        ////////////
         if(document.getElementById('im'+i)== null){
             if (document.getElementById('im1')!= null){
                 document.getElementById('im1').style.display = 'none';
@@ -52,9 +51,11 @@ function chatForm(i){
     var span = document.createElement('span');
     var input = document.createElement('input');
     var button = document.createElement('button');
+    var x = document.createElement('button');
 
     div1.setAttribute('id','im'+i);
     div2.setAttribute('id','cover');
+    //div2.appendChild(document.createTextNode('X'));
     div2.setAttribute('onclick','cancel('+i+')');
     input.setAttribute('id', 'content'+i);
     button.setAttribute('id','btn'+i);
@@ -62,15 +63,20 @@ function chatForm(i){
     span.setAttribute('style', 'display:inline;');
     div3.setAttribute('id','input'+i);
     div5.setAttribute('id','show'+i);
+    x.setAttribute("id","cancelX");
+
 
     body.appendChild(div1);
     div1.appendChild(div2);
+    div2.appendChild(x);
     div1.appendChild(div3);
     div3.appendChild(div4)
     div4.appendChild(span);
     div4.appendChild(input);
     div3.appendChild(button);
     div1.appendChild(div5);
+    document.getElementById("cancelX").innerHTML = "X";
+
 
     var $show = $('#show'+i);
     var ms = new Date().getTime();
@@ -97,7 +103,6 @@ function chatForm(i){
     });
 
     callChatData(database,$show,userName,$content,$btn,ms);
-
 }
 
 function callChatData(database,$show,userName,$btn,$content,ms){
@@ -168,6 +173,8 @@ function callChatData(database,$show,userName,$btn,$content,ms){
           'width':'100%',
           'font-size':'6px',
       });
+      $show.scrollTop($show[0].scrollHeight);
+
 
     });
     database.limitToLast(1).on('value', function(snapshot) {
@@ -213,10 +220,13 @@ function cancel(){
 
     }
     document.getElementById("leftList").style.display = "none";
+    document.getElementById("expand").style.display = "block";
+
 }
 
 function expand(){
     document.getElementById("leftList").style.display = "block";
+    document.getElementById("expand").style.display = "none";
     displayChat(0);
 }
 
