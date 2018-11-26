@@ -26,7 +26,6 @@ function displayChat(i){
         if (chatall.classList.contains('active')) {
           chatall.classList.remove('active');
         }
-        ////////////
         if(document.getElementById('im'+i)== null){
             if (document.getElementById('im0') != null){
                 document.getElementById('im0').style.display  = 'none';
@@ -63,7 +62,7 @@ function chatForm(i){
     span.setAttribute('style', 'display:inline;');
     div3.setAttribute('id','input'+i);
     div5.setAttribute('id','show'+i);
-    x.setAttribute("id","cancelX");
+    x.setAttribute("id","cancelX"+i);
 
 
     body.appendChild(div1);
@@ -75,7 +74,7 @@ function chatForm(i){
     div4.appendChild(input);
     div3.appendChild(button);
     div1.appendChild(div5);
-    document.getElementById("cancelX").innerHTML = "X";
+    document.getElementById("cancelX"+i).innerHTML = "X";
 
 
     var $show = $('#show'+i);

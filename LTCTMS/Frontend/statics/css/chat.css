@@ -9,7 +9,6 @@ font-family: "Times New Roman", Times, serif;
  box-sizing:border-box;
  background:#669933;
 text-align: center;
-
 }
 #expand:hover{
     background: #62ab00;
@@ -40,7 +39,7 @@ position:fixed;
   max-width:600px;
   height:400px;
   box-sizing:border-box;
-  background:rgba(0,0,0,0.3);
+  background:rgba(0,0,0,0.6);
 }
 #cover{
 position:absolute;
@@ -98,7 +97,7 @@ position:absolute;
   margin:5px 0;
   border:none;
   padding:0;
-  background:#669933;
+  background:#6699;
   font-size:16px;
   color:#fff;
 }
@@ -168,7 +167,7 @@ box-sizing: border-box;
   background:rgba(255,255,255,.2);
   border-radius: 2px;
 }
-#cover button{
+#cancelX0 , #cancelX1{
 border-radius: 5px;
 position: relative;
 top:-15px;
@@ -180,6 +179,6 @@ border: none;
 width:20px;
 height:20px;
 }
-#cover button:hover{
+#cancelX0:hover, #cancelX1:hover{
 background: red;
 }
