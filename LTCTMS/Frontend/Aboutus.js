@@ -199,18 +199,20 @@ function remove(sponsor){
 }
 
 function sponsor_delete(){
-    if(document.getElementById("button_id[1]").style.display =="inline"){
-      for(var i=0; i< index; i++){
-        document.getElementById("button_id["+i+"]").style.display = "none";
 
+        if(document.getElementById("deleteBTN").innerHTML !="Remove"){
+            document.getElementById("deleteBTN").innerHTML ="Remove"
+          for(var i=0; i< index; i++){
+            document.getElementById("button_id["+i+"]").style.display = "none";
+        }
+      }
+        else{
+            document.getElementById("deleteBTN").innerHTML ="Cancel"
+          for(var i=0; i< index; i++){
+              console.log("button_id["+i+"]");
+            document.getElementById("button_id["+i+"]").style.display = "inline";
+        }
     }
-  }
-    else{
-      for(var i=0; i< index; i++){
-          console.log("button_id["+i+"]");
-        document.getElementById("button_id["+i+"]").style.display = "inline";
-    }
-}
 }
 
 
