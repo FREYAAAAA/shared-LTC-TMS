@@ -6,6 +6,9 @@ function newAccount(){
   var pass = document.getElementById('password').value;
   var position = document.getElementById('position').value;
 
+if(name == '' || email == '' || pass == '' || position == '' || sid == ''){
+  alert('Please fill in all the information!');
+}else{
   var data = {
     Name : name,
     Email: email,
@@ -17,6 +20,7 @@ function newAccount(){
   updates['uAccount/'+ sid]=data;
   firebase.database().ref().update(updates);
   location.reload();
+  }
 }
 
 //Delete account
