@@ -71,13 +71,16 @@ function createNewAnnouncement(){
 //Deleting Announcements
 function deleteA(rowIndex){
   var fbB= firebase.database().ref('Announcements');
+
   var Ukey = an[rowIndex];
   console.log(Ukey);
   var r = confirm("Are you sure you want to delete an announcement?");
     if (r == true) {
         fbB.child(Ukey).remove();
         alert("successfully deleted!");
-      //  window.location.reload();
+        //window.location.reload();
+    }
+    else {
     }
 }
 

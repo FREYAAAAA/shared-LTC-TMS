@@ -1,4 +1,4 @@
-var fbTask = firebase.database().ref("TaskInstruction/");
+﻿var fbTask = firebase.database().ref("TaskInstruction/");
 var num = 0;
 var checkbox_name = [];
 fbTask.once("value")
@@ -394,11 +394,10 @@ function deleteNotExist(fbList,path){
     $(document).ready(function(){
     $("#searchInput").on("keyup", function() {
         var table = document.getElementById("assigningTask");
-
         var value = $(this).val().toLowerCase();
         console.log(value);
               $("#assigningTask tr:not(:first)").filter(function() {
-                  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
               });
         });
     });
@@ -732,7 +731,7 @@ function deleteNotExist(fbList,path){
     var r = alert("作業已被取消指派！!");
              if(true)
              {
-              // window.location.reload();
+               //window.location.reload();
              }
 }
 
@@ -778,7 +777,7 @@ function directTask(){
     sessionStorage.setItem("category",cat);
     sessionStorage.setItem("taskname",taskN);
 
-    location.href ="06TaskEditor2.html";
+    location.href ="//share-b7589.firebaseapp.com/中文版Chinese version/06Taskeditor2.html";
 
 }
 

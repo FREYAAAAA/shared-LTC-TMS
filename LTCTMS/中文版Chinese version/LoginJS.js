@@ -1,4 +1,4 @@
-//Login page contents
+﻿//Login page contents
 var logincontact= firebase.database().ref("CenterInformation/ContactInfo/")
 logincontact.once('value')
 .then(function(snapshot){
@@ -43,10 +43,10 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
     console.log(firebaseUser);
     if(firebaseUser.email == "ltctmsapp2018@gmail.com"){
       alert('你已管理員身份登入!');
-      window.location.href = "//C:/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/LTCTMS/中文版admin/Policy.html"
+      window.location.href = "中文版admin/Policy.html"
     }else{
       alert('成功登入！');
-      window.location.href = "01Aboutus2.html";
+      window.location.href = "中文版Chinese version/01Aboutus2.html";
     }
 
 

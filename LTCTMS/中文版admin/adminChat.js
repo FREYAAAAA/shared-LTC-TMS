@@ -1,46 +1,4 @@
-function displayChat(i){
-    var chatall = document.getElementById("chatAll");
-    var chatpart = document.getElementById("chatPart");
-    console.log(i);
-
-
-    if (i==0){
-        chatall.classList.add('active');
-        if (chatpart.classList.contains('active')) {
-          chatpart.classList.remove('active');
-        }
-        if(document.getElementById('im'+i)== null){
-            if (document.getElementById('im1')!= null){
-                document.getElementById('im1').style.display = 'none';
-            }
-            chatForm(i);
-        }
-        else{
-            document.getElementById('im'+i).style.display  = 'block';
-            if(document.getElementById('im1')!= null){
-                document.getElementById('im1').style.display  = 'none';
-            }
-        }
-    }else if(i == 1){
-        chatpart.classList.add('active');
-        if (chatall.classList.contains('active')) {
-          chatall.classList.remove('active');
-        }
-        if(document.getElementById('im'+i)== null){
-            if (document.getElementById('im0') != null){
-                document.getElementById('im0').style.display  = 'none';
-            }
-            chatForm(i);
-        }
-        else{
-            document.getElementById('im'+i).style.display  = 'block';
-            document.getElementById('im0').style.display  = 'none';
-        }
-    }
-}
-function chatForm(i){
-
-
+function chatForm(){
     var body = document.getElementsByTagName('body')[0];
     var div1 =document.createElement('div');
     var div2 = document.createElement('div');
@@ -52,17 +10,16 @@ function chatForm(i){
     var button = document.createElement('button');
     var x = document.createElement('button');
 
-    div1.setAttribute('id','im'+i);
+    div1.setAttribute('id','im0');
     div2.setAttribute('id','cover');
-    //div2.appendChild(document.createTextNode('X'));
-    div2.setAttribute('onclick','cancel('+i+')');
-    input.setAttribute('id', 'content'+i);
-    button.setAttribute('id','btn'+i);
-    span.setAttribute('id', 'name'+i);
+    div2.setAttribute('onclick','cancel()');
+    input.setAttribute('id', 'content0');
+    button.setAttribute('id','btn0');
+    span.setAttribute('id', 'name0');
     span.setAttribute('style', 'display:inline;');
-    div3.setAttribute('id','input'+i);
-    div5.setAttribute('id','show'+i);
-    x.setAttribute("id","cancelX"+i);
+    div3.setAttribute('id','input0');
+    div5.setAttribute('id','show0');
+    x.setAttribute("id","cancelX");
 
 
     body.appendChild(div1);
@@ -74,24 +31,20 @@ function chatForm(i){
     div4.appendChild(input);
     div3.appendChild(button);
     div1.appendChild(div5);
-    document.getElementById("cancelX"+i).innerHTML = "X";
+    document.getElementById("cancelX").innerHTML = "X";
 
-
-    var $show = $('#show'+i);
+    var $show = $('#show0');
     var ms = new Date().getTime();
-    var $btn = $('#btn'+i);
-    var $content = $('#content'+i);
+    var $btn = $('#btn0');
+    var $content = $('#content0');
     var database;
     var userName = firebase.auth().currentUser.displayName;
     button.innerHTML= "Send";
-    document.getElementById("name"+i).innerHTML = userName;
-    document.getElementById("name"+i).value = userName;
+    document.getElementById("name0").innerHTML = userName;
+    document.getElementById("name0").value = userName;
 
-    if(i ==0){
-        database = 'Chat/All';
-    }else{
-        database = "Chat/Part";
-    }
+    database = 'Chat/All';
+
     $btn.click(function(){
         write(ms,database,$content,userName);
     })
@@ -176,17 +129,30 @@ function callChatData(database,$show,userName,$btn,$content,ms){
 
 
     });
+
     database.limitToLast(1).on('value', function(snapshot) {
-        if(snapshot.node_.children_.root_.value.children_.root_.value.value_==userName){
-            for(var i in snapshot.val()){
-                $show.append('<div class="'+snapshot.val()[i].id+'"><div class="nameI">'+snapshot.val()[i].name+':</div><div class="contentI">'+snapshot.val()[i].content+' </div><div class="timeI">'+snapshot.val()[i].time+'</div>');
-            }
-        }
-        else{
-            for(var i in snapshot.val()){
-                $show.append('<div class="'+snapshot.val()[i].id+'"><div class="name">'+snapshot.val()[i].name+':</div><div class="content">'+snapshot.val()[i].content+' </div><div class="time">'+snapshot.val()[i].time+'</div>');
-            }
-        }
+        console.log("show");
+        snapshot.forEach(function(childSnapshot1){
+            childSnapshot1.forEach(function(childSnapshot2){
+                if(childSnapshot2.key =="name"){
+                    name = childSnapshot2.val();
+                }
+                if(childSnapshot2.val() =="haven't read"){
+                    if(name==userName){
+                        console.log(name,userName);
+                        for(var i in snapshot.val()){
+                            $show.append('<div class="'+snapshot.val()[i].id+'"><div class="nameI">'+snapshot.val()[i].name+':</div><div class="contentI">'+snapshot.val()[i].content+' </div><div class="timeI">'+snapshot.val()[i].time+'</div>');
+                        }
+                    }
+                    else{
+                        for(var i in snapshot.val()){
+                            $show.append('<div class="'+snapshot.val()[i].id+'"><div class="name">'+snapshot.val()[i].name+':</div><div class="content">'+snapshot.val()[i].content+' </div><div class="time">'+snapshot.val()[i].time+'</div>');
+                        }
+                    }
+                }
+            })
+        })
+
 
 
       $show.find('.id'+ms+' .nameI').css({
@@ -248,24 +214,33 @@ function callChatData(database,$show,userName,$btn,$content,ms){
 
 
 function cancel(){
-    if(document.getElementById("im0").style.display == "none"){
-        document.getElementById("im1").style.display = "none";
-    }
-    else{
-        document.getElementById("im0").style.display = "none";
-
-    }
+    document.getElementById("im0").style.display = "none";
     document.getElementById("leftList").style.display = "none";
     document.getElementById("expand").style.display = "block";
+    document.getElementById("notification").style.display = "none";
+    count = 0;
 
 }
 
 function expand(){
+    var fbChat = firebase.database().ref("Chat/All");
+    fbChat.limitToLast(1).once('value').then(function(snapshot) {
+        var lastid = snapshot.node_.children_.root_.key;
+        firebase.database().ref("Chat/All/"+lastid+"/status").set("read");
+    })
+    var chatall = document.getElementById("chatAll");
+    chatall.classList.add('active');
     document.getElementById("leftList").style.display = "block";
     document.getElementById("expand").style.display = "none";
-    displayChat(0);
-}
+    if( document.getElementById("im0") == null){
+        chatForm();
+    }
+    else{
+        document.getElementById("im0").style.display = "block";
+    }
+    count = 0;
 
+}
 function write(ms,database,$content,userName){
     var database = firebase.database().ref(database);
     var date = new Date();
@@ -286,8 +261,20 @@ function write(ms,database,$content,userName){
     name:userName,
     content:$content.val(),
     time:now,
-    id:'id'+ms
+    id:'id'+ms,
+    status:"haven't read"
     };
     database.push(postData);
     $content.val('');
 }
+var count = 0;
+var fbChat = firebase.database().ref("Chat/All");
+fbChat.limitToLast(1).on('value', function(snapshot) {
+    snapshot.forEach(function(childSnapshot1){
+        childSnapshot1.forEach(function(childSnapshot2){
+            if(childSnapshot2.val() =="haven't read"){
+                document.getElementById("notification").style.display = "block";
+            }
+        })
+    })
+})
