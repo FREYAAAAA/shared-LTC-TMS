@@ -774,10 +774,14 @@ function deletePP(){
     if (r == true) {
       fbPP.child(id+"/Portfolio").on('value',function(snapshot){
         var pic = snapshot.child('picFilename').val();
+        var room = snapshot.child('patientRoomNo').val();
+        var fbroomD = firebase.database().ref('Room/'+room);
         var storageRef = firebase.storage().ref();
         var file = storageRef.child('Patient/'+pic);
         file.delete().then(function(){
           fbPP.child(id).remove();
+          fbroomD.child(id).remove();
+
           window.location.reload();
         }).catch(function(error){
           alert('failed to delete!');
