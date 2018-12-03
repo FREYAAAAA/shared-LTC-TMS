@@ -71,16 +71,13 @@ function createNewAnnouncement(){
 //Deleting Announcements
 function deleteA(rowIndex){
   var fbB= firebase.database().ref('Announcements');
-
   var Ukey = an[rowIndex];
   console.log(Ukey);
   var r = confirm("Are you sure you want to delete an announcement?");
     if (r == true) {
         fbB.child(Ukey).remove();
         alert("successfully deleted!");
-        window.location.reload();
-    }
-    else {
+      //  window.location.reload();
     }
 }
 
@@ -94,6 +91,7 @@ function editA(rowIndex){
     var EAdata2 = snapshot.child('ATitleIOS').val();
     document.getElementById('Amsg').value = EAdata;
     document.getElementById('AEtitle2').value = EAdata2;
+    document.getElementById('keyname').innerHTML = Ukey;
   });
 
 }
@@ -101,7 +99,8 @@ function editA(rowIndex){
 function editSave(rowIndex){
   var editedData = $("#Amsg").val();
   var editedData2 = 'xasx' + editedData + 'xaex';
-  var akey = an[rowIndex];
+  var akey = document.getElementById('keyname').innerHTML;
+  console.log(akey);
   var title1= $('#AEtitle2').val();
   var title2= 'xtsx'+title1+'xtex';
   var wholeA ={
@@ -117,8 +116,8 @@ if(editedData == ""){
 else {
   var updates={};
   updates['Announcements/'+ akey] = wholeA;
+  firebase.database().ref().update(updates);
   window.location.reload();
-  return firebase.database().ref().update(updates);
 }
 }
 

@@ -88,45 +88,43 @@ function CI_submit(){
   }
 }
 
-function sponsor_edit(){
-    document.getElementById("form").style.display = "block";
-}
-function close_form(){
-    document.getElementById("form").style.display = "none";
-}
-function upload_logo(){
-    //document.getElementById("form").style.display = "none";
-
-}
-var file;
-setTimeout(function(){
-  console.log('1111');
-    var fileButton = document.getElementById('fileButton');
-    fileButton.addEventListener("change",function(e){
-       file= e.target.files[0];
-       console.log(file.name);
-
-       //create storage ref to the firebase storage
-      firebase.storage().ref('Sponsor/').child(file.name).put(file);
-
-       });
-   },3000);
-
 function upload(){
     var text = $("#url_text").val();
     var name = $("#sponsorName").val();
-    if ( text == "" || name ==""){
-      alert ("Please insert all data")
+    var file = $("#fileButton").get(0).files[0];
+    console.log(file);
+    if ( text == "" || name =="" || file == null){
+      alert ("Please input all data!");
     }
     else{
-    firebase.database().ref("CenterInformation/"+"Sponsor/"+name+"/url").set(text);
-     var storageRef = firebase.storage().ref('Sponsor/'+file.name);
-    storageRef.getDownloadURL().then(function (url) {
-    firebase.database().ref("CenterInformation/"+"Sponsor/"+name+"/photo/").set(url);
-    firebase.database().ref("CenterInformation/"+"Sponsor/"+name+"/photoname/").set(file.name);
-    alert("success");
-    window.location.reload();
+    //firebase.database().ref("CenterInformation/"+"Sponsor/"+name+"/url").set(text);
+    var storageRef = firebase.storage().ref('Sponsor/'+file.name);
+    var uploadState = storageRef.put(file);
+    uploadState.on('state_changed',
+    function(){
+
+    },
+    function err(error){
+      alert(error.message);
+    },
+    function complete(){
+      storageRef.getDownloadURL().then(function (furl) {
+      var data ={
+        url: text,
+        photo:furl,
+        photoname:file.name
+      }
+      updates={};
+      updates['CenterInformation/Sponsor/'+name]=data;
+      firebase.database().ref().update(updates);
+      alert("success");
+      window.location.reload();
     });
+    }
+    )
+
+
+
   }
 }
 
