@@ -394,11 +394,10 @@ function deleteNotExist(fbList,path){
     $(document).ready(function(){
     $("#searchInput").on("keyup", function() {
         var table = document.getElementById("assigningTask");
-        var tr = table.getElementsByTagName("tr");
         var value = $(this).val().toLowerCase();
         console.log(value);
               $("#assigningTask tr:not(:first)").filter(function() {
-                  $(tr[i]).toggle($(tr[i]).text().toLowerCase().indexOf(value) > -1)
+                  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
               });
         });
     });

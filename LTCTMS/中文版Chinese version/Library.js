@@ -394,11 +394,11 @@ function deleteNotExist(fbList,path){
     $(document).ready(function(){
     $("#searchInput").on("keyup", function() {
         var table = document.getElementById("assigningTask");
-        var tr = table.getElementsByTagName("tr");
+
         var value = $(this).val().toLowerCase();
         console.log(value);
               $("#assigningTask tr:not(:first)").filter(function() {
-                  $(tr[i]).toggle($(tr[i]).text().toLowerCase().indexOf(value) > -1)
+                  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
               });
         });
     });
@@ -625,7 +625,7 @@ function deleteNotExist(fbList,path){
      var val = document.getElementById("filterPosition").value;
       var table = document.getElementById("assigningCF");
       var tr = table.getElementsByTagName("tr");
-      if( val == "Position"){//all category
+      if( val == "職位"){//all category
           for (i = 1; i < tr.length; i++) {
                 tr[i].style.display =  "table-row";
               }
@@ -656,7 +656,7 @@ function deleteNotExist(fbList,path){
      var val = document.getElementById("filterNameList").value;
       var table = document.getElementById("assigningList");
       var tr = table.getElementsByTagName("tr");
-      if( val == "Name"){//all category
+      if( val == "名字"){//all category
           for (i = 1; i < tr.length; i++) {
                 tr[i].style.display =  "table-row";
               }
@@ -680,7 +680,7 @@ function deleteNotExist(fbList,path){
      var val = document.getElementById("filterTaskList").value;
       var table = document.getElementById("assigningList");
       var tr = table.getElementsByTagName("tr");
-      if( val == "Task Name"){//all category
+      if( val == "作業名稱"){//all category
           for (i = 0; i < tr.length; i++) {
                 tr[i].style.display =  "table-row";
               }
@@ -713,14 +713,14 @@ function deleteNotExist(fbList,path){
     var length = tr.length-1 ;
     for(var a = 0, b=1; a < length; a++){
       console.log(table.rows[b].cells[0].innerHTML);
-        if(table.rows[b].cells[0].innerHTML  == "照護人員"){
+        if(table.rows[b].cells[0].innerHTML  == "CNA"){
             if (document.getElementById("checkbox_id["+a+"]").checked == false){
                 console.log("CNA/"+table.rows[b].cells[1].innerHTML+"/Task"+"/"+table.rows[b].cells[3].innerHTML+"/"+table.rows[b].cells[4].innerHTML);
                  var unchecked = firebase.database().ref("CNA/"+table.rows[b].cells[1].innerHTML+"/Task"+"/"+table.rows[b].cells[3].innerHTML+"/"+table.rows[b].cells[4].innerHTML);
                  unchecked.remove();
             }
         }
-        if(table.rows[b].cells[0].innerHTML  == "病人"){
+        if(table.rows[b].cells[0].innerHTML  == "Patient"){
             if (document.getElementById("checkbox_id["+a+"]").checked == false){
                 console.log("Patient/"+table.rows[b].cells[1].innerHTML+"/Task"+"/"+table.rows[b].cells[3].innerHTML+"/"+table.rows[b].cells[4].innerHTML);
                  var famunchecked = firebase.database().ref("Patient/"+table.rows[b].cells[1].innerHTML+"/Task"+"/"+table.rows[b].cells[3].innerHTML+"/"+table.rows[b].cells[4].innerHTML);
@@ -732,7 +732,7 @@ function deleteNotExist(fbList,path){
     var r = alert("作業已被取消指派！!");
              if(true)
              {
-               window.location.reload();
+              // window.location.reload();
              }
 }
 

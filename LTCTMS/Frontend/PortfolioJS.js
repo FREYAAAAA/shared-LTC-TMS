@@ -830,6 +830,8 @@ function filterRoomNo() {
     var selectedroom = document.getElementById('filterRoomNo').value;
     if(selectedroom !="all"){
         document.getElementById("filterPosition").value ="Patient";
+        document.getElementById('filterNationality').value = 'all';
+        document.getElementById('filterGender').value = 'all';
     }
     else{
         document.getElementById("filterPosition").value ="all";
@@ -845,6 +847,7 @@ function filterRoomNo() {
                       var id = childSnapshot.key;
                       if(childSnapshot2.key == "patientRoomNo"){
                           if(childSnapshot2.val() == selectedroom){
+
                               for( var i = 0; i < tr.length ; i++){
                                   var td = tr[i].getElementsByTagName("td")[0];//row i cell number 4
                                   if(td){
@@ -920,27 +923,36 @@ function updateTable(){
 }
 
 $('#filterPosition').on('change', function() {
-    if(positionF !="patient"){
-        document.getElementById("filterRoomNo").value ="all";
-    }
   positionF = this.value;
+  if(positionF !="Patient"){
+    document.getElementById("filterRoomNo").value ="all";
+    document.getElementById('Roomhide').style.display = 'none';
+
+  }else{
+    document.getElementById('Roomhide').style.display = 'block';
+  }
+
   updateTable();
 });
 
 $('#filterNationality').on('change', function() {
   nationalityF = this.value;
+  if(nationalityF != 'all'){
+    document.getElementById('filterRoomNo').value = 'all';
+  }
+
   updateTable();
 });
 
 $('#filterGender').on('change', function() {
   genderF = this.value;
+  if(genderF != 'all'){
+    document.getElementById('filterRoomNo').value = 'all';
+}
+
   updateTable();
 });
 ///////////////////////////////
-$('#filterRoomNo').on('change', function(){
-  roomF = this.value;
-  updateTable();
-});
 
 /*var scope = [];
 $('#filterRoomNo').on('change', function(){
