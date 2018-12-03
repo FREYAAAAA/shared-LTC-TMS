@@ -18,7 +18,7 @@ if(firebaseUser){
   });
 }else{
   alert("你已登出!請再重新登入一次！");
-  window.location.href = "//Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Frontend/00Login2.html";
+  window.location.href = "file:///C:/Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/中文版Chinese version/00Login2.html";
 }
 });
 //console.log(document.getElementById('Profilepic').value);
