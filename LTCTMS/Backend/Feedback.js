@@ -67,6 +67,8 @@ function tableform(id,name,fbFeedback,picture){
 
                    m1 = m1[0]+"-"+m1[1]+"-"+m1[2];
                   var feedbackID = childSnapshot4.key;
+                  feedbackID = feedbackID.split("-");
+                  feedbackID = feedbackID[1];
                   var t = childSnapshot6.key;
                   var time = t.split(":");
                   var tim1 = t.split(":");
@@ -254,18 +256,17 @@ function sendMess(id,year,month,index,date,h,m,s,feedbackID){
     var lateDate =year+"-"+month+"-"+date;
 
 
-    firebase.database().ref("Feedback/"+id+"/System/"+lateDate+"/"+feedbackID+"/Replied").remove();
+    firebase.database().ref("Feedback/"+id+"/System/"+lateDate+"/ID-"+feedbackID+"/Replied").remove();
 
 
     document.getElementById("replyTime["+index+"]").innerHTML = repliedTime1;
 
 
 
-    var idre = "000001"; // Replyer's  ID
     var comment = document.getElementById("message["+index+"]").value;
     var comment1 = comment.replace(/[ ]/g, "~");
 
-    firebase.database().ref("Feedback/"+id+"/System"+"/"+lateDate+"/"+feedbackID+"/Replied/"+repliedTime).set(comment1);
+    firebase.database().ref("Feedback/"+id+"/System"+"/"+lateDate+"/ID-"+feedbackID+"/Replied/"+repliedTime).set(comment1);
 
     document.getElementById("replyComment["+index+"]").innerHTML = comment;
     replyToggle(index);
