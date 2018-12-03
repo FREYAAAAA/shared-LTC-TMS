@@ -36,15 +36,14 @@ function LoginUser(){
   });
 }
 
-
-
 //For checking whether you're loggedin or Loggedout
 firebase.auth().onAuthStateChanged(firebaseUser => {
   if (firebaseUser){
     console.log(firebaseUser);
     if(firebaseUser.email == "ltctmsapp2018@gmail.com"){
       alert('You are logged in as Admin!');
-      window.location.href = "//C:/Users/Gama/Documents/GitHub/shared-LTC-TMS/LTCTMS/Backend/Policy.html"
+      window.location.href = "Backend/Policy.html"
+
     }else{
       var today = new Date();
       var currentYear = today.getFullYear();
@@ -71,7 +70,6 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
 
       firebase.database().ref('AccountStatus/Browser/'+firebaseUser.uid+'/LoginHistory/'+fullDate+'/'+ fullTime).set('True');
       firebase.database().ref('AccountStatus/Browser/'+firebaseUser.uid+'/LatestLogin').set(fullDateandTime);
-
       document.getElementById('policyPop').style.display='block';
 
     }
@@ -184,7 +182,7 @@ fbPolicy.once('value', function(snapshot){
 
 function policyPopup(){
   alert('You are logged in!');
-  window.location.href = "01Aboutus2.html";
+  window.location.href = "Frontend/01Aboutus2.html";
 }
 
 function policyPopupClose(){

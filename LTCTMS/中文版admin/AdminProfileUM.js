@@ -1,4 +1,4 @@
-firebase.auth().onAuthStateChanged(function (firebaseUser){
+﻿firebase.auth().onAuthStateChanged(function (firebaseUser){
 if(firebaseUser){
   console.log(firebaseUser);
   var userid = firebaseUser.uid;
@@ -18,7 +18,7 @@ if(firebaseUser){
   });
 }else{
   alert("你已登出!請再重新登入一次！");
-  window.location.href = "//Users/kong/Documents/GitHub/shared-LTC-TMS/LTCTMS/Frontend/00Login2.html";
+  window.location.href = "//share-b7589.firebaseapp.com/ChineseLogin.html";
 }
 });
 //console.log(document.getElementById('Profilepic').value);
