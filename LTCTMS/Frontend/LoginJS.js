@@ -36,6 +36,8 @@ function LoginUser(){
   });
 }
 
+
+
 //For checking whether you're loggedin or Loggedout
 firebase.auth().onAuthStateChanged(firebaseUser => {
   if (firebaseUser){
@@ -69,8 +71,9 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
 
       firebase.database().ref('AccountStatus/Browser/'+firebaseUser.uid+'/LoginHistory/'+fullDate+'/'+ fullTime).set('True');
       firebase.database().ref('AccountStatus/Browser/'+firebaseUser.uid+'/LatestLogin').set(fullDateandTime);
-      alert('You are logged in!');
-      window.location.href = "01Aboutus2.html";
+
+      document.getElementById('policyPop').style.display='block';
+
     }
   }
   else {
@@ -173,11 +176,19 @@ function openmenu(){
 }
 }
 
+var fbPolicy = firebase.database().ref('Policy/P1').child('System Policy');
+fbPolicy.once('value', function(snapshot){
+  var url = snapshot.val();
+  document.getElementById('policyid').src = url;
+})
 
-function itadmin() {
-  document.getElementById("itadmin").style.display = "block";
+function policyPopup(){
+  alert('You are logged in!');
+  window.location.href = "01Aboutus2.html";
 }
 
-function closeitadmin(){
-  document.getElementById("itadmin").style.display = "none";
+function policyPopupClose(){
+  firebase.auth().signOut();
+  alert("You can't login until you understood this policy!");
+  window.location.reload();
 }

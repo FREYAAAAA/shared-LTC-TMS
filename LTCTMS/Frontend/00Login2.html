@@ -10,11 +10,23 @@
 		<link rel="stylesheet" type="text/css" href="statics/css/style.css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,500" rel="stylesheet">
     <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
-    <script type = 'text/javascript' src = "\Users\kong\Documents\GitHub\shared-LTC-TMS\LTCTMS\Frontend\Config.js"></script>
-    <script type="text/javascript" src="\Users\kong\Documents\GitHub\shared-LTC-TMS\LTCTMS\Frontend\LoginJS.js"></script>
+    <script type = 'text/javascript' src = "\Users\Gama\Documents\GitHub\shared-LTC-TMS\LTCTMS\Frontend\Config.js"></script>
+    <script type="text/javascript" src="\Users\Gama\Documents\GitHub\shared-LTC-TMS\LTCTMS\Frontend\LoginJS.js"></script>
 	</head>
 	<style>
 
+
+	#policyPop{
+		width:100%;
+    height:100%;
+    opacity:.95;
+    top:0px;
+    left:0px;
+    display:none;
+    position:fixed;
+    background-color:#313131;
+		z-index:3;
+	}
 	#expand{
 	position:absolute;
 	padding-top: 6px;
@@ -344,6 +356,14 @@
           </tr>
         </table>
       </div>
+
+			<div id = 'policyPop'>
+				<div class = "create_popup_forgetpass">
+					<iframe id = 'policyid' style='height:90%;width:100%;'></iframe>
+					<center><input type='button' onclick = 'policyPopup()' value='Understood'/>
+					<input type='button' onclick = 'policyPopupClose()' value='Cancel' /></center>
+			</div>
+			</div>
 	</body>
 
 </html>
