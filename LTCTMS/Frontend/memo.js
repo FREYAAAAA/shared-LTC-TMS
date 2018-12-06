@@ -135,7 +135,14 @@ function viewTable(value){
             var cellButton = row.insertCell(2);
             var cellButton2 = row.insertCell(3)
 
-
+            $(row).css("border-bottom", "1px solid");
+            $(row).css("border-color", "black");
+            $(celldate).css("min-width", "80px");
+            $(celldate).css("border-right", "1px solid");
+            $(celleventDate).css("word-wrap", "break-word");
+            $(celleventDate).css("max-width", "420px");
+            $(celleventDate).css("border-right", "1px solid");
+            $(cellButton).css("min-width", "40px");
             celleventDate.setAttribute("id","content_id["+num+"]");
             cellButton2.setAttribute("onclick","deleteha("+num+")");
             cellButton.setAttribute("onclick","editha("+num+")");
@@ -144,7 +151,6 @@ function viewTable(value){
             celleventDate.appendChild(document.createTextNode(childData));
             cellButton2.appendChild(button2);
             cellButton.appendChild(button);
-
         })
     })
 

@@ -33,7 +33,7 @@
 	    border: 5px solid rgba(255, 255, 255, .4);
 	}
 	.memo_display {
-	  width:65%;
+	  width:638px;
 	  border-collapse:collapse;
 	  position:relative;
 	  top:-180%;
@@ -49,7 +49,6 @@
 	  padding: 0px 0px;
 	  border: 1px solid black;
 	  text-align:left;
-	  width:1%;
 	  word-wrap: break-word;
 	}
 	.memo_form-popup {
@@ -116,11 +115,12 @@
 	    position:relative;
 	    top:20%;
 	    left:3%;
-	    width :16%;
+	    width :18%;
 			height: 160px;
 	    overflow-y : auto;
 	    background-color:#F0E68C;
 	    word-wrap:break-word;
+			padding-left:10px;
 	}
 	#current_date {
 		top:-5%;
@@ -278,7 +278,7 @@
 				<div id="menu" style="display:none;position:fixed;top:6%;left:74%;background-color:white;height:100px;width:200px;z-index:5;">
 							<div style="position:relative;left:1%;top:2%;background-color:#ddd;width:98%;margin-bottom:5px;">Language</div>
 							<p class="selected" style="margin-top:3px;margin-bottom:3px;">&nbsp English<br></p>
-							<p class="selected" style="margin-top:3px;margin-bottom:3px;" onclick="window.location.href='//share-b7589.firebaseapp.com//中文版Chinese version/03Memo2.html'">&nbsp 中文<br></p>
+							<p class="selected" style="margin-top:3px;margin-bottom:3px;" onclick="window.location.href='//share-b7589.firebaseapp.com//中文版Chinese version/03Memo2.html'">&nbsp Chinese<br></p>
 							<p class="logoutselected" onclick = "Logout()">&nbsp<i class="icon iconfont icon-dianyuan" style="margin-right:5px;"></i>Logout</p>
 				</div>
 
@@ -297,18 +297,18 @@
 					<h2 id="current_month" style="position:relative;"></h2>
 					<h2 id="current_week" style="position:relative;"></h2>
 					<div>
-						<ul class = "today_memo"  id="today_memo"></ul>
+						<li class = "today_memo"  id="today_memo"></li>
 					</div>
 
 					<div style="position:relative; top:-100%; left:22%; width:0.3%; height:100%; background-color:#000;"></div>
 					<table id = "memo_table" class="memo_display">
 						<tr>
-						    <th class="memo_table_head" style="width:15%;background-color:#ddd;text-align:center;">Date</th>
-						    <th class="memo_table_head" style="width:65%;background-color:#ddd;text-align:center;">Content</th>
-						    <th class="memo_table_head" style="width:15%;background-color:#ddd;text-align:center;">Edit</th>
-						    <th class="memo_table_head" style="width:15%;background-color:#ddd;text-align:center;">Delete </th>
+						    <th class="memo_table_head" style="width:100px;background-color:#ddd;text-align:center;">Date</th>
+						    <th class="memo_table_head" style="width:400px;background-color:#ddd;text-align:center;">Content</th>
+						    <th class="memo_table_head" style="width:100px;background-color:#ddd;text-align:center;">Edit</th>
+						    <th class="memo_table_head" style="width:100px;background-color:#ddd;text-align:center;">Delete </th>
 						</tr>
-						<tbody id = "context_table" style="text-align:center;word-wrap: break-word;"></tbody>
+						<tbody id = "context_table" style="text-align:center;"></tbody>
 					</table>
 
 					<div class="memo_form-popup" id="form">
