@@ -268,7 +268,7 @@ let downloadURL;
 url.once("value").then(function(snapshot){
    downloadURL = snapshot.val();
   // console.log(downloadURL);
-   window.location = downloadURL;
+   window.open(downloadURL,'_blank') ;
 });
 }
 
@@ -411,7 +411,7 @@ let downloadURL;
 url.once("value").then(function(snapshot){
    downloadURL = snapshot.val();
    console.log(downloadURL);
-   window.location = downloadURL;
+   window.open(downloadURL,'_blank');
 });
 }
 function DownloadNewWS(){
@@ -544,9 +544,6 @@ if (r == true) {
             window.location.reload();
        });
     });
-
-}
-else {
 }
 }
 
@@ -559,7 +556,7 @@ let downloadURL;
 url.once("value").then(function(snapshot){
    downloadURL = snapshot.val();
    console.log(downloadURL);
-   window.location = downloadURL;
+   window.open(downloadURL,'_blank') ;
 });
 }
 
