@@ -527,7 +527,7 @@ function viewP(){
 //edit Patient Portfolio
 function editPP(){
   document.getElementById('editPatientPortfolio').style.display ='block';
-  var id = document.getElementById('PID').innerText;
+  var id = document.getElementById('PID').innerHTML;
 
   console.log(id);
   document.getElementById('viewPatientPortfolio').style.display = 'none';
@@ -584,8 +584,8 @@ function editPP(){
 }
 function editSP(){
   document.getElementById('editStaffPortfolio').style.display ='block';
-  var id = document.getElementById('SID').innerText;
-  var position = document.getElementById('sPosition').innerText;
+  var id = document.getElementById('SID').innerHTML;
+  var position = document.getElementById('sPosition').innerHTML;
 
   console.log(id);
   document.getElementById('viewStaffPortfolio').style.display = 'none';
@@ -651,7 +651,7 @@ console.log(position);
 //Updating patient portfolio
 function SubmitPPPP(){
 
-  var photo = document.getElementById('PictureP').innerText;
+  var photo = document.getElementById('PictureP').innerHTML;
   var id = document.getElementById('PatientID2').value;
   var Name = document.getElementById('patientName2').value;
   var NID = document.getElementById('patientNID2').value;
@@ -671,7 +671,7 @@ function SubmitPPPP(){
   var EName = document.getElementById('patientEName2').value;
   var ERelationship = document.getElementById('patientERelationship2').value;
   var AdmissionReason = document.getElementById('patientAdmissionReason2').value;
-  var picfilename = document.getElementById('patientpicFilename').innerText;
+  var picfilename = document.getElementById('patientpicFilename').innerHTML;
 
   var updates = {};
   var postData={
@@ -731,9 +731,9 @@ function submitSP(){
   var ERelationship = document.getElementById('staffERelationship2').value;
   var BriefDescription = document.getElementById('staffBriefDescription2').value;
   var License = document.getElementById('stafflicense2').value;
-  var picfilename = document.getElementById('staffpicfilename').innerText;
-  var cvfilename = document.getElementById('staffcvfilename').innerText;
-  var licensefilename = document.getElementById('stafflicensefilename').innerText;
+  var picfilename = document.getElementById('staffpicfilename').innerHTML;
+  var cvfilename = document.getElementById('staffcvfilename').innerHTML;
+  var licensefilename = document.getElementById('stafflicensefilename').innerHTML;
 
   var updates = {};
   var postData={
@@ -769,7 +769,7 @@ function submitSP(){
 //Patient Portfolio deletion
 function deletePP(){
   var fbPP = firebase.database().ref('Patient');
-  var id = document.getElementById('PID').innerText;
+  var id = document.getElementById('PID').innerHTML;
   var r = confirm("Are you sure you want to delete?");
     if (r == true) {
       fbPP.child(id+"/Portfolio").on('value',function(snapshot){
@@ -792,8 +792,8 @@ function deletePP(){
 }
 
 function deleteSP(){
- var position = document.getElementById('sPosition').innerText;
- var id = document.getElementById('SID').innerText;
+ var position = document.getElementById('sPosition').innerHTML;
+ var id = document.getElementById('SID').innerHTML;
  var fbSP = firebase.database().ref(position);
  var r = confirm ("Are you sure you want to delete?");
   if (r == true) {
@@ -856,7 +856,7 @@ function filterRoomNo() {
                                   var td = tr[i].getElementsByTagName("td")[0];//row i cell number 4
                                   if(td){
                                     console.log(td);
-                                    if(td.innerText == id){
+                                    if(td.innerHTML == id){
                                     tr[i].style.display = "table-row";
                                     }
                                   }
@@ -866,7 +866,7 @@ function filterRoomNo() {
                               for( var i = 0; i < tr.length ; i++){
                                   var td = tr[i].getElementsByTagName("td")[0];//row i cell number 4
                                   if(td){
-                                      if(td.innerText == id){
+                                      if(td.innerHTML == id){
                                           tr[i].style.display = "none";
                                       }
                                   }
