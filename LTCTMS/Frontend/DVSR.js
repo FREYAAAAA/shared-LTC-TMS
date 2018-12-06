@@ -86,7 +86,7 @@ fbPAT.once("value")
                         var roomNo = row.insertCell(0)
                         var time = row.insertCell(1);
                         var val = row.insertCell(2);
-                        var th = childSnapshot1.val()
+                        var th = childSnapshot1.val();
                         th = th.replace(/[*+?^${}()|→TH]/g," ");
                         roomNo.appendChild(document.createTextNode(room));
                         time.appendChild(document.createTextNode(childSnapshot1.key));
@@ -329,7 +329,7 @@ window.onload=function(){
       if(time>="18:00:00" || time<"04:00:00"){
     document.getElementById("time").innerHTML = "Good Evening &nbsp ";
     }
-    
+
 
 }
 

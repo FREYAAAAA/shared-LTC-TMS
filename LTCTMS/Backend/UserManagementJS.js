@@ -5,31 +5,76 @@ function newAccount(){
   var email = document.getElementById('Email').value;
   var pass = document.getElementById('password').value;
   var position = document.getElementById('position').value;
+  var userAccount = firebase.database().ref("uAccount/");
+  var checkExist = "False";
+  userAccount.child(sid).once('value').then(function(snapshot){
+      if(snapshot.exists()){
+          alert('Already exists:'+sid);
+      }
+      else{
+          var n = email.search(/[*+?^${}();|→TH:]/g);
+          for(var i = 0; i <sid.length;i++){
+              console.log(sid.charCodeAt(i));
+              if((sid.charCodeAt(i) <=57 && sid.charCodeAt(i) >=48 ) == false){
+                  var boolean = "false";
+              }
+          }
+        if(name == '' || email == '' || pass == '' || position == '' || sid == ''){
+          alert('Please fill in all the information!');
+        }
+        else if(checkExist == "True"){
+            alert(sid +"already exist!");
+        }
+        else if(sid.length !=6){
+            alert("ID length should be six digits!");
+        }
+        else if(boolean == "false"){
+            alert("ID should be number!");
+        }
+        else if((sid.charAt(0)+sid.charAt(1) =="22" && position == "CNO" || sid.charAt(0)+sid.charAt(1) =="11" && position == "Director") == false){
+            alert(" Director:11XXXX,CNO:22XXXX");
+        }
+        else if(pass.length < 6){
+            alert("Password length should over than six digits!");
+        }
+        else if(n != "-1"){
+            alert("Email format can't have / ,*+?^${}()|→ []");
+        }
 
-if(name == '' || email == '' || pass == '' || position == '' || sid == ''){
-  alert('Please fill in all the information!');
-}else{
-  var data = {
-    Name : name,
-    Email: email,
-    Password : pass,
-    Position : position,
-    StaffID : sid
-  }
-  var updates={}
-  updates['uAccount/'+ sid]=data;
-  firebase.database().ref().update(updates);
-  location.reload();
-  }
+        else if(email.includes(".com") ==false){
+            alert("Please use @xxxxx.com format!!");
+        }
+        else{
+                var data = {
+                 Name : name,
+                 Email: email,
+                 Password : pass,
+                Position : position,
+                StaffID : sid
+                }
+                var updates={}
+                var updates1 ={}
+                updates['uAccount/'+ sid]=data;
+                updates['No_Portfolio/'+position+'/'+sid] =data;
+                firebase.database().ref().update(updates);
+                location.reload();
+      }
+    }
+  });
 }
 
 //Delete account
 function deleteUserAccount(i){
   var sid = document.getElementById('cellId['+i+']').innerHTML;
+  var table = document.getElementById('UserListBody');
+  var tr = table.getElementsByTagName("tr");
+  var position = tr[i].cells[3].innerHTML;
   var fbACCD = firebase.database().ref('uAccount').child(sid);
+  var fbABCD = firebase.database().ref('No_Portfolio/'+position).child(sid);
   var confirmation = confirm("Undoing is not available! Please make sure you would not need this account anymore!");
   if(confirmation == true){
     fbACCD.remove();
+    fbABCD.remove();
     alert("successfully removed the account!");
     location.reload();
   }
@@ -64,17 +109,51 @@ function editedUserAccount(){
   var email= document.getElementById('EmailE').value;
   var position= document.getElementById('positionE').value;
   var pass= document.getElementById('passE').value;
-  var data={
-    Name : name,
-    Email: email,
-    Position : position,
-    StaffID : sid,
-    Password:pass
+  var n = email.search(/[*+?^${}();|→TH:]/g);
+  for(var i = 0; i <sid.length;i++){
+      console.log(sid.charCodeAt(i));
+      if((sid.charCodeAt(i) <=57 && sid.charCodeAt(i) >=48 ) == false){
+          var boolean = "false";
+      }
   }
-  updates={}
-  updates['uAccount/'+sid]=data;
-  firebase.database().ref().update(updates);
-  location.reload();
+
+if(name == '' || email == '' || pass == '' || position == '' || sid == ''){
+  alert('Please fill in all the information!');
+}
+else if(sid.length !=6){
+    alert("ID length should be six digits!");
+}
+else if(boolean == "false"){
+    alert("ID should be number!");
+}
+else if((sid.charAt(0)+sid.charAt(1) =="22" && position == "CNO" || sid.charAt(0)+sid.charAt(1) =="11" && position == "Director") == false){
+    alert(" Director:11XXXX,CNO:22XXXX");
+}
+else if(pass.length < 6){
+    alert("Password length should over than six digits!");
+}
+else if(n != "-1"){
+    alert("Email format can't have / ,*+?^${}()|→ []");
+}
+
+else if(email.includes(".com") ==false){
+    alert("Please use @xxxxx.com format!!");
+}
+else{
+        var data = {
+         Name : name,
+         Email: email,
+         Password : pass,
+        Position : position,
+        StaffID : sid
+        }
+        var updates={}
+        var updates1 ={}
+        updates['uAccount/'+ sid]=data;
+        updates['No_Portfolio/'+position+'/'+sid] =data;
+        firebase.database().ref().update(updates);
+        location.reload();
+        }
 }
 
 //Display UM table - UID, NAME, STATUS, EDIT button, DELETE button
