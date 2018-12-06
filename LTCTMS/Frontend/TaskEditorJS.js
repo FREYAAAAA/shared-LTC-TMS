@@ -128,6 +128,9 @@ var main = document.getElementById('treemenu2'),
      updates['TaskInstruction/'+cat+'/'+ parentId + '/' + stepref ]= datatemp;
 
      firebase.database().ref().update(updates);
+     //You have to select the task step first
+     var id = realid + ":"+parentId;
+     tree.select(id);
      tree.select(parentId);
     });
   }

@@ -145,23 +145,12 @@ function handleuploadfileSubmit(e) {
          .then(function(url4){
            console.log(url4);
              firebase.database().ref(staffPosition+"/"+StaffID+"/Portfolio"+"/License/").set(url4);
-            // location.reload();
-
+             alert("Successfully Created: "+ staffName +"'s Portfolio");
+             location.reload();
          });
-         const promise = firebase.auth().createUserWithEmailAndPassword(staffEmail,staffPassword).then(
-           (user)=>{
-             if(user){
-               user.updateProfile({
-                 displayName:staffName,
-                 photoURL: storageRef1.getDownloadURL(),
-                 workID: StaffID
-               })
-             }
-             });
-         promise.catch(e=> console.log(e.message));
   });
-
 }
+
 
 //Patient Portfolio Database Storing
 var Uploader2 = document.getElementById('Uploader2');

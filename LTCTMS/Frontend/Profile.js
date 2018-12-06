@@ -17,8 +17,8 @@ if(firebaseUser){
     Profilepic.setAttribute('value',pic);
   });
 }else{
-  alert("You're Logged out now! Please Login again if you need to use this system!");
-  window.location.href = "//share-b7589.firebaseapp.com/";
+ alert("You're Logged out now! Please Login again if you need to use this system!");
+ window.location.href = "//share-b7589.firebaseapp.com/";
 }
 });
 //console.log(document.getElementById('Profilepic').value);
