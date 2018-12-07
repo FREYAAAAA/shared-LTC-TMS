@@ -109,7 +109,7 @@ function viewTable(value){
         var array = [];
         var array_val = [];
         var index = 0;
-
+        var ol = document.createElement("ol");
         snapshot.forEach(function(childSnapshot){
             var childKey = childSnapshot.key;
             var childData = childSnapshot.val();
@@ -119,38 +119,40 @@ function viewTable(value){
             button2.innerHTML="Delete";
             button.innerHTML="Edit";
             var arr = childKey.split("-");
-            if(value==null){
                 if(arr[0]==dd){
-                    var ul = document.getElementById("today_memo");
+                    var todayMemo = document.getElementById("today_memo");
                       var li = document.createElement("li");
+                     // li.setAttribute("type","I");
                       li.appendChild(document.createTextNode(childData));
-                      ul.appendChild(li);
+                      ol.appendChild(li);
+                      todayMemo.appendChild(ol);
                 }
-            }
+
 
             var contextTable = document.getElementById("context_table");
             var row = contextTable.insertRow(0);
             var celldate = row.insertCell(0);
             var celleventDate = row.insertCell(1);
-            var cellButton = row.insertCell(2);
-            var cellButton2 = row.insertCell(3)
+            //var cellButton = row.insertCell(2);
+            var cellButton2 = row.insertCell(2)
 
-            $(row).css("border-bottom", "1px solid");
-            $(row).css("border-color", "black");
+            //$(row).css("border", "1px solid");
+            //$(row).css("border-color", "black");
             $(celldate).css("min-width", "80px");
-            $(celldate).css("border-right", "1px solid");
+            //$(celldate).css("border-right", "1px solid");
             $(celleventDate).css("word-wrap", "break-word");
             $(celleventDate).css("max-width", "420px");
-            $(celleventDate).css("border-right", "1px solid");
-            $(cellButton).css("min-width", "40px");
+            //$(celleventDate).css("border-right", "1px solid");
+            //$(cellButton).css("min-width", "40px");
             celleventDate.setAttribute("id","content_id["+num+"]");
+            celleventDate.setAttribute("onclick","editha("+num+")");
             cellButton2.setAttribute("onclick","deleteha("+num+")");
-            cellButton.setAttribute("onclick","editha("+num+")");
+            //cellButton.setAttribute("onclick","editha("+num+")");
             num++;
             celldate.appendChild(document.createTextNode(arr[0]));
             celleventDate.appendChild(document.createTextNode(childData));
             cellButton2.appendChild(button2);
-            cellButton.appendChild(button);
+            //cellButton.appendChild(button);
         })
     })
 

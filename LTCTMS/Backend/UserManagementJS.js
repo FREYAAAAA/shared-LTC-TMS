@@ -95,7 +95,7 @@ function editUserAccount(i){
     document.getElementById('SIDE').value = sid;
     document.getElementById('NameE').value = name;
     document.getElementById('EmailE').value = email;
-    document.getElementById('positionE').value = position;
+    document.getElementById('positionE').innerHTML = position;
     document.getElementById('passE').value = pass;
 
   });
@@ -107,53 +107,64 @@ function editedUserAccount(){
   var sid = document.getElementById('SIDE').value;
   var name= document.getElementById('NameE').value;
   var email= document.getElementById('EmailE').value;
-  var position= document.getElementById('positionE').value;
+  var position= document.getElementById('positionE').innerHTML;
   var pass= document.getElementById('passE').value;
-  var n = email.search(/[*+?^${}();|→TH:]/g);
-  for(var i = 0; i <sid.length;i++){
-      console.log(sid.charCodeAt(i));
-      if((sid.charCodeAt(i) <=57 && sid.charCodeAt(i) >=48 ) == false){
-          var boolean = "false";
+  var userAccount = firebase.database().ref("uAccount/");
+  var checkExist = "False";
+  userAccount.child(sid).once('value').then(function(snapshot){
+      if(snapshot.exists()){
+          alert('Already exists:'+sid);
       }
-  }
-
-if(name == '' || email == '' || pass == '' || position == '' || sid == ''){
-  alert('Please fill in all the information!');
-}
-else if(sid.length !=6){
-    alert("ID length should be six digits!");
-}
-else if(boolean == "false"){
-    alert("ID should be number!");
-}
-else if((sid.charAt(0)+sid.charAt(1) =="22" && position == "CNO" || sid.charAt(0)+sid.charAt(1) =="11" && position == "Director") == false){
-    alert(" Director:11XXXX,CNO:22XXXX");
-}
-else if(pass.length < 6){
-    alert("Password length should over than six digits!");
-}
-else if(n != "-1"){
-    alert("Email format can't have / ,*+?^${}()|→ []");
-}
-
-else if(email.includes(".com") ==false){
-    alert("Please use @xxxxx.com format!!");
-}
-else{
-        var data = {
-         Name : name,
-         Email: email,
-         Password : pass,
-        Position : position,
-        StaffID : sid
+      else{
+          var n = email.search(/[*+?^${}();|→TH:]/g);
+          for(var i = 0; i <sid.length;i++){
+              console.log(sid.charCodeAt(i));
+              if((sid.charCodeAt(i) <=57 && sid.charCodeAt(i) >=48 ) == false){
+                  var boolean = "false";
+              }
+          }
+        if(name == '' || email == '' || pass == '' || position == '' || sid == ''){
+          alert('Please fill in all the information!');
         }
-        var updates={}
-        var updates1 ={}
-        updates['uAccount/'+ sid]=data;
-        updates['No_Portfolio/'+position+'/'+sid] =data;
-        firebase.database().ref().update(updates);
-        location.reload();
+        else if(checkExist == "True"){
+            alert(sid +"already exist!");
         }
+        else if(sid.length != "6"){
+            alert("ID length should be six digits!");
+        }
+        else if(boolean == "false"){
+            alert("ID should be number!");
+        }
+        else if((sid.charAt(0)+sid.charAt(1) =="22" && position == "CNO" || sid.charAt(0)+sid.charAt(1) =="11" && position == "Director") == false){
+            alert(" Director:11XXXX,CNO:22XXXX");
+        }
+        else if(pass.length < 6){
+            alert("Password length should over than six digits!");
+        }
+        else if(n != "-1"){
+            alert("Email format can't have / ,*+?^${}()|→ []");
+        }
+
+        else if(email.includes(".com") ==false){
+            alert("Please use @xxxxx.com format!!");
+        }
+        else{
+                var data = {
+                 Name : name,
+                 Email: email,
+                 Password : pass,
+                Position : position,
+                StaffID : sid
+                }
+                var updates={}
+                var updates1 ={}
+                updates['uAccount/'+ sid]=data;
+                updates['No_Portfolio/'+position+'/'+sid] =data;
+                firebase.database().ref().update(updates);
+                location.reload();
+      }
+    }
+  });
 }
 
 //Display UM table - UID, NAME, STATUS, EDIT button, DELETE button
