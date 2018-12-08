@@ -53,6 +53,8 @@ function submit(){
     var text = $("#memo_text").val();
     var ymd = $("#selected_date").val();
     var a = ymd.split("-");
+    a[0] = parseInt(a[0]);
+    var maxYear = year+100;
     if(a[1]<10){
         a[1] = a[1].replace('0', '');
     }
@@ -61,6 +63,10 @@ function submit(){
     if(text == ""){
       alert ("Please enter data");
     }
+    if(a[0]>maxYear){
+        alert("The year entered has exceeded one hundred years!");
+    }
+
     else {
       var r = confirm("Are you sure you want to enter this data?");
       if (r == true) {
