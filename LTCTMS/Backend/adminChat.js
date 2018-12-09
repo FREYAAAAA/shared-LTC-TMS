@@ -283,7 +283,7 @@ setTimeout(function(){
             }
         })
     })
-    count = -1; // the below code always be executed while the page reload, so deduct one to correct the counting number;
+    count = -1; // the below code always be executed while the page reload( I really don't understand the reason.....), so deduct one to correct the counting number.
     allread.limitToLast(1).on('value', function(snapshot) {
         snapshot.forEach(function(childSnapshot1){
             if(childSnapshot1.hasChild(user_name)){
