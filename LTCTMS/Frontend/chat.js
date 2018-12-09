@@ -177,6 +177,7 @@ function callChatData(database,$show,userName,$btn,$content,ms){
 
     });
     database.limitToLast(1).on('value', function(snapshot) {
+        console.log(snapshot);
         if(snapshot.node_.children_.root_.value.children_.root_.value.value_==userName){
             for(var i in snapshot.val()){
                 $show.append('<div class="'+snapshot.val()[i].id+'"><div class="nameI">'+snapshot.val()[i].name+':</div><div class="contentI">'+snapshot.val()[i].content+' </div><div class="timeI">'+snapshot.val()[i].time+'</div>');
@@ -257,16 +258,26 @@ function cancel(){
     }
     document.getElementById("leftList").style.display = "none";
     document.getElementById("expand").style.display = "block";
-
+    document.getElementById("notificationAll").style.display = "none";
+    count = 0;
 }
 
 function expand(){
+    var userName1 = firebase.auth().currentUser.displayName;
+    var fbChat = firebase.database().ref("Chat/Allread");
+    fbChat.once('value').then(function(snapshot) {
+        snapshot.forEach(function(childSnapshot1){
+            var eachKey = childSnapshot1.key;
+            firebase.database().ref("Chat/Allread/"+eachKey+"/"+userName1).set("read");
+        })
+    })
     document.getElementById("leftList").style.display = "block";
     document.getElementById("expand").style.display = "none";
     displayChat(0);
 }
 
 function write(ms,database,$content,userName){
+    var databaseText = database;
     var database = firebase.database().ref(database);
     var date = new Date();
     var h = date.getHours();
@@ -289,5 +300,82 @@ function write(ms,database,$content,userName){
     id:'id'+ms
     };
     database.push(postData);
+    database.limitToLast(1).once('value').then(function(snapshot){
+        snapshot.forEach(function(childSnapshot){
+            var randomKey = childSnapshot.key;
+            firebase.database().ref(databaseText+"read/"+randomKey+"/"+userName).set("read");
+        })
+    })
     $content.val('');
 }
+var count = 0;
+var countPart = 0;
+setTimeout(function(){
+    var user_name = document.getElementById("displayProfilename").innerHTML;
+    var allread = firebase.database().ref("Chat/Allread");
+    var partread = firebase.database().ref("Chat/Partread");
+
+    function checkAllRead(){
+        count = count +1;
+        document.getElementById("notificationAll").style.display = "block";
+        if(count =="0"){
+            document.getElementById("notificationAll").innerHTML = 1;
+        }
+        else{
+            document.getElementById("notificationAll").innerHTML = count;
+        }
+    }
+    allread.once('value').then(function(snapshot){
+        snapshot.forEach(function(childSnapshot1){
+            if(childSnapshot1.hasChild(user_name)){
+                console.log(childSnapshot1.hasChild(user_name));
+            }
+            else{
+                checkAllRead();
+            }
+        })
+    })
+    count = -1; // the below code always be executed while the page reload, so deduct one to correct the counting number;
+    allread.limitToLast(1).on('value', function(snapshot) {
+        snapshot.forEach(function(childSnapshot1){
+            if(childSnapshot1.hasChild(user_name)){
+                console.log(childSnapshot1.hasChild(user_name));
+            }
+            else{
+                 checkAllRead();
+            }
+        })
+    })
+    function checkPartRead(){
+        countPart = countPart +1;
+        document.getElementById("notificationPart").style.display = "block";
+        if(countPart =="0"){
+            document.getElementById("notificationPart").innerHTML = 1;
+        }
+        else{
+            document.getElementById("notificationPart").innerHTML = countPart;
+        }
+    }
+    partread.once('value').then(function(snapshot){
+        snapshot.forEach(function(childSnapshot1){
+            if(childSnapshot1.hasChild(user_name)){
+                console.log(childSnapshot1.hasChild(user_name));
+            }
+            else{
+                checkPartRead();
+            }
+        })
+    })
+    countPart = -1; // the below code always be executed while the page reload, so deduct one to correct the counting number;
+    partread.limitToLast(1).on('value', function(snapshot) {
+        snapshot.forEach(function(childSnapshot1){
+            if(childSnapshot1.hasChild(user_name)){
+                console.log(childSnapshot1.hasChild(user_name));
+            }
+            else{
+                 checkPartRead();
+            }
+        })
+    })
+
+ }, 3000);

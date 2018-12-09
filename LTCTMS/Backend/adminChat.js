@@ -131,30 +131,16 @@ function callChatData(database,$show,userName,$btn,$content,ms){
     });
 
     database.limitToLast(1).on('value', function(snapshot) {
-        console.log("show");
-        snapshot.forEach(function(childSnapshot1){
-            childSnapshot1.forEach(function(childSnapshot2){
-                if(childSnapshot2.key =="name"){
-                    name = childSnapshot2.val();
-                }
-                if(childSnapshot2.val() =="haven't read"){
-                    if(name==userName){
-                        console.log(name,userName);
-                        for(var i in snapshot.val()){
-                            $show.append('<div class="'+snapshot.val()[i].id+'"><div class="nameI">'+snapshot.val()[i].name+':</div><div class="contentI">'+snapshot.val()[i].content+' </div><div class="timeI">'+snapshot.val()[i].time+'</div>');
-                        }
-                    }
-                    else{
-                        for(var i in snapshot.val()){
-                            $show.append('<div class="'+snapshot.val()[i].id+'"><div class="name">'+snapshot.val()[i].name+':</div><div class="content">'+snapshot.val()[i].content+' </div><div class="time">'+snapshot.val()[i].time+'</div>');
-                        }
-                    }
-                }
-            })
-        })
-
-
-
+        if(snapshot.node_.children_.root_.value.children_.root_.value.value_==userName){
+            for(var i in snapshot.val()){
+                $show.append('<div class="'+snapshot.val()[i].id+'"><div class="nameI">'+snapshot.val()[i].name+':</div><div class="contentI">'+snapshot.val()[i].content+' </div><div class="timeI">'+snapshot.val()[i].time+'</div>');
+            }
+        }
+        else{
+            for(var i in snapshot.val()){
+                $show.append('<div class="'+snapshot.val()[i].id+'"><div class="name">'+snapshot.val()[i].name+':</div><div class="content">'+snapshot.val()[i].content+' </div><div class="time">'+snapshot.val()[i].time+'</div>');
+            }
+        }
       $show.find('.id'+ms+' .nameI').css({
           'text-align':'right',
          'display':'block',
@@ -219,14 +205,16 @@ function cancel(){
     document.getElementById("expand").style.display = "block";
     document.getElementById("notification").style.display = "none";
     count = 0;
-
 }
 
 function expand(){
-    var fbChat = firebase.database().ref("Chat/All");
-    fbChat.limitToLast(1).once('value').then(function(snapshot) {
-        var lastid = snapshot.node_.children_.root_.key;
-        firebase.database().ref("Chat/All/"+lastid+"/status").set("read");
+    var userName1 = firebase.auth().currentUser.displayName;
+    var fbChat = firebase.database().ref("Chat/Allread");
+    fbChat.once('value').then(function(snapshot) {
+        snapshot.forEach(function(childSnapshot1){
+            var eachKey = childSnapshot1.key;
+            firebase.database().ref("Chat/Allread/"+eachKey+"/"+userName1).set("read");
+        })
     })
     var chatall = document.getElementById("chatAll");
     chatall.classList.add('active');
@@ -238,11 +226,10 @@ function expand(){
     else{
         document.getElementById("im0").style.display = "block";
     }
-    count = 0;
-
 }
 function write(ms,database,$content,userName){
     var database = firebase.database().ref(database);
+    var database1 = firebase.database().ref("Chat/Allread");
     var date = new Date();
     var h = date.getHours();
     var m = date.getMinutes();
@@ -262,19 +249,49 @@ function write(ms,database,$content,userName){
     content:$content.val(),
     time:now,
     id:'id'+ms,
-    status:"haven't read"
     };
     database.push(postData);
+    database.limitToLast(1).once('value').then(function(snapshot){
+        snapshot.forEach(function(childSnapshot){
+            var randomKey = childSnapshot.key;
+            firebase.database().ref("Chat/Allread/"+randomKey+"/"+userName).set("read");
+        })
+    })
     $content.val('');
 }
 var count = 0;
-var fbChat = firebase.database().ref("Chat/All");
-fbChat.limitToLast(1).on('value', function(snapshot) {
-    snapshot.forEach(function(childSnapshot1){
-        childSnapshot1.forEach(function(childSnapshot2){
-            if(childSnapshot2.val() =="haven't read"){
-                document.getElementById("notification").style.display = "block";
+setTimeout(function(){
+    var user_name = document.getElementById("displayProfilename").innerHTML;
+    var allread = firebase.database().ref("Chat/Allread");
+    function checkRead(){
+        count = count +1;
+        document.getElementById("notification").style.display = "block";
+        if(count =="0"){
+            document.getElementById("notification").innerHTML = 1;
+        }
+        else{
+            document.getElementById("notification").innerHTML = count;
+        }
+    }
+    allread.once('value').then(function(snapshot){
+        snapshot.forEach(function(childSnapshot1){
+            if(childSnapshot1.hasChild(user_name)){
+                console.log(childSnapshot1.hasChild(user_name));
+            }
+            else{
+                checkRead();
             }
         })
     })
-})
+    count = -1; // the below code always be executed while the page reload, so deduct one to correct the counting number;
+    allread.limitToLast(1).on('value', function(snapshot) {
+        snapshot.forEach(function(childSnapshot1){
+            if(childSnapshot1.hasChild(user_name)){
+                console.log(childSnapshot1.hasChild(user_name));
+            }
+            else{
+                 checkRead();
+            }
+        })
+    })
+ }, 3000);
