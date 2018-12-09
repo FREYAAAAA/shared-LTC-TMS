@@ -1,19 +1,22 @@
-function displayChat(i){
+// this code is really messy, I'll try my best to expain each function. Even though this code is coding by myself, I still can't totally understand every line;#2018/12/09
+var xxx ="false";
+function displayChat(i){// Click the different chat room and show that content.
     var chatall = document.getElementById("chatAll");
     var chatpart = document.getElementById("chatPart");
-    console.log(i);
-
-
     if (i==0){
-        chatall.classList.add('active');
+        if(xxx =="true"){ // I know it's suck, but I have no choice and no time to find the better one. To avoid the notification dispaly "none" at the first time, it's has to click the second chat's room and then click the first chat's room back.
+            document.getElementById("notificationAll").style.display = "none";
+        }
+        count =0; // because click this room, make the number of unread become "0"
+        chatall.classList.add('active');// Relate to Css, Click the room and show different color;
         if (chatpart.classList.contains('active')) {
           chatpart.classList.remove('active');
         }
-        if(document.getElementById('im'+i)== null){
+        if(document.getElementById('im'+i)== null){ // If chat form havn't create.
             if (document.getElementById('im1')!= null){
                 document.getElementById('im1').style.display = 'none';
             }
-            chatForm(i);
+            chatForm(i); // To create the chat form.
         }
         else{
             document.getElementById('im'+i).style.display  = 'block';
@@ -22,6 +25,17 @@ function displayChat(i){
             }
         }
     }else if(i == 1){
+        xxx = "true";
+        countPart = 0;// because click this room, make the number of unread become "0"
+        document.getElementById("notificationPart").style.display = "none";// Close this chat's notification
+        var userName2 = firebase.auth().currentUser.displayName; // get the user name by firebase auth
+        var fbPartread = firebase.database().ref("Chat/Partread");
+        fbPartread.once('value').then(function(snapshot) {//make all status into "read";
+            snapshot.forEach(function(childSnapshot1){
+                var eachKey = childSnapshot1.key;
+                firebase.database().ref("Chat/Partread/"+eachKey+"/"+userName2).set("read");
+            })
+        })
         chatpart.classList.add('active');
         if (chatall.classList.contains('active')) {
           chatall.classList.remove('active');
@@ -38,9 +52,7 @@ function displayChat(i){
         }
     }
 }
-function chatForm(i){
-
-
+function chatForm(i){ // To create the chat form.
     var body = document.getElementsByTagName('body')[0];
     var div1 =document.createElement('div');
     var div2 = document.createElement('div');
@@ -76,7 +88,6 @@ function chatForm(i){
     div1.appendChild(div5);
     document.getElementById("cancelX"+i).innerHTML = "X";
 
-
     var $show = $('#show'+i);
     var ms = new Date().getTime();
     var $btn = $('#btn'+i);
@@ -85,7 +96,7 @@ function chatForm(i){
     var userName = firebase.auth().currentUser.displayName;
     button.innerHTML= "Send";
     document.getElementById("name"+i).innerHTML = userName;
-    document.getElementById("name"+i).value = userName;
+    //document.getElementById("name"+i).value = userName;
 
     if(i ==0){
         database = 'Chat/All';
@@ -96,7 +107,7 @@ function chatForm(i){
         write(ms,database,$content,userName);
     })
     $content.on('keydown', function(e){
-      if(e.keyCode == 13){
+      if(e.keyCode == 13){ // "Enter" key;
         write(ms,database,$content,userName);
       }
     });
@@ -104,12 +115,12 @@ function chatForm(i){
     callChatData(database,$show,userName,$content,$btn,ms);
 }
 
-function callChatData(database,$show,userName,$btn,$content,ms){
+function callChatData(database,$show,userName,$btn,$content,ms){ // To put the messages into chat room
     var database = firebase.database().ref(database);
     database.once('value', function(snapshot) {
-      $show.html('');
+      $show.html('');// To clear the messages at first.
       for(var i in snapshot.val()){
-          if(snapshot.val()[i].name == userName){
+          if(snapshot.val()[i].name == userName){ //To separate the messages into left and right side by name
               $show.append('<div class="'+snapshot.val()[i].id+'"><div class="nameI">'+snapshot.val()[i].name+':</div><div class="contentI">'+snapshot.val()[i].content+' </div><div class="timeI">'+snapshot.val()[i].time+'</div>');
           }
           else{
@@ -176,9 +187,8 @@ function callChatData(database,$show,userName,$btn,$content,ms){
 
 
     });
-    database.limitToLast(1).on('value', function(snapshot) {
-        console.log(snapshot);
-        if(snapshot.node_.children_.root_.value.children_.root_.value.value_==userName){
+    database.limitToLast(1).on('value', function(snapshot) {//Realtime; Get the latest message and separate by name;
+        if(snapshot.node_.children_.root_.value.children_.root_.value.value_==userName){// Using the "console.log(snapshot)" to find the name the user who send the message
             for(var i in snapshot.val()){
                 $show.append('<div class="'+snapshot.val()[i].id+'"><div class="nameI">'+snapshot.val()[i].name+':</div><div class="contentI">'+snapshot.val()[i].content+' </div><div class="timeI">'+snapshot.val()[i].time+'</div>');
             }
@@ -259,13 +269,16 @@ function cancel(){
     document.getElementById("leftList").style.display = "none";
     document.getElementById("expand").style.display = "block";
     document.getElementById("notificationAll").style.display = "none";
-    count = 0;
+    total = count +countPart -1; // It's has to count again after close the form. because you might be click the room and read the message, the total unread will different. "-1" because call "totalNotRead"will add one, but no need.
+    totalNotRead();
+    count = 0; //To make the number of unread become "0"
 }
 
-function expand(){
+function expand(){ //Click to open the chat
+    xxx = "false";// to make the notification not disappear at the first in every time.
     var userName1 = firebase.auth().currentUser.displayName;
     var fbChat = firebase.database().ref("Chat/Allread");
-    fbChat.once('value').then(function(snapshot) {
+    fbChat.once('value').then(function(snapshot) { // when open the chat and u will see this room, so change the status into "read"
         snapshot.forEach(function(childSnapshot1){
             var eachKey = childSnapshot1.key;
             firebase.database().ref("Chat/Allread/"+eachKey+"/"+userName1).set("read");
@@ -273,7 +286,7 @@ function expand(){
     })
     document.getElementById("leftList").style.display = "block";
     document.getElementById("expand").style.display = "none";
-    displayChat(0);
+    displayChat(0);// defaut; showing the "Center & System" chat;
 }
 
 function write(ms,database,$content,userName){
@@ -300,13 +313,13 @@ function write(ms,database,$content,userName){
     id:'id'+ms
     };
     database.push(postData);
-    database.limitToLast(1).once('value').then(function(snapshot){
+    database.limitToLast(1).once('value').then(function(snapshot){// the message is created by yourslef, so make this message into read;
         snapshot.forEach(function(childSnapshot){
             var randomKey = childSnapshot.key;
             firebase.database().ref(databaseText+"read/"+randomKey+"/"+userName).set("read");
         })
     })
-    $content.val('');
+    $content.val('');// after sending the message, clear the content;
 }
 var count = 0;
 var countPart = 0;
@@ -315,46 +328,38 @@ setTimeout(function(){
     var allread = firebase.database().ref("Chat/Allread");
     var partread = firebase.database().ref("Chat/Partread");
 
-    function checkAllRead(){
+    function countAllRead(){// this function is count how many unread.
+        totalNotRead();
         count = count +1;
         document.getElementById("notificationAll").style.display = "block";
-        if(count =="0"){
-            document.getElementById("notificationAll").innerHTML = 1;
-        }
-        else{
-            document.getElementById("notificationAll").innerHTML = count;
-        }
+        document.getElementById("notificationAll").innerHTML = count;
     }
     allread.once('value').then(function(snapshot){
         snapshot.forEach(function(childSnapshot1){
-            if(childSnapshot1.hasChild(user_name)){
+            if(childSnapshot1.hasChild(user_name)){ //check whether read or not
                 console.log(childSnapshot1.hasChild(user_name));
             }
             else{
-                checkAllRead();
+                countAllRead();
             }
         })
     })
-    count = -1; // the below code always be executed while the page reload, so deduct one to correct the counting number;
+    count = 0;
     allread.limitToLast(1).on('value', function(snapshot) {
         snapshot.forEach(function(childSnapshot1){
             if(childSnapshot1.hasChild(user_name)){
                 console.log(childSnapshot1.hasChild(user_name));
             }
             else{
-                 checkAllRead();
+                 countAllRead();
             }
         })
     })
-    function checkPartRead(){
+    function countPartRead(){
+        totalNotRead();
         countPart = countPart +1;
         document.getElementById("notificationPart").style.display = "block";
-        if(countPart =="0"){
-            document.getElementById("notificationPart").innerHTML = 1;
-        }
-        else{
-            document.getElementById("notificationPart").innerHTML = countPart;
-        }
+        document.getElementById("notificationPart").innerHTML = countPart;
     }
     partread.once('value').then(function(snapshot){
         snapshot.forEach(function(childSnapshot1){
@@ -362,20 +367,31 @@ setTimeout(function(){
                 console.log(childSnapshot1.hasChild(user_name));
             }
             else{
-                checkPartRead();
+                countPartRead();
             }
         })
     })
-    countPart = -1; // the below code always be executed while the page reload, so deduct one to correct the counting number;
+    countPart = 0; // the below code always be executed while the page reload, so deduct one to correct the counting number;
     partread.limitToLast(1).on('value', function(snapshot) {
         snapshot.forEach(function(childSnapshot1){
             if(childSnapshot1.hasChild(user_name)){
                 console.log(childSnapshot1.hasChild(user_name));
             }
             else{
-                 checkPartRead();
+                 countPartRead();
             }
         })
     })
+}, 2500);
 
- }, 3000);
+var total = 0;
+function totalNotRead(){
+    total = total+1;
+    document.getElementById("notification").style.display = "block";
+    if(total =="0"){
+        document.getElementById("notification").style.display = "none";
+    }
+    else{
+        document.getElementById("notification").innerHTML = total;
+    }
+}
