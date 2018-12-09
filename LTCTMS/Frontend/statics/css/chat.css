@@ -182,3 +182,30 @@ height:20px;
 #cancelX0:hover, #cancelX1:hover{
 background: red;
 }
+#notification{
+    background:red;
+    width:12px;
+    height:20px;
+    position:absolute;
+    right:5%;
+    top:0px;
+    display:none;
+}
+#notificationAll{
+    background:red;
+    width:12px;
+    height:20px;
+    position:absolute;
+    right:5%;
+    top:0px;
+    display:none;
+}
+#notificationPart{
+    background:red;
+    width:12px;
+    height:20px;
+    position:absolute;
+    right:5%;
+    top:60px;
+    display:none;
+}
