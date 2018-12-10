@@ -312,49 +312,49 @@
 				<ul>
 					<li>
 						<a href="01Aboutus2.html">
-							<i><img src="statics/images/aboutus.png" style="width:20px;height:20px;"></i>
+							<i class="icon iconfont icon-lingdang"></i>
 							About Us
 						</a>
 					</li>
 					<li>
 						<a href="02Schedule2.html">
-							<i><img src="statics/images/schedule.png" style="width:20px;height:20px;"></i>
+							<i class="icon iconfont icon-fangzidichan"></i>
 							Schedule
 						</a>
 					</li>
 					<li>
 						<a href="03Memo2.html">
-							<i><img src="statics/images/memo.png" style="width:20px;height:20px;"></i>
+							<i class="icon iconfont icon-wenda"></i>
 							Memo
 						</a>
 					</li>
 					<li>
 						<a href="04Statusrecord2.html">
-							<i><img src="statics/images/statusrecord.png" style="width:20px;height:20px;"></i>
+							<i class="icon iconfont icon-icon--"></i>
 							Status Record
 						</a>
 					</li>
 					<li>
 						<a href="05Library2.html">
-							<i><img src="statics/images/library.png" style="width:20px;height:20px;"></i>
+							<i class="icon iconfont icon-pinglun"></i>
 							Library
 						</a>
 					</li>
 					<li>
 						<a href="06Taskeditor2.html">
-							<i><img src="statics/images/taskeditor.png" style="width:20px;height:20px;"></i>
+							<i class="icon iconfont icon-geren"></i>
 							Task Editor
 						</a>
 					</li>
 					<li>
 						<a href="07E-portfolio2.html" class="active">
-								<i><img src="statics/images/e-portfolio.png" style="width:20px;height:20px;"></i>
+							<i class="icon iconfont icon-jilu"></i>
 							E-Portfolio
 						</a>
 					</li>
 					<li>
 						<a href="08Helpandsupport2.html">
-							<i><img src="statics/images/helpandsupport.png" style="width:20px;height:20px;"></i>
+							<i class="icon iconfont icon-geren"></i>
 							Help and Support
 						</a>
 					</li>
@@ -368,7 +368,7 @@
 				<div id="menu" style="display:none;position:fixed;top:6%;left:74%;background-color:white;height:100px;width:200px;z-index:5;">
 							<div style="position:relative;left:1%;top:2%;background-color:#ddd;width:98%;margin-bottom:5px;">Language</div>
 							<p class="selected" style="margin-top:3px;margin-bottom:3px;cursor:pointer;">&nbsp English<br></p>
-							<p class="selected" style="margin-top:3px;margin-bottom:3px;cursor:pointer;" onclick="window.location.href='//share-b7589.firebaseapp.com//中文版Chinese version/07E-portfolio2.html'">&nbsp Chinese<br></p>
+							<p class="selected" style="margin-top:3px;margin-bottom:3px;cursor:pointer;" onclick="window.location.href='file:///C:/Users/Gama/Documents/GitHub/shared-LTC-TMS/LTCTMS/%E4%B8%AD%E6%96%87%E7%89%88Chinese%20version/07E-portfolio2.html'">&nbsp 中文<br></p>
 							<p class="logoutselected" onclick = "Logout()">&nbsp<i class="icon iconfont icon-dianyuan" style="margin-right:5px;"></i>Logout</p>
 				</div>
 
@@ -489,7 +489,7 @@
 						<option value="CNA">CNA</option>
 					</select>
 				<tr>
-						<td> Staff ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="StaffID" placeholder="Staff ID" required/></td>
+						<td> Staff ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span id ='StaffID'></span></td>
 		   </tr>
 		   <tr>
 		       <td>Name: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffName" placeholder="Name" required/></td>
@@ -541,7 +541,7 @@
 		    <table class="portfolio_table">
 		   <tr>
 		       <td rowspan="2"> Insert Photo <br><br><input  id="btnPicture2" type="file" accept="image/*" required/> </td>
-		       <td> Patient ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="PatientID" placeholder="Patient ID" required/></td>
+		       <td> Patient ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span id = PatientID></span></td>
 		   </tr>
 		   <tr>
 		       <td>Name: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientName" placeholder="Name" required/></td>
@@ -754,7 +754,7 @@
 		    <table class="portfolio_table">
 		    <tr>
 		      <td rowspan="2" width="50%"> Patient Picture URL:<p type="text" id="PictureP" required></p></td>
-		      <td width="50%"> Patient ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="PatientID2" placeholder="Patient ID" required/></td>
+		      <td width="50%"> Patient ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span id='PatientID2'></span></td>
 		    </tr>
 		    <tr>
 		      <td>Name: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="patientName2" placeholder="Name" required/></td>
@@ -818,7 +818,7 @@
 		   </tr>
 		   <tr>
 		       <td width="50%">Name: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffName2" placeholder="Name" required/></td>
-		       <td width="50%"> Staff ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="StaffID2" placeholder="Staff ID" required/></td>
+		       <td width="50%"> Staff ID: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span id="StaffID2"></span></td>
 		   </tr>
 		   <tr>
 			   <td  colspan="2" id = "ssBD2"> Initial Date: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="staffInitialDate2" placeholder="Enter Date" required/></td>
@@ -926,12 +926,9 @@
 		</div>
 		</div>
 
-		<div id="expand" onclick="expand()" >Chat
-			<div  id ="notification" ></div>
-		</div>
-				<div id= "leftList">
-					<div  id ="notificationAll" ></div>
-					<div  id ="notificationPart"></div>
+
+		<div id="expand" onclick="expand()" >Chat</div>
+		<div id= "leftList">
 			<ul>
 				<li id= "chatAll" onclick="displayChat('0')">Center & System</li>
 				<li id = "chatPart" onclick="displayChat('1')">Center</li>
@@ -939,8 +936,8 @@
 		</div>
 
 
-			<script type = 'text/javascript' src = 'Config.js'></script>
-			<script type = 'text/javascript' src = 'PortfolioJS.js'></script>
+			<script type = 'text/javascript' src = '/Users/Gama/Documents/GitHub/shared-LTC-TMS/LTCTMS/Frontend/Config.js'></script>
+			<script type = 'text/javascript' src = '/Users/Gama/Documents/GitHub/shared-LTC-TMS/LTCTMS/Frontend/PortfolioJS.js'></script>
 			<script type = 'text/javascript' src = 'chat.js'></script>
 			<script type = 'text/javascript' src = 'Profile.js'></script>
 	</body>

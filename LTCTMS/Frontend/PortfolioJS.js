@@ -15,6 +15,22 @@ function staffPortfolio(){
 function patientPortfolio(){
   document.getElementById('newPatientPortfolio').style.display = 'block';
   document.getElementById('newPortfolioSeletion').style.display ='none';
+  var fb = firebase.database().ref()
+
+  fb.once('value', function(snapshot){
+    if(snapshot.hasChild('Patient')){
+      fb.child('Patient').limitToLast(1).once('value', function(childSnapshot){
+        childSnapshot.forEach(function(childSnapshot1){
+          var id = childSnapshot1.key;
+          var newid = parseInt(id) + 1;
+          document.getElementById('PatientID').innerHTML = newid;
+        });
+      });
+
+    }else{
+      document.getElementById('PatientID').innerHTML = '550000';
+    }
+  });
 }
 
 function Cancel(){
@@ -56,13 +72,39 @@ function handleuploadfile3(e) {
 }
 
 
+
 function handleuploadfileSubmit(e) {
-    firebase.storage().ref('Staff/').child(file1.name).put(file1);
-    firebase.storage().ref('Staff/').child(file4.name).put(file4);
-    firebase.storage().ref('Staff/').child(file3.name).put(file3);
-     var storageRef1 = firebase.storage().ref('Staff/'+file1.name)
-     var storageRef3 = firebase.storage().ref('Staff/'+file3.name)
-    var storageRef4 = firebase.storage().ref('Staff/'+file4.name)
+  var staffName = document.getElementById('staffName').value;
+  var staffNID = document.getElementById('staffNID').value;
+  var staffNationality = document.getElementById('staffNationality').value;
+  var staffGender = document.getElementById('staffGender').value;
+  var staffDOB = document.getElementById('staffDOB').value;
+  var staffEmail = document.getElementById('staffEmail').value;
+  var staffContact = document.getElementById('staffContact').value;
+  var staffEContact = document.getElementById('staffEContact').value;
+  var staffAddress = document.getElementById("staffAddress").value;
+  var staffPassword = document.getElementById('staffPassword').value;
+  var staffPosition = document.getElementById('staffPosition').value;
+  var staffInitialDate = document.getElementById('staffInitialDate').value;
+  var staffEName = document.getElementById('staffEName').value;
+  var staffERelationship = document.getElementById('staffERelationship').value;
+  var staffbriefdescription = document.getElementById('staffbriefdescription').value;
+  if(staffPosition == 'Director'){
+     var StaffID = document.getElementById('StaffIDDIR').value;
+  }
+  if(staffPosition == 'CNO'){
+    var StaffID = document.getElementById('StaffID').innerHTML;
+  }
+  if(staffPosition == 'CNA'){
+    var StaffID = document.getElementById('StaffID').innerHTML;
+  }
+
+    firebase.storage().ref('Staff/'+StaffID).child(file1.name).put(file1);
+    firebase.storage().ref('Staff/'+StaffID).child(file4.name).put(file4);
+    firebase.storage().ref('Staff/'+StaffID).child(file3.name).put(file3);
+     var storageRef1 = firebase.storage().ref('Staff/'+StaffID+'/'+file1.name)
+     var storageRef3 = firebase.storage().ref('Staff/'+StaffID+'/'+file3.name)
+    var storageRef4 = firebase.storage().ref('Staff/'+StaffID+'/'+file4.name)
      //  var storageRef = firebase.storage().ref('Sponsor/'+name+".png")
 
 
@@ -82,22 +124,6 @@ function handleuploadfileSubmit(e) {
 
   function complete(){
     console.log('Successful');
-     var StaffID = document.getElementById('StaffID').value;
-     var staffName = document.getElementById('staffName').value;
-     var staffNID = document.getElementById('staffNID').value;
-     var staffNationality = document.getElementById('staffNationality').value;
-     var staffGender = document.getElementById('staffGender').value;
-     var staffDOB = document.getElementById('staffDOB').value;
-     var staffEmail = document.getElementById('staffEmail').value;
-     var staffContact = document.getElementById('staffContact').value;
-     var staffEContact = document.getElementById('staffEContact').value;
-     var staffAddress = document.getElementById("staffAddress").value;
-     var staffPassword = document.getElementById('staffPassword').value;
-     var staffPosition = document.getElementById('staffPosition').value;
-     var staffInitialDate = document.getElementById('staffInitialDate').value;
-     var staffEName = document.getElementById('staffEName').value;
-     var staffERelationship = document.getElementById('staffERelationship').value;
-     var staffbriefdescription = document.getElementById('staffbriefdescription').value;
 
 
      //var x =storageRef1.getDownloadURL();
@@ -132,9 +158,24 @@ function handleuploadfileSubmit(e) {
 
      };
      updates[ staffPosition +'/'+StaffID +'/Portfolio/'] = postData;
-     //updates['Portfolio/'+ StaffID] = postData;
+
     firebase.database().ref().update(updates);
+    if(staffPosition == 'CNO'){
+      var fbaccount = firebase.database().ref('uAccount/'+StaffID);
+      fbaccount.child('Email/').set(staffEmail);
+      fbaccount.child('Password/').set(staffPassword);
+      fbaccount.child('Position/').set(staffPosition);
+      fbaccount.child('StaffID/').set(StaffID);
+      fbaccount.child('Name/').set(staffName);
+
+      var fbdelete = firebase.database().ref('No_Portfolio').child('CNO');
+      fbdelete.once('value',function(deletionshot){
+        if(deletionshot.hasChild(StaffID)){
+          fbdelete.child(StaffID).remove();
+        }
       });
+    }
+    });
       storageRef3.getDownloadURL()
        .then(function(url3){
            console.log(url3);
@@ -189,7 +230,7 @@ uploadtask.on('state_changed',
 
   function complete(){
     console.log('Successful');
-     var PatientID = document.getElementById('PatientID').value;
+     var PatientID = document.getElementById('PatientID').innerHTML;
      var patientName = document.getElementById('patientName').value;
      var patientNID = document.getElementById('patientNID').value;
      var patientNationality = document.getElementById('patientNationality').value;
@@ -379,9 +420,9 @@ setTimeout(function(){
     document.getElementById('btnEditSP').style.display='none';
     document.getElementById('btnDeleteSP').style.display='none';
   }
-  if(role =="Director"){
+  //if(role =="Director"){
      document.getElementById("newPortfolio").style.display = "block";
-  }
+//  }
 },2000);
 
 
@@ -495,6 +536,7 @@ function viewP(){
           document.getElementById("ssP").remove();
           var birthDate = document.getElementById("sInitialDate");
           birthDate.setAttribute("colspan","4");
+
       }
       document.getElementById('sNationality').innerHTML= Nationality ;
       document.getElementById('sEmail').innerHTML= Email;
@@ -549,7 +591,7 @@ function editPP(){
     console.log(photo);
     //TODO: picture can't be edit?
     document.getElementById('PictureP').innerHTML = photo;
-    document.getElementById('PatientID2').value= id;
+    document.getElementById('PatientID2').innerHTML = id;
     document.getElementById('patientName2').value= Name;
     document.getElementById('patientNID2').value= NationalID;
     document.getElementById('patientGender2').value= Gender;
@@ -607,7 +649,7 @@ console.log(position);
     console.log(photo);
     //TODO: picture can't be edit?
     document.getElementById('PictureS').innerHTML = photo;
-    document.getElementById('StaffID2').value= id;
+    document.getElementById('StaffID2').innerHTML= id;
     document.getElementById('staffName2').value= Name;
     document.getElementById('staffNID2').value= NationalID;
     document.getElementById('staffGender2').value= Gender;
@@ -641,7 +683,7 @@ console.log(position);
 function SubmitPPPP(){
 
   var photo = document.getElementById('PictureP').innerHTML;
-  var id = document.getElementById('PatientID2').value;
+  var id = document.getElementById('PatientID2').innerHTML;
   var Name = document.getElementById('patientName2').value;
   var NID = document.getElementById('patientNID2').value;
   var Gender = document.getElementById('patientGender2').value;
@@ -702,7 +744,7 @@ function keypresshandler(event){
 }
 function submitSP(){
   var pic = document.getElementById('PictureS').innerHTML;
-  var id = document.getElementById('StaffID2').value;
+  var id = document.getElementById('StaffID2').innerHTML;
   var Name = document.getElementById('staffName2').value;
   var NID = document.getElementById('staffNID2').value;
   var Gender = document.getElementById('staffGender2').value;
@@ -752,6 +794,11 @@ function submitSP(){
 
   updates[ position +'/'+ id +'/Portfolio/'] = postData;
   firebase.database().ref().update(updates);
+
+  firebase.database().ref('uAccount/'+id+'/Email/').set(Email);
+  firebase.database().ref('uAccount/'+id+'/Name/').set(Name);
+  firebase.database().ref('uAccount/'+id+'/StaffID/').set(id);
+
   window.location.reload();
 }
 
@@ -784,6 +831,7 @@ function deleteSP(){
  var position = document.getElementById('sPosition').innerHTML;
  var id = document.getElementById('SID').innerHTML;
  var fbSP = firebase.database().ref(position);
+ var fbuAccount = firebase.database().ref('uAccount/');
  var r = confirm ("Are you sure you want to delete?");
   if (r == true) {
     fbSP.child(id+'/Portfolio').on('value',function(snapshot){
@@ -796,6 +844,9 @@ function deleteSP(){
       firebase.storage().ref('Staff/').child(pic).delete().then(function(){
         alert('successfully deleted the storage file!');
          fbSP.child(id).remove();
+         if(position == 'CNO'){
+           fbuAccount.child(id).remove();
+         }
         window.location.reload();
       }).catch(function(error){
         alert('failed to delete!');
@@ -903,13 +954,6 @@ function updateTable(){
       result = result && genderF === self.data('gender');
     }
 
-
-  /*  if (idnroomF && (idnroomF != 'all')) {
-      result = result && idnroomF === self.data('idroom');
-      console.log('idroom = '+self.data('idroom'));
-      console.log('idnroomF = '+idnroomF);
-    }*/
-
     console.log('123');
     return result;
   }).show();
@@ -945,35 +989,6 @@ $('#filterGender').on('change', function() {
 
   updateTable();
 });
-///////////////////////////////
-
-
-/*var scope = [];
-$('#filterRoomNo').on('change', function(){
-
-  roomF = this.value;
-  readP();
-  console.log(scope);
-  scope.length = 0;
-      //updateTable();
-});
-
-function readP(){
-  var fbPR = firebase.database().ref('Patient/');
-  fbPR.once('value', readallP);
-
-}
-
-function readallP(snapshot){
-    snapshot.forEach(function(childSnapshot){
-      var id = childSnapshot.key;
-      var room = childSnapshot.child('Portfolio/patientRoomNo').val();
-      scope.push(id);
-      scope.push(room);
-      });
-      console.log(scope);
-}*/
-
 
 function viewportfoliofilter(){
     document.getElementById("form").style.display = "inline-block";
@@ -983,13 +998,8 @@ function viewportfoliofilter(){
 var portport = document.getElementById("shortportfolio");
 
 function closefilter(){
-  //portfilter.setAttribute("style","animation: portfolio_pop 2s;");
-  portfilter.setAttribute("style","display:none;")
-
-  portport.setAttribute("style","top:-130px;")
-
-  //  document.getElementById("shortportfolio").style.display = "inline-block";
-
+  portfilter.setAttribute("style","display:none;");
+  portport.setAttribute("style","top:-130px;");
 }
 
 var portfilter = document.getElementById("form");
@@ -1006,10 +1016,129 @@ function openmenu(){
 }
 }
 
-
 function pass123(){
 var work123  = document.getElementById("staffPosition").value;
   if(work123 == "CNA"){
     document.getElementById("passtable").style.display= "block";
+    var db = firebase.database().ref('CNA');
+    db.limitToLast(1).on('value', function(snapshot) {
+      snapshot.forEach(function(childSnapshot){
+        var previousid = childSnapshot.key;
+        var newid = parseInt(previousid) + 1;
+        document.getElementById('StaffID').innerHTML = newid;
+      });
+    });
+  }else{
+    if(work123 =="DIR"){
+    document.getElementById("passtable").style.display= "none";
+    var createText = document.getElementById('StaffID');
+    document.getElementById('StaffID').innerHTML='';
+    var text = document.createElement('input');
+    text.setAttribute('type','text');
+    text.setAttribute('id','StaffIDDIR');
+    text.setAttribute('placeholder','6-digit');
+    createText.appendChild(text);
+    }else if(work123 =="CNO"){
+      document.getElementById("passtable").style.display= "block";
+      document.getElementById('StaffID').innerHTML='';
+      var y = document.getElementById('StaffID');
+      var selection = document.createElement('select');
+      var autoid = document.createElement('option');
+      var defaultOption = document.createElement('option');
+
+      selection.setAttribute('id','StaffIDCNO');
+      selection.setAttribute('onchange','cnoID()');
+
+      autoid.setAttribute('value','NewID');
+      autoid.setAttribute('id','NewID');
+      autoid.text = 'NewID';
+
+      defaultOption.text = '--Select--';
+
+      selection.appendChild(defaultOption);
+      selection.appendChild(autoid);
+      y.appendChild(selection);
+
+      var fbEAccount= firebase.database().ref('No_Portfolio').child('CNO');
+      fbEAccount.once('value', function(snapshot){
+        snapshot.forEach(function(childSnapshot){
+          var newid = childSnapshot.key;
+          var optionID = document.createElement('option');
+          optionID.setAttribute('value', newid);
+          optionID.setAttribute('id', newid);
+          optionID.text = newid;
+          selection.appendChild(optionID);
+          y.appendChild(selection);
+        });
+      });
+    }
   }
+}
+
+function cnoID(){
+  var id = document.getElementById('StaffIDCNO').value;
+  if(id == 'NewID'){
+    checkCNOID();
+  }else{
+    var fb = firebase.database().ref('No_Portfolio').child('CNO/'+id);
+    fb.once('value', function(snapshot){
+      var email = snapshot.child('Email').val();
+      var name = snapshot.child('Name').val();
+      var password = snapshot.child('Password').val();
+
+      document.getElementById('staffEmail').value = email;
+      document.getElementById('staffName').value = name;
+      document.getElementById('staffPassword').value = password;
+      document.getElementById('StaffID').innerHTML = id;
+    });
+  }
+
+}
+
+function checkCNOID(){
+  var fb = firebase.database().ref();
+  var fbPro = firebase.database().ref('No_Portfolio').child('CNO');
+  var fbPort = firebase.database().ref('CNO');
+
+  fb.once('value',function(snapshot){
+      if(snapshot.hasChild('CNO') && snapshot.hasChild('No_Portfolio/CNO')){
+
+        fbPort.limitToLast(1).once('value',function(snapshot1){
+          snapshot1.forEach(function(childSnapshot1){
+            var idPort = childSnapshot1.key;
+            fbPro.limitToLast(1).once('value', function(snapshot2){
+              snapshot2.forEach(function(childSnapshot2){
+                var idPro = childSnapshot2.key;
+                if(idPort <= idPro){
+                  var newid = parseInt(idPro) + 1;
+                }else if(idPort >= idPro){
+                  var newid = parseInt(idPort) + 1;
+                }
+                document.getElementById('StaffID').innerHTML = newid;
+          });
+        });
+      });
+    });
+  }else{
+    if(snapshot.hasChild('No_Portfolio/CNO')){
+        fbPro.limitToLast(1).once('value', function(snapshot3){
+          snapshot3.forEach(function(childSnapshot3){
+            var id = childSnapshot3.key;
+            var newid = parseInt(id)+1;
+            document.getElementById('StaffID').innerHTML = newid;
+          });
+        });
+      }else if(snapshot.hasChild('CNO')){
+        fbPort.limitToLast(1).once('value', function(snapshot4){
+            snapshot4.forEach(function(childSnapshot4){
+              var id = childSnapshot4.key;
+              var newid = parseInt(id)+1;
+              document.getElementById('StaffID').innerHTML = newid;
+            });
+          });
+      }else{
+        document.getElementById('StaffID').innerHTML = '220000';
+      }
+    }
+  });
 }
