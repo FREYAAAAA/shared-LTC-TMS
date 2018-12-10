@@ -210,10 +210,30 @@ function handleuploadfile6(e) {
      console.log(file6.name);
 }
 
-
+//upload files
 function handleuploadfileSubmit6(e) {
-firebase.storage().ref('Patient/').child(file6.name).put(file6);
-var storageRef6=firebase.storage().ref('Patient/'+file6.name);
+  var PatientID = document.getElementById('PatientID').innerHTML;
+  var patientName = document.getElementById('patientName').value;
+  var patientNID = document.getElementById('patientNID').value;
+  var patientNationality = document.getElementById('patientNationality').value;
+  var patientGender = document.getElementById('patientGender').value;
+  var patientDOB = document.getElementById('patientDOB').value;
+  var patientEmail = document.getElementById('patientEmail').value;
+  var patientContact = document.getElementById('patientContact').value;
+  var patientEContact = document.getElementById('patientEContact').value;
+  var patientAddress = document.getElementById('patientAddress').value
+  var AppointmentRecord = document.getElementById('AppointmentRecord').value;
+  var patientPassword = document.getElementById('patientPassword').value;
+  var MedicalRecord = document.getElementById('MedicalRecord').value;
+  var BriefDescription = document.getElementById('BriefDescription').value;
+  var patientRoomNo = document.getElementById('patientRoomNo').value;
+  var patientAdmissionDate = document.getElementById('patientAdmissionDate').value;
+  var patientEName = document.getElementById('patientEName').value;
+  var patientERelationship = document.getElementById('patientERelationship').value;
+  var patientAdmissionReason = document.getElementById('patientAdmissionReason').value;
+
+firebase.storage().ref('Patient/'+PatientID).child(file6.name).put(file6);
+var storageRef6=firebase.storage().ref('Patient/'+PatientID+'/'+file6.name);
 console.log(file6);
 var uploadtask = storageRef6.put(file6);
 
@@ -230,26 +250,6 @@ uploadtask.on('state_changed',
 
   function complete(){
     console.log('Successful');
-     var PatientID = document.getElementById('PatientID').innerHTML;
-     var patientName = document.getElementById('patientName').value;
-     var patientNID = document.getElementById('patientNID').value;
-     var patientNationality = document.getElementById('patientNationality').value;
-     var patientGender = document.getElementById('patientGender').value;
-     var patientDOB = document.getElementById('patientDOB').value;
-     var patientEmail = document.getElementById('patientEmail').value;
-     var patientContact = document.getElementById('patientContact').value;
-     var patientEContact = document.getElementById('patientEContact').value;
-     var patientAddress = document.getElementById('patientAddress').value
-     var AppointmentRecord = document.getElementById('AppointmentRecord').value;
-     var patientPassword = document.getElementById('patientPassword').value;
-     var MedicalRecord = document.getElementById('MedicalRecord').value;
-     var BriefDescription = document.getElementById('BriefDescription').value;
-     var patientRoomNo = document.getElementById('patientRoomNo').value;
-     var patientAdmissionDate = document.getElementById('patientAdmissionDate').value;
-     var patientEName = document.getElementById('patientEName').value;
-     var patientERelationship = document.getElementById('patientERelationship').value;
-     var patientAdmissionReason = document.getElementById('patientAdmissionReason').value;
-
 
      storageRef6.getDownloadURL()
      .then(function(url){
