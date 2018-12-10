@@ -53,16 +53,16 @@ function newAccount(){
                 StaffID : sid
                 }
                 var updates={}
-                var updates1 ={}
+                if(position =="CNO"){
+                    updates['No_Portfolio/'+position+'/'+sid] =data;
+                }
                 updates['uAccount/'+ sid]=data;
-                updates['No_Portfolio/'+position+'/'+sid] =data;
                 firebase.database().ref().update(updates);
                 location.reload();
       }
     }
   });
 }
-
 //Delete account
 function deleteUserAccount(i){
   var sid = document.getElementById('cellId['+i+']').innerHTML;
