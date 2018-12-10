@@ -1026,6 +1026,9 @@ var work123  = document.getElementById("staffPosition").value;
         var previousid = childSnapshot.key;
         var newid = parseInt(previousid) + 1;
         document.getElementById('StaffID').innerHTML = newid;
+        document.getElementById('staffEmail').value = "";
+        document.getElementById('staffName').value = "";
+        document.getElementById('staffPassword').value = "";
       });
     });
   }else{
@@ -1038,6 +1041,9 @@ var work123  = document.getElementById("staffPosition").value;
     text.setAttribute('id','StaffIDDIR');
     text.setAttribute('placeholder','6-digit');
     createText.appendChild(text);
+    document.getElementById('staffEmail').value = "";
+    document.getElementById('staffName').value = "";
+    document.getElementById('staffPassword').value = "";
     }else if(work123 =="CNO"){
       document.getElementById("passtable").style.display= "block";
       document.getElementById('StaffID').innerHTML='';
