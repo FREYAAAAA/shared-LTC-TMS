@@ -125,6 +125,7 @@ function viewTable(value){
             button2.innerHTML="Delete";
             button.innerHTML="Edit";
             var arr = childKey.split("-");
+            if(value ==null){
                 if(arr[0]==dd){
                     var todayMemo = document.getElementById("today_memo");
                       var li = document.createElement("li");
@@ -133,8 +134,7 @@ function viewTable(value){
                       ol.appendChild(li);
                       todayMemo.appendChild(ol);
                 }
-
-
+            }
             var contextTable = document.getElementById("context_table");
             var row = contextTable.insertRow(0);
             var celldate = row.insertCell(0);
