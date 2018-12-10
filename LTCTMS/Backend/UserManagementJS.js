@@ -478,7 +478,7 @@ function historyAppLogging(n){
 
 }
 
-function sortDateandTime(n,x){
+function sortDateandTime(n,m){
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
   table = document.getElementById(n);
   switching = true;
@@ -486,20 +486,23 @@ function sortDateandTime(n,x){
   while (switching) {
     switching = false;
     rows = table.rows;
-    for (i = 0; i < (rows.length - 1); i++) {
+    for (i  = 0; i < (rows.length - 1); i++) {
       shouldSwitch = false;
       /*Get the two elements you want to compare,
       one from current row and one from the next:*/
-      x = rows[i].getElementsByTagName("TD")[x];
-      y = rows[i + 1].getElementsByTagName("TD")[x];
+      x = rows[i].getElementsByTagName("TD")[m];
+      y = rows[i + 1].getElementsByTagName("TD")[m];
       /*check if the two rows should switch place,
       based on the direction, asc or desc:*/
       if (dir == "asc") {
+        //console.log(x.innerHTML);
+      //  console.log('----------'+y.innerHTML);
         if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
           shouldSwitch= true;
           break;
         }
       } else if (dir == "desc") {
+          //onsole.log(x.innerHTML);
         if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
           shouldSwitch = true;
           break;
