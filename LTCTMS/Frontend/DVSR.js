@@ -98,23 +98,19 @@ fbPAT.once("value")
         var fbPAT_DRS = firebase.database().ref("Activities/"+selected_id+"/"+recreated_search+"/"+selected_CNA+"/daily_status");
         fbPAT_DRS.once("value")
             .then(function(snapshot){
-                var array = [];
-                var array_val = [];
                 var index = 0;
                 snapshot.forEach(function(childSnapshot){
                     var childKey = childSnapshot.key;
                     var childData = childSnapshot.val();
-                    array.push(childKey);
-                    console.log(childData);
-                    console.log(array[index]);
                     var row = DSR_table.insertRow(1);
                     var time = row.insertCell(0)
                     var Evt = row.insertCell(1);
                     var val = row.insertCell(2);
                     var a = childKey.split("_");
-                    var SCrow = SC_table.insertRow(1);
+
                     if(a[1] == "Oxygen Used" ){
                         row.remove();
+                        var SCrow = SC_table.insertRow(1);
                         var SCtime = SCrow.insertCell(0)
                         var SCEvt = SCrow.insertCell(1);
                         var SCval = SCrow.insertCell(2);
@@ -125,6 +121,7 @@ fbPAT.once("value")
                     }
                     if(a[1] == "Steam Used"){
                         row.remove();
+                        var SCrow = SC_table.insertRow(1);
                         var SCtime = SCrow.insertCell(0)
                         var SCEvt = SCrow.insertCell(1);
                         var SCval = SCrow.insertCell(2);
@@ -143,10 +140,7 @@ fbPAT.once("value")
                         else{
                             val.appendChild(document.createTextNode(childData));
                         }
-
                     }
-
-
                 })
             })
 
@@ -271,7 +265,10 @@ fbPAT.once("value")
                             val.appendChild(document.createTextNode(childData));
                         }
                         else{
-                            childData = childData.replace(/[*+?^${}()"|]/g,"");
+                            childData = childData.replace(/[*+?^${}()"|/]/g,"");
+                            if(childData.includes("~") == true){
+                                childData = childData.replace("~","/");
+                            }
                             val.appendChild(document.createTextNode(childData));
                         }
                 })
