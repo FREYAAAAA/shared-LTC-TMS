@@ -287,10 +287,10 @@
 					<table id="UserList" style="width:100%;border-style:hidden;">
 						<thread>
 							<tr>
-								<th style="width:20%;border-bottom:hidden;" >Staff ID</th>
-								<th style="width:25%;border-bottom:hidden;" >EMAIL</th>
-								<th style="width:25%;border-bottom:hidden;" >NAME</th>
-								<th style="width:15%;border-bottom:hidden;" >ROLE</th>
+								<th style="width:20%;border-bottom:hidden;" onclick="sortDateandTime('UserListBody',1)">Staff ID</th>
+								<th style="width:25%;border-bottom:hidden;" onclick="sortDateandTime('UserListBody',2)">EMAIL</th>
+								<th style="width:25%;border-bottom:hidden;" onclick="sortDateandTime('UserListBody',3)">NAME</th>
+								<th style="width:15%;border-bottom:hidden;" onclick="sortDateandTime('UserListBody',4)">ROLE</th>
 								<th colspan="2" style="width:15%;border-bottom:hidden;"><input type='button' id="createAccount" style="cursor:pointer;"onclick="document.getElementById('createNewAccountpop').style.display = 'block';" value = "Create Account"/></th>
 							</tr>
 						</thread>
@@ -466,7 +466,7 @@
 		<p style="font-weight:bold;position:relative;left:38%;top:10px;">Login Record</p>
 		<table style="border-style:hidden;position:relative;left:25px;top:18px;">
 		<thead>
-		<th style="width:100%" onclick="sortDateandTime('viewbrowserloginbody')">Date & Time </th>
+		<th style="width:100%" onclick="sortDateandTime('viewbrowserloginbody',1)">Date & Time </th>
 	</thead>
 		<tbody id="viewbrowserloginbody">
 			<tr></tr>
@@ -478,7 +478,7 @@
 		<p style="font-weight:bold;position:relative;left:35%;top:10px;">Logout Record</p>
 	<table style="border-style:hidden;position:relative;left:25px;top:20px;">
 		<thead>
-		<th style="width:100%" onclick="sortDateandTime('viewbrowserlogoutbody')">Date & Time </th>
+		<th style="width:100%" onclick="sortDateandTime('viewbrowserlogoutbody',1)">Date & Time </th>
 	</thead>
 		<tbody id="viewbrowserlogoutbody">
 			<tr></tr>
@@ -489,7 +489,7 @@
 	<p style="font-weight:bold;position:relative;left:35%;top:10px;">Password History</p>
 <table style="border-style:hidden;position:relative;left:25px;top:20px;">
 	<thead>
-	<th style="width:50%" onclick="sortDateandTime('viewbrowserpasswordhistory')">Date & Time </th>
+	<th style="width:50%" onclick="sortDateandTime('viewbrowserpasswordhistory',1)">Date & Time </th>
 	<th style="width:50%">Password Record </th>
 </thead>
 	<tbody id="viewbrowserpasswordhistory">
@@ -514,7 +514,7 @@
 		<p style="font-weight:bold;position:relative;left:38%;top:10px;">Login Record</p>
 		<table style="border-style:hidden;position:relative;left:25px;top:18px;">
 		<thead>
-		<th style="width:100%" onclick="sortDateandTime('viewapploginbody')">Date & Time </th>
+		<th style="width:100%" onclick="sortDateandTime('viewapploginbody',1)">Date & Time </th>
 	</thead>
 		<tbody id="viewapploginbody">
 			<tr></tr>
@@ -526,7 +526,7 @@
 		<p style="font-weight:bold;position:relative;left:35%;top:10px;">Logout Record</p>
 	<table style="border-style:hidden;position:relative;left:25px;top:20px;">
 		<thead>
-		<th style="width:100%" onclick="sortDateandTime('viewapplogoutbody')">Date & Time </th>
+		<th style="width:100%" onclick="sortDateandTime('viewapplogoutbody',1)">Date & Time </th>
 	</thead>
 		<tbody id="viewapplogoutbody">
 			<tr></tr>
@@ -537,7 +537,7 @@
 	<p style="font-weight:bold;position:relative;left:35%;top:10px;">Password History</p>
 <table style="border-style:hidden;position:relative;left:25px;top:20px;">
 	<thead>
-	<th style="width:50%" onclick="sortDateandTime('viewapppasswordhistory')">Date & Time </th>
+	<th style="width:50%" onclick="sortDateandTime('viewapppasswordhistory',1)">Date & Time </th>
 	<th style="width:50%">Password Record </th>
 </thead>
 	<tbody id="viewapppasswordhistory">
