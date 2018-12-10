@@ -478,7 +478,7 @@ function historyAppLogging(n){
 
 }
 
-function sortDateandTime(n){
+function sortDateandTime(n,x){
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
   table = document.getElementById(n);
   switching = true;
@@ -497,8 +497,8 @@ function sortDateandTime(n){
       shouldSwitch = false;
       /*Get the two elements you want to compare,
       one from current row and one from the next:*/
-      x = rows[i].getElementsByTagName("TD")[0];
-      y = rows[i + 1].getElementsByTagName("TD")[0];
+      x = rows[i].getElementsByTagName("TD")[x];
+      y = rows[i + 1].getElementsByTagName("TD")[x];
       /*check if the two rows should switch place,
       based on the direction, asc or desc:*/
       if (dir == "asc") {

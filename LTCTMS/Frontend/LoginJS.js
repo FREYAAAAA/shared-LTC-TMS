@@ -125,7 +125,12 @@ function forgetPass(){
           alert("Email doesn't exist!");
         }
     }else{
-      alert("ID doesn't exist!");
+      if(id == ''){
+        alert("Plase enter your ID!");
+      }else{
+          alert("ID doesn't exist!");
+      }
+
     }
   });
 }
