@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--#30B400#339933#99CC00#FFFFCC-->
 <html>
 
@@ -283,7 +283,7 @@
 
 
 
-				<div class="container" id="data1" style="position:relative;width:100%;overflow:auto;">
+				<div class="container" id="data1" style="position:relative;width:100%;">
 					<table id="UserList" style="width:100%;border-style:hidden;">
 						<thread>
 							<tr>
@@ -295,45 +295,39 @@
 							</tr>
 						</thread>
 						<tbody id='UserListBody'>
-							<tr>
-							</tr>
 						</tbody>
 					</table>
 				</div>
-				<div class="container" id="data2" style="display:none;position:relative;overflow-x:hidden;overflow-y:auto;">
+				<div class="container" id="data2" style="display:none;position:relative;">
 					<p style="position:relative;left:270px;font-size:18px;font-weight:bold;color:#B53232;top:8px;">Latest Login</p>
 					<p style="position:relative;left:590px;top:-16px;font-size:18px;font-weight:bold;color:#B53232;">Latest Logout</p>
 						<table id="browseraccount" style="width:100%;border-style:hidden;position:relative;top:-10px;">
 							<thread>
 								<tr>
-									<th style="width:12%">ID</th>
-									<th style="width:24%">Date&Time</th>
-									<th style="width:24%">Date&Time</th>
-									<th style="width:12%">History</th>
+									<th style="width:12%" onclick="sortDateandTime('browseraccountbody','0')">ID</th>
+									<th style="width:24%" onclick="sortDateandTime('browseraccountbody','1')">Date&Time</th>
+									<th style="width:24%" onclick="sortDateandTime('browseraccountbody','2')">Date&Time</th>
+									<th style="width:12%" >History</th>
 								</tr>
 							</thread>
 							<tbody id='browseraccountbody'>
-								<tr>
-								</tr>
 							</tbody>
 						</table>
 				</div>
 
-				<div class="container" id="data3" style="display:none;position:relative;overflow-x:hidden;overflow-y:auto;">
+				<div class="container" id="data3" style="display:none;position:relative;">
 					<p style="position:relative;left:270px;font-size:18px;font-weight:bold;color:#B53232;top:8px;">Latest Login</p>
 					<p style="position:relative;left:590px;top:-16px;font-size:18px;font-weight:bold;color:#B53232;">Latest Logout</p>
 						<table id="appaccount" style="width:100%;border-style:hidden;position:relative;top:-10px;">
 							<thread>
 								<tr>
-									<th style="width:12%">ID</th>
-									<th style="width:24%">Date&Time</th>
-									<th style="width:24%">Date&Time</th>
+									<th style="width:12%"  onclick="sortDateandTime('appaccountbody','0')">ID</th>
+									<th style="width:24%"  onclick="sortDateandTime('appaccountbody','1')">Date&Time</th>
+									<th style="width:24%"  onclick="sortDateandTime('appaccountbody','2')">Date&Time</th>
 									<th style="width:12%">History</th>
 								</tr>
 							</thread>
 							<tbody id='appaccountbody'>
-								<tr>
-								</tr>
 							</tbody>
 						</table>
 				</div>
@@ -469,7 +463,6 @@
 		<th style="width:100%" onclick="sortDateandTime('viewbrowserloginbody',0)">Date & Time </th>
 	</thead>
 		<tbody id="viewbrowserloginbody">
-			<tr></tr>
 		</tbody>
 	</table>
 	</div>
@@ -481,7 +474,6 @@
 		<th style="width:100%" onclick="sortDateandTime('viewbrowserlogoutbody',0)">Date & Time </th>
 	</thead>
 		<tbody id="viewbrowserlogoutbody">
-			<tr></tr>
 		</tbody>
 	</table>
 </div>
@@ -493,7 +485,6 @@
 	<th style="width:50%">Password Record </th>
 </thead>
 	<tbody id="viewbrowserpasswordhistory">
-		<tr></tr>
 	</tbody>
 </table>
 </div>
@@ -517,7 +508,6 @@
 		<th style="width:100%" onclick="sortDateandTime('viewapploginbody',0)">Date & Time </th>
 	</thead>
 		<tbody id="viewapploginbody">
-			<tr></tr>
 		</tbody>
 	</table>
 	</div>
@@ -526,10 +516,9 @@
 		<p style="font-weight:bold;position:relative;left:35%;top:10px;">Logout Record</p>
 	<table style="border-style:hidden;position:relative;left:25px;top:20px;">
 		<thead>
-		<th style="width:100%" onclick="sortDateandTime('viewapplogoutbody',0)">Date & Time </th>
+		<th style="width:100%" onclick="sortDateandTime('viewapplogoutbody','0')">Date & Time </th>
 	</thead>
 		<tbody id="viewapplogoutbody">
-			<tr></tr>
 		</tbody>
 	</table>
 </div>
@@ -541,7 +530,6 @@
 	<th style="width:50%">Password Record </th>
 </thead>
 	<tbody id="viewapppasswordhistory">
-		<tr></tr>
 	</tbody>
 </table>
 </div>
