@@ -128,6 +128,16 @@ var hour = a.getHours();
 var minute = a.getMinutes();
 var second = a.getSeconds();
 
+if(hour < 10){
+  hour = '0' + hour
+}
+if(minute < 10){
+  minute = '0' + minute
+}
+if(second < 10){
+  second = '0' + second
+}
+
 var time123 = hour+":"+minute+":"+second;
  console.log(time123);
 
