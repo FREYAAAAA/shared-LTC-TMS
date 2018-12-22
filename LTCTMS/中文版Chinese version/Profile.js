@@ -1,4 +1,4 @@
-﻿firebase.auth().onAuthStateChanged(function (firebaseUser){
+firebase.auth().onAuthStateChanged(function (firebaseUser){
 if(firebaseUser){
   console.log(firebaseUser);
   var userid = firebaseUser.uid;
@@ -17,8 +17,8 @@ if(firebaseUser){
     Profilepic.setAttribute('value',pic);
   });
 }else{
-  alert("你已登出，請重新登入!");
-  window.location.href = "//share-b7589.firebaseapp.com/ChineseLogin.html";
+ //alert("You're Logged out now! Please Login again if you need to use this system!");
+ //window.location.href = "//share-b7589.firebaseapp.com/";
 }
 });
 //console.log(document.getElementById('Profilepic').value);
@@ -56,7 +56,7 @@ function submitprofile(){
     if(user){
       if(user.email != email){
         user.updateEmail(email).then(function(){
-          alert("電子信箱已更改!");
+          alert("Email Changed!");
         }).catch(function(error){
           console.log(error.message);
         });
@@ -64,10 +64,10 @@ function submitprofile(){
       user.updateProfile({
         displayName:name
       }).then(function(){
-        alert("個人檔案已更新!");
+        alert("Profile have been updated!");
         window.location.reload();
       }).catch(function(error){
-        console.log('個人檔案更新失敗'+ error.message);
+        console.log('Profile update Failed'+ error.message);
       });
     }
   });
@@ -101,49 +101,81 @@ function submitNewPass(){
   var oldPass = document.getElementById('oldPassword').value;
   if (newPass==cnewPass){
       var user = firebase.auth().currentUser;
-        var credentials = firebase.auth.EmailAuthProvider.credential(
-          user.email,
-          oldPass);
+      var credentials = firebase.auth.EmailAuthProvider.credential(
+        user.email,
+        oldPass);
         user.reauthenticateAndRetrieveDataWithCredential(credentials)
         .then(function() {
           user.updatePassword(newPass)
           .then(function(){
-            firebase.database()
-            alert('更新密碼成功!');
+            var today = new Date();
+            var currentYear = today.getFullYear();
+            var currentMonth = today.getMonth()+1;
+            var currentDay = today.getDate();
+
+            var currentHour = today.getHours();
+            var currentMinute = today.getMinutes();
+            var currentSecond = today.getSeconds();
+
+            if(currentHour < 10){
+              currentHour = '0' + currentHour
+            }
+            if(currentMinute < 10){
+              currentMinute = '0' + currentMinute
+            }
+            if(currentSecond < 10){
+              currentSecond = '0' + currentSecond
+            }
+
+            var fullDate = currentYear+'-'+currentMonth+'-'+currentDay;
+            var fullTime = currentHour+':'+currentMinute+':'+currentSecond;
+            var fullDateandTime = fullDate +'-'+ fullTime;
+            var passRenewal = oldPass +'~' + newPass;
+            firebase.database().ref('AccountStatus/Browser/'+ user.uid+'/ChangePasswordHistory/'+fullDateandTime).set(passRenewal);
+
+            alert('Successfully Re-New Password!');
             window.location.reload();
           }).catch(function(error){
             alert(error.message);
           });
         }).catch(function(error) {
-          alert('重新認證失敗!');
+          alert('Failed to reauthenticate!');
         });
   }else{
-    alert("你的密碼不匹配!")
+    alert("Your Password are not match!")
   }
 
 }
 
-var a = new Date();
-var hour = a.getHours();
-var minute = a.getMinutes();
-var second = a.getSeconds();
 
-var time123 = hour+":"+minute+":"+second;
- console.log(time123);
-
-window.onload=function(){
-    if(time123<"12:00:00" && time123>="04:00:00"){
-    document.getElementById("time123").innerHTML = "早安 &nbsp ";
-  }
-  if(time123>="12:00:00" && time123<"18:00:00"){
-  document.getElementById("time123").innerHTML = "午安 &nbsp ";
-}
-  if(time123>="18:00:00" || time123<"04:00:00"){
-document.getElementById("time123").innerHTML = "晚安 &nbsp ";
-}
-}
 
 function Logout(){
+  var today = new Date();
+  var currentYear = today.getFullYear();
+  var currentMonth = today.getMonth()+1;
+  var currentDay = today.getDate();
+
+  var currentHour = today.getHours();
+  var currentMinute = today.getMinutes();
+  var currentSecond = today.getSeconds();
+
+  if(currentHour < 10){
+    currentHour = '0' + currentHour
+  }
+  if(currentMinute < 10){
+    currentMinute = '0' + currentMinute
+  }
+  if(currentSecond < 10){
+    currentSecond = '0' + currentSecond
+  }
+
+  var fullDate = currentYear+'-'+currentMonth+'-'+currentDay;
+  var fullTime = currentHour+':'+currentMinute+':'+currentSecond;
+  var fullDateandTime = fullDate +'-'+ fullTime;
+  var user = firebase.auth().currentUser;
+  console.log("==="+user.uid)
+  firebase.database().ref('AccountStatus/Browser/'+user.uid+'/LogoutHistory/'+fullDate+'/'+ fullTime).set('True');
+    firebase.database().ref('AccountStatus/Browser/'+user.uid+'/LatestLogout').set(fullDateandTime);
   firebase.auth().signOut();
   console.log('logout');
   window.location.href = "00Login02.html";
@@ -166,21 +198,16 @@ function uploadPicProfile(){
           user.updateProfile({
             photoURL: url
           }).then(function(){
-            alert('更新個人檔案照片成功!');
+            alert('成功更新個人檔案照片!');
             window.location.reload();
           }).catch(function(err){
-            alert('更新失敗！ 錯誤:'+ err.message);
+            alert('更新失敗! 錯誤:'+ err.message);
           });
         });
       });
 
 
 }
-
-
-
-
-
 
 function bigImg(x) {
     photoword.style.display = "inline";
@@ -199,4 +226,35 @@ function normalImg(x) {
     $("#Profilepic").css({ top: '0px' });
     $("#Profilepic").css("filter", "grayscale(0%)");
 
+}
+
+
+var a = new Date();
+var hour = a.getHours();
+var minute = a.getMinutes();
+var second = a.getSeconds();
+
+
+if(hour < 10){
+  hour = '0' + hour
+}
+if(minute < 10){
+  minute = '0' + minute
+}
+if(second < 10){
+  second = '0' + second
+}
+
+var time123 = hour+":"+minute+":"+second;
+
+window.onload=function(){
+    if(time123<"12:00:00" && time123>="04:00:00"){
+    document.getElementById("time123").innerHTML = "早安 &nbsp ";
+  }
+  if(time123>="12:00:00" && time123<"18:00:00"){
+  document.getElementById("time123").innerHTML = "午安 &nbsp ";
+}
+  if(time123>="18:00:00" || time123<"04:00:00"){
+document.getElementById("time123").innerHTML = "晚安 &nbsp ";
+}
 }

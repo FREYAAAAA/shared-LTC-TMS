@@ -59,7 +59,7 @@ exports.deleteUser=functions.database.ref('uAccount/{sid}')
     return admin.auth().deleteUser(id)
       .then(function(){
         return firebase.database().ref('AccountStatus/'+id).remove();
-        console.log('成功地刪除選定的使用者！');
+        console.log('Successfully deleted the target User');
       }).catch(function(error){
         console.log(error.message);
       });
@@ -77,7 +77,7 @@ exports.updateUser=functions.database.ref('uAccount/{sid}')
       childData.Name === bchildData.Name &&
       childData.StaffID === bchildData.StaffID &&
       childData.Password === bchildData.Password){
-      console.log('他將不會上傳資料!');
+      console.log('it will not update data!');
       return null ;
     }else{
       return admin.auth().updateUser(id,{

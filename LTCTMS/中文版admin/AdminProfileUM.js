@@ -1,4 +1,4 @@
-﻿firebase.auth().onAuthStateChanged(function (firebaseUser){
+firebase.auth().onAuthStateChanged(function (firebaseUser){
 if(firebaseUser){
   console.log(firebaseUser);
   var userid = firebaseUser.uid;
@@ -17,8 +17,8 @@ if(firebaseUser){
     Profilepic.setAttribute('value',pic);
   });
 }else{
-  alert("你已登出!請再重新登入一次！");
-  window.location.href = "//share-b7589.firebaseapp.com/ChineseLogin.html";
+  alert("你現在已登出此系統，請重新登入!");
+  //window.location.href = "//share-b7589.firebaseapp.com/";
 }
 });
 //console.log(document.getElementById('Profilepic').value);
@@ -56,7 +56,7 @@ function submitprofile(){
     if(user){
       if(user.email != email){
         user.updateEmail(email).then(function(){
-          alert("信箱已更改!");
+          alert("Email Changed!");
         }).catch(function(error){
           console.log(error.message);
         });
@@ -64,10 +64,10 @@ function submitprofile(){
       user.updateProfile({
         displayName:name
       }).then(function(){
-        alert("個人檔案已重新上傳!");
+        alert("Profile have been updated!");
         window.location.reload();
       }).catch(function(error){
-        console.log('個人檔案上傳失敗'+ error.message);
+        console.log('Profile update Failed'+ error.message);
       });
     }
   });
@@ -109,7 +109,7 @@ function submitNewPass(){
           user.updatePassword(newPass)
           .then(function(){
 
-            alert('成功更改密碼!');
+            alert('成功更新密碼!');
             window.location.reload();
           }).catch(function(error){
             alert(error.message);
@@ -118,7 +118,7 @@ function submitNewPass(){
           alert('重新驗證失敗!');
         });
   }else{
-    alert("密碼無法匹配!")
+    alert("你的密碼不匹配!")
   }
 
 }
@@ -127,6 +127,16 @@ var a = new Date();
 var hour = a.getHours();
 var minute = a.getMinutes();
 var second = a.getSeconds();
+
+if(hour < 10){
+  hour = '0' + hour
+}
+if(minute < 10){
+  minute = '0' + minute
+}
+if(second < 10){
+  second = '0' + second
+}
 
 var time123 = hour+":"+minute+":"+second;
  console.log(time123);
@@ -150,6 +160,7 @@ function Logout(){
 
   firebase.auth().signOut();
   console.log('logout');
+
 }
 
 function uploadPicProfile(){
@@ -169,10 +180,10 @@ function uploadPicProfile(){
           user.updateProfile({
             photoURL: url
           }).then(function(){
-            alert('成功地更改個人檔案照片!');
+            alert('成功更新個人檔案照片!');
             window.location.reload();
           }).catch(function(err){
-            alert('更改失敗! 錯誤:'+ err.message);
+            alert('更新失敗! 錯誤:'+ err.message);
           });
         });
       });
