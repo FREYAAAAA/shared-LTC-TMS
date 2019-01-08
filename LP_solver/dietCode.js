@@ -32,7 +32,7 @@ var foodNameses = ["Br&oacute;coli congelado ", "Zanahoria (cruda)", "Apio (crud
 var numFoods= foodNamesen.length-1;
 
 
-var foodSelected = [true, true, false, false, false, false, true, false, true, true, true, true, true, false, false, true, false, true, false, false, false, false, false, true, false, true, false, true, false, false, false, true, false, false, false, false, true, false, false, false, false, false, false, true, false, false, true, false, false, false, true, true, false, false, false, false, false, false, false, true, false, false, false, false, true, false, false, false, true, false, false, true, false, false, false, true, false, false, false, false, false, true, false, false, false, false, false, false, true, false, false, false, true, false, false, false, false, false, false, false, false, false ];
+var foodSelected = [false, false, false, false, false, false, false, true, true, true, true, false, false, false, false, true, false, true, false, true, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false ];
 
 var foodSelectedDefault = foodSelected.slice();
 
