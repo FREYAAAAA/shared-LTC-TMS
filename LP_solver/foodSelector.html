@@ -1,0 +1,84 @@
+<HTML>
+
+
+<head>
+
+<LINK REL=stylesheet HREF="../utilsStyles.css" TYPE="text/css">
+<script language="Javascript" src = "toolbarscripts.js">
+</script>
+
+</head>
+
+<body>
+<script>var theLanguage=opener.theLanguage;</script>
+
+
+<form name = "selector">
+
+
+<center>
+Select your foods and maximum number of servings from the following list:
+<table>
+<script language="Javascript">
+
+var numFoods= window.opener.foodNamesen.length-1;
+
+var orden = [];
+var PPP=[];
+for (var i = 0; i <= numFoods; i++) {
+	PPP[i]=window.opener.foodNamesen[i]+"#"+i.toString();
+}
+PPP.sort();
+for (var i = 0; i <= numFoods; i++) {
+	orden[i]=PPP[i].replace(/([^\#]+)(\#)/,"");
+}
+
+
+
+var theLine = '';
+var theBoxValue = "";
+for (var i = 0; i <= numFoods; i++) {
+	if (window.opener.foodSelected[orden[i]]) theBoxValue = "checked"; else theBoxValue = "";
+	theLine = "<tr><td nowrap><input type='checkbox' name='food" + orden[i].toString() + "' " + theBoxValue +  " onClick = 'if (document.selector.food" + orden[i].toString() + ".checked) window.opener.foodSelected[" + orden[i].toString() + "] = true; else window.opener.foodSelected[" + orden[i].toString() + "] = false; ' > &nbsp;" + window.opener.foodNamesen[orden[i]] + " &nbsp;</td><td nowrap> up to ";
+	theLine += "<input type='text' name='maxServ" + orden[i].toString() + "' size = 2 value = " + (window.opener.maxServings[orden[i]]).toString() + "  OnKeyUp = 'window.opener.maxServings[" + orden[i].toString() + "] = document.selector.maxServ" +  orden[i].toString() + ".value'>&nbsp; servings of " + window.opener.servingSizesen[orden[i]];
+	theLine += " (" + window.opener.priceStrings[i] + " per serving)"
+	document.writeln(theLine);
+	document.writeln("</td></tr>");
+
+// if (i == 0) alert(theLine);
+
+	} // i
+</script>
+<tbody>
+<tr><td nowrap=""><input type="checkbox" name="food23" checked="" onclick="if (document.selector.food23.checked) window.opener.foodSelected[23] = true; else window.opener.foodSelected[23] = false; "> &nbsp;Cheddar Cheese &nbsp;</td><td nowrap=""> up to <input type="text" name="maxServ23" size="2" value="2" onkeyup="window.opener.maxServings[23] = document.selector.maxServ23.value">&nbsp; servings of 1 oz ($0.15 per serving)
+</td></tr>
+<tr><td nowrap=""><input type="checkbox" name="food19" onclick="if (document.selector.food19.checked) window.opener.foodSelected[19] = true; else window.opener.foodSelected[19] = false; "> &nbsp;Oatmeal Cookies &nbsp;</td><td nowrap=""> up to <input type="text" name="maxServ19" size="2" value="2" onkeyup="window.opener.maxServings[19] = document.selector.maxServ19.value">&nbsp; servings of 1 ($0.67 per serving)
+</td></tr>
+<tr><td nowrap=""><input type="checkbox" name="food15" checked="" onclick="if (document.selector.food15.checked) window.opener.foodSelected[15] = true; else window.opener.foodSelected[15] = false; "> &nbsp;Oranges &nbsp;</td><td nowrap=""> up to <input type="text" name="maxServ15" size="2" value="2" onkeyup="window.opener.maxServings[15] = document.selector.maxServ15.value">&nbsp; servings of 1 ($0.71 per serving)
+</td></tr>
+<tr><td nowrap=""><input type="checkbox" name="food48" onclick="if (document.selector.food48.checked) window.opener.foodSelected[48] = true; else window.opener.foodSelected[48] = false; "> &nbsp;Peanut Butter &nbsp;</td><td nowrap=""> up to <input type="text" name="maxServ48" size="2" value="2" onkeyup="window.opener.maxServings[48] = document.selector.maxServ48.value">&nbsp; servings of 2 tbsp ($0.99 per serving)
+</td></tr>
+<tr><td nowrap=""><input type="checkbox" name="food95" onclick="if (document.selector.food95.checked) window.opener.foodSelected[8] = true; else window.opener.foodSelected[8] = false; "> &nbsp;Roast Chicken &nbsp;</td><td nowrap=""> up to <input type="text" name="maxServ95" size="2" value="2" onkeyup="window.opener.maxServings[5] = document.selector.maxServ5.value">&nbsp; servings of 1 lb ($0.05 per serving)
+</td></tr>
+<tr><td nowrap=""><input type="checkbox" name="food9" checked="" onclick="if (document.selector.food9.checked) window.opener.foodSelected[9] = true; else window.opener.foodSelected[9] = false; "> &nbsp;Spaghetti with Sauce &nbsp;</td><td nowrap=""> up to <input type="text" name="maxServ9" size="2" value="2" onkeyup="window.opener.maxServings[9] = document.selector.maxServ9.value">&nbsp; servings of 1 1/2 cup ($0.28 per serving)
+</td></tr>
+<tr><td nowrap=""><input type="checkbox" name="food7" onclick="if (document.selector.food7.checked) window.opener.foodSelected[7] = true; else window.opener.foodSelected[7] = false; "> &nbsp;Tofu &nbsp;</td><td nowrap=""> up to <input type="text" name="maxServ7" size="2" value="2" onkeyup="window.opener.maxServings[7] = document.selector.maxServ7.value">&nbsp; servings of 1/4 block ($0.31 per serving)
+</td></tr>
+<tr><td nowrap=""><input type="checkbox" name="food10" checked="" onclick="if (document.selector.food10.checked) window.opener.foodSelected[10] = true; else window.opener.foodSelected[10] = false; "> &nbsp;Tomato (red, ripe, raw) &nbsp;</td><td nowrap=""> up to <input type="text" name="maxServ10" size="2" value="2" onkeyup="window.opener.maxServings[10] = document.selector.maxServ10.value">&nbsp; servings of 1 ($0.13 per serving)
+</td></tr>
+<tr><td nowrap=""><input type="checkbox" name="food17" checked="" onclick="if (document.selector.food17.checked) window.opener.foodSelected[17] = true; else window.opener.foodSelected[17] = false; "> &nbsp;Wheat Bread &nbsp;</td><td nowrap=""> up to <input type="text" name="maxServ17" size="2" value="2" onkeyup="window.opener.maxServings[17] = document.selector.maxServ17.value">&nbsp; servings of 1 slice ($1.22 per serving)
+</td></tr>
+<tr><td nowrap=""><input type="checkbox" name="food51" checked="" onclick="if (document.selector.food51.checked) window.opener.foodSelected[51] = true; else window.opener.foodSelected[51] = false; "> &nbsp;White Tuna in Water &nbsp;</td><td nowrap=""> up to <input type="text" name="maxServ51" size="2" value="2" onkeyup="window.opener.maxServings[51] = document.selector.maxServ51.value">&nbsp; servings of 3 oz ($1.02 per serving)
+</td></tr>
+</tbody>
+</table>
+</center>
+
+
+</form>
+
+</body>
+
+
+
+</HTML>
