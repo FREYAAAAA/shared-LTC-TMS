@@ -23,7 +23,28 @@
 
 
 <body bgcolor = white link= "purple" vlink="purple" alink = "red" text =  "001111">
-
+    <table>
+    <tr><td nowrap=""><input type="checkbox" name="food1"  > &nbsp;Cheddar Cheese &nbsp;</td><td nowrap=""> up to <input type="text" name="maxServ1" size="2" value="2" onkeyup="window.opener.maxServings[1] = document.selector.maxServ1.value">&nbsp; servings of 1 oz ($0.15 per serving)
+    </td></tr>
+    <tr><td nowrap=""><input type="checkbox" name="food2" > &nbsp;Oatmeal Cookies &nbsp;</td><td nowrap=""> up to <input type="text" name="maxServ2" size="2" value="2" onkeyup="window.opener.maxServings[2] = document.selector.maxServ2.value">&nbsp; servings of 1 ($0.67 per serving)
+    </td></tr>
+    <tr><td nowrap=""><input type="checkbox" name="food3"  > &nbsp;Oranges &nbsp;</td><td nowrap=""> up to <input type="text" name="maxServ3" size="2" value="2" onkeyup="window.opener.maxServings[3] = document.selector.maxServ3.value">&nbsp; servings of 1 ($0.71 per serving)
+    </td></tr>
+    <tr><td nowrap=""><input type="checkbox" name="food4"> &nbsp;Peanut Butter &nbsp;</td><td nowrap=""> up to <input type="text" name="maxServ4" size="2" value="2" onkeyup="window.opener.maxServings[4] = document.selector.maxServ4.value">&nbsp; servings of 2 tbsp ($0.99 per serving)
+    </td></tr>
+    <tr><td nowrap=""><input type="checkbox" name="food5" > &nbsp;Roast Chicken &nbsp;</td><td nowrap=""> up to <input type="text" name="maxServ5" size="2" value="2" onkeyup="window.opener.maxServings[5] = document.selector.maxServ5.value">&nbsp; servings of 1 lb ($0.05 per serving)
+    </td></tr>
+    <tr><td nowrap=""><input type="checkbox" name="food6" > &nbsp;Spaghetti with Sauce &nbsp;</td><td nowrap=""> up to <input type="text" name="maxServ6" size="2" value="2" onkeyup="window.opener.maxServings[6] = document.selector.maxServ6.value">&nbsp; servings of 1 1/2 cup ($0.28 per serving)
+    </td></tr>
+    <tr><td nowrap=""><input type="checkbox" name="food7" > &nbsp;Tofu &nbsp;</td><td nowrap=""> up to <input type="text" name="maxServ7" size="2" value="2" onkeyup="window.opener.maxServings[7] = document.selector.maxServ7.value">&nbsp; servings of 1/4 block ($0.31 per serving)
+    </td></tr>
+    <tr><td nowrap=""><input type="checkbox" name="food8" > &nbsp;Tomato (red, ripe, raw) &nbsp;</td><td nowrap=""> up to <input type="text" name="maxServ8" size="2" value="2" onkeyup="window.opener.maxServings[8] = document.selector.maxServ8.value">&nbsp; servings of 1 ($0.13 per serving)
+    </td></tr>
+    <tr><td nowrap=""><input type="checkbox" name="food9" > &nbsp;Wheat Bread &nbsp;</td><td nowrap=""> up to <input type="text" name="maxServ9" size="2" value="2" onkeyup="window.opener.maxServings[9] = document.selector.maxServ9.value">&nbsp; servings of 1 slice ($1.22 per serving)
+    </td></tr>
+    <tr><td nowrap=""><input type="checkbox" name="food10"> &nbsp;White Tuna in Water &nbsp;</td><td nowrap=""> up to <input type="text" name="maxServ10" size="2" value="2" onkeyup="window.opener.maxServings[10] = document.selector.maxServ10.value">&nbsp; servings of 3 oz ($1.02 per serving)
+    </td></tr>
+</table>
 <center>
 
 <p>
@@ -31,9 +52,7 @@
 <form name = 'controls'>
 <table  border = 1 noshade bgcolor = C6C6C6 width = 90%; height= 55%;><tr><td>
 <table align = right>
-<tr>
-<input style="position:relative; top:-280px;left:90%;" type="button" value = "Select Foods" onClick="sesame('foodSelector.html',800,600)">
-</tr>
+
 <img style="position:relative;left:100px;top:40px;" src="Diet Table.png">
 <td align = center>
 <table style="position:relative;top:0px;">
