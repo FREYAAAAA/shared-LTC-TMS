@@ -1,0 +1,313 @@
+<HTML>
+
+
+<head>
+<script language="Javascript" src = "authenticationscripts.js">
+</script>
+<LINK REL=stylesheet HREF="utilsStyles.css" TYPE="text/css">
+<script language="Javascript" src = "toolbarscripts.js">
+</script>
+<script language="Javascript" src = "dietCode.js">
+</script>
+
+</head>
+
+
+
+
+
+<title>Diet Problem</title>
+
+<meta name = "Diet Problem Utility" content = "Part of the Finite Math & Applied Calculus resource site at http://www.zweigmedia.com/RealWorld">
+
+
+
+<body bgcolor = EEFFF7 link= "purple" vlink="purple" alink = "red" text =  "001111">
+
+<center>
+<script language="Javascript">
+writeToolbar(0, 1, 1); // color index 1  = yellow
+var theLanguage=(this.window.location.toString().indexOf("RealWorld")>-1)?"en":"es";
+</script>
+<div id = lowermatter>
+<table>
+<td align = center>
+<table><tr><td>
+<td><a href="../simplex.html"> Simplex Method Tool</a></td>
+<td width = 10></td>
+<td><a href="../Summary4.html">Topic Summary for Linear Programming</a></td>
+<td width = 10></td>
+<td><a href="../tutorialsf4/frames4_3.html">Simplex Method Tutorial</a></td>
+<td width = 10></td>
+
+<td><script language="Javascript">writeMailtag('')</script>
+</td>
+<td width = 10></td>
+<td><a href = "../../MundoReal/dietProblem/diet.html">Espa&ntilde;ol</a></td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td colspan = 5 width = 876><img src = "nwelts/yellowline.gif" height = 2 width = 876></td>
+</tr>
+</table>
+</div>
+
+
+
+<table width = 876>
+<tr>
+<td valign = top align = center>
+<FONT class = "myh3">Finite </FONT><FONT class = "myh2">mathematics </FONT><FONT class = "myh3">
+<FONT class = "myh3">utility: </FONT><FONT class = "myh3"><font color = 66CC22>diet problem solver</font></FONT>
+
+<hr noshade  width = 876height = 1 align = left color = D9A826>
+</td></tr></table>
+</center>
+
+
+
+
+
+<UL type = circle>
+<b class = tableHeading>Credits</b>
+<LI>Argonne National Laboratory Web Site for the nutritional information and its diet problem page that inspired this one.</LI>
+<LI>William McKeough at Hofstra University for first suggesting the diet problem as a worthwhile topic to include in this site.</LI>
+<LI>Gabriel Balan, Josh Purinton, and Brent Dingle for their suggestions, testing, and enhancements of simplex method algorithm used here.</LI>
+<LI>Saul Robles Pe&ntilde;a for his translation of this utility into Spanish and his expansion of the list of foods and nutritional information.</LI>
+</UL>
+
+<center>
+
+<p>
+
+<form name = 'controls'>
+<table  border = 1 noshade bgcolor = 99CC66 width = 90%><tr><td>
+<table align = center>
+<tr>
+<td><b>Instructions: </b>Press "Select Foods" to bring up a window in which you can choose the foods you wish to be considered for your diet. Then adjust the settings to suit your needs and press "Solve."
+<p><center>
+<input type="button" value = "Select Foods" onClick="sesame('foodSelector.html',800,600)">
+</center>
+</td>
+</tr>
+<td align = center>
+<table><tr>
+<td>Objective: Minimize</td>
+<td><input type = "radio" checked name = "R1" onClick = " objectiveFunction = 'cost'"> total cost
+<br><input type = "radio" name = "R1"  onClick = " objectiveFunction = 'calories'"> total calories
+<br><input type = "radio" name = "R1"  onClick = " objectiveFunction = 'carbs'"> total carbohydrates
+<br><input type = "radio" name = "R1"  onClick = " objectiveFunction = 'fat'"> total fat
+<br><input type = "radio" name = "R1"  onClick = " objectiveFunction = 'sodium'"> total sodium
+</td>
+</tr>
+</table>
+<table>
+<tr><td><br>Subject to the following constraints:</td></tr>
+</table>
+
+<table>
+<tr>
+
+<td>Calories: </td>
+<td><input type = "radio" checked name = "Cal" onClick = "nutrientGEQ[0] = 2"> at least
+<br><input type = "radio" name = "Cal"  onClick = "nutrientGEQ[0] = 1"> at most
+<br><input type = "radio" name = "Cal"  onClick = "nutrientGEQ[0] = 0"> ignore calories
+</td>
+<td>
+<input type = text name = "calVal" size = 5 value = "2000">
+</td>
+
+
+<td width = 30></td>
+<td>Cholesterol: </td>
+<td><input type = "radio" name = "Chol" onClick = "nutrientGEQ[1] = 2"> at least
+<br><input type = "radio" checked name = "Chol"  onClick = "nutrientGEQ[1] = 1"> at most
+<br><input type = "radio" name = "Chol"  onClick = "nutrientGEQ[1] = 0"> ignore cholesterol
+</td>
+<td>
+<input type = text name = "cholVal" size = 5 value = "600"> mg
+</td>
+</tr>
+
+<tr>
+<td>Total Fat: </td>
+<td><input type = "radio" checked name = "Fat" onClick = "nutrientGEQ[2] = 2"> at least
+<br><input type = "radio" name = "Fat"  onClick = "nutrientGEQ[2] = 1"> at most
+<br><input type = "radio" name = "Fat"  onClick = "nutrientGEQ[2] = 0"> ignore fat
+</td>
+<td><input type = text name = "fatVal" size = 5 value = "20"> g
+</td>
+
+
+<td width = 30></td>
+
+
+<td>Sodium: </td>
+<td><input type = "radio" checked name = "Sod" onClick = "nutrientGEQ[3] = 2"> at least
+<br><input type = "radio" name = "Sod"  onClick = "nutrientGEQ[3] = 1"> at most
+<br><input type = "radio" name = "Sod"  onClick = "nutrientGEQ[3] = 0"> ignore sodium
+</td>
+<td><input type = text name = "sodVal" size = 5 value = "2400"> mg
+</td>
+</tr>
+
+<tr>
+<td>Carbohydrates: </td>
+<td><input type = "radio" checked name = "Carbs" onClick = "nutrientGEQ[4] = 2"> at least
+<br><input type = "radio" name = "Carbs"   onClick = "nutrientGEQ[4] = 1"> at most
+<br><input type = "radio" name = "Carbs"   onClick = "nutrientGEQ[4] = 0"> ignore carbs
+</td>
+<td><input type = text name = "carbsVal" size = 5 value = "80"> g
+</td>
+
+
+<td width = 30></td>
+
+
+<td>Fiber: </td>
+<td><input type = "radio" checked name = "Fib" onClick = "nutrientGEQ[5] = 2"> at least
+<br><input type = "radio" name = "Fib" onClick = "nutrientGEQ[5] = 1"> at most
+<br><input type = "radio" name = "Fib"  onClick = "nutrientGEQ[5] = 0"> ignore fiber
+</td>
+<td><input type = text name = "fibVal" size = 5 value = "25"> g
+</td>
+</tr>
+<tr>
+<td>Protein: </td>
+<td><input type = "radio" checked name = "Prot" onClick = "nutrientGEQ[6] = 2"> at least
+<br><input type = "radio" name = "Prot"   onClick = "nutrientGEQ[6] = 1"> at most
+<br><input type = "radio" name = "Prot"   onClick = "nutrientGEQ[6] = 0"> ignore protein
+</td>
+<td><input type = text name = "protVal" size = 5 value = "60"> g
+</td>
+
+
+<td width = 30></td>
+
+
+<td>Vitamin A: </td>
+<td><input type = "radio" checked name = "VitA" onClick = "nutrientGEQ[7] = 2"> at least
+<br><input type = "radio" name = "VitA" onClick = "nutrientGEQ[7] = 1"> at most
+<br><input type = "radio" name = "VitA"  onClick = "nutrientGEQ[7] = 0"> ignore vitamin A
+</td>
+<td><input type = text name = "vitAVal" size = 5 value = "5000"> IU
+</td>
+</tr>
+
+<tr>
+<td>Vitamin C: </td>
+<td><input type = "radio" checked name = "VitC" onClick = "nutrientGEQ[8] = 2"> at least
+<br><input type = "radio" name = "VitC"   onClick = "nutrientGEQ[8] = 1"> at most
+<br><input type = "radio" name = "VitC"   onClick = "nutrientGEQ[8] = 0"> ignore vitamin C
+</td>
+<td><input type = text name = "vitCVal" size = 5 value = "90"> mg
+</td>
+
+
+<td width = 30></td>
+
+
+<td>Calcium: </td>
+<td><input type = "radio" checked name = "Calc" onClick = "nutrientGEQ[5] = 2"> at least
+<br><input type = "radio" name = "Calc" onClick = "nutrientGEQ[9] = 1"> at most
+<br><input type = "radio" name = "Calc"  onClick = "nutrientGEQ[9] = 0"> ignore vitamin C
+</td>
+<td><input type = text name = "calcVal" size = 5 value = "1000"> mg
+</td>
+</tr>
+
+
+
+
+</table>
+
+
+<table>
+<tr>
+<td align = center><input type="button" value = "Solve" onClick="doIt(4); doIt(2); doIt(1)"> &nbsp;
+<input type="button" value = "Defaults" onClick="document.controls.reset();
+nutrientTotals= nutrientTotalsDefault.slice();
+nutrientGEQ = nutrientGEQDefault.slice();
+objectiveFunction = 'cost';
+">
+
+</td>
+</tr>
+</table>
+
+</td></tr></table>
+</td></tr></table>
+
+</form>
+
+
+<form name="theSpreadsheet">
+
+
+
+<table  border = 1 noshade bgcolor = 99CC66 width = 90%>
+
+<tr>
+
+<td align = center>
+
+The formal linear programming problem will appear below when you press "Solve":
+<br>
+
+<textarea name = "input" rows = 10 cols = 100>
+
+</textarea>
+
+</td>
+
+</tr>
+
+<tr><td align = center>Status/Solution:<br><input type=text size=120 name="expr" value = "An optimal solution will appear here.">
+
+<br>
+
+Rounding: <input type=text size=2 value="4" name="acc"> significant digits &nbsp;
+
+
+</td></tr>
+
+<tr>
+
+<td align = center>
+
+Your optimal diet will appear here:
+
+<br>
+
+<textarea name = "output" rows = 15 cols = 100>
+
+</textarea>
+
+</td>
+
+</tr>
+
+</table>
+
+</form>
+
+</center>
+
+
+
+<center>
+
+<p><font color = "008822"><b>Disclaimer: </b></font>This page was created for educational purposes only. Its author is not responsible for any inaccuracies or errors in the results.
+
+
+</center>
+
+
+<!****ENDMATTER*****>
+<center><font class = "SmallColor"><i>Last Updated: March 2013
+<br>Copyright &#169  Stefan Waner</i></font>
+<br><a href="#top">Top of Page</a></center>
+</center>
+</html>

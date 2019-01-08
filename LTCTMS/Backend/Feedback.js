@@ -207,15 +207,20 @@ function tableform(id,name,fbFeedback,picture){
 
 }
 function getReply(id,index,year,month,date,h,m,s,feedbackID){
+    console.log("123");
+    console.log(feedbackID);
+    var fbID = "ID-"+feedbackID;
     var lastDate = year+"-"+month+"-"+date;
     var time = h+":"+m+":"+s;
-    var fbReply = firebase.database().ref("Feedback/"+id+"/System"+"/"+lastDate+"/"+feedbackID+"/Replied/");
+    var fbReply = firebase.database().ref("Feedback/"+id+"/System"+"/"+lastDate+"/"+fbID+"/Replied/");
     fbReply.once('value').
     then(function(snapshot){
         snapshot.forEach(function(snapshot1){
             var com = snapshot1.val();
             com = com.replace (/[~]/g," ");
             document.getElementById("replyComment["+index+"]").innerHTML = com;
+            console.log(com);
+            console.log("com");
 
             var tim = snapshot1.key;
             tim = tim.replace (/[?]/g,"-");
