@@ -125,7 +125,7 @@
 
 <table style="position:relative;top:40px;">
 <tr><tr>
-<td align = center><input style="width:50px;" type="button" value ="Go" onClick="doIt(4); doIt(2); doIt(1)"> &nbsp;
+<td align = center><input type="button" style="width:50px;" value ="Go" onClick="doIt(4); doIt(2); doIt(1)"> &nbsp;
 <input type="button" value = "Refresh" onClick="document.controls.reset();
 nutrientTotals= nutrientTotalsDefault.slice();
 nutrientGEQ = nutrientGEQDefault.slice();
@@ -135,18 +135,61 @@ objectiveFunction = 'cost';
 </td>
 </tr>
 </table>
+
 </td></tr></table>
 </td></tr></table>
+
 </form>
+
+
 <form name="theSpreadsheet">
+
+
+
 <table  border = 1 noshade bgcolor = C6C6C6 width = 90%>
+
 <tr>
+
 <td align = center>
-<textarea name = "output" rows = 15 cols = 100>
+<br>
+<textarea name = "input" rows = 10 cols = 100>
+
 </textarea>
+</br>
 </td>
+
 </tr>
+
+<tr><td align = center><input type=text size=120 name="expr" value = "An optimal solution will appear here.">
+
+<br>
+
+Rounding: <input type=text size=2 value="4" name="acc"> significant digits &nbsp;
+
+
+</td></tr>
+
+<tr>
+
+<td align = center>
+
+
+<br>
+
+<textarea name = "output" rows = 15 cols = 100>
+
+</textarea>
+
+</td>
+
+</tr>
+
 </table>
+
 </form>
+
+</center>
+
+
 </center>
 </html>
