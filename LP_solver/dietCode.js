@@ -15,8 +15,7 @@ var objectiveFunction = "cost";
 
 var nutrientGEQ = [2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2];
 // 0 = ignore (no constraint) 1 = LEQ 2 = GEQ
-// order: calories, cholesterol, fat, sodium, carbs, fiber, protein, VitA, VitC,
-// Calcium, iron
+// order: calories, fat, carbs, fiber, protein, VitC
 
 var nutrientGEQDefault = nutrientGEQ.slice();
 
@@ -24,15 +23,14 @@ var nutrientTotals = [2000, 6000, 20, 2400, 80, 25, 60, 5000, 90, 1000]
 
 var nutrientTotalsDefault= nutrientTotals.slice();
 
-var foodNamesen = ["Frozen Broccoli", "Carrots (raw)", "Celery (raw)", "Corn (frozen)", "Iceberg Lettuce (raw)", "Sweet Peppers (raw)", "Potatoes (baked)", "Tofu", "Chicken (roasted)", "Spaghetti with Sauce", "Tomato (red, ripe, raw)", "Apple (raw with skin)", "Banana", "Grapes", "Kiwifruit (raw)", "Oranges", "Bagels", "Wheat Bread", "White Bread", "Oatmeal Cookies", "Apple Pie", "Chocolate Chip Cookies", "Butter", "Cheddar Cheese", "Whole Milk (3.3% fat)", "Lowfat Milk (2% fat)", "Skim Milk", "Poached Eggs", "Scrambled Eggs", "Bologna, Turkey", "Frankfurter, Beef", "Ham (sliced, extra-lean)", "Kielbasa (pork)", "Cap'N Crunch", "Cheerios", "Corn Flakes (Kellogg)", "Raisin Bran (Kellog)", "Rice Krispies", "Special K", "Avena", "Malteada (chocolate)", "Pizza (with pepperoni)", "Tacos", "Hamburgers (con ingredients)", "Hotdog, sensillo", "Couscous", "White Rice", "Macaroni", "Peanut Butter", "Pork", "Sardines in Oil", "White Tuna in Water", "Popcorn (air-popped)", "Potato Chips (bbq flavor)", "Pretzels", "Tortilla Chips", "Chicken Noodle Soup", "Splt Pea & Ham Soup", "Veg & Beef Soup", "New England Clam Chowder", "Tomato Soup", "New England Clam Chowder (with milk)", "Cream of Mushroom Soup (with milk)", "Bean & Bacon Soup", "Corn tortillas", "Flour tortillas", "Avocados", "Peanuts", "Almonds", "Hazelnuts", "Coconut", "Walnuts", "Pistachios", "Green olives", "Cranberries", "Strawberries", "Mangos", "Musk Melon", "Papaya", "Pears", "Pineapple", "Watermelon", "Natural yogurt", "Yogurt with strawberry", "Blue cheese", "Gouda cheese", "Mozzarella", "Parmesan cheese", "Cream cheese", "Boiled eggs", "Fried eggs", "Chicken with vegetables", "Grilled chicken breast", "Roast veal", "Grilled steak", "Roast beef", "Fried beef", "Roast lamb", "Fried fish fillet", "Smoked salmon", "Fish fried whole", "Tuna in oil" ];
+var foodNamesen = ["Tofu", "Roast Chicken", "Spaghetti w/Sause", "Tomato", "Orange", "Wheat Bread", "Cheddar Cheese", "Oatmeal", "Peanut Butter", "White Tuna in Water"];
 
-var foodNameses = ["Br&oacute;coli congelado ", "Zanahoria (cruda)", "Apio (crudo)", "Ma&iacute;z (congelado)", "Lechuga Iceberg (fresca)", "Pimiento dulce (fresco)", "Papa (hornerda)", "Tofu", "Pollo (asado)", "Espagueti con salsa", "Jitomate (rojo, colorado, verde)", "Manzana (con piel)", "Pl&aacute;tano", "Uva", "Kiwi (verde)", "Naranja", "Bagels", "Pan de trigo", "Pan blanco", "Galletas de avena", "Pay de manzana", "Galletas con chispas de chocolate", "Mantequilla", "Queso cheddar", "Leche entera (3.3% grasa)", "Leche baja en grasa (2% grasa)", "Leche descremada", "Huevos escalfados", "Huevos revueltos", "Salchicha de pavo", "Salchicha, carne de res", "Jam&oacute;n (rebanado, extra-magro)", "Kielbasa (de cerdo)", "Cap'N Crunch", "Cheerios", "Corn Flakes (Kellogg)", "Raisin Bran (Kellog)", "Rice Krispies", "Special K", "Arina de avena", "Malteada (chocolate)", "Pizza (con pepperoni)", "Taco", "Hamburguesa (con ingredientes)", "Hotdog, sencillo", "Cusc&uacute;s", "Arroz blanco", "Macarrones", "Crema de cacahuate", "Carne de cerdo", "Sardinas en aceite", "At&uacute;n blanco en agua", "Palomitas (Microhondas)", "Papas fritas (sabor bbq)", "Galleta salada", "Totopos", "Sopa de pollo con fideo", "Sopa de ch&iacute;charos", "Sopa de vegetales y res", "Sopa de almejas tipo Nuw England", "Sopa de jitomate", "Crema de almejas de tipo Nuw England", "Sopa crema de champi&ntilde;ones", "Sopa de fr&iacute;jol & tocino", "Tortilla de maiz", "Tortilla de harina", "Aguacate", "Cacahuate", "Almendra", "Avellana", "Coco", "Nuez", "Pistachos", "Aceituna verde", "Arandano rojo", "Fresa", "Mango", "Melon" , "Papaya", "Pera", "Pi&ntilde;a", "Sand&iacute;a", "Yogur natural", "Yogur con fresa", "Queso azul", "Queso gouda", "Queso mozzarella", "Queso parmesano", "Queso crema", "Huevos cocidos", "Huevos fritos", "Pollo con verduras", "Pechuga de pollo a la parrilla", "Asado de ternera", "Arrachera asada de vaca", "Carne asada de vaca", "Carne frita de vaca", "Carne de cordero asada", "Filete de pescado frito", "Salm&oacute;n ahumado", "Pescado entero frito", "At&uacute;n en aceite" ];
 
 
 var numFoods= foodNamesen.length-1;
 
 
-var foodSelected = [true, true, false, false, false, false, true, false, true, true, true, true, true, false, false, true, false, true, false, false, false, false, false, true, false, true, false, true, false, false, false, true, false, false, false, false, true, false, false, false, false, false, false, true, false, false, true, false, false, false, true, true, false, false, false, false, false, false, false, true, false, false, false, false, true, false, false, false, true, false, false, true, false, false, false, true, false, false, false, false, false, true, false, false, false, false, false, false, true, false, false, false, true, false, false, false, false, false, false, false, false, false ];
+var foodSelected = [true, true, true, true, true, true, true, true, true, true];
 
 var foodSelectedDefault = foodSelected.slice();
 
@@ -42,41 +40,23 @@ for (var i = 0; i <= numFoods; i++) maxServings[i] = 2;
 //(numFoods + ", " + maxServings[numFoods])
 var maxServingsDefault = maxServings.slice();
 
+var priceStrings = ["$0.31", "$0.84", "$0.78", "$0.27", "$0.15", "$0.05", "$0.25", "$0.82", "$0.07", "$0.69" ];
 
-var priceStrings = ["$0.16", "$0.07", "$0.04", "$0.18", "$0.02", "$0.53", "$0.06", "$0.31", "$0.84", "$0.78", "$0.27", "$0.24", "$0.15", "$0.32", "$0.49", "$0.15", "$0.16", "$0.05", "$0.06", "$0.09", "$0.16", "$0.03", "$0.05", "$0.25", "$0.16", "$0.23", "$0.13", "$0.08", "$0.11", "$0.15", "$0.27", "$0.33", "$0.15", "$0.31", "$0.28", "$0.28", "$0.34", "$0.32", "$0.38", "$0.82", "$0.52", "$0.44", "$0.59", "$0.83", "$0.31", "$0.39", "$0.08", "$0.17", "$0.07", "$0.81", "$0.45", "$0.69", "$0.04", "$0.22", "$0.12", "$0.19", "$0.39", "$0.67", "$0.71", "$0.75", "$0.39", "$0.99", "$0.65", "$0.67", "$0.02", "$0.06", "$0.34", "$0.89", "$1.75", "$1.38", "$0.68", "$1.98", "$1.25", "$0.98", "$0.78", "$0.86", "$0.25", "$0.39", "$0.37", "$0.43", "$0.36", "$0.34", "$0.28", "$0.32", "$0.23", "$0.24", "$0.28", "$0.24", "$0.31", "$0.13", "$0.15", "$1.05", "$1.13", "$1.18", "$1.88", "$1.31", "$1.22", "$1.32", "$0.75", "$1.02", "$0.73", "$0.45" ];
+var prices = [0.31, 0.84, 0.78, 0.27, 0.15, 0.05, 0.25, 0.82, 0.07, 0.69];
 
+var servingSizesen = ["1/4 block", "1 lb chicken", "1 1/2 cup", "1", "1", "1 slice", "1 oz", "1", "2 tea spoon", "3 oz" ];
 
-var prices = [0.16 , 0.07 , 0.04 , 0.18 , 0.02 , 0.53 , 0.06 , 0.31 , 0.84 , 0.78 , 0.27 , 0.24 , 0.15 , 0.32 , 0.49 , 0.15 , 0.16 , 0.05 , 0.06 , 0.09 , 0.16 , 0.03 , 0.05 , 0.25 , 0.16 , 0.23 , 0.13 , 0.08 , 0.11 , 0.15 , 0.27 , 0.33 , 0.15 , 0.31 , 0.28 , 0.28 , 0.34 , 0.32 , 0.38 , 0.82 , 0.52 , 0.44 , 0.59 , 0.83 , 0.31 , 0.39 , 0.08 , 0.17 , 0.07 , 0.81 , 0.45 , 0.69 , 0.04 , 0.22 , 0.12 , 0.19 , 0.39 , 0.67 , 0.71 , 0.75 , 0.39 , 0.99 , 0.65 , 0.67 ,
-0.02 , 0.06 , 0.34 , 0.89 , 1.75 , 1.38 , 0.68 , 1.98 , 1.25 , 0.98 , 0.78 , 0.86 , 0.25 , 0.39 , 0.37 , 0.43 , 0.36 , 0.34 , 0.28 , 0.32 , 0.23 , 0.24 , 0.28 , 0.24 , 0.31 , 0.13 , 0.15 , 1.05 , 1.13 , 1.18 , 1.88 , 1.31 , 1.22 , 1.32 , 0.75 , 1.02 , 0.73 , 0.45 ];
+var calories = [88.2, 2777.4, 358.2, 25.8, 61.6, 65.0, 112.7, 145.1, 188.5, 115.6];
 
-var servingSizesen = ["10 oz", "1/2 cup shredded", "1 stalk", "1/2 cup", "1 leaf", "1 pepper", "1/2 cup", "1/4 block", "1 lb chicken", "1 1/2 cup", "1", "1", "1", "10", "1", "1", "1 oz", "1 slice", "1 slice", "1", "1 oz", "1", "1 pat", "1 oz", "1 cup", "1 cup", "1 cup", "1", "1", "1 oz", "1 frankfurter", "1 slice", "1 slice", "1 oz", "1 oz", "1 oz", "1.3 oz", "1 oz", "1 oz", "1 c", "1 c", "1 slice", "1 small", "1 burger", "1 hotdog", "1/2 cup", "1/2 cup", "1/2 cup", "2 tbsp", "4 oz", "2", "3 oz", "1 oz", "1 oz", "1 oz", "1 oz", "1 cup", "1 cup", "1 cup", "1 cup", "1 cup", "1 cup", "1 cup", "1 cup", "1", "1", "1", "4 oz", "4 oz", "4 oz", "4 oz", "4 oz", "4 oz", "3 oz", "3 oz", "3 oz", "3 oz", "4 oz", "4 oz", "1", "4 oz", "4 oz", "4 oz", "4 oz", "1 oz", "1 oz", "1 oz", "1 oz", "1 oz", "1", "1", "5 oz", "5 oz", "4 oz", "4 oz", "4 0z", "4 oz", "4 oz", "4 oz", "4 oz", "4 oz", "3 oz" ];
+var fat = [5.5, 10.8, 12.3 , 0.4 , 0.2 , 1.0 , 9.3 , 2.3 , 16.0 , 2.1];
 
-var servingSizeses = ["10 oz", "1/2 taza rallada", "1 trozo", "1/2 taza", "1 hoja", "1 chile", "1/2 taza", "1/4 block", "1 lb pollo", "1 1/2 taza", "1", "1", "1", "10", "1", "1", "1 oz", "1 rebanada", "1 rebanada", "1", "1 oz", "1", "1 pat", "1 oz", "1 taza", "1 taza", "1 taza", "1", "1", "1 oz", "1 salchicha", "1 rebanada", "1 rebanada", "1 oz", "1 oz", "1 oz", "1.3 oz", "1 oz", "1 oz", "1 c", "1 c", "1 rebanada", "1 peque&ntilde;o", "1 hamburguesa", "1 hotdog", "1/2 taza", "1/2 taza", "1/2 taza", "2 tbsp", "4 oz", "2", "3 oz", "1 oz", "1 oz", "1 oz", "1 oz", "1 taza", "1 taza", "1 taza", "1 taza", "1 taza", "1 taza", "1 taza", "1 taza", "1", "1", "1", "4 oz", "4 oz", "4 oz", "4 oz", "4 oz", "4 oz", "3 oz", "3 oz" , "3 oz", "3 oz", "4 oz", "4 oz", "1", "4 oz", "4 oz", "4 oz", "4 oz", "1 oz", "1 oz", "1 oz", "1 oz", "1 oz", "1", "1", "5 oz", "5 oz", "4 oz", "4 oz", "4 oz" , "4 oz", "4 oz", "4 oz", "4 oz", "4 oz", "3 oz" ];
+var carbs = [2.2, 0, 58.3, 5.7, 15.4, 12.4, 0.4, 25.3, 6.9, 0];
 
-var calories = [73.8 , 23.7 , 6.4 , 72.2 , 2.6 , 20 , 171.5 , 88.2 , 277.4 , 358.2 , 25.8 , 81.4 , 104.9 , 15.1 , 46.4 , 61.6 , 78 , 65 , 65 , 81 , 67.2 , 78.1 , 35.8 , 112.7 , 149.9 , 121.2 , 85.5 , 74.5 , 99.6 , 56.4 , 141.8 , 37.1 , 80.6 , 119.6 , 111 , 110.5 , 115.1 , 112.2 , 110.8 , 145.1 , 607.2 , 181 , 369.4 , 275 , 242.1 , 100.8 , 102.7 , 98.7 , 188.5 , 710.8 , 49.9 , 115.6 , 108.3 , 139.2 , 108 , 142 , 150.1 , 184.8 , 158.1 , 175.7 , 170.7 , 163.7 , 203.4 , 172 , 23 , 41 , 253 , 625 , 666 , 721 , 402 , 718 , 656 , 107 , 42 , 31 , 55 , 41 , 49 , 63 , 59 , 37 , 55 , 69 , 100 , 90.1 , 70 , 130 , 71 , 95 , 187 , 41 , 223 , 158 , 469 , 138 , 260 , 333 , 151 , 190 , 209 , 167 ];
+var fiber = [1.4, 0, 11.6, 1.4, 3.1, 1.3, 0, 4.0, 2.1, 0];
 
-var cholestrol = [0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 129.9 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 5.1 , 10.9 , 29.4 , 33.2 , 18.3 , 4.4 , 211.5 , 211.2 , 28.1 , 27.4 , 13.3 , 17.4 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 14.2 , 56.4 , 42.8 , 44.1 , 0 , 0 , 0 , 0 , 105.1 , 34.1 , 35.7 , 0 , 0 , 0 , 0 , 12.3 , 7.2 , 10 , 10 , 0 , 22.3 , 19.8 , 2.5 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 2.3 , 6.8 , 21.4 , 20 , 0 , 222 , 214 , 226.3 , 181 , 38.3 , 121.5 , 72.9 , 79.2 , 66.7 , 95.9 , 120.8 , 69 , 79.1 , 95.9 , 42.6 ];
+var protein = [9.4, 42.2, 8.2, 1.0, 1.2, 2.2, 7.0, 6.1, 7.7, 22.7];
 
-var fat = [0.8 , 0.1 , 0.1 , 0.6 , 0 , 0.1 , 0.2 , 5.5 , 10.8 , 12.3 , 0.4 , 0.5 , 0.5 , 0.1 , 0.3 , 0.2 , 0.5 , 1 , 1 , 3.3 , 3.1 , 4.5 , 4.1 , 9.3 , 8.1 , 4.7 , 0.4 , 5 , 7.3 , 4.3 , 12.8 , 1.4 , 7.1 , 2.6 , 1.8 , 0.1 , 0.7 , 0.2 , 0.1 , 2.3 , 1.5 , 7 , 20.6 , 10.2 , 14.5 , 0.1 , 0.2 , 0.5 , 16 , 72.2 , 2.7 , 2.1 , 1.2 , 9.2 , 1 , 7.4 , 4.6 , 4 , 3.8 , 5 , 3.8 , 6.6 , 13.6 , 5.9 , 0.4 , 1.01 , 25.50 , 52.3 , 59.8 , 71.2 , 38 , 68.4 , 55 , 10.8 , 0.2 , 0.4 , 0.3 , 0.3 , 0.1 , 2.4 , 0.2 , 0.3 , 0.2 , 1.7 , 8.1 , 6.5 , 3.5 , 9.3 , 6.8 , 6.5 , 17.8 , 9 , 5.1 , 8.4 , 44.7 , 4.1 , 12.6 , 23.4 , 6.4 , 9.6 , 11.7 , 7.7 ];
-
-var sodium = [68.2 , 19.2 , 34.8 , 2.5 , 1.8 , 1.5 , 15.2 , 8.1 , 125.6 , 1237.1 , 11.1 , 0 , 1.1 , 0.5 , 3.8 , 0 , 151.4 , 134.5 , 132.5 , 68.9 , 75.4 , 57.8 , 41.3 , 173.7 , 119.6 , 121.8 , 126.2 , 140 , 168 , 248.9 , 461.7 , 405.1 , 279.8 , 213.3 , 307.6 , 290.5 , 204.4 , 340.8 , 265.5 , 2.3 , 16.5 , 267 , 802 , 563.9 , 670.3 , 4.5 , 0.8 , 0.7 , 155.5 , 38.4 , 121.2 , 333.2 , 1.1 , 212.6 , 486.2 , 149.7 , 1862.2 , 964.8 , 1915.1 , 1864.9 , 1744.4 , 992 , 1076.3 , 951.3 , 5 , 21 , 4.9 , 18.3 , 15.8 , 2.3 , 22.8 , 4.8 , 6.8 , 1.7 , 0.8 , 0.8 , 6 , 24.9 , 3.4 , 2.3 , 1.1 , 1.1 , 87 , 53.1 , 3 , 252 , 192 , 0.3 , 227 , 87.4 , 69.9 , 63.8 , 89.1 , 327.8 , 143.8 , 88.1 , 104.7 , 102 , 122.9 , 1.2 , 41.4 , 437.9 ];
-
-
-var carbs = [13.6 , 5.6 , 1.5 , 17.1 , 0.4 , 4.8 , 39.9 , 2.2 , 0 , 58.3 , 5.7 , 21 , 26.7 , 4.1 , 11.3 , 15.4 , 15.1 , 12.4 , 11.8 , 12.4 , 9.6 , 9.3 , 0 , 0.4 , 11.4 , 11.7 , 11.9 , 0.6 , 1.3 , 0.3 , 0.8 , 0.3 , 0.6 , 23 , 19.6 , 24.5 , 27.9 , 24.8 , 21.3 , 25.3 , 128.2 , 19.9 , 26.7 , 32.7 , 18 , 20.9 , 22.3 , 19.8 , 6.9 , 0 , 0 , 0 , 22.1 , 15 , 22.5 , 17.8 , 18.7 , 26.8 , 20.4 , 21.8 , 33.2 , 16.6 , 15 , 22.8 , 11 , 21 , 9.54 , 21.7 , 23.3 , 16.9 , 17.2 , 20.4 , 28.3 , 3.5 , 10.8 , 7.1 , 14.4 , 9.5 , 12.5 , 16.3 , 15.4 , 9.5 , 8.7 , 9.3 , 0.65 , 0 , 6.6 , 0 , 0.9 , 0.4 , 0.3 , 6.5 , 0 , 1.4 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 ];
-
-var fiber = [8.5 , 1.6 , 0.7 , 2 , 0.3 , 1.3 , 3.2 , 1.4 , 0 , 11.6 , 1.4 , 3.7 , 2.7 , 0.2 , 2.6 , 3.1 , 0.6 , 1.3 , 1.1 , 0.6 , 0.5 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0.5 , 2 , 0.7 , 4 , 0.4 , 0.7 , 4 , 0 , 0 , 0 , 0 , 0 , 1.3 , 0.3 , 0.9 , 2.1 , 0 , 0 , 0 , 4.3 , 1.2 , 0.9 , 1.8 , 1.5 , 4.1 , 4 , 1.5 , 1 , 1.5 , 0.5 , 8.6 , 0.7 , 0.4 , 6.83 , 14.8 , 10.1 , 10.5 , 7.5 , 6.95 , 2 , 3.6 , 1.7 , 1.4 , 1.1 , 2.1 , 2.4 , 1.4 , 0.3 , 0 , 0.3 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 2.3 , 0 , 0.3 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 ];
-
-var protein = [8 , 0.6 , 0.3 , 2.5 , 0.2 , 0.7 , 3.7 , 9.4 , 42.2 , 8.2 , 1 , 0.3 , 1.2 , 0.2 , 0.8 , 1.2 , 3 , 2.2 , 2.3 , 1.1 , 0.5 , 0.9 , 0 , 7 , 8 , 8.1 , 8.4 , 6.2 , 6.7 , 3.9 , 5.4 , 5.5 , 3.4 , 1.4 , 4.3 , 2.3 , 4 , 1.9 , 5.6 , 6.1 , 17.3 , 10.1 , 20.7 , 13.6 , 10.4 , 3.4 , 2.1 , 3.3 , 7.7 , 13.8 , 5.9 , 22.7 , 3.4 , 2.2 , 2.6 , 2 , 7.9 , 11.1 , 11.2 , 10.9 , 4.1 , 9.5 , 6.1 , 7.9 , 0.61 , 1.08 , 2.08 , 29.5 , 22.7 , 16.3 , 3.9 , 18.2 , 23.3 , 1.2 , 0.3 , 0.7 , 0.4 , 0.7 , 0.7 , 0.5 , 0.7 , 6.4 , 4.2 , 6.05 , 7.9 , 3.3 , 11.8 , 1.7 , 7.9 , 6.4 , 10.7 , 40.9 , 18.4 , 16 , 23.6 , 34.8 , 28.3 , 22.8 , 24.5 , 24.8 , 23 ];
-
-var vitA = [5867.4 , 15471 , 53.6 , 106.6 , 66 , 467.7 , 0 , 98.6 , 77.4 , 3055.2 , 766.3 , 73.1 , 92.3 , 24 , 133 , 268.6 , 0 , 0 , 0 , 2.9 , 35.2 , 101.8 , 152.9 , 296.5 , 307.4 , 500.2 , 499.8 , 316 , 409.2 , 0 , 0 , 0 , 0 , 40.6 , 1252.2 , 1252.2 , 1250.2 , 1252.2 , 1252.2 , 37.4 , 0 , 281.9 , 855 , 126.3 , 0 , 0 , 0 , 0 , 0 , 14.7 , 53.8 , 68 , 55.6 , 61.5 , 0 , 55.6 , 1308.7 , 4872 , 3785.1 , 20.1 , 1393 , 163.7 , 153.8 , 888 , 25 , 37 , 14 , 0 , 1.2 , 5.2 , 0 , 8.5 , 23 , 29 , 2 , 2 , 390 , 185 , 200 , 7 , 38.5 , 2.2 , 19.5 , 50 , 70 , 109.5 , 64 , 55.6 , 123.2 , 103.2 , 8 , 9.65 , 38.54 , 5.85 , 12 , 0 , 0 , 7.02 , 34 , 48.21 , 131 ];
-
-var vitC = [160.2 , 5.1 , 2.8 , 5.2 , 0.8 , 66.1 , 15.6 , 0.1 , 0 , 27.9 , 23.5 , 7.9 , 10.4 , 1 , 74.5 , 69.7 , 0 , 0 , 0 , 0.1 , 0.9 , 0 , 0 , 0 , 2.3 , 2.3 , 2.4 , 0 , 0.1 , 0 , 10.8 , 7.4 , 5.5 , 0 , 15.1 , 15.1 , 0 , 15.1 , 15.1 , 0 , 0 , 1.6 , 2.2 , 2.6 , 0.1 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 9.6 , 0 , 0 , 0 , 7 , 4.8 , 4.8 , 133 , 3.5 , 2.2 , 1.5 , 0.14 , 0.28 , 8 , 0, 5.8 , 3.2 , 3.35 , 5.83 , 5 , 1.5 , 13.45 , 60 , 26 , 63 , 15 , 10.2 , 0.95 , 7.95 , 0 , 0 , 0.25 , 0 , 0.13 , 0 , 0 , 2 , 0 , 0.51 , 0 , 8 , 0 , 0 , 0 , 0 , 0.80 , 0 ];
-
-var calcium = [159 , 14.9 , 16 , 3.3 , 3.8 , 6.7 , 22.7 , 121.8 , 21.9 , 80.2 , 6.2 , 9.7 , 6.8 , 3.4 , 19.8 , 52.4 , 21 , 10.8 , 26.2 , 6.7 , 3.1 , 6.2 , 1.2 , 202 , 291.3 , 296.7 , 302.3 , 24.5 , 42.6 , 23.8 , 9 , 2 , 11.4 , 4.8 , 48.6 , 0.9 , 12.9 , 4 , 8.2 , 18.7 , 23.1 , 64.6 , 220.6 , 51.4 , 23.5 , 7.2 , 7.9 , 4.9 , 13.1 , 59.9 , 91.7 , 3.4 , 2.8 , 14.2 , 10.2 , 43.7 , 27.1 , 33.6 , 32.6 , 82.8 , 27.6 , 186 , 178.6 , 81 , 2 , 0.11 , 13 , 58 , 245 , 18.9 , 18 , 87.5 , 136 , 59.5 , 7 , 27.5 , 10 , 28 , 25 , 17.5 , 6.2 , 200 , 135 , 134 , 202 , 153 , 349 , 22.15 , 25.34 , 21.24 , 24.45 , 9.18 , 21.12 , 16 , 3.5 , 9.5 , 13.88 , 9.04 , 16 , 13 , 11 ];
-
-var iron = [2.3, 0.3, 0.2, 0.3, 0.1, 0.3, 4.3, 6.2, 1.8, 2.3, 0.6, 0.2, 0.4, 0.1, 0.3, 0.1, 1, 0.7, 0.8, 0.5, 0.1, 0.4, 0, 0.2, 0.1, 0.1, 0.1, 0.7, 0.7, 0.4, 0.6, 0.2, 0.4, 7.5, 4.5, 1.8, 16.8, 1.8, 4.5, 1.6, 47.2, 0.9, 2.4, 2.5, 2.3, 0.3, 0.9, 1, 0.6, 0.4, 0.7, 0.5, 0.8, 0.5, 1.2, 0.4, 1.5, 2.1, 2.2, 2.8, 3.5, 1.5, 0.6, 2, 0.12, 0.08, 0.59, 3.5, 4.2, 3.5, 2.47, 1.82, 6.72, 1.4, 0.2, 0.75, 0.5, 0.52, 12, 0.32, 0.25, 0.12, 0.22, 7.8, 0.18, 0.11, 1.02, 3.2, 1.08, 1.13, 5.85, 1.43, 2.88, 2.95, 2.38, 3.9, 3.28, 0.95, 0.70, 0.97, 1 ];
-
-
+var vitC = [0.1, 0, 27.9, 23.5, 69.7, 0, 0, 0 , 0, 0];
 
 var epsilon = .00000000000001  // 10^-14
 
@@ -2722,7 +2702,6 @@ function doIt(){
 					else if  (objectiveFunction == "calories") objectiveString += (calories[i]).toString() + "x" + i.toString();
 					else if  (objectiveFunction == "carbs") objectiveString += (carbs[i]).toString() + "x" + i.toString();
 					else if  (objectiveFunction == "fat") objectiveString += (fat[i]).toString() + "x" + i.toString();
-					else if  (objectiveFunction == "sodium") objectiveString += (sodium[i]).toString() + "x" + i.toString();
 					foundAFood = true;
 					}
 } // i
@@ -2751,26 +2730,6 @@ objectiveString += cr;
 					}
 } // i
 
-			if (nutrientGEQ[0] == 2) objectiveString += ">=" + document.controls.calVal.value + cr;
-			else objectiveString += "<=" + document.controls.calVal.value +  cr;
-			} // calories
-
-		if (nutrientGEQ[1] != 0)  {
-		foundAFood = false;
-		for (var i = 0; i <= numFoods; i++) {
-				if (foodSelected[i] == true) {
-					if (foundAFood) objectiveString += "+";
-					objectiveString += (cholestrol[i]).toString() + "x" + i.toString();
-
-					foundAFood = true;
-					}
-} // i
-
-			if (nutrientGEQ[1] == 2) objectiveString += ">=" + document.controls.cholVal.value + cr;
-			else objectiveString += "<=" + document.controls.cholVal.value +  cr;
-			} // cholestorosl
-
-
 // fat
 		if ((objectiveFunction != "fat")&&(nutrientGEQ[2] != 0))  {
 		foundAFood = false;
@@ -2786,22 +2745,6 @@ objectiveString += cr;
 			if (nutrientGEQ[2] == 2) objectiveString += ">=" + document.controls.fatVal.value + cr;
 			else objectiveString += "<=" + document.controls.fatVal.value +  cr;
 			} // fat
-
-// sodium
-		if ((objectiveFunction != "sodium")&&(nutrientGEQ[3] != 0))  {
-		foundAFood = false;
-		for (var i = 0; i <= numFoods; i++) {
-				if (foodSelected[i] == true) {
-					if (foundAFood) objectiveString += "+";
-					objectiveString += (sodium[i]).toString() + "x" + i.toString();
-
-					foundAFood = true;
-					}
-} // i
-
-			if (nutrientGEQ[3] == 2) objectiveString += ">=" + document.controls.sodVal.value + cr;
-			else objectiveString += "<=" + document.controls.sodVal.value +  cr;
-			} // sodium
 
 // carbs
 		if ((objectiveFunction != "carbs")&&(nutrientGEQ[4] != 0))  {
@@ -2851,24 +2794,6 @@ objectiveString += cr;
 			else objectiveString += "<=" + document.controls.protVal.value +  cr;
 			} // protein
 
-
-// Vit A
-		if  (nutrientGEQ[7] != 0)  {
-		foundAFood = false;
-		for (var i = 0; i <= numFoods; i++) {
-				if (foodSelected[i] == true) {
-					if (foundAFood) objectiveString += "+";
-					objectiveString += (vitA[i]).toString() + "x" + i.toString();
-
-					foundAFood = true;
-					}
-} // i
-
-			if (nutrientGEQ[7] == 2) objectiveString += ">=" + document.controls.vitAVal.value + cr;
-			else objectiveString += "<=" + document.controls.vitAVal.value +  cr;
-			} // vitamin A
-
-
 // Vit C
 		if  (nutrientGEQ[8] != 0)  {
 		foundAFood = false;
@@ -2884,33 +2809,6 @@ objectiveString += cr;
 			if (nutrientGEQ[8] == 2) objectiveString += ">=" + document.controls.vitCVal.value + cr;
 			else objectiveString += "<=" + document.controls.vitCVal.value +  cr;
 			} // vitamin C
-
-// calcium
-		if  (nutrientGEQ[9] != 0)  {
-		foundAFood = false;
-		for (var i = 0; i <= numFoods; i++) {
-				if (foodSelected[i] == true) {
-					if (foundAFood) objectiveString += "+";
-					objectiveString += (calcium[i]).toString() + "x" + i.toString();
-
-					foundAFood = true;
-					}
-} // i
-
-			if (nutrientGEQ[9] == 2) objectiveString += ">=" + document.controls.calcVal.value + cr;
-			else objectiveString += "<=" + document.controls.calcVal.value +  cr;
-			} // vcalcium
-
-
-	objectiveString += cr;
-
-
-
-document.theSpreadsheet.input.value = objectiveString;
-
-		} // of this option
-
-
 
 	//
 
@@ -2953,5 +2851,4 @@ function toEs(inS){
     else if(inS == "calories") return "Calor&iacute;as m&iacute;nimas";
     else if(inS == "carbs") return "Carbohidratos m&iacute;nimos";
     else if(inS == "fat") return "Grasa m&iacute;nima";
-    else if(inS == "sodium") return "Sodio m&iacute;nimo";
 }
