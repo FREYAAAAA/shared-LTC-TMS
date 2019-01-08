@@ -15,7 +15,8 @@ var objectiveFunction = "cost";
 
 var nutrientGEQ = [2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2];
 // 0 = ignore (no constraint) 1 = LEQ 2 = GEQ
-// order: calories, fat, carbs, fiber, protein, VitC
+// order: calories, cholesterol, fat, sodium, carbs, fiber, protein, VitA, VitC,
+// Calcium, iron
 
 var nutrientGEQDefault = nutrientGEQ.slice();
 
@@ -2702,6 +2703,7 @@ function doIt(){
 					else if  (objectiveFunction == "calories") objectiveString += (calories[i]).toString() + "x" + i.toString();
 					else if  (objectiveFunction == "carbs") objectiveString += (carbs[i]).toString() + "x" + i.toString();
 					else if  (objectiveFunction == "fat") objectiveString += (fat[i]).toString() + "x" + i.toString();
+
 					foundAFood = true;
 					}
 } // i
@@ -2730,6 +2732,26 @@ objectiveString += cr;
 					}
 } // i
 
+			if (nutrientGEQ[0] == 2) objectiveString += ">=" + document.controls.calVal.value + cr;
+			else objectiveString += "<=" + document.controls.calVal.value +  cr;
+			} // calories
+
+		if (nutrientGEQ[1] != 0)  {
+		foundAFood = false;
+		for (var i = 0; i <= numFoods; i++) {
+				if (foodSelected[i] == true) {
+					if (foundAFood) objectiveString += "+";
+					objectiveString += (cholestrol[i]).toString() + "x" + i.toString();
+
+					foundAFood = true;
+					}
+} // i
+
+			if (nutrientGEQ[1] == 2) objectiveString += ">=" + document.controls.cholVal.value + cr;
+			else objectiveString += "<=" + document.controls.cholVal.value +  cr;
+			} // cholestorosl
+
+
 // fat
 		if ((objectiveFunction != "fat")&&(nutrientGEQ[2] != 0))  {
 		foundAFood = false;
@@ -2745,6 +2767,8 @@ objectiveString += cr;
 			if (nutrientGEQ[2] == 2) objectiveString += ">=" + document.controls.fatVal.value + cr;
 			else objectiveString += "<=" + document.controls.fatVal.value +  cr;
 			} // fat
+
+
 
 // carbs
 		if ((objectiveFunction != "carbs")&&(nutrientGEQ[4] != 0))  {
@@ -2794,6 +2818,10 @@ objectiveString += cr;
 			else objectiveString += "<=" + document.controls.protVal.value +  cr;
 			} // protein
 
+
+
+
+
 // Vit C
 		if  (nutrientGEQ[8] != 0)  {
 		foundAFood = false;
@@ -2809,6 +2837,19 @@ objectiveString += cr;
 			if (nutrientGEQ[8] == 2) objectiveString += ">=" + document.controls.vitCVal.value + cr;
 			else objectiveString += "<=" + document.controls.vitCVal.value +  cr;
 			} // vitamin C
+
+
+
+
+	objectiveString += cr;
+
+
+
+document.theSpreadsheet.input.value = objectiveString;
+
+		} // of this option
+
+
 
 	//
 
@@ -2851,4 +2892,5 @@ function toEs(inS){
     else if(inS == "calories") return "Calor&iacute;as m&iacute;nimas";
     else if(inS == "carbs") return "Carbohidratos m&iacute;nimos";
     else if(inS == "fat") return "Grasa m&iacute;nima";
+
 }
