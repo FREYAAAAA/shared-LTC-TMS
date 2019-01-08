@@ -2831,8 +2831,7 @@ objectiveString += cr;
 	objectiveString += cr;
 
 
-
-//document.theSpreadsheet.input.value = objectiveString;
+	document.theSpreadsheet.input.value = objectiveString;
 
 		} // of this option
 
