@@ -13,14 +13,14 @@
 
 var objectiveFunction = "cost";
 
-var nutrientGEQ = [2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2];
+var nutrientGEQ = [2, 1, 2, 2, 2, 2, 2, 2];
 // 0 = ignore (no constraint) 1 = LEQ 2 = GEQ
 // order: calories, cholesterol, fat, sodium, carbs, fiber, protein, VitA, VitC,
 // Calcium, iron
 
 var nutrientGEQDefault = nutrientGEQ.slice();
 
-var nutrientTotals = [2000, 6000, 20, 2400, 80, 25, 60, 5000, 90, 1000]
+var nutrientTotals = [2000, 20, 80, 25, 60, 90]
 
 var nutrientTotalsDefault= nutrientTotals.slice();
 
@@ -2736,20 +2736,7 @@ objectiveString += cr;
 			else objectiveString += "<=" + document.controls.calVal.value +  cr;
 			} // calories
 
-		if (nutrientGEQ[1] != 0)  {
-		foundAFood = false;
-		for (var i = 0; i <= numFoods; i++) {
-				if (foodSelected[i] == true) {
-					if (foundAFood) objectiveString += "+";
-					objectiveString += (cholestrol[i]).toString() + "x" + i.toString();
 
-					foundAFood = true;
-					}
-} // i
-
-			if (nutrientGEQ[1] == 2) objectiveString += ">=" + document.controls.cholVal.value + cr;
-			else objectiveString += "<=" + document.controls.cholVal.value +  cr;
-			} // cholestorosl
 
 
 // fat
@@ -2845,7 +2832,7 @@ objectiveString += cr;
 
 
 
-document.theSpreadsheet.input.value = objectiveString;
+//document.theSpreadsheet.input.value = objectiveString;
 
 		} // of this option
 
@@ -2880,6 +2867,7 @@ document.theSpreadsheet.input.value = objectiveString;
 
 
 }
+
 
 function convertStr(inSt) {
     var y=document.createElement('span');
